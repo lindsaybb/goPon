@@ -1,0 +1,57 @@
+2021-01-04T20:11:12Z INFO --- logging initialized ---
+2021-01-04T20:11:13Z INFO --- logging initialized ---
+2021-01-04T20:11:15Z INFO --- logging initialized ---
+2021-01-04T20:11:17Z INFO --- logging initialized ---
+2021-01-04T20:11:17Z INFO --- logging initialized ---
+2021-01-04T20:11:21Z INFO Installed: iniparser-1:2.14.45-0_0.aarch64
+2021-01-04T20:11:21Z INFO Installed: info-board-spd-0.3.40-0_0.aarch64
+2021-01-04T20:11:21Z INFO Installed: itxml-1:1.1.42-0_0.aarch64
+2021-01-04T20:11:21Z INFO Installed: itcommon-1.0.317-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: diagnostics-7.0.224-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: lsp-spd-1:1.1.169-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: ipmitool-spd-2:3.0.46-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: ham-8.8.5-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: ncfm-1.2.36-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: install-utils-4.0.65-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: install-configs-3.3.31-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: acs-1.1.19-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: shmc-spd-4.1.42-0_0.aarch64
+2021-01-04T20:11:22Z INFO Installed: ipmi-firmware-spd-0.3.61-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: itKlish-spd-2.0.264-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: sitool-1.0.33-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: platform_utils-spd-2:8.9.185-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: platform_config-spd-1.0.79-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: niesubag-1.1.59-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: mesa-spd-1:1.0.24-0_0.aarch64
+2021-01-04T20:11:23Z INFO Installed: klish-1.6.7-32.aarch64
+2021-01-04T20:11:36Z INFO Installed: ituboot-fsl-spd-3.2.70-0_0.aarch64
+2021-01-04T20:11:37Z INFO Installed: itopensaf-5.0.53-0_0.aarch64
+2021-01-04T20:11:37Z INFO Installed: itdhcp-client-2.0.9-0_0.aarch64
+2021-01-04T20:11:37Z INFO Installed: esp-medium-spd-1.37.0-2009032355_0.aarch64
+2021-01-04T20:11:38Z INFO --- logging initialized ---
+2021-01-04T20:12:18Z INFO --- logging initialized ---
+2021-01-04T20:12:19Z INFO --- logging initialized ---
+2021-01-04T20:12:23Z INFO --- logging initialized ---
+2021-01-04T20:12:23Z INFO --- logging initialized ---
+2021-01-04T20:12:24Z INFO --- logging initialized ---
+2021-01-04T20:12:29Z INFO Installed: QorIQ_microcode-spd-1:4.6.41-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: itbridge-spd-1:5.10.228-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: itarl-spd-1:1.0.123-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: web_em-2.1.130-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: test_ntp-1.0.31-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: tacasplus_client-1:2.0.1-0_0.aarch64
+2021-01-04T20:12:30Z INFO Installed: olt_manager-13.1.63-0_0.aarch64
+2021-01-04T20:12:31Z INFO Installed: maple-spd-1:7.0.90-0_0.aarch64
+2021-01-04T20:12:31Z INFO Installed: kcint-spd-1:1.0.150-0_0.aarch64
+2021-01-04T20:12:31Z INFO Installed: it_stp-4.0.24-0_0.aarch64
+2021-01-04T20:12:31Z INFO Installed: it_erps-0.0.48-0_0.aarch64
+2021-01-04T20:12:31Z INFO Installed: it_ecfm-2.0.10-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: it-snmpd-5.20.33-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: freeradius-client-5.0.3-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: cli-38.0.172-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: bridge_SW-46.0.302-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: app_utils-1:1.2.10-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: an6520gp_app-spd-1.18.0-0_0.aarch64
+2021-01-04T20:12:32Z INFO Installed: PTPms-spd-1:1.1.24-0_0.aarch64
+2021-01-04T20:12:33Z INFO Installed: an6520gp-spd-2.13.1-2009032355_0.aarch64
+2021-01-04T20:12:45Z INFO --- logging initialized ---

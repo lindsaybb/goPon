@@ -1,0 +1,70 @@
+Thu Jan  1 00:01:00 1970: Populating dev cache
+Fri Oct 20 10:45:24 2017: Fri Oct 20 10:45:24 UTC 2017
+Fri Oct 20 10:45:24 2017: Running postinst /etc/rpm-postinsts/030-fstab-uuid-patch...
+Fri Oct 20 10:45:24 2017: Running postinst /etc/rpm-postinsts/100-sysvinit-inittab...
+Fri Oct 20 10:45:24 2017: Running postinst /etc/rpm-postinsts/101-inetutils-inetd...
+Fri Oct 20 10:45:24 2017: update-alternatives: Error: cannot register alternative inetd to /usr/bin/inetd since it is already registered to /usr/sbin/inetd
+Fri Oct 20 10:45:24 2017: ERROR: postinst /etc/rpm-postinsts/101-inetutils-inetd failed.
+Fri Oct 20 10:45:24 2017: Running postinst /etc/rpm-postinsts/102-inetutils-ftpd...
+Fri Oct 20 10:45:24 2017: update-alternatives: Error: cannot register alternative ftpd to /usr/bin/ftpd since it is already registered to /usr/sbin/ftpd
+Fri Oct 20 10:45:24 2017: ERROR: postinst /etc/rpm-postinsts/102-inetutils-ftpd failed.
+Fri Oct 20 10:45:24 2017: Running postinst /etc/rpm-postinsts/103-update-files...
+Fri Oct 20 10:45:25 2017: update-alternatives: Linking /bin/sh to /bin/bash
+Fri Oct 20 10:45:26 2017: useradd: warning: the home directory already exists.
+Fri Oct 20 10:45:26 2017: Not copying any file from skel directory into it.
+Fri Oct 20 10:45:26 2017: Running postinst /etc/rpm-postinsts/800-install-basic-packages...
+Fri Oct 20 10:45:27 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:28 2017:    1:install-utils          ########################################### [100%]
+Fri Oct 20 10:45:28 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:28 2017:    1:install-configs        ########################################### [100%]
+Fri Oct 20 10:45:29 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:29 2017: Running pre installation procedure
+Fri Oct 20 10:45:29 2017:    1:klish                  ########################################### [100%]
+Fri Oct 20 10:45:29 2017: Running post installation procedure
+Fri Oct 20 10:45:29 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:30 2017:    1:lsp-spd                ########################################### [100%]
+Fri Oct 20 10:45:30 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:31 2017:    1:itKlish-spd            ########################################### [100%]
+Fri Oct 20 10:45:31 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:31 2017:    1:ituboot-fsl-spd        ########################################### [100%]
+Fri Oct 20 10:45:32 2017: Preparing...                ########################################### [100%]
+Fri Oct 20 10:45:32 2017:    1:info-board-spd         ########################################### [100%]
+Fri Oct 20 10:45:32 2017: Running postinst /etc/rpm-postinsts/801-reconfigure-itwebinstall...
+Fri Oct 20 10:45:32 2017: Starting konfd daemon...
+Fri Oct 20 10:45:32 2017: /usr/bin/konfd: Start daemon.
+Fri Oct 20 10:45:32 2017: 
+Fri Oct 20 10:45:32 2017: ... konfd started!
+Fri Oct 20 10:45:32 2017: Running postinst /etc/rpm-postinsts/101-inetutils-inetd...
+Fri Oct 20 10:45:32 2017: Running postinst /etc/rpm-postinsts/102-inetutils-ftpd...
+Fri Oct 20 10:45:32 2017: update-rc.d: /etc/init.d/run-postinsts exists during rc.d purge (continuing)
+Fri Oct 20 10:45:32 2017:  Removing any system startup links for run-postinsts ...
+Fri Oct 20 10:45:32 2017:   /etc/rcS.d/S99run-postinsts
+Fri Oct 20 10:45:32 2017: INIT: Entering runlevel: 3
+Fri Oct 20 10:45:32 2017: Configuring network interfaces... done.
+Fri Oct 20 10:45:33 2017: Starting system message bus: dbus.
+Fri Oct 20 10:45:33 2017: Starting OpenBSD Secure Shell server: sshd
+Fri Oct 20 10:45:33 2017:   generating ssh RSA key...
+Fri Oct 20 10:45:34 2017:   generating ssh ECDSA key...
+Fri Oct 20 10:45:34 2017:   generating ssh DSA key...
+Fri Oct 20 10:45:34 2017:   generating ssh ED25519 key...
+Fri Oct 20 10:45:34 2017: done.
+Fri Oct 20 10:45:34 2017: Starting rpcbind daemon...done.
+Fri Oct 20 10:45:34 2017: Starting watchdog: [  OK  ]
+Fri Oct 20 10:45:34 2017: starting statd: done
+Fri Oct 20 10:45:34 2017: Starting atd: OK
+Fri Oct 20 10:45:34 2017: Starting domain name service: namedwrote key file "/etc/bind/rndc.key"
+Fri Oct 20 10:45:34 2017: .
+Fri Oct 20 10:45:34 2017: Starting network benchmark server: netserver.
+Fri Oct 20 10:45:34 2017: exportfs: can't open /etc/exports for reading
+Fri Oct 20 10:45:34 2017: NFS daemon support not enabled in kernel
+Fri Oct 20 10:45:34 2017: Starting ntpd: done
+Fri Oct 20 10:45:34 2017: Starting : SUCCESS
+Fri Oct 20 10:45:38 2017: .
+Fri Oct 20 10:45:38 2017: Starting Samba: smbd nmbd.
+Fri Oct 20 10:45:38 2017: Starting system log daemon...0
+Fri Oct 20 10:45:38 2017: Starting kernel log daemon...0
+Fri Oct 20 10:45:38 2017: Starting internet superserver: xinetd.
+Fri Oct 20 10:45:38 2017: * starting FTP Server: vsftpd... done.
+Fri Oct 20 10:45:38 2017: Starting crond: OK
+Fri Oct 20 10:45:38 2017: Starting network management services: snmpd.
+Fri Oct 20 10:45:38 2017: Executing late boot stage operations:  done.

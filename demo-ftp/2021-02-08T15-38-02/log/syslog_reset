@@ -1,0 +1,465 @@
+Aug 11 12:45:03 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:03 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:03 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:05 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:05 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:05 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:07 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:07 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:07 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:09 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:09 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:09 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:11 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:11 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:11 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:13 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:13 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:13 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:15 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:15 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:15 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:17 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:17 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:17 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:19 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:19 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:19 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:21 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:21 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:21 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:23 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:23 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:23 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:25 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:25 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:25 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:27 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:27 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:27 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:29 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:29 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:29 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:31 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:31 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:31 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:33 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:33 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:33 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:35 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:35 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:35 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:37 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:37 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:37 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:39 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:39 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:39 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:41 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:41 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:41 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:43 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:43 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:43 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:45 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:45 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:45 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:47 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:47 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:47 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:49 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:49 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:51 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:51 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:51 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:53 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:53 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:53 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:55 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:55 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:55 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:57 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:57 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:57 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:45:59 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:45:59 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:45:59 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:01 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:01 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:01 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:03 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:03 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:03 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:05 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:05 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:05 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:07 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:07 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:07 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:09 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:09 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:09 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:11 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:11 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:11 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:13 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:13 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:13 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:15 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:15 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:15 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:17 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:17 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:17 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:19 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:19 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:19 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:21 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:21 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:21 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:23 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:23 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:23 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:25 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:25 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:25 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:27 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:27 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:27 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:35 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:35 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:35 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:37 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:37 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:37 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:39 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:39 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:39 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:41 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:41 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:41 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:43 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:43 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:43 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:45 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:45 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:45 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:47 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:47 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:47 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:49 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:49 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:51 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:51 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:51 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:53 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:53 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:53 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:55 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:55 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:55 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 11 12:46:57 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 11 12:46:57 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 11 12:46:57 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 17 18:58:47 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 17 18:58:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 17 18:58:50 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 17 18:58:53 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 17 18:58:55 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 17 18:58:56 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 17 18:59:01 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 17 18:59:03 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 17 18:59:04 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 17 18:59:55 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 17 18:59:57 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 17 18:59:58 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 17 19:00:50 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Aug 17 19:00:52 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 17 19:00:53 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 19 17:11:36 info/user [PPPoE]  PPPoE IA process started.
+Aug 19 17:11:36 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Aug 19 17:13:07 err/user [PPPoE]  Frame adjust is 0 bytes.
+Aug 19 17:13:07 err/user [PPPoE]  Frame adjust is 106 bytes.
+Aug 19 17:13:07 info/user [PPPoE]  Frame adjust is 106 bytes.
+Aug 19 17:13:07 debug/user getMyBoardPosFromFile(): boardPos = 1
+Aug 19 17:13:07 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Aug 19 17:13:07 warning/user [PPPoE]  <br0> Unable to set priority.
+Aug 19 17:13:48 debug/user STP init: Entering while - receiving messages.
+Aug 19 17:13:50 debug/user STP init: OK!
+Aug 19 17:13:50 notice/user Process started
+Aug 19 17:13:51 notice/user Globally enable STP
+Aug 19 17:13:53 notice/user Port eth6(5135) event UP
+Aug 19 17:13:53 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth7(5136) event UP
+Aug 19 17:13:53 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth8(5137) event UP
+Aug 19 17:13:53 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth9(5138) event UP
+Aug 19 17:13:53 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Aug 19 17:13:56 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Aug 19 17:14:11 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Aug 19 17:14:11 notice/user Port puma4(5143) event UP
+Aug 19 17:14:11 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Aug 19 17:14:14 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 19 17:14:14 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Aug 25 19:31:51 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 11:56:19 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 12:37:39 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 12:38:29 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 12:43:00 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 15:23:47 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 15:30:29 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range -1.
+Aug 27 15:54:32 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 15:58:33 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 27 16:01:19 warning/local1 [onu_MP]: (warning) onuMcastProfile.cpp:l1073: ONU Multicast Profile: VLAN Id out of range 0.
+Aug 19 17:11:35 info/user [PPPoE]  PPPoE IA process started.
+Aug 19 17:11:35 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Aug 19 17:13:06 err/user [PPPoE]  Frame adjust is 0 bytes.
+Aug 19 17:13:06 err/user [PPPoE]  Frame adjust is 106 bytes.
+Aug 19 17:13:06 info/user [PPPoE]  Frame adjust is 106 bytes.
+Aug 19 17:13:06 debug/user getMyBoardPosFromFile(): boardPos = 1
+Aug 19 17:13:06 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Aug 19 17:13:06 warning/user [PPPoE]  <br0> Unable to set priority.
+Aug 19 17:13:48 debug/user STP init: Entering while - receiving messages.
+Aug 19 17:13:50 debug/user STP init: OK!
+Aug 19 17:13:50 notice/user Process started
+Aug 19 17:13:51 notice/user Globally enable STP
+Aug 19 17:13:53 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth6(5135) event UP
+Aug 19 17:13:53 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth7(5136) event UP
+Aug 19 17:13:53 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth8(5137) event UP
+Aug 19 17:13:53 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Aug 19 17:13:53 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Aug 19 17:13:53 notice/user Port eth9(5138) event UP
+Aug 19 17:13:53 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Aug 19 17:13:56 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Aug 19 17:13:56 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Aug 19 17:13:56 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Aug 19 17:14:11 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Aug 19 17:14:11 notice/user Port puma4(5143) event UP
+Aug 19 17:14:11 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Aug 19 17:14:14 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Aug 19 17:14:14 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA process started.
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 0 bytes.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 info/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 debug/user getMyBoardPosFromFile(): boardPos = 1
+Sep  9 14:03:42 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Sep  9 14:03:42 warning/user [PPPoE]  <br0> Unable to set priority.
+Sep  9 14:04:23 debug/user STP init: Entering while - receiving messages.
+Sep  9 14:04:25 debug/user STP init: OK!
+Sep  9 14:04:25 notice/user Process started
+Sep  9 14:04:26 notice/user Globally enable STP
+Sep  9 14:04:28 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth6(5135) event UP
+Sep  9 14:04:28 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth7(5136) event UP
+Sep  9 14:04:28 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth8(5137) event UP
+Sep  9 14:04:28 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user Port eth9(5138) event UP
+Sep  9 14:04:28 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Sep  9 14:04:46 notice/user Port puma4(5143) event UP
+Sep  9 14:04:46 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Sep  9 14:04:46 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:33:52 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:33:56 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:33:57 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:34:38 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:34:40 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:34:41 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:35:02 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:35:04 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:35:05 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:35:28 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:35:30 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:35:31 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:35:42 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:35:42 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:35:42 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:36:54 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:36:56 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:36:57 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:37:24 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:37:26 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:37:27 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Nov  4 16:37:30 notice/user port = puma4(5143), MSTI = 0, state = DISCARDING
+Nov  4 16:37:32 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Nov  4 16:37:33 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA process started.
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 0 bytes.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 info/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 debug/user getMyBoardPosFromFile(): boardPos = 1
+Sep  9 14:03:42 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Sep  9 14:03:42 warning/user [PPPoE]  <br0> Unable to set priority.
+Sep  9 14:04:23 debug/user STP init: Entering while - receiving messages.
+Sep  9 14:04:25 debug/user STP init: OK!
+Sep  9 14:04:25 notice/user Process started
+Sep  9 14:04:26 notice/user Globally enable STP
+Sep  9 14:04:28 notice/user Port eth6(5135) event UP
+Sep  9 14:04:28 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth7(5136) event UP
+Sep  9 14:04:28 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth8(5137) event UP
+Sep  9 14:04:28 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth9(5138) event UP
+Sep  9 14:04:28 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Sep  9 14:04:46 notice/user Port puma4(5143) event UP
+Sep  9 14:04:46 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Sep  9 14:04:46 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Sep  9 14:02:10 info/user [PPPoE]  PPPoE IA process started.
+Sep  9 14:02:10 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 0 bytes.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 info/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 debug/user getMyBoardPosFromFile(): boardPos = 1
+Sep  9 14:03:42 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Sep  9 14:03:42 warning/user [PPPoE]  <br0> Unable to set priority.
+Sep  9 14:04:23 debug/user STP init: Entering while - receiving messages.
+Sep  9 14:04:25 debug/user STP init: OK!
+Sep  9 14:04:25 notice/user Process started
+Sep  9 14:04:26 notice/user Globally enable STP
+Sep  9 14:04:28 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth6(5135) event UP
+Sep  9 14:04:28 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth7(5136) event UP
+Sep  9 14:04:28 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user Port eth8(5137) event UP
+Sep  9 14:04:28 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:28 notice/user Port eth9(5138) event UP
+Sep  9 14:04:28 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Sep  9 14:04:28 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Sep  9 14:04:31 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Sep  9 14:04:46 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:46 notice/user Port puma4(5143) event UP
+Sep  9 14:04:46 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Sep  9 14:04:49 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA process started.
+Sep  9 14:02:11 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 0 bytes.
+Sep  9 14:03:42 err/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 info/user [PPPoE]  Frame adjust is 106 bytes.
+Sep  9 14:03:42 debug/user getMyBoardPosFromFile(): boardPos = 1
+Sep  9 14:03:42 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Sep  9 14:03:42 warning/user [PPPoE]  <br0> Unable to set priority.
+Sep  9 14:04:24 debug/user STP init: Entering while - receiving messages.
+Sep  9 14:04:26 debug/user STP init: OK!
+Sep  9 14:04:26 notice/user Process started
+Sep  9 14:04:27 notice/user Globally enable STP
+Sep  9 14:04:29 notice/user Port eth6(5135) event UP
+Sep  9 14:04:29 notice/user Port eth6(5135) event SPEED CHANGED to 10000
+Sep  9 14:04:29 notice/user port = eth6(5135), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:29 notice/user Port eth7(5136) event UP
+Sep  9 14:04:29 notice/user Port eth7(5136) event SPEED CHANGED to 10000
+Sep  9 14:04:29 notice/user port = eth7(5136), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:29 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:29 notice/user Port eth8(5137) event UP
+Sep  9 14:04:29 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Sep  9 14:04:29 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:29 notice/user Port eth9(5138) event UP
+Sep  9 14:04:29 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Sep  9 14:04:32 notice/user port = eth6(5135), MSTI = 0, state = LEARNING
+Sep  9 14:04:32 notice/user port = eth6(5135), MSTI = 0, state = FORWARDING
+Sep  9 14:04:32 notice/user port = eth7(5136), MSTI = 0, state = LEARNING
+Sep  9 14:04:32 notice/user port = eth7(5136), MSTI = 0, state = FORWARDING
+Sep  9 14:04:32 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Sep  9 14:04:32 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Sep  9 14:04:32 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Sep  9 14:04:32 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Sep  9 14:04:47 notice/user Port puma4(5143) event UP
+Sep  9 14:04:47 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Sep  9 14:04:47 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Sep  9 14:04:50 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Sep  9 14:04:50 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Jan  4 20:35:08 warning/user Error accepting new IPPC client connection.
+Jan  4 20:36:37 info/user [PPPoE]  PPPoE IA process started.
+Jan  4 20:36:37 info/user [PPPoE]  PPPoE IA API ready. Accepting IPPC connections.
+Jan  4 20:38:07 err/user [PPPoE]  Frame adjust is 0 bytes.
+Jan  4 20:38:07 err/user [PPPoE]  Frame adjust is 106 bytes.
+Jan  4 20:38:07 info/user [PPPoE]  Frame adjust is 106 bytes.
+Jan  4 20:38:07 debug/user getMyBoardPosFromFile(): boardPos = 1
+Jan  4 20:38:07 info/user [PPPoE]  <br0> Bridge added (S-Tag EtherType=0x8100, ports=5145, MTU=1500, buffer=1606).
+Jan  4 20:38:07 warning/user [PPPoE]  <br0> Unable to set priority.
+Jan  4 20:38:45 debug/user STP init: Entering while - receiving messages.
+Jan  4 20:38:47 debug/user STP init: OK!
+Jan  4 20:38:47 notice/user Process started
+Jan  4 20:38:48 notice/user Globally enable STP
+Jan  4 20:38:49 notice/user Port eth8(5137) event UP
+Jan  4 20:38:49 notice/user Port eth8(5137) event SPEED CHANGED to 10000
+Jan  4 20:38:49 notice/user port = eth8(5137), MSTI = 0, role = DESIGNATED
+Jan  4 20:38:49 notice/user Port eth9(5138) event UP
+Jan  4 20:38:49 notice/user Port eth9(5138) event SPEED CHANGED to 10000
+Jan  4 20:38:49 notice/user port = eth9(5138), MSTI = 0, role = DESIGNATED
+Jan  4 20:38:52 notice/user port = eth8(5137), MSTI = 0, state = LEARNING
+Jan  4 20:38:52 notice/user port = eth8(5137), MSTI = 0, state = FORWARDING
+Jan  4 20:38:52 notice/user port = eth9(5138), MSTI = 0, state = LEARNING
+Jan  4 20:38:52 notice/user port = eth9(5138), MSTI = 0, state = FORWARDING
+Jan  4 20:39:05 notice/user port = puma4(5143), MSTI = 0, role = DESIGNATED
+Jan  4 20:39:05 notice/user Port puma4(5143) event UP
+Jan  4 20:39:05 notice/user Port puma4(5143) event SPEED CHANGED to 20000
+Jan  4 20:39:08 notice/user port = puma4(5143), MSTI = 0, state = LEARNING
+Jan  4 20:39:08 notice/user port = puma4(5143), MSTI = 0, state = FORWARDING
+Jan  4 21:13:46 notice/user Globally disable STP

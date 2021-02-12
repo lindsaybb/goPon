@@ -1,0 +1,166 @@
+Sep 28 14:34:43 ls2088ardb sshd[30628]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 28 16:01:16 ls2088ardb sshd[30628]: pam_unix(sshd:session): session closed for user admin
+Sep 28 18:40:44 ls2088ardb sshd[18898]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 28 20:42:22 ls2088ardb sshd[18898]: pam_unix(sshd:session): session closed for user admin
+Oct 14 11:56:31 ls2088ardb sshd[24707]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 14 13:05:41 ls2088ardb sshd[24707]: pam_unix(sshd:session): session closed for user admin
+Oct 14 13:36:58 ls2088ardb sshd[2332]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 14 14:38:18 ls2088ardb sshd[2332]: pam_unix(sshd:session): session closed for user admin
+Oct 14 14:43:35 ls2088ardb sshd[19692]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 14 16:20:19 ls2088ardb sshd[19692]: pam_unix(sshd:session): session closed for user admin
+Oct 14 17:34:53 ls2088ardb sshd[17388]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 14 17:46:02 ls2088ardb sshd[17388]: pam_unix(sshd:session): session closed for user admin
+Oct 15 18:34:39 ls2088ardb sshd[16218]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Oct 15 20:32:37 ls2088ardb sshd[16218]: pam_unix(sshd:session): session closed for user admin
+Nov  6 16:11:01 ls2088ardb sshd[9995]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov  6 16:15:47 ls2088ardb sshd[9995]: pam_unix(sshd:session): session closed for user admin
+Nov  6 16:35:00 ls2088ardb sshd[27904]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov  6 16:46:39 ls2088ardb sshd[27904]: pam_unix(sshd:session): session closed for user admin
+Nov  6 17:39:29 ls2088ardb sshd[11426]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov  6 21:14:41 ls2088ardb sshd[11426]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov  9 13:36:37 ls2088ardb sshd[29421]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov  9 13:58:56 ls2088ardb sshd[29421]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov 10 13:44:16 ls2088ardb sshd[6199]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov 10 19:51:43 ls2088ardb sshd[6199]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov 10 23:16:57 ls2088ardb sshd[11701]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov 11 01:17:24 ls2088ardb sshd[11701]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov 12 13:01:57 ls2088ardb sshd[13455]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov 12 13:05:31 ls2088ardb sshd[13455]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov 15 21:24:11 ls2088ardb sshd[7639]: pam_unix(sshd:session): session opened for user _-mns__admin-_ by (uid=0)
+Nov 15 23:24:36 ls2088ardb sshd[7639]: pam_unix(sshd:session): session closed for user _-mns__admin-_
+Nov 26 18:45:01 ls2088ardb sshd[19196]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 26 18:45:24 ls2088ardb sshd[19196]: pam_unix(sshd:session): session closed for user admin
+Nov 26 18:45:42 ls2088ardb sshd[19644]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 26 18:47:23 ls2088ardb sshd[19644]: pam_unix(sshd:session): session closed for user admin
+Nov 26 18:48:09 ls2088ardb sshd[21478]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 26 18:49:10 ls2088ardb sshd[21478]: pam_unix(sshd:session): session closed for user admin
+Nov 26 18:50:06 ls2088ardb sshd[23014]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 26 20:34:46 ls2088ardb sshd[23014]: pam_unix(sshd:session): session closed for user admin
+Nov 26 20:57:08 ls2088ardb sshd[20491]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Nov 26 21:31:20 ls2088ardb sshd[20491]: pam_unix(sshd:session): session closed for user admin
+Dec  1 14:42:20 ls2088ardb sshd[17140]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Dec  1 16:51:55 ls2088ardb sshd[17140]: pam_unix(sshd:session): session closed for user admin
+Dec  8 19:19:04 ls2088ardb sshd[301]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Dec  8 22:02:37 ls2088ardb sshd[301]: pam_unix(sshd:session): session closed for user admin
+Jan  4 20:11:39 ls2088ardb groupmod[29252]: group changed in /etc/group (group rpc/967, new gid: 32)
+Jan  4 20:11:39 ls2088ardb groupmod[29252]: group changed in /etc/passwd (group rpc/967, new gid: 32)
+Jan  4 20:11:39 ls2088ardb groupmod[29265]: group changed in /etc/group (group operator/37)
+Jan  4 20:11:39 ls2088ardb groupmod[29278]: group changed in /etc/group (group neadmin/1010, new gid: 110)
+Jan  4 20:11:39 ls2088ardb groupmod[29278]: group changed in /etc/passwd (group neadmin/1010, new gid: 110)
+Jan  4 20:11:39 ls2088ardb groupadd[29295]: group added to /etc/group: name=performanceusers, GID=120
+Jan  4 20:11:39 ls2088ardb groupadd[29295]: group added to /etc/gshadow: name=performanceusers
+Jan  4 20:11:39 ls2088ardb groupadd[29295]: new group: name=performanceusers, GID=120
+Jan  4 20:11:39 ls2088ardb groupadd[29312]: group added to /etc/group: name=traceusers, GID=130
+Jan  4 20:11:39 ls2088ardb groupadd[29312]: group added to /etc/gshadow: name=traceusers
+Jan  4 20:11:39 ls2088ardb groupadd[29312]: new group: name=traceusers, GID=130
+Jan  4 20:11:39 ls2088ardb groupadd[29329]: group added to /etc/group: name=amausers, GID=140
+Jan  4 20:11:39 ls2088ardb groupadd[29329]: group added to /etc/gshadow: name=amausers
+Jan  4 20:11:39 ls2088ardb groupadd[29329]: new group: name=amausers, GID=140
+Jan  4 20:11:39 ls2088ardb groupadd[29346]: group added to /etc/group: name=expressamausers, GID=150
+Jan  4 20:11:39 ls2088ardb groupadd[29346]: group added to /etc/gshadow: name=expressamausers
+Jan  4 20:11:39 ls2088ardb groupadd[29346]: new group: name=expressamausers, GID=150
+Jan  4 20:11:39 ls2088ardb groupadd[29363]: group added to /etc/group: name=mobusers, GID=160
+Jan  4 20:11:39 ls2088ardb groupadd[29363]: group added to /etc/gshadow: name=mobusers
+Jan  4 20:11:39 ls2088ardb groupadd[29363]: new group: name=mobusers, GID=160
+Jan  4 20:11:39 ls2088ardb groupadd[29380]: group added to /etc/group: name=admin, GID=1001
+Jan  4 20:11:39 ls2088ardb groupadd[29380]: group added to /etc/gshadow: name=admin
+Jan  4 20:11:39 ls2088ardb groupadd[29380]: new group: name=admin, GID=1001
+Jan  4 20:11:39 ls2088ardb useradd[29418]: new user: name=operator, UID=12, GID=0, home=/home/operator, shell=/bin/bash
+Jan  4 20:11:39 ls2088ardb useradd[29418]: add 'operator' to group 'root'
+Jan  4 20:11:39 ls2088ardb useradd[29418]: add 'operator' to shadow group 'root'
+Jan  4 20:11:39 ls2088ardb usermod[29454]: change user 'rpc' home from '/' to '/var/lib/rpcbind'
+Jan  4 20:11:39 ls2088ardb usermod[29454]: change user 'rpc' shell from '/bin/false' to '/usr/sbin/nologin'
+Jan  4 20:11:39 ls2088ardb usermod[29454]: add 'rpc' to group 'rpc'
+Jan  4 20:11:39 ls2088ardb usermod[29454]: add 'rpc' to shadow group 'rpc'
+Jan  4 20:11:39 ls2088ardb useradd[29459]: failed adding user 'rpc', data deleted
+Jan  4 20:11:39 ls2088ardb userdel[29464]: delete user 'rpc'
+Jan  4 20:11:39 ls2088ardb userdel[29464]: delete 'rpc' from group 'rpc'
+Jan  4 20:11:39 ls2088ardb userdel[29464]: removed group 'rpc' owned by 'rpc'
+Jan  4 20:11:39 ls2088ardb userdel[29464]: removed shadow group 'rpc' owned by 'rpc'
+Jan  4 20:11:39 ls2088ardb groupadd[29488]: group added to /etc/group: name=rpc, GID=32
+Jan  4 20:11:39 ls2088ardb groupadd[29488]: group added to /etc/gshadow: name=rpc
+Jan  4 20:11:39 ls2088ardb groupadd[29488]: new group: name=rpc, GID=32
+Jan  4 20:11:39 ls2088ardb groupmod[29501]: group changed in /etc/group (group operator/37)
+Jan  4 20:11:39 ls2088ardb groupmod[29514]: group changed in /etc/group (group neadmin/110)
+Jan  4 20:11:39 ls2088ardb groupmod[29529]: group changed in /etc/group (group performanceusers/120)
+Jan  4 20:11:39 ls2088ardb groupmod[29542]: group changed in /etc/group (group traceusers/130)
+Jan  4 20:11:39 ls2088ardb groupmod[29555]: group changed in /etc/group (group amausers/140)
+Jan  4 20:11:39 ls2088ardb groupmod[29572]: group changed in /etc/group (group expressamausers/150)
+Jan  4 20:11:39 ls2088ardb groupmod[29585]: group changed in /etc/group (group mobusers/160)
+Jan  4 20:11:39 ls2088ardb groupmod[29603]: group changed in /etc/group (group admin/1001)
+Jan  4 20:11:39 ls2088ardb useradd[29614]: new user: name=rpc, UID=32, GID=32, home=/var/lib/rpcbind, shell=/usr/sbin/nologin
+Jan  4 20:11:39 ls2088ardb useradd[29614]: add 'rpc' to group 'rpc'
+Jan  4 20:11:39 ls2088ardb useradd[29614]: add 'rpc' to shadow group 'rpc'
+Jan  4 20:11:39 ls2088ardb usermod[29666]: change user 'neadmin' GID from '110' to '100'
+Jan  4 20:11:39 ls2088ardb usermod[29666]: delete 'neadmin' from group 'users'
+Jan  4 20:11:39 ls2088ardb usermod[29666]: delete 'neadmin' from shadow group 'users'
+Jan  4 20:11:40 ls2088ardb useradd[29718]: new user: name=manufover, UID=920, GID=110, home=/home/manufover, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[29718]: add 'manufover' to group 'neadmin'
+Jan  4 20:11:40 ls2088ardb useradd[29718]: add 'manufover' to shadow group 'neadmin'
+Jan  4 20:11:40 ls2088ardb useradd[29756]: new user: name=performance, UID=9101, GID=100, home=/home/performance, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[29756]: add 'performance' to group 'performanceusers'
+Jan  4 20:11:40 ls2088ardb useradd[29756]: add 'performance' to shadow group 'performanceusers'
+Jan  4 20:11:40 ls2088ardb useradd[29793]: new user: name=trace, UID=9102, GID=100, home=/home/trace, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[29793]: add 'trace' to group 'traceusers'
+Jan  4 20:11:40 ls2088ardb useradd[29793]: add 'trace' to shadow group 'traceusers'
+Jan  4 20:11:40 ls2088ardb useradd[29830]: new user: name=mob, UID=9103, GID=100, home=/home/mob, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[29830]: add 'mob' to group 'mobusers'
+Jan  4 20:11:40 ls2088ardb useradd[29830]: add 'mob' to shadow group 'mobusers'
+Jan  4 20:11:40 ls2088ardb useradd[29867]: new user: name=transfer, UID=960, GID=100, home=/home/transfer, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[29867]: add 'transfer' to group 'amausers'
+Jan  4 20:11:40 ls2088ardb useradd[29867]: add 'transfer' to shadow group 'amausers'
+Jan  4 20:11:40 ls2088ardb useradd[29904]: failed adding user 'expressama', data deleted
+Jan  4 20:11:40 ls2088ardb userdel[29909]: delete user 'systemd-network'
+Jan  4 20:11:40 ls2088ardb userdel[29909]: delete 'systemd-network' from group 'systemd-network'
+Jan  4 20:11:40 ls2088ardb userdel[29909]: removed group 'systemd-network' owned by 'systemd-network'
+Jan  4 20:11:40 ls2088ardb userdel[29909]: removed shadow group 'systemd-network' owned by 'systemd-network'
+Jan  4 20:11:40 ls2088ardb groupmod[29929]: group changed in /etc/group (group rpc/32)
+Jan  4 20:11:40 ls2088ardb groupmod[29942]: group changed in /etc/group (group operator/37)
+Jan  4 20:11:40 ls2088ardb groupmod[29955]: group changed in /etc/group (group neadmin/110)
+Jan  4 20:11:40 ls2088ardb groupmod[29968]: group changed in /etc/group (group performanceusers/120)
+Jan  4 20:11:40 ls2088ardb groupmod[29981]: group changed in /etc/group (group traceusers/130)
+Jan  4 20:11:40 ls2088ardb groupmod[29994]: group changed in /etc/group (group amausers/140)
+Jan  4 20:11:40 ls2088ardb groupmod[30007]: group changed in /etc/group (group expressamausers/150)
+Jan  4 20:11:40 ls2088ardb groupmod[30020]: group changed in /etc/group (group mobusers/160)
+Jan  4 20:11:40 ls2088ardb groupmod[30033]: group changed in /etc/group (group admin/1001)
+Jan  4 20:11:40 ls2088ardb useradd[30040]: new user: name=expressama, UID=970, GID=100, home=/home/expressama, shell=/bin/bash
+Jan  4 20:11:40 ls2088ardb useradd[30040]: add 'expressama' to group 'expressamausers'
+Jan  4 20:11:40 ls2088ardb useradd[30040]: add 'expressama' to shadow group 'expressamausers'
+Jan  4 20:12:16 ls2088ardb groupmod[21116]: group changed in /etc/group (group rpc/32)
+Jan  4 20:12:16 ls2088ardb groupmod[21130]: group changed in /etc/group (group operator/37)
+Jan  4 20:12:16 ls2088ardb groupmod[21143]: group changed in /etc/group (group neadmin/110)
+Jan  4 20:12:16 ls2088ardb groupmod[21160]: group changed in /etc/group (group performanceusers/120)
+Jan  4 20:12:16 ls2088ardb groupmod[21180]: group changed in /etc/group (group traceusers/130)
+Jan  4 20:12:16 ls2088ardb groupmod[21193]: group changed in /etc/group (group amausers/140)
+Jan  4 20:12:16 ls2088ardb groupmod[21206]: group changed in /etc/group (group expressamausers/150)
+Jan  4 20:12:16 ls2088ardb groupmod[21219]: group changed in /etc/group (group mobusers/160)
+Jan  4 20:12:16 ls2088ardb groupmod[21233]: group changed in /etc/group (group admin/1001)
+Jan  4 20:12:19 ls2088ardb sshd[22085]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:12:19 ls2088ardb sshd[22085]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:12:22 ls2088ardb sshd[22230]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:12:22 ls2088ardb sshd[22230]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:12:22 ls2088ardb sshd[22315]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:12:33 ls2088ardb passwd[22500]: password for 'root' changed by 'root'
+Jan  4 20:12:33 ls2088ardb usermod[22505]: change user 'root' password
+Jan  4 20:12:34 ls2088ardb sshd[22315]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:12:34 ls2088ardb sshd[22595]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:12:34 ls2088ardb sshd[22595]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:12:45 ls2088ardb usermod[2790]: change user 'admin' shell from '/bin/bash' to '/opt/si2000/neroot/active/cli/bin/cli'
+Jan  4 20:12:51 ls2088ardb passwd[4387]: password for 'root' changed by 'root'
+Jan  4 20:12:51 ls2088ardb usermod[4392]: change user 'root' password
+Jan  4 20:34:51 ls2088ardb sshd[20804]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:34:52 ls2088ardb sshd[20804]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:34:52 ls2088ardb sshd[20909]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan  4 20:34:52 ls2088ardb sshd[20909]: pam_unix(sshd:session): session closed for user root
+Jan  4 20:38:49 ls2088ardb useradd[6168]: new user: name=mns_admin, UID=9104, GID=0, home=/home/mns_admin, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  4 20:38:49 ls2088ardb useradd[6175]: new user: name=_-mns__admin-_, UID=9105, GID=0, home=/home/_-mns__admin-_, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  5 15:25:57 Iskratel userdel[4283]: delete user 'mns_admin'
+Jan  5 15:25:57 Iskratel userdel[4292]: delete user '_-mns__admin-_'
+Jan  5 15:25:57 Iskratel useradd[4301]: new user: name=mns_admin, UID=9104, GID=0, home=/home/mns_admin, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  5 15:25:57 Iskratel useradd[4307]: new user: name=_-mns__admin-_, UID=9105, GID=0, home=/home/_-mns__admin-_, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  7 20:03:37 Iskratel userdel[17975]: delete user 'mns_admin'
+Jan  7 20:03:37 Iskratel useradd[17989]: new user: name=mns_admin, UID=9106, GID=0, home=/home/mns_admin, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  7 20:05:24 Iskratel userdel[19374]: delete user 'mns_admin'
+Jan  7 20:05:24 Iskratel useradd[19388]: new user: name=mns_admin, UID=9106, GID=0, home=/home/mns_admin, shell=/opt/si2000/neroot/active/cli/bin/cli
+Jan  7 20:09:44 Iskratel userdel[22506]: delete user 'mns_admin'
+Jan  7 20:09:44 Iskratel useradd[22524]: new user: name=mns_admin, UID=9106, GID=0, home=/home/mns_admin, shell=/opt/si2000/neroot/active/cli/bin/cli

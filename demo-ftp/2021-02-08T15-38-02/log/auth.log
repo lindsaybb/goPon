@@ -1,0 +1,4 @@
+Oct 20 10:45:41 ls2088ardb login[4364]: pam_unix(login:session): session opened for user root by LOGIN(uid=0)
+Oct 20 10:45:41 ls2088ardb login[4365]: ROOT LOGIN  on '/dev/ttyS0'
+Oct 20 10:45:43 ls2088ardb bash: [uid=0, euid=0, tty=/dev/ttyS0] date -s '2019-09-06 11:46:20'
+Sep  6 11:46:27 ls2088ardb bash: [uid=0, euid=0, tty=/dev/ttyS0] first-install.sh eth4 172.18.71.47/20 172.18.64.1 http://10.1.9.115/sw-distro/swdistro/an6520gp/AN6520GP_1.2.1.0.034/

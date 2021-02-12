@@ -1,0 +1,108 @@
+Host 10.5.100.10 is reachable
+Authorized Onu SerialNumber list now has 11 entries
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable
+------------
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+IfName  SerialNo.     Pass  Cause         
+------  ---------     ----  -----         
+0/5     ISKT019ECEC8        SN Not Known  
+0/5     ISKT019ECFFA        SN Not Known  
+0/6     ISKT019ECF4A        SN Not Known  
+0/6     ISKT019ECF20        SN Not Known  
+0/7     ISKT019ED0B2        SN Not Known  
+0/7     ISKT019ECF0A        SN Not Known  
+0/7     ISKT019ECED8        SN Not Known  
+0/8     ISKT019ECF14        SN Not Known  
+0/8     ISKT019ECEE8        SN Not Known  
+0/8     ISKT019ECEAC        SN Not Known  
+------  ---------     ----  -----         
+
+Creating an Onu Config for each Onu on the Blacklist to attempt to Register
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+Onu Sn not on Authorized List
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+[123 34 109 115 97 110 79 110 117 67 102 103 73 102 78 97 109 101 34 58 34 48 47 53 47 51 34 44 34 109 115 97 110 79 110 117 67 102 103 80 97 115 115 119 111 114 100 34 58 34 34 44 34 109 115 97 110 79 110 117 67 102 103 69 110 97 98 108 101 80 109 34 58 49 44 34 109 115 97 110 79 110 117 67 102 103 83 101 114 105 97 108 78 117 109 98 101 114 34 58 34 73 83 75 84 48 49 57 69 67 70 70 65 34 44 34 109 115 97 110 79 110 117 67 102 103 65 100 109 105 110 83 116 97 116 101 34 58 49 44 34 109 115 97 110 79 110 117 67 102 103 79 110 117 68 104 99 112 77 111 100 101 34 58 49 44 34 109 115 97 110 79 110 117 67 102 103 79 110 117 73 112 65 100 100 114 101 115 115 34 58 34 34 44 34 109 115 97 110 79 110 117 67 102 103 79 110 117 73 80 77 97 115 107 34 58 34 34 44 34 109 115 97 110 79 110 117 67 102 103 79 110 117 68 101 102 97 117 108 116 71 97 116 101 119 97 121 34 58 34 34 125]
+
+PATCH Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable/msanOnuCfgEntry=0%2F5%2F3
+------------
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+IfName  SerialNo.     Pass  Cause         
+------  ---------     ----  -----         
+0/5     ISKT019ECEC8        SN Not Known  
+0/6     ISKT019ECF4A        SN Not Known  
+0/6     ISKT019ECF20        SN Not Known  
+0/7     ISKT019ED0B2        SN Not Known  
+0/7     ISKT019ECF0A        SN Not Known  
+0/7     ISKT019ECED8        SN Not Known  
+0/8     ISKT019ECF14        SN Not Known  
+0/8     ISKT019ECEE8        SN Not Known  
+0/8     ISKT019ECEAC        SN Not Known  
+------  ---------     ----  -----         
+[25.326487723s] Error running demo: <nil>
+
+
+interface 0/5/3
+onu serial-number ISKT019ECFFA
+onu network params 133.182.71.192 0.0.255.255
+onu network gateway 135.117.45.84
+exit
+
+
+LindsayBB#sh onu int 0/5/3
+------------------------------------------------------------
+Interface                               0/5/3
+Description                             
+Password                                
+Enable PM                               
+Equalization Delay [bit]                258295
+Distance [m]                            0
+Vendor Id                               ISKT
+Hardware Version                        V1.4
+Serial Number                           ISKT019ECFFA
+Traffic Management Option               onuCfgPriorityControlledAndFlexiblyScheduledUpstreamTraffic
+Operational State                       Up
+Administrative State                    Enable
+Equipment Id                            G21
+OMCC Version                            g-984-4
+Hardware Type                           1
+Total Priority Queue Number             72
+Total Traffic Scheduler Number          8
+Total GEM Port Number                   256
+Total TCONT Number                      8
+Total Ethernet UNI Number               1
+Total POTS UNI Number                   0
+System Up Time [DD:HH:MM]               19:13:0
+Image Instance 0 Version                V1.1.eaa8dec7
+Image Instance 0 Valid                  true
+Image Instance 0 Activate               true
+Image Instance 0 Commit                 true
+Image Instance 1 Version                V1.1.eaa8dec7
+Image Instance 1 Valid                  true
+Image Instance 1 Activate               false
+Image Instance 1 Commit                 false
+MAC Address                             64:6E:EA:9E:CF:FA
+DHCP Mode                               true
+IP Address                              0.0.0.0
+IP Mask                                 0.0.0.0
+Default Gateway                         0.0.0.0
+MAC Limit                               0
+FEC Tx Enable                           true
+Upgrade Status                          not applicable
+Deactivate Reason                       none
+Rx Power [dBm]                          -20.86
+Tx Power [dBm]                          2.94
+OLT Rx power [dBm]                      -10.71
+Temperature (C)                         19.85
+Default ONU Configuration File          -
+ONU Configuration Status                -
+ONU Current Configuration Version       -
+Changed Config Attributes               -

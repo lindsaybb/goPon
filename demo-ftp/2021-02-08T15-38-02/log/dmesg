@@ -1,0 +1,1002 @@
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.14.140-lsp-1.1.169-0 (ngnne@container-lsp-fsl-2.4.1_aarch64) (gcc version 7.3.0 (GCC)) #1 SMP Wed Jul 29 07:25:01 UTC 2020
+[    0.000000] Boot CPU: AArch64 Processor [410fd082]
+[    0.000000] Machine model: Iskratel Layerscape 2088a GPON board SPD
+[    0.000000] earlycon: uart8250 at MMIO 0x00000000021c0500 (options '')
+[    0.000000] bootconsole [uart8250] enabled
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 16 MiB at 0x00000000fec00000
+[    0.000000] On node 0 totalpages: 917504
+[    0.000000]   DMA zone: 8192 pages used for memmap
+[    0.000000]   DMA zone: 0 pages reserved
+[    0.000000]   DMA zone: 524288 pages, LIFO batch:31
+[    0.000000]   Normal zone: 6144 pages used for memmap
+[    0.000000]   Normal zone: 393216 pages, LIFO batch:31
+[    0.000000] percpu: Embedded 21 pages/cpu s45912 r8192 d31912 u86016
+[    0.000000] pcpu-alloc: s45912 r8192 d31912 u86016 alloc=21*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 903168
+[    0.000000] Kernel command line: root=/dev/sda2 rootdelay=5 console=ttyS0,115200 rw earlycon=uart8250,mmio,0x21c0500 ramdisk_size=0x2000000 default_hugepagesz=2m hugepagesz=2m hugepages=256
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes)
+[    0.000000] software IO TLB: mapped [mem 0xfac00000-0xfec00000] (64MB)
+[    0.000000] Memory: 3502272K/3670016K available (7740K kernel code, 696K rwdata, 2652K rodata, 704K init, 1262K bss, 151360K reserved, 16384K cma-reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     modules : 0xffff000000000000 - 0xffff000008000000   (   128 MB)
+[    0.000000]     vmalloc : 0xffff000008000000 - 0xffff7dffbfff0000   (129022 GB)
+[    0.000000]       .text : 0xffff000008080000 - 0xffff000008810000   (  7744 KB)
+[    0.000000]     .rodata : 0xffff000008810000 - 0xffff000008ab0000   (  2688 KB)
+[    0.000000]       .init : 0xffff000008ab0000 - 0xffff000008b60000   (   704 KB)
+[    0.000000]       .data : 0xffff000008b60000 - 0xffff000008c0e200   (   697 KB)
+[    0.000000]        .bss : 0xffff000008c0e200 - 0xffff000008d49d10   (  1263 KB)
+[    0.000000]     fixed   : 0xffff7dfffe7fb000 - 0xffff7dfffec00000   (  4116 KB)
+[    0.000000]     PCI I/O : 0xffff7dfffee00000 - 0xffff7dffffe00000   (    16 MB)
+[    0.000000]     vmemmap : 0xffff7e0000000000 - 0xffff800000000000   (  2048 GB maximum)
+[    0.000000]               0xffff7e0000000000 - 0xffff7e0201800000   (  8216 MB actual)
+[    0.000000]     memory  : 0xffff800000000000 - 0xffff808060000000   (525824 MB)
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=4.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: no VLPI support, no direct LPI support
+[    0.000000] ITS [mem 0x06020000-0x0603ffff]
+[    0.000000] ITS@0x0000000006020000: allocated 8192 Devices @80db030000 (flat, esz 8, psz 64K, shr 0)
+[    0.000000] ITS: using cache flushing for cmd queue
+[    0.000000] GIC: using LPI property table @0x00000080db040000
+[    0.000000] ITS: Allocated 1792 chunks for LPIs
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x0000000006100000
+[    0.000000] CPU0: using LPI pending table @0x00000080db050000
+[    0.000000] GIC: using cache flushing for LPI property table
+[    0.000000] arch_timer: cp15 timer(s) running at 25.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x5c40939b5, max_idle_ns: 440795202646 ns
+[    0.000002] sched_clock: 56 bits at 25MHz, resolution 40ns, wraps every 4398046511100ns
+[    0.008303] Console: colour dummy device 80x25
+[    0.012795] Calibrating delay loop (skipped), value calculated using timer frequency.. 50.00 BogoMIPS (lpj=100000)
+[    0.023249] pid_max: default: 32768 minimum: 301
+[    0.027961] Security Framework initialized
+[    0.032124] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.038903] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.046537] ASID allocator initialised with 32768 entries
+[    0.052018] Hierarchical SRCU implementation.
+[    0.056492] PCI/MSI: /interrupt-controller@6000000/gic-its@6020000 domain created
+[    0.064079] Platform MSI: /interrupt-controller@6000000/gic-its@6020000 domain created
+[    0.072103] fsl-mc MSI: /interrupt-controller@6000000/gic-its@6020000 domain created
+[    0.080011] EFI services will not be available.
+[    0.084658] smp: Bringing up secondary CPUs ...
+[    0.089392] Detected PIPT I-cache on CPU1
+[    0.089408] GICv3: CPU1: found redistributor 1 region 0:0x0000000006120000
+[    0.089445] CPU1: using LPI pending table @0x00000080db150000
+[    0.089464] CPU1: Booted secondary processor [410fd082]
+[    0.089650] Detected PIPT I-cache on CPU2
+[    0.089666] GICv3: CPU2: found redistributor 100 region 0:0x0000000006140000
+[    0.089702] CPU2: using LPI pending table @0x00000080db170000
+[    0.089723] CPU2: Booted secondary processor [410fd082]
+[    0.089920] Detected PIPT I-cache on CPU3
+[    0.089930] GICv3: CPU3: found redistributor 101 region 0:0x0000000006160000
+[    0.089963] CPU3: using LPI pending table @0x00000080db1a0000
+[    0.089978] CPU3: Booted secondary processor [410fd082]
+[    0.090015] smp: Brought up 1 node, 4 CPUs
+[    0.160636] SMP: Total of 4 processors activated.
+[    0.165383] CPU features: detected feature: GIC system register CPU interface
+[    0.172583] CPU features: detected feature: 32-bit EL0 Support
+[    0.178471] CPU features: detected feature: Kernel page table isolation (KPTI)
+[    0.190110] CPU: All CPU(s) started at EL2
+[    0.194253] alternatives: patching kernel code
+[    0.199223] devtmpfs: initialized
+[    0.204086] random: get_random_u32 called from bucket_table_alloc+0x108/0x260 with crng_init=0
+[    0.212980] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.222825] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.229273] pinctrl core: initialized pinctrl subsystem
+[    0.234901] DMI not present or invalid.
+[    0.238888] NET: Registered protocol family 16
+[    0.243867] cpuidle: using governor ladder
+[    0.248014] cpuidle: using governor menu
+[    0.252147] vdso: 2 pages (1 code @ ffff000008816000, 1 data @ ffff000008b64000)
+[    0.259621] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.266867] DMA: preallocated 256 KiB pool for atomic allocations
+[    0.273077] Serial: AMBA PL011 UART driver
+[    0.277586] Machine: Iskratel Layerscape 2088a GPON board SPD
+[    0.283385] SoC family: QorIQ LS2088A
+[    0.287074] SoC ID: svr:0x87092111, Revision: 1.1
+[    0.293161] fsl_mc_bus 80c000000.fsl-mc: MC firmware version: 10.19.0
+[    0.311907] HugeTLB registered 2.00 MiB page size, pre-allocated 256 pages
+[    0.319230] ACPI: Interpreter disabled.
+[    0.323342] vgaarb: loaded
+[    0.326160] SCSI subsystem initialized
+[    0.330042] usbcore: registered new interface driver usbfs
+[    0.335597] usbcore: registered new interface driver hub
+[    0.340980] usbcore: registered new device driver usb
+[    0.346218] imx-i2c 2010000.i2c: scl-gpios not found
+[    0.351306] i2c i2c-0: IMX I2C adapter registered
+[    0.356108] imx-i2c 2020000.i2c: scl-gpios not found
+[    0.361177] i2c i2c-1: IMX I2C adapter registered
+[    0.365965] imx-i2c 2030000.i2c: scl-gpios not found
+[    0.371033] i2c i2c-2: IMX I2C adapter registered
+[    0.375836] pps_core: LinuxPPS API ver. 1 registered
+[    0.380846] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.390074] PTP clock support registered
+[    0.394060] dmi: Firmware registration failed.
+[    0.398807] clocksource: Switched to clocksource arch_sys_counter
+[    0.405011] VFS: Disk quotas dquot_6.6.0
+[    0.408993] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.415984] pnp: PnP ACPI: disabled
+[    0.422411] NET: Registered protocol family 2
+[    0.426989] TCP established hash table entries: 32768 (order: 6, 262144 bytes)
+[    0.434366] TCP bind hash table entries: 32768 (order: 7, 524288 bytes)
+[    0.441270] TCP: Hash tables configured (established 32768 bind 32768)
+[    0.447902] UDP hash table entries: 2048 (order: 4, 65536 bytes)
+[    0.453984] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes)
+[    0.460554] NET: Registered protocol family 1
+[    0.465082] RPC: Registered named UNIX socket transport module.
+[    0.471060] RPC: Registered udp transport module.
+[    0.475816] RPC: Registered tcp transport module.
+[    0.480561] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.487067] PCI: CLS 0 bytes, default 64
+[    0.487434] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    0.495431] kvm [1]: 8-bit VMID
+[    0.499006] kvm [1]: vgic-v2@c0e0000
+[    0.502622] kvm [1]: GIC system register CPU interface enabled
+[    0.508550] kvm [1]: vgic interrupt IRQ1
+[    0.512562] kvm [1]: Hyp mode initialized successfully
+[    0.518765] audit: initializing netlink subsys (disabled)
+[    0.524275] audit: type=2000 audit(0.396:1): state=initialized audit_enabled=0 res=1
+[    0.524426] workingset: timestamp_bits=46 max_order=20 bucket_order=0
+[    0.538967] NFS: Registering the id_resolver key type
+[    0.544081] Key type id_resolver registered
+[    0.548300] Key type id_legacy registered
+[    0.552396] fuse init (API version 7.26)
+[    0.556462] 9p: Installing v9fs 9p2000 file system support
+[    0.563283] io scheduler noop registered
+[    0.567264] io scheduler cfq registered (default)
+[    0.572012] io scheduler mq-deadline registered
+[    0.576587] io scheduler kyber registered
+[    0.580982] [ITI2C] iti2c_probe: Found Board id=0x6137 (SPDAA - 000) CPLD ver. 0x05, 
+[    0.588912] [ITI2C] iti2c_init : START
+[    0.592781] [ITI2C] i2c driver Initialized: major = 249
+[    0.598071] [ITI2C] reset_i2c_switches
+[    0.622801] [ITI2C] setpower ON for SFPs: 0xf
+[    0.646805] [ITI2C] setpower ON for SFPs: 0xff
+[    0.670803] [ITI2C] setpower ON for SFPs: 0xfff
+[    0.694806] [ITI2C] setpower ON for SFPs: 0xffff
+[    0.718807] [ITI2C] setpower ON for SFPs: 0xfffff
+[    0.742809] [ITI2C] setpower ON for SFPs: 0xffffff
+[    0.766811] [ITI2C] setpower ON for SFPs: 0xfffffff
+[    0.791701] OF: PCI: host bridge /soc/pcie@3600000 ranges:
+[    0.797252] OF: PCI:    IO 0x3000010000..0x300001ffff -> 0x00000000
+[    0.803597] OF: PCI:   MEM 0x3040000000..0x307fffffff -> 0x40000000
+[    0.810000] layerscape-pcie 3600000.pcie: PCI host bridge to bus 0000:00
+[    0.816775] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.822313] pci_bus 0000:00: root bus resource [io  0x0000-0xffff]
+[    0.828567] pci_bus 0000:00: root bus resource [mem 0x3040000000-0x307fffffff] (bus address [0x40000000-0x7fffffff])
+[    0.839210] pci 0000:00:00.0: [1957:8261] type 01 class 0x060400
+[    0.839223] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x00ffffff]
+[    0.839229] pci 0000:00:00.0: reg 0x14: [mem 0x00000000-0x03ffffff]
+[    0.839234] pci 0000:00:00.0: reg 0x38: [mem 0x3048000000-0x3048ffffff pref]
+[    0.839262] pci 0000:00:00.0: supports D1 D2
+[    0.839265] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot
+[    0.839452] pci 0000:01:00.0: [14e4:6862] type 00 class 0x048000
+[    0.839650] pci 0000:01:00.0: reg 0x10: [mem 0x3049000000-0x30497fffff 64bit pref]
+[    0.839723] pci 0000:01:00.0: reg 0x18: [mem 0x304a000000-0x304affffff 64bit pref]
+[    0.839797] pci 0000:01:00.0: reg 0x20: [mem 0x304b000000-0x304b00ffff 64bit pref]
+[    0.840306] pci 0000:01:00.0: PME# supported from D0 D3hot
+[    0.850925] pci 0000:00:00.0: BAR 1: assigned [mem 0x3040000000-0x3043ffffff]
+[    0.858139] pci 0000:00:00.0: BAR 0: assigned [mem 0x3044000000-0x3044ffffff]
+[    0.865345] pci 0000:00:00.0: BAR 6: assigned [mem 0x3045000000-0x3045ffffff pref]
+[    0.872991] pci 0000:00:00.0: BAR 9: assigned [mem 0x3046000000-0x3047bfffff 64bit pref]
+[    0.881174] pci 0000:01:00.0: BAR 2: assigned [mem 0x3046000000-0x3046ffffff 64bit pref]
+[    0.889390] pci 0000:01:00.0: BAR 0: assigned [mem 0x3047000000-0x30477fffff 64bit pref]
+[    0.897623] pci 0000:01:00.0: BAR 4: assigned [mem 0x3047800000-0x304780ffff 64bit pref]
+[    0.905851] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+[    0.911130] pci 0000:00:00.0:   bridge window [mem 0x3046000000-0x3047bfffff 64bit pref]
+[    0.919388] OF: PCI: host bridge /soc/pcie@3700000 ranges:
+[    0.924932] OF: PCI:    IO 0x3800010000..0x380001ffff -> 0x00000000
+[    0.931276] OF: PCI:   MEM 0x3840000000..0x387fffffff -> 0x40000000
+[    0.937666] layerscape-pcie 3700000.pcie: PCI host bridge to bus 0001:00
+[    0.944444] pci_bus 0001:00: root bus resource [bus 00-ff]
+[    0.949982] pci_bus 0001:00: root bus resource [io  0x10000-0x1ffff] (bus address [0x0000-0xffff])
+[    0.959039] pci_bus 0001:00: root bus resource [mem 0x3840000000-0x387fffffff] (bus address [0x40000000-0x7fffffff])
+[    0.969676] pci 0001:00:00.0: [1957:8261] type 01 class 0x060400
+[    0.969693] pci 0001:00:00.0: reg 0x38: [mem 0x3840000000-0x38400007ff pref]
+[    0.969717] pci 0001:00:00.0: supports D1 D2
+[    0.969719] pci 0001:00:00.0: PME# supported from D0 D1 D2 D3hot
+[    0.969825] pci 0001:00:00.0: BAR 6: assigned [mem 0x3840000000-0x38400007ff pref]
+[    0.977486] pci 0001:00:00.0: PCI bridge to [bus 01-ff]
+[    0.982924] ipmi message handler version v2.0
+[    0.987331] IPMI device interface version v2.0
+[    0.991941] SPI: ipmi alkcs interface driver version NEW 2.1 (Iskratel Layerscape 2088a GPON board SPD)
+[    1.001510] SPI: pixis:ffff80805ffecdb8
+[    1.005386] SPI: fpga PHYS base address:0000000520000000
+[    1.010749] SPI: fpga_spi (remapped):ffff000008d54000
+[    1.015849] SPI: *fpga_spi: UTA 6137 0xAA v0x5 
+[    1.020445] extIRQfpga = 91 Err: 0
+[    1.023896] extIRQipmi = 92 Err: 0
+[    1.027663] Freescale LS2 console driver
+[    1.031658] fsl-ls2-console: device fsl_mc_console registered
+[    1.037492] fsl-ls2-console: device fsl_aiop_console registered
+[    1.044556] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    1.051452] console [ttyS0] disabled
+[    1.055077] 21c0500.serial: ttyS0 at MMIO 0x21c0500 (irq = 8, base_baud = 18750000) is a 16550A
+[    1.063876] console [ttyS0] enabled
+[    1.070877] bootconsole [uart8250] disabled
+[    1.079468] 21c0600.serial: ttyS1 at MMIO 0x21c0600 (irq = 8, base_baud = 18750000) is a 16550A
+[    1.088342] 21d0500.serial: ttyS2 at MMIO 0x21d0500 (irq = 9, base_baud = 18750000) is a 16550A
+[    1.097225] 21d0600.serial: ttyS3 at MMIO 0x21d0600 (irq = 9, base_baud = 18750000) is a 16550A
+[    1.106658] arm-smmu 5000000.iommu: probing hardware configuration...
+[    1.113105] arm-smmu 5000000.iommu: SMMUv2 with:
+[    1.117721] arm-smmu 5000000.iommu: 	stage 1 translation
+[    1.123037] arm-smmu 5000000.iommu: 	stage 2 translation
+[    1.128348] arm-smmu 5000000.iommu: 	nested translation
+[    1.133573] arm-smmu 5000000.iommu: 	non-coherent table walk
+[    1.139232] arm-smmu 5000000.iommu: 	(IDR0.CTTW overridden by FW configuration)
+[    1.146544] arm-smmu 5000000.iommu: 	stream matching with 128 register groups
+[    1.153684] arm-smmu 5000000.iommu: 	64 context banks (0 stage-2 only)
+[    1.160215] arm-smmu 5000000.iommu: 	Supported page sizes: 0x61311000
+[    1.166656] arm-smmu 5000000.iommu: 	Stage-1: 48-bit VA -> 48-bit IPA
+[    1.173098] arm-smmu 5000000.iommu: 	Stage-2: 48-bit IPA -> 48-bit PA
+[    1.182513] brd: module loaded
+[    1.187775] loop: module loaded
+[    1.191213] 580000000.nor: Found 1 x16 devices at 0x0 in 16-bit bank. Manufacturer ID 0x000089 Chip ID 0x00227e
+[    1.201312] Amd/Fujitsu Extended Query Table at 0x0040
+[    1.206465]   Amd/Fujitsu Extended Query version 1.3.
+[    1.211519]   Advanced Sector Protection (PPB Locking) supported
+[    1.217526] number of CFI chips: 1
+[    1.220987] 6 ofpart partitions found on MTD device 580000000.nor
+[    1.227092] Creating 6 MTD partitions on "580000000.nor":
+[    1.232493] 0x000000000000-0x000000100000 : "U-boot Bin"
+[    1.238061] 0x000000100000-0x000000120000 : "U-boot Env"
+[    1.243600] 0x000000200000-0x000000600000 : "MC Firmware"
+[    1.249222] 0x000000700000-0x000000800000 : "DPC blob"
+[    1.254579] 0x000000600000-0x000000700000 : "DPL blob"
+[    1.259948] 0x000000140000-0x000000160000 : "Do not touch!"
+[    1.265867] Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+[    1.272897] libphy: Fixed MDIO Bus: probed
+[    1.277067] [IT_BCM_PHY] Phy Driver Registered
+[    1.281546] [IT_BCM_PHY] Mapping : Combo port 'eth4' =  phyaddr 0x01, linux_port_name=4
+[    1.289557] [IT_BCM_PHY] Mapping : Combo port 'eth5' =  phyaddr 0x02, linux_port_name=5
+[    1.297594] [IT_BCM_PHY] Mapping : Fiber port 'eth0' =  phyaddr 0x07
+[    1.303949] [IT_BCM_PHY] Mapping : Fiber port 'eth1' =  phyaddr 0x08
+[    1.310304] [IT_BCM_PHY] Mapping : Fiber port 'eth2' =  phyaddr 0x05
+[    1.316663] [IT_BCM_PHY] Mapping : Fiber port 'eth3' =  phyaddr 0x06
+[    1.323024] [IT_BCM_PHY] Reset phys ... mode=1
+[    1.327475] [IT_BCM_PHY] Reset phys ... RESET ACTIVE
+[    1.350804] [IT_BCM_PHY] Reset phys ... mode=0
+[    1.355248] [IT_BCM_PHY] Reset phys ... RESET RELEASED
+[    1.378811] [INPHI] module init
+[    1.381946] [INPHI] debug level = 
+[    1.381947] NONE
+
+[    1.390464] [INPHI] CS4224 API Version 3.7.8   Built on Jul 15, 2015 at 07:06:38
+[    1.399621] [INPHI] Asic ID and Rev:      0x7003
+[    1.401379]  0x03e5
+[    1.458332] random: fast init done
+[    1.478072] [INPHI] use /proc/inphi for detailed links status
+[    1.483821] [INPHI] module init OK
+[    1.487220] tun: Universal TUN/TAP device driver, 1.6
+[    1.492416] libphy: Freescale XGMAC MDIO Bus: probed
+[    1.498763] libphy: Freescale XGMAC MDIO Bus: probed
+[    1.504001] VFIO - User Level meta-driver version: 0.3
+[    1.509822] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.516361] ehci-pci: EHCI PCI platform driver
+[    1.520821] ehci-platform: EHCI generic platform driver
+[    1.526097] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.532282] ohci-pci: OHCI PCI platform driver
+[    1.536737] ohci-platform: OHCI generic platform driver
+[    1.542119] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    1.547613] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+[    1.555450] xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002010010
+[    1.564871] xhci-hcd xhci-hcd.0.auto: irq 95, io mem 0x03100000
+[    1.571041] hub 1-0:1.0: USB hub found
+[    1.574804] hub 1-0:1.0: 1 port detected
+[    1.578837] xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+[    1.584328] xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+[    1.591990] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0  SuperSpeed
+[    1.598629] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    1.606908] hub 2-0:1.0: USB hub found
+[    1.610661] hub 2-0:1.0: 1 port detected
+[    1.614716] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    1.620209] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 3
+[    1.628046] xhci-hcd xhci-hcd.1.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002010010
+[    1.637462] xhci-hcd xhci-hcd.1.auto: irq 96, io mem 0x03110000
+[    1.643580] hub 3-0:1.0: USB hub found
+[    1.647342] hub 3-0:1.0: 1 port detected
+[    1.651363] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    1.656856] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 4
+[    1.664517] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0  SuperSpeed
+[    1.671155] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[    1.679443] hub 4-0:1.0: USB hub found
+[    1.683201] hub 4-0:1.0: 1 port detected
+[    1.687279] usbcore: registered new interface driver usb-storage
+[    1.693388] mousedev: PS/2 mouse device common for all mice
+[    1.704181] rtc-ds1374 0-0068: rtc core: registered ds1374 as rtc0
+[    1.710424]  RESET REASON CPLD REGISTERS: SYS_LPDR = 5aa5, SYS_SYSTEM_CTRLR = 2947 
+[    1.718088] This reboot was due to console 'reboot' command
+[    1.723902] ftm-alarm 2800000.timer: registered as rtc1
+[    1.729170] i2c /dev entries driver
+[    1.732861] IR NEC protocol handler initialized
+[    1.737394] IR RC5(x/sz) protocol handler initialized
+[    1.742445] IR RC6 protocol handler initialized
+[    1.746977] IR JVC protocol handler initialized
+[    1.751505] IR Sony protocol handler initialized
+[    1.756122] IR SANYO protocol handler initialized
+[    1.760825] IR Sharp protocol handler initialized
+[    1.765528] IR MCE Keyboard/mouse protocol handler initialized
+[    1.771363] IR XMP protocol handler initialized
+[    1.776455] qoriq_cpufreq: Freescale QorIQ CPU frequency scaling driver
+[    1.783084] CPUidle arm: CPU 0 failed to init idle CPU ops
+[    1.788664] sdhci: Secure Digital Host Controller Interface driver
+[    1.794845] sdhci: Copyright(c) Pierre Ossman
+[    1.799210] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.805194] usbcore: registered new interface driver usbhid
+[    1.810767] usbhid: USB HID core driver
+[    1.814854] DPAA2-ETH: debugfs created
+[    1.818734] Initializing XFRM netlink socket
+[    1.823059] NET: Registered protocol family 10
+[    1.827771] Segment Routing with IPv6
+[    1.831461] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.837574] NET: Registered protocol family 17
+[    1.842024] NET: Registered protocol family 15
+[    1.846481] 8021q: 802.1Q VLAN Support v1.8
+[    1.850686] 9pnet: Installing 9P2000 support
+[    1.854976] Key type dns_resolver registered
+[    1.859493] registered taskstats version 1
+[    1.950803] usb 1-1: new high-speed USB device number 2 using xhci-hcd
+[    1.983453] fsl_mc_dprc dprc.1: No more resources of type dpmcp left
+[    2.111750] usb-storage 1-1:1.0: USB Mass Storage device detected
+[    2.118034] scsi host0: usb-storage 1-1:1.0
+[    2.129212] ptp_qoriq: device tree node missing required elements, try automatic configuration
+[    2.137968] pps pps0: new PPS source ptp0
+[    2.147681] fsl_mc_dpio dpio.13: probed
+[    2.157686] fsl_mc_dpio dpio.12: probed
+[    2.167710] fsl_mc_dpio dpio.11: probed
+[    2.177704] fsl_mc_dpio dpio.10: probed
+[    2.186678] fsl_mc_dpio dpio.9: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.195425] fsl_mc_dpio dpio.9: fsl_mc_driver_probe failed: -34
+[    2.201351] fsl_mc_dpio: probe of dpio.9 failed with error -34
+[    2.211801] fsl_mc_dpio dpio.8: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.220547] fsl_mc_dpio dpio.8: fsl_mc_driver_probe failed: -34
+[    2.226472] fsl_mc_dpio: probe of dpio.8 failed with error -34
+[    2.236920] fsl_mc_dpio dpio.7: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.245666] fsl_mc_dpio dpio.7: fsl_mc_driver_probe failed: -34
+[    2.251591] fsl_mc_dpio: probe of dpio.7 failed with error -34
+[    2.262039] fsl_mc_dpio dpio.6: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.270786] fsl_mc_dpio dpio.6: fsl_mc_driver_probe failed: -34
+[    2.276711] fsl_mc_dpio: probe of dpio.6 failed with error -34
+[    2.287165] fsl_mc_dpio dpio.5: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.295910] fsl_mc_dpio dpio.5: fsl_mc_driver_probe failed: -34
+[    2.301835] fsl_mc_dpio: probe of dpio.5 failed with error -34
+[    2.312280] fsl_mc_dpio dpio.4: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.321025] fsl_mc_dpio dpio.4: fsl_mc_driver_probe failed: -34
+[    2.326950] fsl_mc_dpio: probe of dpio.4 failed with error -34
+[    2.337398] fsl_mc_dpio dpio.3: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.346142] fsl_mc_dpio dpio.3: fsl_mc_driver_probe failed: -34
+[    2.352068] fsl_mc_dpio: probe of dpio.3 failed with error -34
+[    2.362517] fsl_mc_dpio dpio.2: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.371261] fsl_mc_dpio dpio.2: fsl_mc_driver_probe failed: -34
+[    2.377186] fsl_mc_dpio: probe of dpio.2 failed with error -34
+[    2.387632] fsl_mc_dpio dpio.1: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.396376] fsl_mc_dpio dpio.1: fsl_mc_driver_probe failed: -34
+[    2.402301] fsl_mc_dpio: probe of dpio.1 failed with error -34
+[    2.412748] fsl_mc_dpio dpio.0: probe failed. Number of DPIOs exceeds NR_CPUS.
+[    2.421492] fsl_mc_dpio dpio.0: fsl_mc_driver_probe failed: -34
+[    2.427417] fsl_mc_dpio: probe of dpio.0 failed with error -34
+[    3.135073] scsi 0:0:0:0: Direct-Access     Micron   eUSB DISK        0008 PQ: 0 ANSI: 0
+[    3.143702] sd 0:0:0:0: [sda] 7633624 512-byte logical blocks: (3.91 GB/3.64 GiB)
+[    3.151403] sd 0:0:0:0: [sda] Write Protect is off
+[    3.156199] sd 0:0:0:0: [sda] Mode Sense: 2b 00 00 08
+[    3.156411] sd 0:0:0:0: [sda] No Caching mode page found
+[    3.161727] sd 0:0:0:0: [sda] Assuming drive cache: write through
+[    3.169039]  sda: sda1 sda2 sda3 sda4
+[    3.173677] sd 0:0:0:0: [sda] Attached SCSI disk
+[    3.187786] 
+               dpmac.16 dpaa2_mac_probe() ucc_num=3
+[    3.193888] dpmac.16 cannot find 'real_net_dev' for ethernet inteface 'eth3
+[    3.204523] dpmac.16 searching device tree for 1G phy ... FOUND OK
+[    3.210715] dpmac.16 searching device tree for 10G ... not found
+[    3.216723] dpmac.16 connecting to 1G phy ... 
+[    3.286800] [IT_BCM_PHY] it_bcm_config_init(): eth3 : PHYDEV_ADDR = 0x06
+[    3.298066] [IT_BCM_PHY] it_bcm_config_init(): eth3 : phy reset done
+[    3.304775] [IT_BCM_PHY] it_bcm_config_init(): eth3 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    3.314498] [IT_BCM_PHY] it_bcm_config_init(): eth3 : Power down the Copper interface
+[    3.324340] OK : phy ID = 0x00000006
+[    3.327915] dpaa2_mac dpmac.16: Connected to sgmii PHY.
+[    3.333249] 
+               dpmac.15 dpaa2_mac_probe() ucc_num=2
+[    3.339348] dpmac.15 cannot find 'real_net_dev' for ethernet inteface 'eth2
+[    3.350369] dpmac.15 searching device tree for 1G phy ... FOUND OK
+[    3.356559] dpmac.15 searching device tree for 10G ... not found
+[    3.362570] dpmac.15 connecting to 1G phy ... 
+[    3.430800] [IT_BCM_PHY] it_bcm_config_init(): eth2 : PHYDEV_ADDR = 0x05
+[    3.442065] [IT_BCM_PHY] it_bcm_config_init(): eth2 : phy reset done
+[    3.448773] [IT_BCM_PHY] it_bcm_config_init(): eth2 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    3.458492] [IT_BCM_PHY] it_bcm_config_init(): eth2 : Power down the Copper interface
+[    3.468334] OK : phy ID = 0x00000005
+[    3.471908] dpaa2_mac dpmac.15: Connected to sgmii PHY.
+[    3.477238] 
+               dpmac.14 dpaa2_mac_probe() ucc_num=1
+[    3.483336] dpmac.14 cannot find 'real_net_dev' for ethernet inteface 'eth1
+[    3.494340] dpmac.14 searching device tree for 1G phy ... FOUND OK
+[    3.500529] dpmac.14 searching device tree for 10G ... not found
+[    3.506538] dpmac.14 connecting to 1G phy ... 
+[    3.574800] [IT_BCM_PHY] it_bcm_config_init(): eth1 : PHYDEV_ADDR = 0x08
+[    3.586066] [IT_BCM_PHY] it_bcm_config_init(): eth1 : phy reset done
+[    3.592776] [IT_BCM_PHY] it_bcm_config_init(): eth1 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    3.602497] [IT_BCM_PHY] it_bcm_config_init(): eth1 : Power down the Copper interface
+[    3.612337] OK : phy ID = 0x00000008
+[    3.615910] dpaa2_mac dpmac.14: Connected to sgmii PHY.
+[    3.621241] 
+               dpmac.12 dpaa2_mac_probe() ucc_num=0
+[    3.627339] dpmac.12 cannot find 'real_net_dev' for ethernet inteface 'eth0
+[    3.638342] dpmac.12 searching device tree for 1G phy ... FOUND OK
+[    3.644530] dpmac.12 searching device tree for 10G ... not found
+[    3.650539] dpmac.12 connecting to 1G phy ... 
+[    3.718800] [IT_BCM_PHY] it_bcm_config_init(): eth0 : PHYDEV_ADDR = 0x07
+[    3.730066] [IT_BCM_PHY] it_bcm_config_init(): eth0 : phy reset done
+[    3.736775] [IT_BCM_PHY] it_bcm_config_init(): eth0 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    3.746497] [IT_BCM_PHY] it_bcm_config_init(): eth0 : Power down the Copper interface
+[    3.756336] OK : phy ID = 0x00000007
+[    3.759910] dpaa2_mac dpmac.12: Connected to sgmii PHY.
+[    3.765232] 
+               dpmac.11 dpaa2_mac_probe() ucc_num=5
+[    3.771328] dpmac.11 cannot find 'real_net_dev' for ethernet inteface 'eth5
+[    3.782331] dpmac.11 searching device tree for 1G phy ... FOUND OK
+[    3.788520] dpmac.11 searching device tree for 10G ... not found
+[    3.794530] dpmac.11 connecting to 1G phy ... 
+[    3.862799] [IT_BCM_PHY] it_bcm_config_init(): eth5 : PHYDEV_ADDR = 0x02
+[    3.874064] [IT_BCM_PHY] it_bcm_config_init(): eth5 : phy reset done
+[    3.880774] [IT_BCM_PHY] it_bcm_config_init(): eth5 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    3.893503] OK : phy ID = 0x00000002
+[    3.897077] dpaa2_mac dpmac.11: Connected to sgmii PHY.
+[    3.902404] 
+               dpmac.10 dpaa2_mac_probe() ucc_num=4
+[    3.908502] dpmac.10 cannot find 'real_net_dev' for ethernet inteface 'eth4
+[    3.919391] dpmac.10 searching device tree for 1G phy ... FOUND OK
+[    3.925577] dpmac.10 searching device tree for 10G ... not found
+[    3.931588] dpmac.10 connecting to 1G phy ... 
+[    4.002799] [IT_BCM_PHY] it_bcm_config_init(): eth4 : PHYDEV_ADDR = 0x01
+[    4.014064] [IT_BCM_PHY] it_bcm_config_init(): eth4 : phy reset done
+[    4.020771] [IT_BCM_PHY] it_bcm_config_init(): eth4 : SGMII to copper mode : write 0x9140 to 0x1c/SH0x1f
+[    4.033504] OK : phy ID = 0x00000001
+[    4.037078] dpaa2_mac dpmac.10: Connected to sgmii PHY.
+[    4.042411] 
+               dpmac.8 dpaa2_mac_probe() ucc_num=0
+[    4.052343] dpmac.8 searching device tree for 1G phy ... not found
+[    4.058529] dpmac.8 searching device tree for 10G ... FOUND OK : inphi_slice=3
+[    4.065756] dpmac.8 connecting to Inphi 10G phy ... OK : phy ID = 0x11112222 (expected 0x11112222)
+[    4.074723] dpaa2_mac dpmac.8: Connected to Inphi xgmii PHY
+[    4.080296] dpaa2_mac dpmac.8: Connected to xgmii PHY.
+[    4.085535] 
+               dpmac.7 dpaa2_mac_probe() ucc_num=0
+[    4.095183] dpmac.7 searching device tree for 1G phy ... not found
+[    4.101367] dpmac.7 searching device tree for 10G ... FOUND OK : inphi_slice=2
+[    4.108591] dpmac.7 connecting to Inphi 10G phy ... OK : phy ID = 0x11112222 (expected 0x11112222)
+[    4.117557] dpaa2_mac dpmac.7: Connected to Inphi xgmii PHY
+[    4.123129] dpaa2_mac dpmac.7: Connected to xgmii PHY.
+[    4.128372] 
+               dpmac.6 dpaa2_mac_probe() ucc_num=0
+[    4.138013] dpmac.6 searching device tree for 1G phy ... not found
+[    4.144200] dpmac.6 searching device tree for 10G ... FOUND OK : inphi_slice=1
+[    4.151425] dpmac.6 connecting to Inphi 10G phy ... OK : phy ID = 0x11112222 (expected 0x11112222)
+[    4.160390] dpaa2_mac dpmac.6: Connected to Inphi xgmii PHY
+[    4.165962] dpaa2_mac dpmac.6: Connected to xgmii PHY.
+[    4.171207] 
+               dpmac.5 dpaa2_mac_probe() ucc_num=0
+[    4.180849] dpmac.5 searching device tree for 1G phy ... not found
+[    4.187036] dpmac.5 searching device tree for 10G ... FOUND OK : inphi_slice=0
+[    4.194262] dpmac.5 connecting to Inphi 10G phy ... OK : phy ID = 0x11112222 (expected 0x11112222)
+[    4.203227] dpaa2_mac dpmac.5: Connected to Inphi xgmii PHY
+[    4.208799] dpaa2_mac dpmac.5: Connected to xgmii PHY.
+[    4.214040] 
+               dpmac.4 dpaa2_mac_probe() ucc_num=0
+[    4.220049] dpmac.4 cannot find 'real_net_dev' for ethernet inteface 'ni4
+[    4.230463] dpmac.4 searching device tree for 1G phy ... not found
+[    4.236649] dpmac.4 searching device tree for 10G ... not found
+[    4.242570] dpmac.4 node has no phy-handle property (LINK WILL NOT WORK)
+[    4.250785] dpaa2_mac dpmac.4: fsl_mc_driver_probe failed: -19
+[    4.256742] 
+               dpmac.3 dpaa2_mac_probe() ucc_num=0
+[    4.262755] dpmac.3 cannot find 'real_net_dev' for ethernet inteface 'ni3
+[    4.273174] dpmac.3 searching device tree for 1G phy ... not found
+[    4.279358] dpmac.3 searching device tree for 10G ... not found
+[    4.285279] dpmac.3 node has no phy-handle property (LINK WILL NOT WORK)
+[    4.293492] dpaa2_mac dpmac.3: fsl_mc_driver_probe failed: -19
+[    4.299444] 
+               dpmac.2 dpaa2_mac_probe() ucc_num=0
+[    4.305456] dpmac.2 cannot find 'real_net_dev' for ethernet inteface 'ni2
+[    4.315875] dpmac.2 searching device tree for 1G phy ... not found
+[    4.322058] dpmac.2 searching device tree for 10G ... not found
+[    4.327978] dpmac.2 node has no phy-handle property (LINK WILL NOT WORK)
+[    4.336193] dpaa2_mac dpmac.2: fsl_mc_driver_probe failed: -19
+[    4.342145] 
+               dpmac.1 dpaa2_mac_probe() ucc_num=0
+[    4.348157] dpmac.1 cannot find 'real_net_dev' for ethernet inteface 'ni1
+[    4.358570] dpmac.1 searching device tree for 1G phy ... not found
+[    4.364756] dpmac.1 searching device tree for 10G ... not found
+[    4.370678] dpmac.1 node has no phy-handle property (LINK WILL NOT WORK)
+[    4.378894] dpaa2_mac dpmac.1: fsl_mc_driver_probe failed: -19
+[    4.391515] fsl_mc_dprc dprc.1: DPRC device bound to driver
+[    4.397306] pcieport 0000:00:00.0: Signaling PME with IRQ 357
+[    4.403111] pcieport 0000:00:00.0: AER enabled with IRQ 93
+[    4.408805] pcieport 0001:00:00.0: Signaling PME with IRQ 358
+[    4.414607] pcieport 0001:00:00.0: AER enabled with IRQ 94
+[    4.428708] cmdif: BPID=0
+[    4.434475] fsl_dpaa2_cmdif dpci.0: Probed interface cmdif
+[    4.441585] rtc-ds1374 0-0068: setting system clock to 2021-01-22 20:55:54 UTC (1611348954)
+[    4.450058] puma_eth: Probing ucc_num 0
+[    4.454124] puma_eth: found underlying interface ethmux0
+[    4.459443] ethmux: overlying netdev=0xffff808039e8d800
+[    4.464669] puma_eth: interface ethmux0 for ucc 0 is connected to phydev 0xffff80803a46b000
+[    4.473051] puma_eth: Probing ucc_num 1
+[    4.477045] puma_eth: found underlying interface ethmux0
+[    4.482359] ethmux: overlying netdev=0xffff808039e96000
+[    4.487585] puma_eth: interface ethmux0 for ucc 1 is connected to phydev 0xffff80803a06d800
+[    4.495964] puma_eth: Probing ucc_num 2
+[    4.499951] puma_eth: found underlying interface ethmux0
+[    4.505265] ethmux: overlying netdev=0xffff808039e9c800
+[    4.510493] puma_eth: interface ethmux0 for ucc 2 is connected to phydev 0xffff80803a06d000
+[    4.518874] puma_eth: Probing ucc_num 3
+[    4.522868] puma_eth: found underlying interface ethmux0
+[    4.528182] ethmux: overlying netdev=0xffff808039ea1000
+[    4.533408] puma_eth: interface ethmux0 for ucc 3 is connected to phydev 0xffff80803a06f800
+[    4.541785] puma_eth: Probing ucc_num 4
+[    4.545773] puma_eth: found underlying interface ethmux0
+[    4.551087] ethmux: overlying netdev=0xffff808039eac800
+[    4.556313] puma_eth: interface ethmux0 for ucc 4 is connected to phydev 0xffff80805abc7000
+[    4.564690] puma_eth: Probing ucc_num 5
+[    4.568683] puma_eth: found underlying interface ethmux0
+[    4.573996] ethmux: overlying netdev=0xffff808039eb7000
+[    4.579223] puma_eth: interface ethmux0 for ucc 5 is connected to phydev 0xffff80803a46b800
+[    4.588688] Waiting 5 sec before mounting root device...
+[    9.825533] EXT4-fs (sda2): mounted filesystem with ordered data mode. Opts: (null)
+[    9.833215] VFS: Mounted root (ext4 filesystem) on device 8:2.
+[    9.839723] devtmpfs: mounted
+[    9.842909] Freeing unused kernel memory: 704K
+[   10.127362] [U] Console output successfully redirected to console, dmesg and messages!
+[   10.145904] [U] Please wait: booting...
+[   10.191872] [U] Activating swap...done. 
+[   10.216798] EXT4-fs (sda2): re-mounted. Opts: (null)
+[   10.222734] [U] Mounting readonly root filesystem...done. 
+[   10.233547] [U] Checking root file system...fsck from util-linux 2.30
+[   10.265226] [U] e2fsck 1.43.5 (04-Aug-2017)
+[   10.274171] [U] Pass 1: Checking inodes, blocks, and sizes
+[   10.356130] [U] /dev/sda2: |====                                                    |  6.4%   
+[   10.488063] [U] /dev/sda2: |===========                                             / 19.1%   
+[   10.549008] [U]                                                                                
+[   10.557735] [U] Pass 2: Checking directory structure
+[   10.625893] [U] /dev/sda2: |=======================================                 - 70.1%   
+[   10.691631] [U] /dev/sda2: |=========================================               \ 73.9%   
+[   10.836796] [U] /dev/sda2: |=============================================           | 79.8%   
+[   10.956553] [U] /dev/sda2: |===============================================         / 84.7%   
+[   11.057667] [U]                                                                                
+[   11.066400] [U] Pass 3: Checking directory connectivity
+[   11.071813] [U] /dev/sda2: |==================================================      - 90.1%   
+[   11.080896] [U]                                                                                
+[   11.089606] [U] Pass 4: Checking reference counts
+[   11.103049] [U] Pass 5: Checking group summary information
+[   11.114298] [U] /dev/sda2: |========================================================| 100.0%   
+[   11.123009] [U]                                                                                
+[   11.134146] [U] /dev/sda2: 30651/88528 files (0.1% non-contiguous), 208298/353536 blocks
+[   11.143901] [U] done. 
+[   11.148948] EXT4-fs (sda2): re-mounted. Opts: (null)
+[   11.154349] [U] Remounting root filesystem...done. 
+[   11.169183] [U] Starting udev
+[   11.228299] udevd[1658]: starting version 3.2.2
+[   11.237985] random: udevd: uninitialized urandom read (16 bytes read)
+[   11.244486] random: udevd: uninitialized urandom read (16 bytes read)
+[   11.250992] random: udevd: uninitialized urandom read (16 bytes read)
+[   11.276686] udevd[1659]: starting eudev-3.2.2
+[   11.333629] ll_pcie: loading out-of-tree module taints kernel.
+[   11.339773] maple BCM68620 (Maple) PCI driver 1.0.3
+[   11.345995] maple 0000:01:00.0: Bus = 1 Slot = 0 Vendor:device = 0x14e4:0x6862 revision = 0xb0
+[   11.354715] maple 0000:01:00.0: BAR 0: set to [mem 0x3047000000-0x30477fffff 64bit pref] (PCI address [0x47000000-0x477fffff])
+[   11.366165] maple 0000:01:00.0: BAR 4: set to [mem 0x3047800000-0x304780ffff 64bit pref] (PCI address [0x47800000-0x4780ffff])
+[   11.377611] maple 0000:01:00.0: BAR 2: set to [mem 0x3046000000-0x3046ffffff 64bit pref] (PCI address [0x46000000-0x46ffffff])
+[   11.389533] BAR REGS = 0x4700000c START = 0xffff00000d800000 len=0x800000
+[   11.396333] BAR DDR  = 0x4600000c START = 0xffff00000f000000 len=0x1000000
+[   11.403218] BAR SRAM = 0x4780000c START = 0xffff00000bfb0000 len=0x10000
+[   11.409926] Card 0 version major=03 minor=03
+[   11.414197]  Probe: Phylink status = 1 Data link status = 1 (0xffff00000d800000)
+[   11.421657] Maple PCI driver registered with PCI subsystem. rc=0
+[   11.427668] Registration retcode = 0
+[   11.735976] sramDtrc: module license 'ISKRATEL' taints kernel.
+[   11.741827] Disabling lock debugging due to kernel taint
+[   11.747470]  SPD SRAM DTRC: VIRTUAL ADDR = ffff00000d500000, PHYSICAL ADDR = 570000000 SIZE = 90000, DTRC_SRAM_active = 1
+[   11.758437]  DDMP: VIRTUAL ADDR = ffff00000d580000, SIZE = 10000
+[   11.847346] <1>pumaAPI version 4.6.41
+[   11.998741] pumaAPI: puma.hashtable_base_qe 6000711600
+[   12.004467] pumaAPI: puma.hashtable_base_cpu ffff000010da2000
+[   12.012202] pumaAPI: puma.hashtable_base_qe remapped ffff000012000600
+[   12.076699] pumaAPI: puma.pumaUCCPRAM[uccnum=0] 171000000
+[   12.082109] pumaAPI: puma.pumaUCCPRAM[uccnum=0] ffff000009305000, remapped
+[   12.088988] pumaAPI: puma.pumaUCCPRAM[uccnum=1] 171002000
+[   12.094388] pumaAPI: puma.pumaUCCPRAM[uccnum=1] ffff00000930d000, remapped
+[   12.101265] pumaAPI: puma.pumaUCCPRAM[uccnum=2] 171004000
+[   12.106665] pumaAPI: puma.pumaUCCPRAM[uccnum=2] ffff000009315000, remapped
+[   12.113542] pumaAPI: puma.pumaUCCPRAM[uccnum=3] 171006000
+[   12.118942] pumaAPI: puma.pumaUCCPRAM[uccnum=3] ffff00000931d000, remapped
+[   12.125825] pumaAPI: puma.pumaUCCPRAM[uccnum=4] 171008000
+[   12.131264] pumaAPI: puma.pumaUCCPRAM[uccnum=4] ffff000009325000, remapped
+[   12.138144] pumaAPI: puma.pumaUCCPRAM[uccnum=5] 17100a000
+[   12.143544] pumaAPI: puma.pumaUCCPRAM[uccnum=5] ffff00000932d000, remapped
+[   12.150422] pumaAPI: puma.pumaUCCPRAM[uccnum=6] 17100c000
+[   12.155822] pumaAPI: puma.pumaUCCPRAM[uccnum=6] ffff000009335000, remapped
+[   12.162699] pumaAPI: puma.pumaUCCPRAM[uccnum=7] 17100e000
+[   12.168098] pumaAPI: puma.pumaUCCPRAM[uccnum=7] ffff00000933d000, remapped
+[   12.174977] pumaAPI: puma.pumaUCCPRAM[uccnum=8] 171010000
+[   12.180376] pumaAPI: puma.pumaUCCPRAM[uccnum=8] ffff000009345000, remapped
+[   12.187254] pumaAPI: puma.pumaUCCPRAM[uccnum=9] 171012000
+[   12.192652] pumaAPI: puma.pumaUCCPRAM[uccnum=9] ffff00000934d000, remapped
+[   12.199529] pumaAPI: puma.pumaUCCPRAM[uccnum=10] 171014000
+[   12.205018] pumaAPI: puma.pumaUCCPRAM[uccnum=10] ffff000009355000, remapped
+[   12.211983] pumaAPI: puma.pumaUCCPRAM[uccnum=11] 171016000
+[   12.217469] pumaAPI: puma.pumaUCCPRAM[uccnum=11] ffff00000935d000, remapped
+[   12.224434] pumaAPI: puma.pumaUCCPRAM[uccnum=12] 171018000
+[   12.229922] pumaAPI: puma.pumaUCCPRAM[uccnum=12] ffff000009365000, remapped
+[   12.236886] pumaAPI: puma.pumaUCCPRAM[uccnum=13] 17101a000
+[   12.242372] pumaAPI: puma.pumaUCCPRAM[uccnum=13] ffff00000936d000, remapped
+[   12.249342] pumaAPI: puma.pumaUCCPRAM[uccnum=14] 17101c000
+[   12.254830] pumaAPI: puma.pumaUCCPRAM[uccnum=14] ffff000009375000, remapped
+[   12.261795] pumaAPI: puma.pumaUCCPRAM[uccnum=15] 17101e000
+[   12.267281] pumaAPI: puma.pumaUCCPRAM[uccnum=15] ffff00000937d000, remapped
+[   12.274246] pumaAPI: puma.pumaUCCPRAM[uccnum=16] 171020000
+[   12.279732] pumaAPI: puma.pumaUCCPRAM[uccnum=16] ffff000009385000, remapped
+[   12.286697] pumaAPI: puma.pumaUCCPRAM[uccnum=17] 171022000
+[   12.292183] pumaAPI: puma.pumaUCCPRAM[uccnum=17] ffff00000938d000, remapped
+[   12.299147] pumaAPI: puma.pumaUCCPRAM[uccnum=18] 171024000
+[   12.304633] pumaAPI: puma.pumaUCCPRAM[uccnum=18] ffff000009395000, remapped
+[   12.311597] pumaAPI: puma.pumaUCCPRAM[uccnum=19] 171026000
+[   12.317083] pumaAPI: puma.pumaUCCPRAM[uccnum=19] ffff00000939d000, remapped
+[   12.324048] pumaAPI: puma.pumaUCCPRAM[uccnum=20] 171028000
+[   12.329534] pumaAPI: puma.pumaUCCPRAM[uccnum=20] ffff0000093a5000, remapped
+[   12.336499] pumaAPI: puma.pumaUCCPRAM[uccnum=21] 17102a000
+[   12.341986] pumaAPI: puma.pumaUCCPRAM[uccnum=21] ffff0000093ad000, remapped
+[   12.348951] pumaAPI: puma.pumaUCCPRAM[uccnum=22] 17102c000
+[   12.354438] pumaAPI: puma.pumaUCCPRAM[uccnum=22] ffff0000093b5000, remapped
+[   12.361402] pumaAPI: puma.pumaUCCPRAM[uccnum=23] 17102e000
+[   12.366888] pumaAPI: puma.pumaUCCPRAM[uccnum=23] ffff0000093bd000, remapped
+[   12.373852] pumaAPI: puma.pumaUCCPRAM[uccnum=24] 171030000
+[   12.379339] pumaAPI: puma.pumaUCCPRAM[uccnum=24] ffff0000093c5000, remapped
+[   12.386304] pumaAPI: puma.pumaUCCPRAM[uccnum=25] 171032000
+[   12.391793] pumaAPI: puma.pumaUCCPRAM[uccnum=25] ffff0000093cd000, remapped
+[   12.398757] pumaAPI: puma.pumaCOREPRAM 171008000
+[   12.403375] pumaAPI: puma.pumaCOREPRAM ffff0000093d5000, remapped
+[   12.409476] qos locki req phys=4b0103ff74 virt=ffff0000093e5f74
+[   12.415397] qos locki ack phys=4b0103ff78 virt=ffff0000093edf78
+[   12.421817] pumaAPI: init UCC num 0
+[   12.425317] pumaAPI: CNT_BASE addr ffff000009405600 uccnum=0
+[   12.430978] pumaAPI: OQ_BASE addr ffff00000940dc00 uccnum=0
+[   12.437026] pumaAPI: IC_BASE addr ffff000009415c00 uccnum=0
+[   12.442616] pumaAPI: SC_BASE addr ffff00000941dc00 uccnum=0
+[   12.448388] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d4d4c40 uccnum=0
+[   12.454830] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.463121] pumaAPI: ERPS_COUNTER_BASE addr ffff000009425c40 uccnum=0
+[   12.469563] pumaAPI: UCC init finished uccnum=0
+[   12.474092] pumaAPI: init UCC num 1
+[   12.477591] pumaAPI: CNT_BASE addr ffff000009435698 uccnum=1
+[   12.483253] pumaAPI: OQ_BASE addr ffff00000943dc00 uccnum=1
+[   12.489298] pumaAPI: IC_BASE addr ffff000009445c00 uccnum=1
+[   12.494886] pumaAPI: SC_BASE addr ffff00000944dc00 uccnum=1
+[   12.500655] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d4f8ec0 uccnum=1
+[   12.507103] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.515398] pumaAPI: ERPS_COUNTER_BASE addr ffff000009455d40 uccnum=1
+[   12.521840] pumaAPI: UCC init finished uccnum=1
+[   12.526369] pumaAPI: init UCC num 2
+[   12.529868] pumaAPI: CNT_BASE addr ffff000009465730 uccnum=2
+[   12.535530] pumaAPI: OQ_BASE addr ffff00000946dc00 uccnum=2
+[   12.541576] pumaAPI: IC_BASE addr ffff000009475c00 uccnum=2
+[   12.547165] pumaAPI: SC_BASE addr ffff00000947dc00 uccnum=2
+[   12.552936] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d594140 uccnum=2
+[   12.559378] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.567671] pumaAPI: ERPS_COUNTER_BASE addr ffff000009485e40 uccnum=2
+[   12.574112] pumaAPI: UCC init finished uccnum=2
+[   12.578642] pumaAPI: init UCC num 3
+[   12.582141] pumaAPI: CNT_BASE addr ffff0000094957c8 uccnum=3
+[   12.587802] pumaAPI: OQ_BASE addr ffff00000949dc00 uccnum=3
+[   12.593849] pumaAPI: IC_BASE addr ffff0000094a5c00 uccnum=3
+[   12.599438] pumaAPI: SC_BASE addr ffff0000094adc00 uccnum=3
+[   12.605207] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d59c3c0 uccnum=3
+[   12.611650] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.619961] pumaAPI: ERPS_COUNTER_BASE addr ffff00000bfc2f40 uccnum=3
+[   12.626403] pumaAPI: UCC init finished uccnum=3
+[   12.630932] pumaAPI: init UCC num 4
+[   12.634429] pumaAPI: CNT_BASE addr ffff0000094bd860 uccnum=4
+[   12.640091] pumaAPI: OQ_BASE addr ffff0000094c5c00 uccnum=4
+[   12.646138] pumaAPI: IC_BASE addr ffff0000094cdc00 uccnum=4
+[   12.651729] pumaAPI: SC_BASE addr ffff0000094d5c00 uccnum=4
+[   12.657499] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5a4640 uccnum=4
+[   12.663941] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.672233] pumaAPI: ERPS_COUNTER_BASE addr ffff0000094dd040 uccnum=4
+[   12.678675] pumaAPI: UCC init finished uccnum=4
+[   12.683204] pumaAPI: init UCC num 5
+[   12.686700] pumaAPI: CNT_BASE addr ffff0000094ed8f8 uccnum=5
+[   12.692361] pumaAPI: OQ_BASE addr ffff0000094f5c00 uccnum=5
+[   12.698406] pumaAPI: IC_BASE addr ffff0000094fdc00 uccnum=5
+[   12.703995] pumaAPI: SC_BASE addr ffff000009505c00 uccnum=5
+[   12.709766] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5ac8c0 uccnum=5
+[   12.716209] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.724501] pumaAPI: ERPS_COUNTER_BASE addr ffff00000950d140 uccnum=5
+[   12.730952] pumaAPI: UCC init finished uccnum=5
+[   12.735485] pumaAPI: init UCC num 6
+[   12.739000] pumaAPI: CNT_BASE addr ffff00000951d990 uccnum=6
+[   12.744666] pumaAPI: OQ_BASE addr ffff000009525c00 uccnum=6
+[   12.750711] pumaAPI: IC_BASE addr ffff00000952dc00 uccnum=6
+[   12.756300] pumaAPI: SC_BASE addr ffff000009535c00 uccnum=6
+[   12.762072] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5b4b40 uccnum=6
+[   12.768521] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.776823] pumaAPI: ERPS_COUNTER_BASE addr ffff00000953d240 uccnum=6
+[   12.783265] pumaAPI: UCC init finished uccnum=6
+[   12.787794] pumaAPI: init UCC num 7
+[   12.791293] pumaAPI: CNT_BASE addr ffff00000954da28 uccnum=7
+[   12.796954] pumaAPI: OQ_BASE addr ffff000009555c00 uccnum=7
+[   12.803004] pumaAPI: IC_BASE addr ffff00000955dc00 uccnum=7
+[   12.808590] pumaAPI: SC_BASE addr ffff000009565c00 uccnum=7
+[   12.814358] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5e8dc0 uccnum=7
+[   12.820801] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.829093] pumaAPI: ERPS_COUNTER_BASE addr ffff00000956d340 uccnum=7
+[   12.835535] pumaAPI: UCC init finished uccnum=7
+[   12.840064] pumaAPI: init UCC num 8
+[   12.843564] pumaAPI: CNT_BASE addr ffff00000957dac0 uccnum=8
+[   12.849225] pumaAPI: OQ_BASE addr ffff000009585c00 uccnum=8
+[   12.855269] pumaAPI: IC_BASE addr ffff00000958dc00 uccnum=8
+[   12.860858] pumaAPI: SC_BASE addr ffff000009595c00 uccnum=8
+[   12.866628] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5f0040 uccnum=8
+[   12.873070] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.881366] pumaAPI: ERPS_COUNTER_BASE addr ffff00000959d440 uccnum=8
+[   12.887808] pumaAPI: UCC init finished uccnum=8
+[   12.892336] pumaAPI: init UCC num 9
+[   12.895841] pumaAPI: CNT_BASE addr ffff0000095adb58 uccnum=9
+[   12.901503] pumaAPI: OQ_BASE addr ffff0000095b5c00 uccnum=9
+[   12.907547] pumaAPI: IC_BASE addr ffff0000095bdc00 uccnum=9
+[   12.913137] pumaAPI: SC_BASE addr ffff0000095c5c00 uccnum=9
+[   12.918910] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d5f82c0 uccnum=9
+[   12.925352] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   12.933650] pumaAPI: ERPS_COUNTER_BASE addr ffff0000095cd540 uccnum=9
+[   12.940092] pumaAPI: UCC init finished uccnum=9
+[   12.944621] pumaAPI: init UCC num 10
+[   12.952466] pumaAPI: CNT_BASE addr ffff000011600bf0 uccnum=10
+[   12.967112] pumaAPI: OQ_BASE addr ffff000011e00c00 uccnum=10
+[   12.993594] pumaAPI: SCHEDULER_BASE addr ffff00000d678c00 uccnum=10
+[   12.999943] pumaAPI: WRR SCHEDULER_BASE addr ffff0000095ddc60 uccnum=10
+[   13.012046] pumaAPI: IC_BASE addr ffff000011700c00 uccnum=10
+[   13.034325] pumaAPI: ONUIC_BASE addr ffff00000d6c4c00 uccnum=10
+[   13.040914] pumaAPI: SC_BASE addr ffff00000d6e0c00 uccnum=10
+[   13.049877] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d6cc540 uccnum=10
+[   13.056407] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.064685] pumaAPI: ERPS_COUNTER_BASE addr ffff0000095e5640 uccnum=10
+[   13.071214] pumaAPI: UCC init finished uccnum=10
+[   13.075830] pumaAPI: init UCC num 11
+[   13.083668] pumaAPI: CNT_BASE addr ffff000011d00bf0 uccnum=11
+[   13.098312] pumaAPI: OQ_BASE addr ffff000012a00c00 uccnum=11
+[   13.124793] pumaAPI: SCHEDULER_BASE addr ffff00000d6d8c00 uccnum=11
+[   13.131161] pumaAPI: WRR SCHEDULER_BASE addr ffff00000d002e64 uccnum=11
+[   13.143246] pumaAPI: IC_BASE addr ffff000012900c00 uccnum=11
+[   13.165522] pumaAPI: ONUIC_BASE addr ffff00000d770c00 uccnum=11
+[   13.172111] pumaAPI: SC_BASE addr ffff00000d7e0c00 uccnum=11
+[   13.181073] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d7787c0 uccnum=11
+[   13.187602] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.195881] pumaAPI: ERPS_COUNTER_BASE addr ffff0000095f5740 uccnum=11
+[   13.202411] pumaAPI: UCC init finished uccnum=11
+[   13.207027] pumaAPI: init UCC num 12
+[   13.214864] pumaAPI: CNT_BASE addr ffff000012c00bf0 uccnum=12
+[   13.229507] pumaAPI: OQ_BASE addr ffff000012e00c00 uccnum=12
+[   13.255988] pumaAPI: SCHEDULER_BASE addr ffff00000d7c8c00 uccnum=12
+[   13.262338] pumaAPI: WRR SCHEDULER_BASE addr ffff000009605068 uccnum=12
+[   13.274442] pumaAPI: IC_BASE addr ffff000012d00c00 uccnum=12
+[   13.296723] pumaAPI: ONUIC_BASE addr ffff00000d7d0c00 uccnum=12
+[   13.303314] pumaAPI: SC_BASE addr ffff00000e020c00 uccnum=12
+[   13.312277] pumaAPI: ERPS_CONTROL_BASE addr ffff00000d7d8a40 uccnum=12
+[   13.318806] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.327084] pumaAPI: ERPS_COUNTER_BASE addr ffff00000960d840 uccnum=12
+[   13.333613] pumaAPI: UCC init finished uccnum=12
+[   13.338229] pumaAPI: init UCC num 13
+[   13.346066] pumaAPI: CNT_BASE addr ffff000013000bf0 uccnum=13
+[   13.360709] pumaAPI: OQ_BASE addr ffff000013200c00 uccnum=13
+[   13.387192] pumaAPI: SCHEDULER_BASE addr ffff00000e008c00 uccnum=13
+[   13.393543] pumaAPI: WRR SCHEDULER_BASE addr ffff00000961d26c uccnum=13
+[   13.405647] pumaAPI: IC_BASE addr ffff000013100c00 uccnum=13
+[   13.427922] pumaAPI: ONUIC_BASE addr ffff00000e010c00 uccnum=13
+[   13.434510] pumaAPI: SC_BASE addr ffff00000e1a0c00 uccnum=13
+[   13.443474] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e018cc0 uccnum=13
+[   13.450003] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.458281] pumaAPI: ERPS_COUNTER_BASE addr ffff000009625940 uccnum=13
+[   13.464810] pumaAPI: UCC init finished uccnum=13
+[   13.469426] pumaAPI: init UCC num 14
+[   13.477263] pumaAPI: CNT_BASE addr ffff000013400bf0 uccnum=14
+[   13.491910] pumaAPI: OQ_BASE addr ffff000013600c00 uccnum=14
+[   13.518392] pumaAPI: SCHEDULER_BASE addr ffff00000e0b0c00 uccnum=14
+[   13.524741] pumaAPI: WRR SCHEDULER_BASE addr ffff000009635470 uccnum=14
+[   13.536847] pumaAPI: IC_BASE addr ffff000013500c00 uccnum=14
+[   13.559127] pumaAPI: ONUIC_BASE addr ffff00000e0b8c00 uccnum=14
+[   13.565715] pumaAPI: SC_BASE addr ffff00000e2a0c00 uccnum=14
+[   13.574676] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e0e8f40 uccnum=14
+[   13.581207] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.589485] pumaAPI: ERPS_COUNTER_BASE addr ffff00000963da40 uccnum=14
+[   13.596014] pumaAPI: UCC init finished uccnum=14
+[   13.600630] pumaAPI: init UCC num 15
+[   13.608467] pumaAPI: CNT_BASE addr ffff000013800bf0 uccnum=15
+[   13.623113] pumaAPI: OQ_BASE addr ffff000013a00c00 uccnum=15
+[   13.649595] pumaAPI: SCHEDULER_BASE addr ffff00000e0f0c00 uccnum=15
+[   13.655942] pumaAPI: WRR SCHEDULER_BASE addr ffff00000964d674 uccnum=15
+[   13.668044] pumaAPI: IC_BASE addr ffff000013900c00 uccnum=15
+[   13.690320] pumaAPI: ONUIC_BASE addr ffff00000e0f8c00 uccnum=15
+[   13.696912] pumaAPI: SC_BASE addr ffff00000e3a0c00 uccnum=15
+[   13.705876] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e1901c0 uccnum=15
+[   13.712405] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.720684] pumaAPI: ERPS_COUNTER_BASE addr ffff000009655b40 uccnum=15
+[   13.727213] pumaAPI: UCC init finished uccnum=15
+[   13.731829] pumaAPI: init UCC num 16
+[   13.739667] pumaAPI: CNT_BASE addr ffff000013c00bf0 uccnum=16
+[   13.754312] pumaAPI: OQ_BASE addr ffff000013e00c00 uccnum=16
+[   13.780816] pumaAPI: SCHEDULER_BASE addr ffff00000e198c00 uccnum=16
+[   13.787166] pumaAPI: WRR SCHEDULER_BASE addr ffff000009665878 uccnum=16
+[   13.799280] pumaAPI: IC_BASE addr ffff000013d00c00 uccnum=16
+[   13.821560] pumaAPI: ONUIC_BASE addr ffff00000e1e4c00 uccnum=16
+[   13.828149] pumaAPI: SC_BASE addr ffff00000e4a0c00 uccnum=16
+[   13.837117] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e1ec440 uccnum=16
+[   13.843647] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.851928] pumaAPI: ERPS_COUNTER_BASE addr ffff00000966dc40 uccnum=16
+[   13.858457] pumaAPI: UCC init finished uccnum=16
+[   13.863073] pumaAPI: init UCC num 17
+[   13.871228] pumaAPI: CNT_BASE addr ffff000014000bf0 uccnum=17
+[   13.886425] pumaAPI: OQ_BASE addr ffff000014200c00 uccnum=17
+[   13.914018] pumaAPI: SCHEDULER_BASE addr ffff00000e1f8c00 uccnum=17
+[   13.920371] pumaAPI: WRR SCHEDULER_BASE addr ffff00000967da7c uccnum=17
+[   13.932812] pumaAPI: IC_BASE addr ffff000014100c00 uccnum=17
+[   13.955973] pumaAPI: ONUIC_BASE addr ffff00000e290c00 uccnum=17
+[   13.962604] pumaAPI: SC_BASE addr ffff00000e5a0c00 uccnum=17
+[   13.971740] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e2986c0 uccnum=17
+[   13.978270] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   13.986549] pumaAPI: ERPS_COUNTER_BASE addr ffff000009685d40 uccnum=17
+[   13.993085] pumaAPI: UCC init finished uccnum=17
+[   13.997702] pumaAPI: init UCC num 18
+[   14.005578] pumaAPI: CNT_BASE addr ffff000014400bf0 uccnum=18
+[   14.020236] pumaAPI: OQ_BASE addr ffff000014600c00 uccnum=18
+[   14.046736] pumaAPI: SCHEDULER_BASE addr ffff00000e2e8c00 uccnum=18
+[   14.053089] pumaAPI: WRR SCHEDULER_BASE addr ffff000009695c80 uccnum=18
+[   14.065200] pumaAPI: IC_BASE addr ffff000014500c00 uccnum=18
+[   14.087486] pumaAPI: ONUIC_BASE addr ffff00000e2f0c00 uccnum=18
+[   14.094076] pumaAPI: SC_BASE addr ffff00000e6a0c00 uccnum=18
+[   14.103043] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e2f8940 uccnum=18
+[   14.109574] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.117855] pumaAPI: ERPS_COUNTER_BASE addr ffff00000969de40 uccnum=18
+[   14.124387] pumaAPI: UCC init finished uccnum=18
+[   14.129010] pumaAPI: init UCC num 19
+[   14.137152] pumaAPI: CNT_BASE addr ffff000014800bf0 uccnum=19
+[   14.152350] pumaAPI: OQ_BASE addr ffff000014a00c00 uccnum=19
+[   14.179954] pumaAPI: SCHEDULER_BASE addr ffff00000e390c00 uccnum=19
+[   14.186333] pumaAPI: WRR SCHEDULER_BASE addr ffff00000d4dae84 uccnum=19
+[   14.198754] pumaAPI: IC_BASE addr ffff000014900c00 uccnum=19
+[   14.221916] pumaAPI: ONUIC_BASE addr ffff00000e398c00 uccnum=19
+[   14.228546] pumaAPI: SC_BASE addr ffff00000e7a0c00 uccnum=19
+[   14.237683] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e3e4bc0 uccnum=19
+[   14.244213] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.252513] pumaAPI: ERPS_COUNTER_BASE addr ffff00000d4f2f40 uccnum=19
+[   14.259048] pumaAPI: UCC init finished uccnum=19
+[   14.263666] pumaAPI: init UCC num 20
+[   14.271536] pumaAPI: CNT_BASE addr ffff000014c00bf0 uccnum=20
+[   14.286186] pumaAPI: OQ_BASE addr ffff000014e00c00 uccnum=20
+[   14.312685] pumaAPI: SCHEDULER_BASE addr ffff00000e3f0c00 uccnum=20
+[   14.319038] pumaAPI: WRR SCHEDULER_BASE addr ffff0000096b5088 uccnum=20
+[   14.331146] pumaAPI: IC_BASE addr ffff000014d00c00 uccnum=20
+[   14.353429] pumaAPI: ONUIC_BASE addr ffff00000e3f8c00 uccnum=20
+[   14.360019] pumaAPI: SC_BASE addr ffff00000e8a0c00 uccnum=20
+[   14.368986] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e490e40 uccnum=20
+[   14.375515] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.383795] pumaAPI: ERPS_COUNTER_BASE addr ffff0000096bd040 uccnum=20
+[   14.390326] pumaAPI: UCC init finished uccnum=20
+[   14.394947] pumaAPI: init UCC num 21
+[   14.403078] pumaAPI: CNT_BASE addr ffff000015000bf0 uccnum=21
+[   14.418270] pumaAPI: OQ_BASE addr ffff000015200c00 uccnum=21
+[   14.445860] pumaAPI: SCHEDULER_BASE addr ffff00000e498c00 uccnum=21
+[   14.452216] pumaAPI: WRR SCHEDULER_BASE addr ffff0000096cd28c uccnum=21
+[   14.464654] pumaAPI: IC_BASE addr ffff000015100c00 uccnum=21
+[   14.487816] pumaAPI: ONUIC_BASE addr ffff00000e4e4c00 uccnum=21
+[   14.494446] pumaAPI: SC_BASE addr ffff00000e9a0c00 uccnum=21
+[   14.503581] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e4ec0c0 uccnum=21
+[   14.510111] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.518390] pumaAPI: ERPS_COUNTER_BASE addr ffff0000096d5140 uccnum=21
+[   14.524926] pumaAPI: UCC init finished uccnum=21
+[   14.529544] pumaAPI: init UCC num 22
+[   14.537644] pumaAPI: CNT_BASE addr ffff000015400bf0 uccnum=22
+[   14.552834] pumaAPI: OQ_BASE addr ffff000015600c00 uccnum=22
+[   14.580424] pumaAPI: SCHEDULER_BASE addr ffff00000e4f8c00 uccnum=22
+[   14.586778] pumaAPI: WRR SCHEDULER_BASE addr ffff0000096e5490 uccnum=22
+[   14.599220] pumaAPI: IC_BASE addr ffff000015500c00 uccnum=22
+[   14.622379] pumaAPI: ONUIC_BASE addr ffff00000e590c00 uccnum=22
+[   14.629009] pumaAPI: SC_BASE addr ffff00000eaa0c00 uccnum=22
+[   14.638143] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e598340 uccnum=22
+[   14.644672] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.652953] pumaAPI: ERPS_COUNTER_BASE addr ffff0000096ed240 uccnum=22
+[   14.659481] pumaAPI: UCC init finished uccnum=22
+[   14.664098] pumaAPI: init UCC num 23
+[   14.672198] pumaAPI: CNT_BASE addr ffff000015800bf0 uccnum=23
+[   14.687392] pumaAPI: OQ_BASE addr ffff000015a00c00 uccnum=23
+[   14.714987] pumaAPI: SCHEDULER_BASE addr ffff00000e5e8c00 uccnum=23
+[   14.721340] pumaAPI: WRR SCHEDULER_BASE addr ffff0000096fd694 uccnum=23
+[   14.733779] pumaAPI: IC_BASE addr ffff000015900c00 uccnum=23
+[   14.756936] pumaAPI: ONUIC_BASE addr ffff00000e5f0c00 uccnum=23
+[   14.763566] pumaAPI: SC_BASE addr ffff00000eba0c00 uccnum=23
+[   14.772701] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e5f85c0 uccnum=23
+[   14.779237] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.787519] pumaAPI: ERPS_COUNTER_BASE addr ffff000009705340 uccnum=23
+[   14.794048] pumaAPI: UCC init finished uccnum=23
+[   14.798665] pumaAPI: init UCC num 24
+[   14.806765] pumaAPI: CNT_BASE addr ffff000015c00bf0 uccnum=24
+[   14.821955] pumaAPI: OQ_BASE addr ffff000015e00c00 uccnum=24
+[   14.849544] pumaAPI: SCHEDULER_BASE addr ffff00000e690c00 uccnum=24
+[   14.855921] pumaAPI: WRR SCHEDULER_BASE addr ffff000009715898 uccnum=24
+[   14.868442] pumaAPI: IC_BASE addr ffff000015d00c00 uccnum=24
+[   14.891618] pumaAPI: ONUIC_BASE addr ffff00000e698c00 uccnum=24
+[   14.898247] pumaAPI: SC_BASE addr ffff00000eca0c00 uccnum=24
+[   14.907383] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e6e4840 uccnum=24
+[   14.913912] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   14.922193] pumaAPI: ERPS_COUNTER_BASE addr ffff00000971d440 uccnum=24
+[   14.928723] pumaAPI: UCC init finished uccnum=24
+[   14.933340] pumaAPI: init UCC num 25
+[   14.941443] pumaAPI: CNT_BASE addr ffff000016000bf0 uccnum=25
+[   14.956636] pumaAPI: OQ_BASE addr ffff000016200c00 uccnum=25
+[   14.984245] pumaAPI: SCHEDULER_BASE addr ffff00000e6f0c00 uccnum=25
+[   14.990602] pumaAPI: WRR SCHEDULER_BASE addr ffff00000972da9c uccnum=25
+[   15.003048] pumaAPI: IC_BASE addr ffff000016100c00 uccnum=25
+[   15.026207] pumaAPI: ONUIC_BASE addr ffff00000e6f8c00 uccnum=25
+[   15.032838] pumaAPI: SC_BASE addr ffff00000eda0c00 uccnum=25
+[   15.041981] pumaAPI: ERPS_CONTROL_BASE addr ffff00000e790ac0 uccnum=25
+[   15.048510] ERPS pumaAPIErpsCcmRxErrorNotificationSampleFunction addr = 0xffff000000826e00
+[   15.056791] pumaAPI: ERPS_COUNTER_BASE addr ffff000009735540 uccnum=25
+[   15.063321] pumaAPI: UCC init finished uccnum=25
+[   15.109471] itbridge_mod: no symbol version for pumaAPIErpsCcmGetStats
+[   15.118408] [Bridge] Module loading.
+[   15.122518] [Bridge] net_device notifier registered.
+[   15.123166] [itbridge/threaded] /users/rdss/ngnne/AN6520PO_nightly/itbridge/rte/sources/itbridge/bridge_input.c:1272 Started (2096).
+[   15.127502] [Bridge] Module loaded.
+[   15.172027] [igmp] : 20:56:05.230448 IGMP Initialized. 
+[   15.199414] [ARL] Module init
+[   15.202379] [ARL] Initializing procfs...
+[   15.206344] [ARL] Created /proc/net/itArl/arl.
+[   15.223363] [U] runlevel 
+[   15.243247] WDT period set to: 64 s
+[   15.246895] WDT closed, but not stopped automaticaly 
+[   15.285075] [U] Starting watchdog daemon: /opt/iskratel/sbin/it_wdt watchdog.
+[   15.289087] WDT period set to: 64 s
+[   15.298739] [U] Starting checking all file systems: fsck
+[   15.305613] [U] fsck from util-linux 2.30
+[   15.310266] ds1374 wdt enabled 
+[   15.401211] [U] /dev/sda1: |====                                                    |  6.4%   
+[   15.472085] [U] /dev/sda1: |=======                                                 / 12.7%   
+[   15.596529] [U] /dev/sda1: |=======================================                 - 70.2%   
+[   15.691785] [U] /dev/sda1: |=============================================           \ 80.0%   
+[   15.816929] [U] /dev/sda1: |==================================================      | 89.7%   
+[   15.846150] [U] /dev/sda1: |========================================================| 100.0%   
+[   15.855036] [U]                                                                                
+[   15.866922] [U] /dev/sda1: 26272/88352 files (0.1% non-contiguous), 228949/353280 blocks
+[   15.934866] [U] /dev/sda3: |====                                                    |  7.8%   
+[   15.943643] [U] /dev/sda3: |=========                                               / 15.6%   
+[   15.967642] [U] /dev/sda3: |========================================================| 100.0%   
+[   15.976542] [U]                                                                                
+[   15.988212] [U] /dev/sda3: 113/17928 files (45.1% non-contiguous), 20048/71680 blocks
+[   16.009800] [U] /dev/sda4: |======                                                  | 10.0%   
+[   16.025069] [U] /dev/sda4: |========================================================| 100.0%   
+[   16.033971] [U]                                                                                
+[   16.052967] [U] /dev/sda4: 23/56336 files (8.7% non-contiguous), 65913/225280 blocks
+[   16.152077] EXT4-fs (sda1): mounted filesystem with ordered data mode. Opts: (null)
+[   16.162912] EXT4-fs (sda3): mounted filesystem with ordered data mode. Opts: (null)
+[   16.173124] EXT4-fs (sda4): mounted filesystem with ordered data mode. Opts: (null)
+[   16.231716] [U] Executing early boot stage operations:  
+[   16.245562] [U]  /etc/actions/boot-early/00clean-tmp
+[   16.255624] [U]  /etc/actions/boot-early/0eth-interfaces-priority
+[   16.301970] random: crng init done
+[   16.305372] random: 7 urandom warning(s) missed due to ratelimiting
+[   16.355153] [U] Stopping udevd
+[   17.367687] [U] Starting udev
+[   17.382425] udevd[2179]: starting version 3.2.2
+[   17.390301] udevd[2180]: starting eudev-3.2.2
+[   17.732055] [U]  /etc/actions/boot-early/bondports
+[   17.739725] [U]  /etc/actions/boot-early/check-bootcycle-counter
+[   17.751850] [U]  /etc/actions/boot-early/check-current-db-link
+[   17.769326] [U] ln: failed to create symbolic link 'db': File exists
+[   17.776296] [U]  /etc/actions/boot-early/clean-var-lock
+[   17.785394] [U]  /etc/actions/boot-early/clean-var-run
+[   17.803935] [U]  /etc/actions/boot-early/create-dmesg

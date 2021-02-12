@@ -1,0 +1,30 @@
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797123] pci 0000:00:00.0: [1957:8261] type 01 class 0x060400
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797134] pci 0000:00:00.0: reg 0x10: [mem 0x00000000-0x00ffffff]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797141] pci 0000:00:00.0: reg 0x14: [mem 0x00000000-0x03ffffff]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797147] pci 0000:00:00.0: reg 0x38: [mem 0x00000000-0x00ffffff pref]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797177] pci 0000:00:00.0: supports D1 D2
+Oct 20 10:45:38 ls2088ardb kernel: [    2.797180] pci 0000:00:00.0: PME# supported from D0 D1 D2 D3hot
+Oct 20 10:45:38 ls2088ardb kernel: [    2.805509] pci 0000:01:00.0: [14e4:6862] type 00 class 0x048000
+Oct 20 10:45:38 ls2088ardb kernel: [    2.805611] pci 0000:01:00.0: reg 0x10: [mem 0x3049000000-0x30497fffff 64bit pref]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.805681] pci 0000:01:00.0: reg 0x18: [mem 0x304a000000-0x304affffff 64bit pref]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.805752] pci 0000:01:00.0: reg 0x20: [mem 0x304b000000-0x304b00ffff 64bit pref]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.806172] pci 0000:01:00.0: PME# supported from D0 D3hot
+Oct 20 10:45:38 ls2088ardb kernel: [    2.821479] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+Oct 20 10:45:38 ls2088ardb kernel: [    2.903237] pcie_pme 0000:00:00.0:pcie01: service driver pcie_pme loaded
+Oct 20 10:45:38 ls2088ardb kernel: [    2.903292] aer 0000:00:00.0:pcie02: service driver aer loaded
+Oct 20 10:45:38 ls2088ardb kernel: [    2.963792] pci 0001:00:00.0: [1957:8261] type 01 class 0x060400
+Oct 20 10:45:38 ls2088ardb kernel: [    2.963808] pci 0001:00:00.0: reg 0x38: [mem 0x00000000-0x000007ff pref]
+Oct 20 10:45:38 ls2088ardb kernel: [    2.963832] pci 0001:00:00.0: supports D1 D2
+Oct 20 10:45:38 ls2088ardb kernel: [    2.963836] pci 0001:00:00.0: PME# supported from D0 D1 D2 D3hot
+Oct 20 10:45:38 ls2088ardb kernel: [    2.972070] pci_bus 0001:01: busn_res: [bus 01-ff] end is updated to 01
+Oct 20 10:45:38 ls2088ardb kernel: [    2.991830] pcie_pme 0001:00:00.0:pcie01: service driver pcie_pme loaded
+Oct 20 10:45:38 ls2088ardb kernel: [    2.991884] aer 0001:00:00.0:pcie02: service driver aer loaded
+Oct 20 10:45:38 ls2088ardb kernel: [    5.947181] sd 0:0:0:0: [sda] Mode Sense: 2b 00 00 08
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: Reading included configuration file: /etc/xinetd.d/rexec [file=/etc/xinetd.conf] [line=11]
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: Reading included configuration file: /etc/xinetd.d/rlogin [file=/etc/xinetd.d/rlogin] [line=20]
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: Reading included configuration file: /etc/xinetd.d/rsh [file=/etc/xinetd.d/rsh] [line=23]
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: Reading included configuration file: /etc/xinetd.d/telnet [file=/etc/xinetd.d/telnet] [line=21]
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: removing exec
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: removing login
+Oct 20 10:45:38 ls2088ardb xinetd[4307]: removing shell
+Sep  6 11:46:30 ls2088ardb ntpd[4107]: new interface(s) found: waking up resolver

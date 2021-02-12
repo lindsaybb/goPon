@@ -1,0 +1,240 @@
+{08:25}/home/lbnp/go/src/iskratel/gopon/cmd> go run main.go 10.5.100.10
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+Name          Flow Profile  VLAN Profile  ONU Flow Profile  ONU TCONT Profile  ONU VLAN Profile  Virtual GEM Port  ONU TP Type  Security Profile  IGMP Profile  ONU IGMP Profile  L2CP Profile  DHCP RA  PPPoE IA  
+----          ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+101_CWMP      MB            101           101               T5I6__M-20M        A101              2                 IPHOST                                                                       []       []        
+102_DATA      MB            102           102               T5I2__M-100M                         10                VEIP                                                                         []       []        
+102_DATA_Acc  MB            102           102               T5I2__M-100M       A102              11                UNI                                                                          []       []        
+DEFAULT       DEFAULT       DEFAULT                                                              1                 VEIP                                                                         []       []        
+----          ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=101_CWMP_TEST
+------------
+PostServiceProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+Name           Flow Profile  VLAN Profile  ONU Flow Profile  ONU TCONT Profile  ONU VLAN Profile  Virtual GEM Port  ONU TP Type  Security Profile  IGMP Profile  ONU IGMP Profile  L2CP Profile  DHCP RA  PPPoE IA  
+----           ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+101_CWMP_TEST  MB            101           101               T5I6__M-20M        A101              2                 IPHOST                                                                       []       []        
+----           ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=101_CWMP_TEST
+------------
+DeleteServiceProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+First the OLT had 4 entries, then we added one and it had 5, now it has 4
+[21.268206086s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+------------
+Name     UsMatchVlanProfile  DsMatchVlanProfile  UsMatchOther         DsMatchOther         UsHandling  DsHandling  QueuingPriority  SchedulingMode  
+----     ------------------  ------------------  ------------         ------------         ----------  ----------  ---------------  --------------  
+DEFAULT  false               false               []                   []                   []          []          0                Weighted        
+MB       true                true                [map[MatchUsAny:2]]  [map[MatchDsAny:2]]  []          []          0                Weighted        
+----     ------------------  ------------------  ------------         ------------         ----------  ----------  ---------------  --------------  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=DEFAULT_TEST
+------------
+PostFlowProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+------------
+Name          UsMatchVlanProfile  DsMatchVlanProfile  UsMatchOther  DsMatchOther  UsHandling  DsHandling  QueuingPriority  SchedulingMode  
+----          ------------------  ------------------  ------------  ------------  ----------  ----------  ---------------  --------------  
+DEFAULT_TEST  false               false               []            []            []          []          0                Weighted        
+----          ------------------  ------------------  ------------  ------------  ----------  ----------  ---------------  --------------  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=DEFAULT_TEST
+------------
+DeleteFlowProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+------------
+First the OLT had 2 entries, then we added one and it had 3, now it has 2
+[2m47.190657795s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+------------
+Name     C-Vid  C-Vid Native  S-Vid  S-Ethertype  
+----     -----  ------------  -----  -----------  
+101      [101]  -1            -1     34984        
+102      [102]  -1            -1     34984        
+DEFAULT  [1]    1             -1     34984        
+----     -----  ------------  -----  -----------  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=101_TEST
+------------
+PostVlanProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+------------
+Name      C-Vid  C-Vid Native  S-Vid  S-Ethertype  
+----      -----  ------------  -----  -----------  
+101_TEST  [101]  -1            -1     34984        
+----      -----  ------------  -----  -----------  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=101_TEST
+------------
+DeleteVlanProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+------------
+First the OLT had 3 entries, then we added one and it had 4, now it has 3
+[3m12.292504884s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+------------
+Name  MatchUsC-VidRange  MatchUsCPcp  UsFlowPriority  
+----  -----------------  -----------  --------------  
+101   [101]              -1           0               
+102   [102]              -1           0               
+----  -----------------  -----------  --------------  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=101_TEST
+------------
+PostOnuFlowProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+------------
+Name      MatchUsC-VidRange  MatchUsCPcp  UsFlowPriority  
+----      -----------------  -----------  --------------  
+101_TEST  [101]              -1           0               
+----      -----------------  -----------  --------------  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=101_TEST
+------------
+DeleteOnuFlowProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+------------
+First the OLT had 2 entries, then we added one and it had 3, now it has 2
+[5m37.503106167s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+------------
+Name          Description    ID  Type  Fixed  Assured  Max    
+----          -----------    --  ----  -----  -------  ---    
+New           T5I1__M-256Kb  1   5     0Kb    0Kb      256Kb  
+T5I2__M-100M  T5I2__M-98Mb   2   5     0Kb    0Kb      98Mb   
+T5I6__M-20M   T5I6__M-20Mb   6   5     0Kb    0Kb      20Mb   
+----          -----------    --  ----  -----  -------  ---    
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=New_TEST
+------------
+PostOnuTcontProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+------------
+Name      Description    ID  Type  Fixed  Assured  Max    
+----      -----------    --  ----  -----  -------  ---    
+New_TEST  T5I1__M-256Kb  1   5     0Kb    0Kb      256Kb  
+----      -----------    --  ----  -----  -------  ---    
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=New_TEST
+------------
+DeleteOnuTcontProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+------------
+First the OLT had 3 entries, then we added one and it had 4, now it has 3
+[6m2.605505478s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+------------
+Name  Port-Protect  MAC-SG  MAC-Limit  Port-Sec  Arp-Inspect  IPv4-SG  IPv6-SG  Storm-Control  AppRateLimit    
+----  ------------  ------  ---------  --------  -----------  -------  -------  -------------  ------------    
+def   true          false   0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+msg   true          true    0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+name  false         true    0          false     false        true     true     [-1 100 -1]    [5 5 5 5 1000]  
+nopp  false         false   0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+----  ------------  ------  ---------  --------  -----------  -------  -------  -------------  ------------    
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=def_TEST
+------------
+PostFlowProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+------------
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable/msanSecurityProfileEntry=def_TEST
+------------
+DeleteSecurityProfile: 400 Bad Request
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+------------
+First the OLT had 4 entries, then we added one and it had 4, now it has 4
+[6m22.831009383s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+------------
+Name   Snooping  Fast-Leave  Suppression  Proxy  Filtering  Version  
+----   --------  ----------  -----------  -----  ---------  -------  
+def    false     true        false        false  1          <nil>    
+flood  false     true        false        false  1          <nil>    
+name   true      true        false        false  1          <nil>    
+snoop  true      true        false        false  1          <nil>    
+supp   true      true        true         false  1          <nil>    
+----   --------  ----------  -----------  -----  ---------  -------  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=def_TEST
+------------
+PostMulticastProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+------------
+Name      Snooping  Fast-Leave  Suppression  Proxy  Filtering  Version  
+----      --------  ----------  -----------  -----  ---------  -------  
+def_TEST  false     true        false        false  1          <nil>    
+----      --------  ----------  -----------  -----  ---------  -------  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=def_TEST
+------------
+DeleteMulticastProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+------------
+First the OLT had 5 entries, then we added one and it had 6, now it has 5
+[7m47.953795229s] Error running demo: <nil>
+Host 10.5.100.10 is reachable
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+------------
+Name   Mode      Proxy  Fast-Leave  UsTci    DsGem  
+----   ----      -----  ----------  -----    -----  
+def    Flooding  false  true        [0 0 5]  4000   
+name   Snooping  false  true        [0 0 5]  4000   
+name1  Flooding  true   true        [0 0 5]  4000   
+name2  Flooding  false  true        [0 0 5]  4000   
+----   ----      -----  ----------  -----    -----  
+
+POST Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=def_TEST
+------------
+PostOnuMulticastProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+------------
+Name      Mode      Proxy  Fast-Leave  UsTci    DsGem  
+----      ----      -----  ----------  -----    -----  
+def_TEST  Flooding  false  true        [0 0 5]  4000   
+----      ----      -----  ----------  -----    -----  
+
+DELETE Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=def_TEST
+------------
+DeleteOnuMulticastProfile: 200 OK
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+------------
+First the OLT had 4 entries, then we added one and it had 5, now it has 4
+[8m13.053574135s] Error running demo: <nil>

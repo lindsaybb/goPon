@@ -1,0 +1,541 @@
+[main     ] [02.01.2021 19:39:18.267] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:39:30.760] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:41:00.282] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:42:00.290] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:44:00.309] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:44:59.324] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:46:01.241] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:46:59.335] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:48:00.389] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 19:48:29.343] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:30:59.677] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:31:29.680] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:31:29.842] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:31:48.690] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:31:59.681] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:32:48.682] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:32:59.693] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:33:32.579] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:34:05.310] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:34:18.709] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:34:30.522] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:35:17.725] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:35:31.051] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:36:17.716] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:37:02.651] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:37:31.518] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:37:31.518] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:37:47.743] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:38:00.065] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:40:29.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:40:59.753] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:41:29.774] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:41:59.754] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:43:30.923] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:43:59.779] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:45:29.772] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:45:59.785] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:46:29.782] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:47:29.811] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:48:59.797] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:49:29.800] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:51:59.826] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [02.01.2021 20:52:29.851] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 03:21:17.704] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 03:26:21.642] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:18:19.664] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:18:19.664] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:19:49.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:19:49.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:21:19.679] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:21:19.680] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:22:49.704] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:22:49.704] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:23:19.685] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:23:19.685] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 07:24:19.702] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:16:49.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:16:49.609] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:17:49.604] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:17:49.604] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:18:49.616] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:19:50.506] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:20:19.629] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:20:19.639] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:21:49.640] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:21:49.640] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:22:49.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:22:49.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:23:49.649] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:25:19.680] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:25:19.681] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:25:19.681] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:25:49.684] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:25:49.685] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 09:26:19.683] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:06:31.422] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:07:00.525] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:07:30.431] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:09:00.434] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:10:30.456] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:11:30.448] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:12:00.459] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:14:00.476] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:14:30.456] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:15:30.500] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:16:00.477] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:16:30.478] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:18:00.859] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:20:00.513] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:20:30.525] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:22:00.536] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 14:22:30.546] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:29:00.565] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:29:00.828] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:29:30.571] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:29:49.579] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:30:00.585] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:30:49.585] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:31:00.600] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:31:30.597] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:32:00.585] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:34:00.597] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:34:30.599] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:35:00.610] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:35:30.899] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:36:00.640] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:37:31.078] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:39:00.628] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:39:30.643] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:41:00.643] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:41:30.670] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:43:02.923] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:43:30.667] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:50:30.720] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 16:51:00.715] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:01:56.098] Starting... SI2000 NGN NET-SNMP subagent (niesubagprimary)  v2 Build 316
+[main     ] [09.09.2020 14:01:56.141] Starting... SI2000 NGN NET-SNMP subagent (niesubagprimary)  v2 Build 316
+[main     ] [09.09.2020 14:01:56.142] Settings: (general): log_level=notice, extension_ver=SI2000_V6, agentxsocketport=4000, agentxsocketip=tcp:127.0.0.1, acapisocketport=(default), niesubag_log_size=51200(bytes), notif_log_size=4611686018427490304(bytes), trap_src_ip=(default), broadcast to all managers=YES
+[main     ] [09.09.2020 14:01:56.143] Settings: (snmp): version=snmpV2c, community=public, notification_type=inform, timeout=3, retries=2, notification_max_per_minute=18000, notification_history_queue=50
+[main     ] [09.09.2020 14:01:56.143] Settings: (mib): entity_mib=standard
+[main     ] [09.09.2020 14:01:56.143] Settings: (manager1): ipaddr=192.168.100.5, port=162, notification_version=snmpV2c, community=RPI, notification_type=inform, timeout=3, retries=2
+[main     ] [09.09.2020 14:01:56.143] Settings: (manager2): ipaddr=10.5.5.40, port=162, notification_version=snmpV2c, community=SNMP_trap, notification_type=inform, timeout=3, retries=2
+[main     ] [09.09.2020 14:01:56.153] CDMManager::LoadDMConfig() Failed to open diagnostic modules config file: /mnroot/subagent/subagent.ini
+[main     ] [09.09.2020 14:01:56.153] Bind successfull.
+[main     ] [09.09.2020 14:02:08.343] CSnmpAlarmTrap::SendSnmpTrap snmp_send failed! liberr:101 syserr:-12: errstr:Failure in sendto (Network is unreachable)
+[main     ] [09.09.2020 14:02:08.343] CAlarmSnmpNotif::ProcessQueue() SendSnmpAlarmTrap Failed
+[main     ] [09.09.2020 14:02:08.343] SNMP response ERROR: SENDTO_ERROR; 192.168.100.5
+[main     ] [09.09.2020 14:02:08.344] CSnmpAlarmTrap::SendSnmpTrap snmp_send failed! liberr:101 syserr:-12: errstr:Failure in sendto (Network is unreachable)
+[main     ] [09.09.2020 14:02:08.344] CAlarmSnmpNotif::ProcessQueue() SendSnmpAlarmTrap Failed
+[main     ] [09.09.2020 14:02:08.344] SNMP response ERROR: SENDTO_ERROR; 10.5.5.40
+[main     ] [09.09.2020 14:03:18.685] CSnmpAlarmTrap::SendSnmpTrap snmp_send failed! liberr:101 syserr:-12: errstr:Failure in sendto (Network is unreachable)
+[main     ] [09.09.2020 14:03:18.685] CAlarmSnmpNotif::ProcessQueue() SendSnmpAlarmTrap Failed
+[main     ] [09.09.2020 14:03:18.685] SNMP response ERROR: SENDTO_ERROR; 192.168.100.5
+[main     ] [09.09.2020 14:03:18.685] CSnmpAlarmTrap::SendSnmpTrap snmp_send failed! liberr:101 syserr:-12: errstr:Failure in sendto (Network is unreachable)
+[main     ] [09.09.2020 14:03:18.685] CAlarmSnmpNotif::ProcessQueue() SendSnmpAlarmTrap Failed
+[main     ] [09.09.2020 14:03:18.685] SNMP response ERROR: SENDTO_ERROR; 10.5.5.40
+[main     ] [09.09.2020 14:04:14.062] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.2775
+[main     ] [09.09.2020 14:04:14.063] ReReadInitializeFile: Manager 192.168.100.5 missing in config file, delete it
+[main     ] [09.09.2020 14:04:14.063] ReReadInitializeFile: Manager 10.5.5.40 missing in config file, delete it
+[main     ] [09.09.2020 14:04:14.063] ReReadInitializeFile: new manager table after cleanup (0):
+[main     ] [09.09.2020 14:04:14.063] ReReadInitializeFile: /var/run/niesubag.ini.2775 file parsed and removed
+[main     ] [09.09.2020 14:04:47.442] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.2775
+[main     ] [09.09.2020 14:04:47.442] ReReadInitializeFile: add manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2)
+[main     ] [09.09.2020 14:04:47.443] ReReadInitializeFile: new manager table after cleanup (1):
+[main     ] [09.09.2020 14:04:47.443]    manager0: 192.168.100.5
+[main     ] [09.09.2020 14:04:47.443] ReReadInitializeFile: /var/run/niesubag.ini.2775 file parsed and removed
+[main     ] [09.09.2020 14:04:48.495] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.2775
+[main     ] [09.09.2020 14:04:48.496] ReReadInitializeFile: manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2) exist, skip it
+[main     ] [09.09.2020 14:04:48.496] ReReadInitializeFile: add manager(manager2,10.5.5.40:162,inform,v2c,SNMP_trap,3,2)
+[main     ] [09.09.2020 14:04:48.496] ReReadInitializeFile: new manager table after cleanup (2):
+[main     ] [09.09.2020 14:04:48.496]    manager0: 192.168.100.5
+[main     ] [09.09.2020 14:04:48.496]    manager1: 10.5.5.40
+[main     ] [09.09.2020 14:04:48.496] ReReadInitializeFile: /var/run/niesubag.ini.2775 file parsed and removed
+[main     ] [09.09.2020 14:04:57.466] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.849] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.849] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.870] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.880] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.881] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.891] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.891] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:04:59.891] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:04:59.891] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [09.09.2020 14:05:32.788] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [09.09.2020 14:05:32.788] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.525] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.527] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.528] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.558] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.559] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.559] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.559] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.559] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.559] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.590] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.590] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.610] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.610] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.610] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:25.610] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:26.030] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:26.030] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:33.581] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:35.056] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:36.039] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:37.029] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.039] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.040] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.040] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.413] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.413] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.413] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:38.413] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:39.034] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:39.034] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:42.823] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:47.805] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:54.045] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:55.035] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:55.055] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:58:55.055] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:59:24.049] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:59:44.059] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:59:45.049] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 21:59:45.049] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [03.01.2021 22:00:04.080] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 14:21:27.997] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 14:21:27.997] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 14:23:31.011] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 14:23:31.011] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 19:56:46.671] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 19:56:46.691] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:35:03.234] Shutting down SNMP agent extension...
+[main     ] [04.01.2021 20:35:07.844] Starting... SI2000 NGN NET-SNMP subagent (niesubagprimary)  v2 Build 316
+[main     ] [04.01.2021 20:35:07.853] Settings: (general): log_level=notice, extension_ver=SI2000_V6, agentxsocketport=4000, agentxsocketip=tcp:127.0.0.1, acapisocketport=(default), niesubag_log_size=51200(bytes), notif_log_size=4611686018427490304(bytes), trap_src_ip=(default), broadcast to all managers=YES
+[main     ] [04.01.2021 20:35:07.853] Settings: (snmp): version=snmpV2c, community=public, notification_type=inform, timeout=3, retries=2, notification_max_per_minute=18000, notification_history_queue=50
+[main     ] [04.01.2021 20:35:07.853] Settings: (mib): entity_mib=standard
+[main     ] [04.01.2021 20:35:07.853] Settings: (manager1): ipaddr=192.168.100.5, port=162, notification_version=snmpV2c, community=RPI, notification_type=inform, timeout=3, retries=2
+[main     ] [04.01.2021 20:35:07.853] Settings: (manager2): ipaddr=10.5.5.40, port=162, notification_version=snmpV2c, community=SNMP_trap, notification_type=inform, timeout=3, retries=2
+[main     ] [04.01.2021 20:35:07.854] CDMManager::LoadDMConfig() Failed to open diagnostic modules config file: /neroot/subagent/subagent.ini
+[main     ] [04.01.2021 20:35:07.854] CDMManager::LoadDMConfig() Failed to open diagnostic modules config file: /mnroot/subagent/subagent.ini
+[main     ] [04.01.2021 20:35:07.854] Bind successfull.
+[main     ] [04.01.2021 20:35:08.111] Shutting down SNMP agent extension...
+[main     ] [04.01.2021 20:36:12.075] Starting... SI2000 NGN NET-SNMP subagent (niesubagprimary)  v2 Build 316
+[main     ] [04.01.2021 20:36:12.139] Starting... SI2000 NGN NET-SNMP subagent (niesubagprimary)  v2 Build 316
+[main     ] [04.01.2021 20:36:12.140] Settings: (general): log_level=notice, extension_ver=SI2000_V6, agentxsocketport=4000, agentxsocketip=tcp:127.0.0.1, acapisocketport=(default), niesubag_log_size=281470681794560(bytes), notif_log_size=102400(bytes), trap_src_ip=(default), broadcast to all managers=YES
+[main     ] [04.01.2021 20:36:12.140] Settings: (snmp): version=snmpV2c, community=public, notification_type=inform, timeout=3, retries=2, notification_max_per_minute=18000, notification_history_queue=50
+[main     ] [04.01.2021 20:36:12.140] Settings: (mib): entity_mib=standard
+[main     ] [04.01.2021 20:36:12.141] CDMManager::LoadDMConfig() Failed to open diagnostic modules config file: /neroot/subagent/subagent.ini
+[main     ] [04.01.2021 20:36:12.141] CDMManager::LoadDMConfig() Failed to open diagnostic modules config file: /mnroot/subagent/subagent.ini
+[main     ] [04.01.2021 20:36:12.141] CDMManager::LoadAlarmImage() Unable to open entity store file: /opt/iskratel/bin/snmpxlog/entities.dat
+[main     ] [04.01.2021 20:36:12.141] CDMManager::LoadAlarmImage() Unable to open alarm store file: /opt/iskratel/bin/snmpxlog/alarms.dat
+[main     ] [04.01.2021 20:36:12.141] Bind successfull.
+[main     ] [04.01.2021 20:38:32.736] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [04.01.2021 20:38:32.736] ReReadInitializeFile: new manager table after cleanup (0):
+[main     ] [04.01.2021 20:38:32.736] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [04.01.2021 20:39:05.396] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [04.01.2021 20:39:05.396] ReReadInitializeFile: add manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2)
+[main     ] [04.01.2021 20:39:05.396] ReReadInitializeFile: new manager table after cleanup (1):
+[main     ] [04.01.2021 20:39:05.396]    manager0: 192.168.100.5
+[main     ] [04.01.2021 20:39:05.396] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [04.01.2021 20:39:06.443] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [04.01.2021 20:39:06.443] ReReadInitializeFile: manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2) exist, skip it
+[main     ] [04.01.2021 20:39:06.443] ReReadInitializeFile: add manager(manager2,10.5.5.40:162,inform,v2c,SNMP_trap,3,2)
+[main     ] [04.01.2021 20:39:06.443] ReReadInitializeFile: new manager table after cleanup (2):
+[main     ] [04.01.2021 20:39:06.443]    manager0: 192.168.100.5
+[main     ] [04.01.2021 20:39:06.443]    manager1: 10.5.5.40
+[main     ] [04.01.2021 20:39:06.443] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [04.01.2021 20:39:15.055] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.913] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.933] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.934] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.934] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.934] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.944] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.954] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:16.955] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:39:44.601] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [04.01.2021 20:39:44.601] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:19.592] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:20.825] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:21.180] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:21.180] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.117] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.117] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.117] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.968] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.969] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:22.970] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.771] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.771] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.771] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.771] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.771] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.782] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.802] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:23.802] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.004] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.075] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.086] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.136] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.136] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.136] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.136] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.136] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.137] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.157] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:24.157] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:25.438] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:32.201] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.212] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.283] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.283] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.283] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.283] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:33.283] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:34.213] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:34.213] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:34.213] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:34.224] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:35.203] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:35.204] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:40:37.607] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.655] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.656] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.656] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:13.676] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:41.243] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:41.243] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:41.243] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:41:41.243] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:22.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:22.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:22.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:23.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:23.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:43:23.541] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:40.635] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:53.103] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:53.103] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:56.081] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:56.081] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:56.081] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:56.082] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:56.082] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:57.092] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:57.092] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [04.01.2021 20:44:57.092] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 06:50:00.754] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 06:50:00.755] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 06:50:00.755] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 14:03:30.201] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 14:03:30.201] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 14:27:49.100] CTrapManager::Resync() RESYNC 10.5.5.40 851969
+[main     ] [05.01.2021 14:36:29.614] CTrapManager::Resync() RESYNC 10.5.5.40 851969
+[main     ] [05.01.2021 14:36:29.615] CTrapManager::ResyncFin() RESYNCFIN 10.5.5.40 851969
+[main     ] [05.01.2021 14:45:20.931] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 14:45:20.951] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:13:42.468] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:13:42.468] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:13:42.468] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:13:42.468] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:13:43.488] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:15:03.587] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:16:42.569] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:16:43.561] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:18:42.581] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:18:43.561] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:20:42.584] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:20:42.584] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:21:42.599] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:21:43.599] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:22:12.589] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 10:25:51.795] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 10:25:51.795] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 10:25:51.795] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:25:58.289] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [05.01.2021 15:25:58.289] ReReadInitializeFile: Manager 192.168.100.5 missing in config file, delete it
+[main     ] [05.01.2021 15:25:58.289] ReReadInitializeFile: Manager 10.5.5.40 missing in config file, delete it
+[main     ] [05.01.2021 15:25:58.289] ReReadInitializeFile: new manager table after cleanup (0):
+[main     ] [05.01.2021 15:25:58.289] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [05.01.2021 15:26:03.218] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [05.01.2021 15:26:03.218] ReReadInitializeFile: add manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2)
+[main     ] [05.01.2021 15:26:03.219] ReReadInitializeFile: new manager table after cleanup (1):
+[main     ] [05.01.2021 15:26:03.219]    manager0: 192.168.100.5
+[main     ] [05.01.2021 15:26:03.219] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [05.01.2021 15:26:04.263] ReReadInitializeFile: copy /opt/iskratel/bin/niesubag.ini to /var/run/niesubag.ini.3525
+[main     ] [05.01.2021 15:26:04.263] ReReadInitializeFile: manager(manager1,192.168.100.5:162,inform,v2c,RPI,3,2) exist, skip it
+[main     ] [05.01.2021 15:26:04.263] ReReadInitializeFile: add manager(manager2,10.5.5.40:162,inform,v2c,SNMP_trap,3,2)
+[main     ] [05.01.2021 15:26:04.263] ReReadInitializeFile: new manager table after cleanup (2):
+[main     ] [05.01.2021 15:26:04.263]    manager0: 192.168.100.5
+[main     ] [05.01.2021 15:26:04.263]    manager1: 10.5.5.40
+[main     ] [05.01.2021 15:26:04.263] ReReadInitializeFile: /var/run/niesubag.ini.3525 file parsed and removed
+[main     ] [05.01.2021 15:26:13.180] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:13.180] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:13.181] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:17.514] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:17.514] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:17.515] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:17.525] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:17.525] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:18.949] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:43.103] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:43.103] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:43.103] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:43.868] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:44.162] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.174] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.225] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.225] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.226] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.226] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.226] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.226] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:45.226] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.186] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.186] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.186] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.186] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.186] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:46.712] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:47.197] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.177] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.177] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.187] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.187] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.187] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.187] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:48.198] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.208] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.208] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.212] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.212] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.212] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.212] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:49.223] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:53.587] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:53.587] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:53.587] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:26:53.587] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:28:33.201] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:32:20.241] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:32:20.241] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:32:20.241] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:33:39.269] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:33:42.239] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:33:42.239] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:33:42.239] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 15:33:42.239] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:54.838] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:54.839] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:55.819] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:55.819] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 20:13:59.052] SNMP response ERROR: SNMPERR_TIMEOUT; 10.5.5.40
+[main     ] [05.01.2021 20:13:59.052] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [05.01.2021 21:06:29.801] CTrapManager::Resync() RESYNC 10.5.5.40 851969
+[main     ] [05.01.2021 21:06:29.801] CTrapManager::ResyncFin() RESYNCFIN 10.5.5.40 851969
+[main     ] [07.01.2021 18:34:11.718] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:14.724] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:15.734] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:15.734] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:15.734] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:15.734] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:16.219] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:41.769] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:41.769] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:43.729] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:44.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:44.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:44.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:44.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 18:34:44.739] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:13:00.947] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:13:00.947] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:13:00.947] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:13:00.947] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:16:40.991] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:16:40.991] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:17:41.996] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:17:43.996] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:17:44.986] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:17:44.986] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:26:12.036] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:44.045] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:45.066] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:45.066] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:45.066] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:45.066] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:30:45.066] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5
+[main     ] [07.01.2021 19:39:50.132] SNMP response ERROR: SNMPERR_TIMEOUT; 192.168.100.5

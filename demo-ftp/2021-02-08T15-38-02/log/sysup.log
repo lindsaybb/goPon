@@ -1,0 +1,128 @@
+Tue Jan 19 03:33:03:838 |    3895 | TEST_PIDS:
+Tue Jan 19 03:33:03:838 |    3895 | 	Missing process: syslog-ng(1588).
+Tue Jan 19 03:33:03:838 |    3895 | 	Re-check (1 / 30) process: syslog-ng.
+Tue Jan 19 03:33:04:842 |    3895 | 	Re-check process sucessfull: 4686 (syslog-ng) S 1 4685 4685 0 -1 4194368 75 0 0 0 0 0 0 0 20 0 1 0 123463656 7233536 490 18446744073709551615 4194304 4203684 281474062023520 0 0 0 0 1 0 1 0 0 17 2 0 0 0 0 0 4271560 4273040 1011716096 281474062024519 281474062024539 281474062024539 281474062024676 0
+Tue Jan 19 03:33:04:842 |    3895 | TEST_PIDS:
+Tue Jan 19 03:33:04:842 |    3895 | 	Missing process: syslog-ng(1587).
+Tue Jan 19 03:33:04:842 |    3895 | 	Re-check (1 / 30) process: syslog-ng.
+Tue Jan 19 03:33:05:846 |    3895 | 	Re-check process sucessfull: 4687 (syslog-ng) S 4686 4687 4687 0 -1 4194624 886 0 0 0 1 0 0 0 20 0 2 0 123463656 84660224 1583 18446744073709551615 4194304 4203684 281474062023520 0 0 0 0 4198400 90627 0 0 0 17 1 0 0 0 0 0 4271560 4273040 1011716096 281474062024519 281474062024539 281474062024539 281474062024676 0
+Fri Jan 22 03:33:02:848 |    3895 | TEST_PIDS:
+Fri Jan 22 03:33:02:848 |    3895 | 	Missing process: syslog-ng(4686).
+Fri Jan 22 03:33:02:848 |    3895 | 	Re-check (1 / 30) process: syslog-ng.
+Fri Jan 22 03:33:03:852 |    3895 | 	Re-check process sucessfull: 23283 (syslog-ng) S 23255 23255 23255 0 -1 4194304 461 708 0 0 1 0 0 0 20 0 1 0 149383343 3489792 653 18446744073709551615 4194304 5079548 281473944523136 0 0 0 65536 4 65538 1 0 0 17 2 0 0 0 0 0 5148120 5183100 268754944 281473944526614 281473944526652 281473944526652 281473944526818 0
+Fri Jan 22 03:33:03:853 |    3895 | TEST_PIDS:
+Fri Jan 22 03:33:03:853 |    3895 | 	Missing process: syslog-ng(4687).
+Fri Jan 22 03:33:03:853 |    3895 | 	Re-check (1 / 30) process: syslog-ng.
+Fri Jan 22 03:33:04:857 |    3895 | 	Re-check process sucessfull: 23306 (syslog-ng) S 1 23305 23305 0 -1 4194368 74 0 0 0 0 0 0 0 20 0 1 0 149383645 7233536 487 18446744073709551615 4194304 4203684 281474891376400 0 0 0 0 1 0 1 0 0 17 0 0 0 0 0 0 4271560 4273040 864849920 281474891378503 281474891378523 281474891378523 281474891378660 0
+Fri Jan 22 03:33:07:858 |    3895 | TEST_PIDS:
+Fri Jan 22 03:33:07:858 |    3895 | 	Missing process: syslog-ng(23283).
+Fri Jan 22 03:33:07:858 |    3895 | 	Re-check (1 / 30) process: syslog-ng.
+Fri Jan 22 03:33:08:862 |    3895 | 	Re-check process sucessfull: 23307 (syslog-ng) S 23306 23307 23307 0 -1 4194624 888 0 0 0 2 0 0 0 20 0 2 0 149383645 84660224 1611 18446744073709551615 4194304 4203684 281474891376400 0 0 0 0 4198400 90627 0 0 0 17 2 0 0 0 0 0 4271560 4273040 864849920 281474891378503 281474891378523 281474891378523 281474891378660 0
+Fri Jan 22 20:54:56:586 |   17030 | SYSUP OK ipcs attached pid=17030
+Fri Jan 22 20:54:56:586 |    3895 | SYSUP OK sysupSgnHnd - got signal=12
+Fri Jan 22 20:54:56:586 |    3895 | SYSUP OK sysupSgnHnd - ext trigger has been received
+Fri Jan 22 20:54:56:587 |    3895 | ACTION REQUESTED: Filter:FILTER_BOOT Decision:DECISION_BOOT Action:ACTION_STBY 
+*********************** | ******* | TESTS RESULTS:
+*********************** | ******* | Filter: FILTER_BOOT
+*********************** | ******* | Test: REBOOT_REQ
+*********************** | ******* | 0 RebootReqReason =EXTERNAL REBOOT REQUEST, RebootReqDelay=0
+*********************** | ******* | ACTION PARAMS:Reason=EXTERNAL REBOOT REQUEST: NOT an ERROR condition!
+Fri Jan 22 20:54:56:587 |    3895 | SYSUP OK sysupActionBase - Max. 120 secs for action to complete!!!
+Fri Jan 22 20:54:56:594 |    3895 | ACTION REQUESTED: Filter:FILTER_BOOT Decision:DECISION_BOOT Action:ACTION_BASE 
+*********************** | ******* | ACTION PARAMS:Reason=EXTERNAL REBOOT REQUEST: NOT an ERROR condition!
+Fri Jan 22 20:54:56:594 |    3895 | SYSUP OK sysupActionBase - Max. 120 secs for action to complete!!!
+Fri Jan 22 20:54:56:616 |    3895 | ACTION REQUESTED: Filter:FILTER_BOOT Decision:DECISION_BOOT Action:ACTION_REBOOT 
+*********************** | ******* | ACTION PARAMS:Delay=0
+Fri Jan 22 20:54:57:650 |    3895 | SYSUP OK sysupActionReboot - Max. 300 secs for clean reboot to complete!!!
+Fri Jan 22 20:54:57:978 |    3739 | SYSUP OK sysupSgnHnd - got signal=15
+Fri Jan 22 20:54:57:978 |    3739 | SYSUP OK sysupSgnHnd - Reboot pending!!!
+Fri Jan 22 20:54:57:978 |    3895 | SYSUP OK sysupSgnHnd - got signal=15
+Fri Jan 22 20:54:57:981 |    3895 | SYSUP OK sysupRebootPending - reboot pending!!!
+Fri Jan 22 20:54:57:981 |    3895 | SYSUP OK sysupRebootPending - Max. 300 secs for reboot to complete!!!
+Fri Jan 22 20:55:11:478 |    3739 | SYSUP OK sysupSgnHnd - got signal=17
+Fri Jan 22 20:55:11:478 |    3895 | SYSUP OK sysupSgnHnd - got signal=15
+Fri Jan 22 20:55:11:481 |    3895 | SYSUP OK sysupRebootPending - reboot pending!!!
+Fri Jan 22 20:55:11:481 |    3895 | SYSUP OK sysupRebootPending - Max. 300 secs for reboot to complete!!!
+Fri Jan 22 20:56:13:702 |    3298 | SYSUP OK **** sysupHaSysup started ****
+Fri Jan 22 20:56:20:464 |    3298 | SYSUP OK start sysupMainLoop
+Fri Jan 22 20:56:20:481 |    3463 | 
+*********************** | ******* | !!! NEW START !!!
+*********************** | ******* | *********************** | ******* | 
+Fri Jan 22 20:56:20:481 |    3463 | SYSUP OK sysup main loop started
+Fri Jan 22 20:56:20:485 |    3463 | SYSUP OK MLoopCntrOption is set to ActiveNoAction
+Fri Jan 22 20:56:20:485 |    3463 | SYSUP OK ipcs created
+Fri Jan 22 20:56:20:485 |    3463 | NO SYSUP INTERNAL CFG FILE
+Fri Jan 22 20:56:20:485 |    3463 | SYSUP CONFIGURATION:
+*********************** | ******* | Filter: FILTER_RTWD (Index=0) - Begin configuration
+*********************** | ******* |     Test: TEST_NRTWD
+*********************** | ******* |     Test: TEST_RTWD
+*********************** | ******* |     Test: TEST_PROCCPU
+*********************** | ******* |     Test: TEST_PIDS
+*********************** | ******* |     Decision: DECISION_RTWD
+*********************** | ******* |         Action: ACTION_STBY
+*********************** | ******* |         Action: ACTION_ABRT
+*********************** | ******* |         Action: ACTION_BASE
+*********************** | ******* |         Action: ACTION_REBOOT
+*********************** | ******* |     Decision: DECISION_NAIL
+*********************** | ******* |         Action: ACTION_NAIL
+*********************** | ******* | Filter: FILTER_RTWD (Index=0) - End configuration
+*********************** | ******* | Filter: FILTER_BOOT (Index=1) - Begin configuration
+*********************** | ******* |     Test: REBOOT_REQ
+*********************** | ******* |     Decision: DECISION_BOOT
+*********************** | ******* |         Action: ACTION_STBY
+*********************** | ******* |         Action: ACTION_BASE
+*********************** | ******* |         Action: ACTION_REBOOT
+*********************** | ******* | Filter: FILTER_BOOT (Index=1) - End configuration
+*********************** | ******* | DISABLED FILTERS:
+Fri Jan 22 20:56:23:486 |    3463 | TEST_NRTWD:
+Fri Jan 22 20:56:23:486 |    3463 | 	Successive results to be checked: 8
+Fri Jan 22 20:56:23:486 |    3463 | TEST_RTWD:
+Fri Jan 22 20:56:23:487 |    3463 | 	Successive results to be checked: 5
+Fri Jan 22 20:56:23:488 |    3463 | TEST_PIDS:
+Fri Jan 22 20:56:23:488 |    3463 | 	Configured process:
+Fri Jan 22 20:56:23:488 |    3463 | 		30, 0: syslog-ng
+Fri Jan 22 20:56:23:488 |    3463 | 		0, 0: mwd
+Fri Jan 22 20:56:23:489 |    3463 | 		0, 0: sysupHaSysup
+Fri Jan 22 20:56:23:489 |    3463 | 		0, 0: itProxy
+Fri Jan 22 20:56:23:489 |    3463 | 		10, 0: pre-ng
+Fri Jan 22 20:56:23:489 |    3463 | 	Found process:
+Fri Jan 22 20:56:23:492 |    3463 | 		30, 1/0: 2734 (syslog-ng) S 1 2733 2733 0 -1 4194368 74 0 1 0 0 0 0 0 20 0 1 0 2068 7233536 447 18446744073709551615 4194304 4203684 281474598367968 0 0 0 0 1 0 1 0 0 17 1 0 0 0 0 0 4271560 4273040 937025536 281474598371057 281474598371077 281474598371077 281474598371300 0
+Fri Jan 22 20:56:23:492 |    3463 | 		30, 2/0: 2735 (syslog-ng) S 2734 2735 2735 0 -1 4194624 1022 0 37 0 12 11 0 0 20 0 5 0 2068 311152640 2129 18446744073709551615 4194304 4203684 281474598367968 0 0 0 0 4198400 90627 0 0 0 17 2 0 0 8 0 0 4271560 4273040 937025536 281474598371057 281474598371077 281474598371077 281474598371300 0
+Fri Jan 22 20:56:23:493 |    3463 | 		0, 1/0: 3298 (sysupHaSysup) S 1 3298 3298 0 -1 4194368 97 0 0 0 0 0 0 0 -61 0 1 0 2420 4919296 312 18446744073709551615 4194304 4224108 281474421139920 0 0 0 0 3670016 90144 1 0 0 17 1 60 2 0 0 0 4291944 4293232 426762240 281474421140940 281474421141003 281474421141003 281474421141465 0
+Fri Jan 22 20:56:23:493 |    3463 | 		0, 1/0: 3304 (mwd) S 1 3304 2927 0 -1 4194368 142 5983 0 0 0 0 3 7 -39 0 2 0 2423 80896000 461 18446744073709551615 4194304 4290244 281474948899632 0 0 0 0 0 90112 0 0 0 17 2 38 2 0 0 0 4357432 4359264 109674496 281474948902583 281474948902605 281474948902605 281474948902882 0
+Fri Jan 22 20:56:23:493 |    3463 | 		10, 1/0: 3317 (pre-ng) S 1 2927 2927 0 -1 4194368 225 0 0 0 1 0 0 0 20 0 1 0 2527 5701632 578 18446744073709551615 4194304 4225792 281474016446048 0 0 0 0 6 28673 1 0 0 17 2 0 0 10 0 0 4291936 4296680 1016291328 281474016448039 281474016448064 281474016448064 281474016448479 0
+Fri Jan 22 20:56:23:493 |    3463 | 		0, 1/0: 3321 (itProxy) S 1 3321 3321 0 -1 4194624 172 0 0 0 0 0 0 0 -31 0 1 0 2536 5754880 562 18446744073709551615 4194304 4208456 281474488611888 0 0 0 0 3670016 94208 1 0 0 17 0 30 1 0 0 0 4275576 4276656 107900928 281474488614364 281474488614426 281474488614426 281474488614878 0
+Fri Jan 22 20:56:23:493 |    3463 | 		0, 2/0: 3354 (itProxy) S 1 3354 3354 0 -1 4194368 143 0 0 0 0 0 0 0 -31 0 1 0 2546 5517312 502 18446744073709551615 4194304 4208456 281474465681776 0 0 0 0 3670016 94208 1 0 0 17 1 30 1 0 0 0 4275576 4276656 564953088 281474465684955 281474465685015 281474465685015 281474465685470 0
+Fri Jan 22 20:56:30:465 |    3298 | SYSUP OK ipcs attached pid=3298
+Tue Jan 26 03:33:04:526 |    3463 | TEST_PIDS:
+Tue Jan 26 03:33:04:527 |    3463 | 	Missing process: syslog-ng(2734).
+Tue Jan 26 03:33:04:527 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Tue Jan 26 03:33:05:532 |    3463 | 	Re-check process sucessfull: 14276 (syslog-ng) S 1 14275 14275 0 -1 4194368 78 0 0 0 0 0 0 0 20 0 1 0 28303663 7233536 480 18446744073709551615 4194304 4203684 281474396437600 0 0 0 0 1 0 1 0 0 17 2 0 0 0 0 0 4271560 4273040 424718336 281474396438343 281474396438363 281474396438363 281474396438500 0
+Tue Jan 26 03:33:05:532 |    3463 | TEST_PIDS:
+Tue Jan 26 03:33:05:532 |    3463 | 	Missing process: syslog-ng(2735).
+Tue Jan 26 03:33:05:532 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Tue Jan 26 03:33:06:536 |    3463 | 	Re-check process sucessfull: 14277 (syslog-ng) S 14276 14277 14277 0 -1 4194624 874 0 7 0 1 1 0 0 20 0 2 0 28303663 84660224 1556 18446744073709551615 4194304 4203684 281474396437600 0 0 0 0 4198400 90627 0 0 0 17 3 0 0 0 0 0 4271560 4273040 424718336 281474396438343 281474396438363 281474396438363 281474396438500 0
+Sat Jan 30 03:33:04:120 |    3463 | TEST_PIDS:
+Sat Jan 30 03:33:04:120 |    3463 | 	Missing process: syslog-ng(14276).
+Sat Jan 30 03:33:04:120 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Sat Jan 30 03:33:05:124 |    3463 | 	Re-check process sucessfull: 19066 (syslog-ng) S 1 19065 19065 0 -1 4194368 77 0 0 0 0 0 0 0 20 0 1 0 62863643 7233536 478 18446744073709551615 4194304 4203684 281474608088320 0 0 0 0 1 0 1 0 0 17 2 0 0 0 0 0 4271560 4273040 175398912 281474608090951 281474608090971 281474608090971 281474608091108 0
+Sat Jan 30 03:33:05:124 |    3463 | TEST_PIDS:
+Sat Jan 30 03:33:05:124 |    3463 | 	Missing process: syslog-ng(14277).
+Sat Jan 30 03:33:05:124 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Sat Jan 30 03:33:06:129 |    3463 | 	Re-check process sucessfull: 19067 (syslog-ng) S 19066 19067 19067 0 -1 4194624 900 0 0 0 0 2 0 0 20 0 4 0 62863643 235520000 1550 18446744073709551615 4194304 4203684 281474608088320 0 0 0 0 4198400 90627 0 0 0 17 0 0 0 0 0 0 4271560 4273040 175398912 281474608090951 281474608090971 281474608090971 281474608091108 0
+Wed Feb  3 03:33:03:688 |    3463 | TEST_PIDS:
+Wed Feb  3 03:33:03:689 |    3463 | 	Missing process: syslog-ng(19066).
+Wed Feb  3 03:33:03:689 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Wed Feb  3 03:33:04:694 |    3463 | 	Re-check process sucessfull: 24334 (syslog-ng) S 1 24333 24333 0 -1 4194368 75 0 0 0 0 0 0 0 20 0 1 0 97423620 7233536 486 18446744073709551615 4194304 4203684 281474893261776 0 0 0 0 1 0 1 0 0 17 2 0 0 0 0 0 4271560 4273040 696045568 281474893262663 281474893262683 281474893262683 281474893262820 0
+Wed Feb  3 03:33:04:694 |    3463 | TEST_PIDS:
+Wed Feb  3 03:33:04:694 |    3463 | 	Missing process: syslog-ng(19067).
+Wed Feb  3 03:33:04:694 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Wed Feb  3 03:33:05:699 |    3463 | 	Re-check process sucessfull: 24335 (syslog-ng) S 24334 24335 24335 0 -1 4194624 877 0 7 0 1 1 0 0 20 0 2 0 97423620 84525056 1599 18446744073709551615 4194304 4203684 281474893261776 0 0 0 0 4198400 90627 0 0 0 17 2 0 0 0 0 0 4271560 4273040 696045568 281474893262663 281474893262683 281474893262683 281474893262820 0
+Sun Feb  7 03:33:03:289 |    3463 | TEST_PIDS:
+Sun Feb  7 03:33:03:289 |    3463 | 	Missing process: syslog-ng(24334).
+Sun Feb  7 03:33:03:289 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Sun Feb  7 03:33:04:294 |    3463 | 	Re-check process sucessfull: 27137 (syslog-ng) S 1 27136 27136 0 -1 4194368 75 0 0 0 0 0 0 0 20 0 1 0 131983583 7233536 480 18446744073709551615 4194304 4203684 281474226353152 0 0 0 0 1 0 1 0 0 17 2 0 0 0 0 0 4271560 4273040 375455744 281474226356039 281474226356059 281474226356059 281474226356196 0
+Sun Feb  7 03:33:04:294 |    3463 | TEST_PIDS:
+Sun Feb  7 03:33:04:294 |    3463 | 	Missing process: syslog-ng(24335).
+Sun Feb  7 03:33:04:294 |    3463 | 	Re-check (1 / 30) process: syslog-ng.
+Sun Feb  7 03:33:05:298 |    3463 | 	Re-check process sucessfull: 27138 (syslog-ng) S 27137 27138 27138 0 -1 4194624 884 0 0 0 2 1 0 0 20 0 2 0 131983583 84660224 1550 18446744073709551615 4194304 4203684 281474226353152 0 0 0 0 4198400 90627 0 0 0 17 3 0 0 0 0 0 4271560 4273040 375455744 281474226356039 281474226356059 281474226356059 281474226356196 0

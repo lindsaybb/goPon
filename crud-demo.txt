@@ -1,0 +1,1885 @@
+package main
+
+import (
+        "fmt"
+        "net"
+        "net/http"
+        "crypto/tls"
+        "text/tabwriter"
+        "encoding/json"
+        "io/ioutil"
+        "os"
+		"strings"
+		"strconv"
+		"time"
+		"bytes"
+		"encoding/base64"
+)
+
+/*
+Revisions:
+	[+] changed order of endpoints to collect OLT and ONU functional blocks
+	[+] expand VLAN input to support ranges
+	[+] complete default value input for all endpoints
+To Do:
+	delete request not resolving, VLAN rules are difficult
+	test data fill from file
+*/
+
+type IskratelMsan struct {
+	ISKRATELMSANMIB struct {
+		ISKRATELMSANMIB struct {
+			MsanServiceProfileTable struct {
+				MsanServiceProfileEntry []ServiceProfile  `json:"msanServiceProfileEntry"`
+			} `json:"msanServiceProfileTable"`
+			MsanServiceFlowProfileTable struct {
+				MsanServiceFlowProfileEntry []FlowProfile  `json:"msanServiceFlowProfileEntry"`
+			} `json:"msanServiceFlowProfileTable"`
+			MsanVlanProfileTable struct {
+				MsanVlanProfileEntry []VlanProfile  `json:"msanVlanProfileEntry"`
+			} `json:"msanVlanProfileTable"`
+			MsanMulticastProfileTable struct {
+				MsanMulticastProfileEntry []IgmpProfile  `json:"msanMulticastProfileEntry"`
+			} `json:"msanMulticastProfileTable"`
+			MsanSecurityProfileTable struct {
+				MsanSecurityProfileEntry []SecurityProfile  `json:"msanSecurityProfileEntry"`
+			} `json:"msanSecurityProfileTable"`
+			MsanOnuFlowProfileTable struct {
+				MsanOnuFlowProfileEntry []OnuFlowProfile  `json:"msanOnuFlowProfileEntry"`
+			} `json:"msanOnuFlowProfileTable"`
+			MsanOnuTcontProfileTable struct {
+				MsanOnuTcontProfileEntry []OnuTcontProfile  `json:"msanOnuTcontProfileEntry"`
+			} `json:"msanOnuTcontProfileTable"`
+			MsanOnuVlanProfileTable struct {
+				MsanOnuVlanProfileEntry []OnuVlanProfile  `json:"msanOnuVlanProfileEntry"`
+			} `json:"msanOnuVlanProfileTable"`
+			MsanOnuVlanProfileRuleTable struct {
+				MsanOnuVlanProfileRuleEntry []OnuVlanRule  `json:"msanOnuVlanProfileRuleEntry"`
+			} `json:"msanOnuVlanProfileRuleTable"`
+			MsanOnuMulticastProfileTable struct {
+				MsanOnuMulticastProfileEntry []OnuIgmpProfile  `json:"msanOnuMulticastProfileEntry"`
+			} `json:"msanOnuMulticastProfileTable"`
+			MsanL2CpProfileTable struct {
+				MsanL2CpProfileEntry []L2cpProfile  `json:"msanL2cpProfileEntry"`
+			} `json:"msanL2cpProfileTable"`
+		} `json:"ISKRATEL-MSAN-MIB"`
+	} `json:"ISKRATEL-MSAN-MIB:"`
+}
+
+type ServiceProfile struct {
+	MsanServiceProfileName                            string `json:"msanServiceProfileName"`
+	MsanServiceProfileServiceFlowProfileName          string `json:"msanServiceProfileServiceFlowProfileName"`
+	MsanServiceProfileMulticastProfileName            string `json:"msanServiceProfileMulticastProfileName"`
+	MsanServiceProfileVlanProfileName                 string `json:"msanServiceProfileVlanProfileName"`
+	MsanServiceProfileL2CpProfileName                 string `json:"msanServiceProfileL2cpProfileName"`
+	MsanServiceProfileSecurityProfileName             string `json:"msanServiceProfileSecurityProfileName"`
+	MsanServiceProfileOnuFlowProfileName              string `json:"msanServiceProfileOnuFlowProfileName"`
+	MsanServiceProfileOnuVlanProfileName              string `json:"msanServiceProfileOnuVlanProfileName"`
+	MsanServiceProfileOnuMulticastProfileName         string `json:"msanServiceProfileOnuMulticastProfileName"`
+	MsanServiceProfileOnuTcontProfileName             string `json:"msanServiceProfileOnuTcontProfileName"`
+	MsanServiceProfileOnuVirtGemPortID                int    `json:"msanServiceProfileOnuVirtGemPortId"`
+	MsanServiceProfileOnuTpType                       int    `json:"msanServiceProfileOnuTpType"`
+	MsanServiceProfileOnuTpUniBitMap                  string `json:"msanServiceProfileOnuTpUniBitMap"`
+	MsanServiceProfileDhcpRa                          int    `json:"msanServiceProfileDhcpRa"`
+	MsanServiceProfileDhcpRaTrustClients              int    `json:"msanServiceProfileDhcpRaTrustClients"`
+	MsanServiceProfileDhcpRaOpt82UnicastExtension     int    `json:"msanServiceProfileDhcpRaOpt82UnicastExtension"`
+	MsanServiceProfileDhcpRaOpt82Insert               int    `json:"msanServiceProfileDhcpRaOpt82Insert"`
+	MsanServiceProfileDhcpRaRateLimit                 int    `json:"msanServiceProfileDhcpRaRateLimit"`
+	MsanServiceProfileDhcpRaCircuitIDCustomFormat     string `json:"msanServiceProfileDhcpRaCircuitIdCustomFormat"`
+	MsanServiceProfileDhcpRaRemoteIDCustomFormat      string `json:"msanServiceProfileDhcpRaRemoteIdCustomFormat"`
+	MsanServiceProfileDhcpRaCircuitIDType             int    `json:"msanServiceProfileDhcpRaCircuitIdType"`
+	MsanServiceProfileDhcpv6Ra                        int    `json:"msanServiceProfileDhcpv6Ra"`
+	MsanServiceProfileDhcpv6RaTrustClients            int    `json:"msanServiceProfileDhcpv6RaTrustClients"`
+	MsanServiceProfileDhcpv6RaRemoteIDEnterpriseNum   int    `json:"msanServiceProfileDhcpv6RaRemoteIdEnterpriseNum"`
+	MsanServiceProfileDhcpv6RaInterfaceIDType         int    `json:"msanServiceProfileDhcpv6RaInterfaceIdType"`
+	MsanServiceProfileDhcpv6RaInterfaceIDCustomFormat string `json:"msanServiceProfileDhcpv6RaInterfaceIdCustomFormat"`
+	MsanServiceProfileDhcpv6RaRemoteIDCustomFormat    string `json:"msanServiceProfileDhcpv6RaRemoteIdCustomFormat"`
+	MsanServiceProfilePppoeIA                         int    `json:"msanServiceProfilePppoeIA"`
+	MsanServiceProfilePppoeIARateLimit                int    `json:"msanServiceProfilePppoeIARateLimit"`
+	MsanServiceProfilePPPoeIACircuitIDType            int    `json:"msanServiceProfilePPPoeIACircuitIdType"`
+	MsanServiceProfilePPPoeIACircuitIDCustomFormat    string `json:"msanServiceProfilePPPoeIACircuitIdCustomFormat"`
+	MsanServiceProfilePPPoeIARemoteIDCustomFormat     string `json:"msanServiceProfilePPPoeIARemoteIdCustomFormat"`
+	MsanServiceProfileUsage                           int    `json:"msanServiceProfileUsage"`
+}
+
+type FlowProfile struct {
+	MsanServiceFlowProfileName                      string `json:"msanServiceFlowProfileName"`
+	MsanServiceFlowProfileMatchUsAny                int    `json:"msanServiceFlowProfileMatchUsAny"`
+	MsanServiceFlowProfileMatchUsMacDestAddr        string `json:"msanServiceFlowProfileMatchUsMacDestAddr"`
+	MsanServiceFlowProfileMatchUsMacDestMask        string `json:"msanServiceFlowProfileMatchUsMacDestMask"`
+	MsanServiceFlowProfileMatchUsMacSrcAddr         string `json:"msanServiceFlowProfileMatchUsMacSrcAddr"`
+	MsanServiceFlowProfileMatchUsMacSrcMask         string `json:"msanServiceFlowProfileMatchUsMacSrcMask"`
+	MsanServiceFlowProfileMatchUsCPcp               int    `json:"msanServiceFlowProfileMatchUsCPcp"`
+	MsanServiceFlowProfileMatchUsSPcp               int    `json:"msanServiceFlowProfileMatchUsSPcp"`
+	MsanServiceFlowProfileMatchUsVlanProfile        int    `json:"msanServiceFlowProfileMatchUsVlanProfile"`
+	MsanServiceFlowProfileMatchUsCVlanIDRange       string `json:"msanServiceFlowProfileMatchUsCVlanIdRange"`
+	MsanServiceFlowProfileMatchUsSVlanIDRange       string `json:"msanServiceFlowProfileMatchUsSVlanIdRange"`
+	MsanServiceFlowProfileMatchUsEthertype          int    `json:"msanServiceFlowProfileMatchUsEthertype"`
+	MsanServiceFlowProfileMatchUsIPProtocol         int    `json:"msanServiceFlowProfileMatchUsIpProtocol"`
+	MsanServiceFlowProfileMatchUsIPSrcAddr          string `json:"msanServiceFlowProfileMatchUsIpSrcAddr"`
+	MsanServiceFlowProfileMatchUsIPSrcMask          string `json:"msanServiceFlowProfileMatchUsIpSrcMask"`
+	MsanServiceFlowProfileMatchUsIPDestAddr         string `json:"msanServiceFlowProfileMatchUsIpDestAddr"`
+	MsanServiceFlowProfileMatchUsIPDestMask         string `json:"msanServiceFlowProfileMatchUsIpDestMask"`
+	MsanServiceFlowProfileMatchUsIPDscp             int    `json:"msanServiceFlowProfileMatchUsIpDscp"`
+	MsanServiceFlowProfileMatchUsIPCsc              int    `json:"msanServiceFlowProfileMatchUsIpCsc"`
+	MsanServiceFlowProfileMatchUsIPDropPrecedence   int    `json:"msanServiceFlowProfileMatchUsIpDropPrecedence"`
+	MsanServiceFlowProfileMatchUsTCPSrcPort         int    `json:"msanServiceFlowProfileMatchUsTcpSrcPort"`
+	MsanServiceFlowProfileMatchUsTCPDestPort        int    `json:"msanServiceFlowProfileMatchUsTcpDestPort"`
+	MsanServiceFlowProfileMatchUsUDPSrcPort         int    `json:"msanServiceFlowProfileMatchUsUdpSrcPort"`
+	MsanServiceFlowProfileMatchUsUDPDstPort         int    `json:"msanServiceFlowProfileMatchUsUdpDstPort"`
+	MsanServiceFlowProfileMatchUsIpv6SrcAddr        string `json:"msanServiceFlowProfileMatchUsIpv6SrcAddr"`
+	MsanServiceFlowProfileMatchUsIpv6SrcAddrMaskLen int    `json:"msanServiceFlowProfileMatchUsIpv6SrcAddrMaskLen"`
+	MsanServiceFlowProfileMatchUsIpv6DstAddr        string `json:"msanServiceFlowProfileMatchUsIpv6DstAddr"`
+	MsanServiceFlowProfileMatchUsIpv6DstAddrMaskLen int    `json:"msanServiceFlowProfileMatchUsIpv6DstAddrMaskLen"`
+	MsanServiceFlowProfileMatchDsAny                int    `json:"msanServiceFlowProfileMatchDsAny"`
+	MsanServiceFlowProfileMatchDsMacDestAddr        string `json:"msanServiceFlowProfileMatchDsMacDestAddr"`
+	MsanServiceFlowProfileMatchDsMacDestMask        string `json:"msanServiceFlowProfileMatchDsMacDestMask"`
+	MsanServiceFlowProfileMatchDsMacSrcAddr         string `json:"msanServiceFlowProfileMatchDsMacSrcAddr"`
+	MsanServiceFlowProfileMatchDsMacSrcMask         string `json:"msanServiceFlowProfileMatchDsMacSrcMask"`
+	MsanServiceFlowProfileMatchDsCPcp               int    `json:"msanServiceFlowProfileMatchDsCPcp"`
+	MsanServiceFlowProfileMatchDsSPcp               int    `json:"msanServiceFlowProfileMatchDsSPcp"`
+	MsanServiceFlowProfileMatchDsVlanProfile        int    `json:"msanServiceFlowProfileMatchDsVlanProfile"`
+	MsanServiceFlowProfileMatchDsCVlanIDRange       string `json:"msanServiceFlowProfileMatchDsCVlanIdRange"`
+	MsanServiceFlowProfileMatchDsSVlanIDRange       string `json:"msanServiceFlowProfileMatchDsSVlanIdRange"`
+	MsanServiceFlowProfileMatchDsEthertype          int    `json:"msanServiceFlowProfileMatchDsEthertype"`
+	MsanServiceFlowProfileMatchDsIPProtocol         int    `json:"msanServiceFlowProfileMatchDsIpProtocol"`
+	MsanServiceFlowProfileMatchDsIPSrcAddr          string `json:"msanServiceFlowProfileMatchDsIpSrcAddr"`
+	MsanServiceFlowProfileMatchDsIPSrcMask          string `json:"msanServiceFlowProfileMatchDsIpSrcMask"`
+	MsanServiceFlowProfileMatchDsIPDestAddr         string `json:"msanServiceFlowProfileMatchDsIpDestAddr"`
+	MsanServiceFlowProfileMatchDsIPDestMask         string `json:"msanServiceFlowProfileMatchDsIpDestMask"`
+	MsanServiceFlowProfileMatchDsIPDscp             int    `json:"msanServiceFlowProfileMatchDsIpDscp"`
+	MsanServiceFlowProfileMatchDsIPCsc              int    `json:"msanServiceFlowProfileMatchDsIpCsc"`
+	MsanServiceFlowProfileMatchDsIPDropPrecedence   int    `json:"msanServiceFlowProfileMatchDsIpDropPrecedence"`
+	MsanServiceFlowProfileMatchDsTCPSrcPort         int    `json:"msanServiceFlowProfileMatchDsTcpSrcPort"`
+	MsanServiceFlowProfileMatchDsTCPDestPort        int    `json:"msanServiceFlowProfileMatchDsTcpDestPort"`
+	MsanServiceFlowProfileMatchDsUDPSrcPort         int    `json:"msanServiceFlowProfileMatchDsUdpSrcPort"`
+	MsanServiceFlowProfileMatchDsUDPDstPort         int    `json:"msanServiceFlowProfileMatchDsUdpDstPort"`
+	MsanServiceFlowProfileMatchDsIpv6SrcAddr        string `json:"msanServiceFlowProfileMatchDsIpv6SrcAddr"`
+	MsanServiceFlowProfileMatchDsIpv6SrcAddrMaskLen int    `json:"msanServiceFlowProfileMatchDsIpv6SrcAddrMaskLen"`
+	MsanServiceFlowProfileMatchDsIpv6DstAddr        string `json:"msanServiceFlowProfileMatchDsIpv6DstAddr"`
+	MsanServiceFlowProfileMatchDsIpv6DstAddrMaskLen int    `json:"msanServiceFlowProfileMatchDsIpv6DstAddrMaskLen"`
+	MsanServiceFlowProfileUsCdr                     int    `json:"msanServiceFlowProfileUsCdr"`
+	MsanServiceFlowProfileUsCdrBurstSize            int    `json:"msanServiceFlowProfileUsCdrBurstSize"`
+	MsanServiceFlowProfileUsPdr                     int    `json:"msanServiceFlowProfileUsPdr"`
+	MsanServiceFlowProfileUsPdrBurstSize            int    `json:"msanServiceFlowProfileUsPdrBurstSize"`
+	MsanServiceFlowProfileUsMarkPcp                 int    `json:"msanServiceFlowProfileUsMarkPcp"`
+	MsanServiceFlowProfileUsMarkPcpValue            int    `json:"msanServiceFlowProfileUsMarkPcpValue"`
+	MsanServiceFlowProfileUsMarkDscp                int    `json:"msanServiceFlowProfileUsMarkDscp"`
+	MsanServiceFlowProfileUsMarkDscpValue           int    `json:"msanServiceFlowProfileUsMarkDscpValue"`
+	MsanServiceFlowProfileDsCdr                     int    `json:"msanServiceFlowProfileDsCdr"`
+	MsanServiceFlowProfileDsCdrBurstSize            int    `json:"msanServiceFlowProfileDsCdrBurstSize"`
+	MsanServiceFlowProfileDsPdr                     int    `json:"msanServiceFlowProfileDsPdr"`
+	MsanServiceFlowProfileDsPdrBurstSize            int    `json:"msanServiceFlowProfileDsPdrBurstSize"`
+	MsanServiceFlowProfileDsMarkPcp                 int    `json:"msanServiceFlowProfileDsMarkPcp"`
+	MsanServiceFlowProfileDsMarkPcpValue            int    `json:"msanServiceFlowProfileDsMarkPcpValue"`
+	MsanServiceFlowProfileDsMarkDscp                int    `json:"msanServiceFlowProfileDsMarkDscp"`
+	MsanServiceFlowProfileDsMarkDscpValue           int    `json:"msanServiceFlowProfileDsMarkDscpValue"`
+	MsanServiceFlowProfileDsQueuingPriority         int    `json:"msanServiceFlowProfileDsQueuingPriority"`
+	MsanServiceFlowProfileDsSchedulingMode          int    `json:"msanServiceFlowProfileDsSchedulingMode"`
+	MsanServiceFlowProfileUsage                     int    `json:"msanServiceFlowProfileUsage"`
+}
+
+type VlanProfile struct {
+	MsanVlanProfileName               string `json:"msanVlanProfileName"`
+	MsanVlanProfileCVid               string `json:"msanVlanProfileCVid"`
+	MsanVlanProfileCVidNative         int    `json:"msanVlanProfileCVidNative"`
+	MsanVlanProfileCVidRemark         int    `json:"msanVlanProfileCVidRemark"`
+	MsanVlanProfileSVid               int    `json:"msanVlanProfileSVid"`
+	MsanVlanProfileSEtherType         int    `json:"msanVlanProfileSEtherType"`
+	MsanVlanProfileNetworkPortCTag    int    `json:"msanVlanProfileNetworkPortCTag"`
+	MsanVlanProfileCVidExternal       int    `json:"msanVlanProfileCVidExternal"`
+	MsanVlanProfileCVidNativeExternal int    `json:"msanVlanProfileCVidNativeExternal"`
+	MsanVlanProfileCVidRemarkExternal int    `json:"msanVlanProfileCVidRemarkExternal"`
+	MsanVlanProfileSVidExternal       int    `json:"msanVlanProfileSVidExternal"`
+	MsanVlanProfileUsage              int    `json:"msanVlanProfileUsage"`
+}
+
+type IgmpProfile struct {
+	MsanMulticastProfileName                     string `json:"msanMulticastProfileName"`
+	MsanMulticastProfileIgmpSnooping             int    `json:"msanMulticastProfileIgmpSnooping"`
+	MsanMulticastProfileIgmpSnoopingFastLeave    int    `json:"msanMulticastProfileIgmpSnoopingFastLeave"`
+	MsanMulticastProfileIgmpSnoopingSuppression  int    `json:"msanMulticastProfileIgmpSnoopingSuppression"`
+	MsanMulticastProfileIgmpProxy                int    `json:"msanMulticastProfileIgmpProxy"`
+	MsanMulticastProfileIgmpProxyIPAddress       string `json:"msanMulticastProfileIgmpProxyIpAddress"`
+	MsanMulticastProfileIgmpFiltering            int    `json:"msanMulticastProfileIgmpFiltering"`
+	MsanMulticastProfileMulticastGroupLimit      int    `json:"msanMulticastProfileMulticastGroupLimit"`
+	MsanMulticastProfileMvr                      int    `json:"msanMulticastProfileMvr"`
+	MsanMulticastProfileIgmpProxyProtocolVersion int    `json:"msanMulticastProfileIgmpProxyProtocolVersion"`
+	MsanMulticastProfileUsage                    int    `json:"msanMulticastProfileUsage"`
+}
+
+type SecurityProfile struct {
+	MsanSecurityProfileName                   string `json:"msanSecurityProfileName"`
+	MsanSecurityProfileProtectedPort          int    `json:"msanSecurityProfileProtectedPort"`
+	MsanSecurityProfileMacSg                  int    `json:"msanSecurityProfileMacSg"`
+	MsanSecurityProfileMacLimit               int    `json:"msanSecurityProfileMacLimit"`
+	MsanSecurityProfilePortSecurity           int    `json:"msanSecurityProfilePortSecurity"`
+	MsanSecurityProfileArpInspec              int    `json:"msanSecurityProfileArpInspec"`
+	MsanSecurityProfileIPSg                   int    `json:"msanSecurityProfileIpSg"`
+	MsanSecurityProfileIPSgIpv6               int    `json:"msanSecurityProfileIpSgIpv6"`
+	MsanSecurityProfileIPSgFilteringMode      int    `json:"msanSecurityProfileIpSgFilteringMode"`
+	MsanSecurityProfileIPSgBindingLimit       int    `json:"msanSecurityProfileIpSgBindingLimit"`
+	MsanSecurityProfileIPSgBindingLimitDhcpv6 int    `json:"msanSecurityProfileIpSgBindingLimitDhcpv6"`
+	MsanSecurityProfileIPSgBindingLimitND     int    `json:"msanSecurityProfileIpSgBindingLimitND"`
+	MsanSecurityProfileStormControlBroadcast  int    `json:"msanSecurityProfileStormControlBroadcast"`
+	MsanSecurityProfileStormControlMulticast  int    `json:"msanSecurityProfileStormControlMulticast"`
+	MsanSecurityProfileStormControlUnicast    int    `json:"msanSecurityProfileStormControlUnicast"`
+	MsanSecurityProfileAppRateLimitDhcp       int    `json:"msanSecurityProfileAppRateLimitDhcp"`
+	MsanSecurityProfileAppRateLimitIgmp       int    `json:"msanSecurityProfileAppRateLimitIgmp"`
+	MsanSecurityProfileAppRateLimitPppoe      int    `json:"msanSecurityProfileAppRateLimitPppoe"`
+	MsanSecurityProfileAppRateLimitStp        int    `json:"msanSecurityProfileAppRateLimitStp"`
+	MsanSecurityProfileAppRateLimitMn         int    `json:"msanSecurityProfileAppRateLimitMn"`
+	MsanSecurityProfileUsage                  int    `json:"msanSecurityProfileUsage"`
+}
+
+type OnuFlowProfile struct {
+	MsanOnuFlowProfileName                string `json:"msanOnuFlowProfileName"`
+	MsanOnuFlowProfileMatchUsCVlanIDRange string `json:"msanOnuFlowProfileMatchUsCVlanIdRange"`
+	MsanOnuFlowProfileMatchUsCPcp         int    `json:"msanOnuFlowProfileMatchUsCPcp"`
+	MsanOnuFlowProfileUsCdr               int    `json:"msanOnuFlowProfileUsCdr"`
+	MsanOnuFlowProfileUsPdr               int    `json:"msanOnuFlowProfileUsPdr"`
+	MsanOnuFlowProfileUsFlowPriority      int    `json:"msanOnuFlowProfileUsFlowPriority"`
+	MsanOnuFlowProfileDsFlowPriority      int    `json:"msanOnuFlowProfileDsFlowPriority"`
+	MsanOnuFlowProfileUsage               int    `json:"msanOnuFlowProfileUsage"`
+}
+
+type OnuTcontProfile struct {
+	MsanOnuTcontProfileName            string `json:"msanOnuTcontProfileName"`
+	MsanOnuTcontProfileTcontID         int    `json:"msanOnuTcontProfileTcontId"`
+	MsanOnuTcontProfileTcontType       int    `json:"msanOnuTcontProfileTcontType"`
+	MsanOnuTcontProfileFixedDataRate   int    `json:"msanOnuTcontProfileFixedDataRate"`
+	MsanOnuTcontProfileAssuredDataRate int    `json:"msanOnuTcontProfileAssuredDataRate"`
+	MsanOnuTcontProfileMaxDataRate     int    `json:"msanOnuTcontProfileMaxDataRate"`
+	MsanOnuTcontProfileUsage           int    `json:"msanOnuTcontProfileUsage"`
+}
+
+type OnuVlanProfile struct {
+	MsanOnuVlanProfileName           string `json:"msanOnuVlanProfileName"`
+	MsanOnuVlanProfileDownstreamMode int    `json:"msanOnuVlanProfileDownstreamMode"`
+	MsanOnuVlanProfileInputTPID      int    `json:"msanOnuVlanProfileInputTPID"`
+	MsanOnuVlanProfileOutputTPID     int    `json:"msanOnuVlanProfileOutputTPID"`
+	MsanOnuVlanProfileUsage          int    `json:"msanOnuVlanProfileUsage"`
+}
+
+type OnuVlanRule struct {
+	MsanOnuVlanProfileName               string `json:"msanOnuVlanProfileName"`
+	MsanOnuVlanProfileRuleID             int    `json:"msanOnuVlanProfileRuleId"`
+	MsanOnuVlanProfileRuleMatchSVlanID   int    `json:"msanOnuVlanProfileRuleMatchSVlanId"`
+	MsanOnuVlanProfileRuleMatchSPcp      int    `json:"msanOnuVlanProfileRuleMatchSPcp"`
+	MsanOnuVlanProfileRuleMatchSTPID     int    `json:"msanOnuVlanProfileRuleMatchSTPID"`
+	MsanOnuVlanProfileRuleMatchCVlanID   int    `json:"msanOnuVlanProfileRuleMatchCVlanId"`
+	MsanOnuVlanProfileRuleMatchCPcp      int    `json:"msanOnuVlanProfileRuleMatchCPcp"`
+	MsanOnuVlanProfileRuleMatchCTPID     int    `json:"msanOnuVlanProfileRuleMatchCTPID"`
+	MsanOnuVlanProfileRuleMatchEthertype int    `json:"msanOnuVlanProfileRuleMatchEthertype"`
+	MsanOnuVlanProfileRuleRemoveTags     int    `json:"msanOnuVlanProfileRuleRemoveTags"`
+	MsanOnuVlanProfileRuleAddSTag        int    `json:"msanOnuVlanProfileRuleAddSTag"`
+	MsanOnuVlanProfileRuleAddSPcp        int    `json:"msanOnuVlanProfileRuleAddSPcp"`
+	MsanOnuVlanProfileRuleAddSVlanID     int    `json:"msanOnuVlanProfileRuleAddSVlanId"`
+	MsanOnuVlanProfileRuleAddSTPID       int    `json:"msanOnuVlanProfileRuleAddSTPID"`
+	MsanOnuVlanProfileRuleAddCTag        int    `json:"msanOnuVlanProfileRuleAddCTag"`
+	MsanOnuVlanProfileRuleAddCPcp        int    `json:"msanOnuVlanProfileRuleAddCPcp"`
+	MsanOnuVlanProfileRuleAddCVlanID     int    `json:"msanOnuVlanProfileRuleAddCVlanId"`
+	MsanOnuVlanProfileRuleAddCTPID       int    `json:"msanOnuVlanProfileRuleAddCTPID"`
+}
+
+type OnuIgmpProfile struct {
+	MsanOnuMulticastProfileName                  string `json:"msanOnuMulticastProfileName"`
+	MsanOnuMulticastProfileIgmpMode              int    `json:"msanOnuMulticastProfileIgmpMode"`
+	MsanOnuMulticastProfileIgmpProxy             int    `json:"msanOnuMulticastProfileIgmpProxy"`
+	MsanOnuMulticastProfileIgmpSnoopingFastLeave int    `json:"msanOnuMulticastProfileIgmpSnoopingFastLeave"`
+	MsanOnuMulticastProfileUsIgmpTciVlanID       int    `json:"msanOnuMulticastProfileUsIgmpTciVlanId"`
+	MsanOnuMulticastProfileUsIgmpTciPcpValue     int    `json:"msanOnuMulticastProfileUsIgmpTciPcpValue"`
+	MsanOnuMulticastProfileUsIgmpTciCtrlMode     int    `json:"msanOnuMulticastProfileUsIgmpTciCtrlMode"`
+	MsanOnuMulticastProfileDsVlanTagging         int    `json:"msanOnuMulticastProfileDsVlanTagging"`
+	MsanOnuMulticastProfileDsGemPort             int    `json:"msanOnuMulticastProfileDsGemPort"`
+	MsanOnuMulticastProfileUsage                 int    `json:"msanOnuMulticastProfileUsage"`
+}
+
+type L2cpProfile struct {
+	MsanL2CpProfileName        string `json:"msanL2cpProfileName"`
+	MsanL2CpProfileDescription string `json:"msanL2cpProfileDescription"`
+	MsanL2CpProfileUsage       int    `json:"msanL2cpProfileUsage"`
+}
+
+const (
+    usage = "[--] First Argument must be Reachable OLT IP Address"
+	auth = "session=em+protection-user=admin&em+protection-pw=21232f297a57a5a743894a0e4a801fc3"
+	empty = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    serviceProfiles = "msanServiceProfileTable"
+    flowProfiles = "msanServiceFlowProfileTable"
+	vlanProfiles = "msanVlanProfileTable"
+	igmpProfiles = "msanMulticastProfileTable"
+	securityProfiles = "msanSecurityProfileTable"
+    onuFlowProfiles = "msanOnuFlowProfileTable"
+    onuTcontProfiles = "msanOnuTcontProfileTable"
+    onuVlanProfiles = "msanOnuVlanProfileTable"
+    onuVlanRules = "msanOnuVlanProfileRuleTable"
+	onuIgmpProfiles = "msanOnuMulticastProfileTable"
+	l2cpProfiles = "msanL2cpProfileTable"
+)
+
+// required to maintain order, variables initialized once as constants
+var endpoints = []string{
+	serviceProfiles,
+	flowProfiles,
+	vlanProfiles,
+	igmpProfiles,
+	securityProfiles,
+    onuFlowProfiles,
+    onuTcontProfiles,
+    onuVlanProfiles,
+    onuVlanRules,
+	onuIgmpProfiles,
+	l2cpProfiles,
+}
+
+// reversed order so sub-profiles can be added before service profile references them
+var endpointsReversed = []string{
+	l2cpProfiles,
+	onuIgmpProfiles,
+	onuVlanProfiles,
+	onuVlanRules,
+	onuTcontProfiles,
+	onuFlowProfiles,
+	securityProfiles,
+	igmpProfiles,
+	vlanProfiles,
+	flowProfiles,
+	serviceProfiles,
+}
+
+// to post to the endpoint, use the endpoint at a key to get the endpoint entry string
+var endpointEntry = map[string]string {
+	serviceProfiles: "msanServiceProfileEntry",
+	flowProfiles: "msanServiceFlowProfileEntry",
+	vlanProfiles: "msanVlanProfileEntry",
+	igmpProfiles: "msanMulticastProfileEntry",
+	securityProfiles: "msanSecurityProfileEntry",
+    onuFlowProfiles: "msanOnuFlowProfileEntry",
+    onuTcontProfiles: "msanOnuTcontProfileEntry",
+    onuVlanProfiles: "msanOnuVlanProfileEntry",
+    onuVlanRules: "msanOnuVlanProfileRuleEntry",
+	onuIgmpProfiles: "msanOnuMulticastProfileEntry",
+	l2cpProfiles: "msanL2cpProfileEntry",
+}
+
+// tidier way of specifying column headers; requires output awareness of # of fields before compilation
+var endpointFields = map[string][]string{
+	serviceProfiles: []string{"Name", "Flow Profile", "Vlan Profile", "ONU Flow Profile", "ONU T-CONT Profile", "ONU VLAN Profile", "vGEM Port", "ONU Term", "Usage"},
+	flowProfiles: []string{"Name", "US Match", "DS Match", "DS Peak Rate", "DS Assured Rate", "DS Queueing Priority", "DS Scheduling Mode", "Usage"},
+	vlanProfiles: []string{"Name", "C-VID", "S-VID", "S-Ethertype", "Native", "Remark", "Usage"},
+	igmpProfiles: []string{"Name", "Snooping", "Proxy", "Usage"},
+	securityProfiles: []string{"Name", "Protected", "MAC-SG", "MAC Limit", "Port-Sec", "DAI", "IP-SG", "AppRateLimit", "Storm Control", "Usage"},
+	onuFlowProfiles: []string{"Name", "C-VID Range", "C-PCP", "US CDR", "US PDR", "US Priority", "Usage"},
+	onuTcontProfiles: []string{"Name", "Type", "ID", "Fixed", "Assured", "Max", "Usage"},
+	onuVlanProfiles: []string{"Name", "Input TPID", "Output TPID", "Usage"},
+	onuVlanRules: []string{"Name", "Rule ID", "C-VID", "S-VID", "C-TPID", "EtherType", "C-Tag", "S-Tag", "C-PCP", "S-PCP", "C-TPID", "S-TPID"},
+	onuIgmpProfiles: []string{"Name", "Mode", "Proxy", "Fast-Leave", "Usage"},
+	l2cpProfiles: []string{"Name", "Description", "Usage"},
+}
+
+// example data to fill Create block, modifying this data structure would be the API for generating custom changes, can be parsed from text file
+var testData = map[string][]string {
+	serviceProfiles: []string{"RestTest", "RestTest", "", "RestTest", "", "RestTest", "", "", "RestTest", "22", "2", "AAAA"},//serviceProfiles: []string{"Service", "Flow", "Multicast", "Vlan", "Security", "Onu Flow", "Onu Vlan", "Onu Multicast", "Onu Tcont", "vGem", "Onu-Tp", "UniBit"}
+	flowProfiles: []string{"RestTest", "1", "1", "0", "0", "0", "0"}, // flowProfiles: []string{"Name", "MatchUsVlanProfile", "MatchDsVlanProfile", "DsPdr", "DsCdr", "UsPdr", "UsCdr"},
+	vlanProfiles: []string{"RestTest", "110"}, //vlanProfiles: []string{"RestTest", "CVidList"},
+	igmpProfiles: []string{"RestTest", "1", "0", "0", "0.0.0.0"}, //igmpProfiles: []string{"Name", "Snooping", "FastLeave", "Proxy", "Proxy-IP"},
+	securityProfiles: []string{"RestTest", "1", "0", "0", "0", "0", "1", "0", "-1, -1, 100", "5, 5, 5, 5, 5"}, //securityProfiles: []string{"Name", "Protected", "MAC-SG", "MAC-Limit", "Port-Sec", "Arp-Inspect", "IP-SG", "IPv6-SG", "Storm-Ctl", "AppRateLimit"},
+	onuFlowProfiles: []string{"RestTest", "110"}, //onuFlowProfiles: []string{"Name", "CVID-List"},
+	onuTcontProfiles: []string{"RestTest", "4", "5", "512", "2048", "750000"}, //onuTcontProfiles: []string{"Name", "TcontID", "TcontType", "FixedDataRate", "AssuredDataRate", "MaxDataRate"},
+	onuVlanProfiles: []string{"RestTest", "1", "33024", "34984"}, //onuVlanProfiles: []string{"Name", "DS Mode", "TPID-IN", "TPID-OUT"},
+	onuVlanRules: []string{"RestTest", "15", "4096", "-1", "0", "4096", "-1", "0", "0", "1", "2", "0", "0", "1", "1", "0", "111", "1"}, //onuVlanRules: []string{"Name", "Rule ID", "MatchSVlanID", "MatchSPcp", "MatchSTPID", "MatchCVlanID", "MatchCPcp", "MatchCTPID", "MatchEthertype", "RemoveTags", "AddSTag", "AddSPcp", "AddSVlanID", "AddSTPID", "AddCTag", "AddCPcp", "AddCVlanID", "AddCTPID"},
+	onuIgmpProfiles: []string{"RestTest", "2", "2", "1", "3998"}, //onuIgmpProfiles: []string{"Name", "IgmpMode", "IgmpProxy", "SnoopingFastLeave", "DsGemPort"},
+	l2cpProfiles: []string{"RestTest", "some text"}, //l2cpProfiles: []string{"Name", "Descr."},
+}
+
+// fs fills the tabwriter space by length of the column title
+func fs(s string) (o string) {
+    o = strings.Repeat("-", len(s))
+    return
+}
+
+// fors returns a format string for the length of a slice of values (column headers)
+func fors(i int) (f string) {
+	f = strings.Repeat("%v\t", i)
+	return f
+}
+
+// checkHost checks if host accepts tcp connection on hardcoded https port
+func checkHost(host string) (err error) {
+	timeout := time.Duration(1 * time.Second)
+	_, err = net.DialTimeout("tcp", host+":443", timeout)
+	return
+}
+
+// Base64 encoded VLAN entries resolved to a list of VLANs
+func getVlanFromB64(b string) (found []int, err error) {
+	//fmt.Println(b)
+	p, err := base64.StdEncoding.DecodeString(b)
+	if err != nil {
+		return 
+	}
+	for i, x := range p {
+		if x != 0 {
+			by := fmt.Sprintf("%08b", x)
+			bi := strings.SplitN(by, "", 8)
+			for o, v := range bi {
+				if v != "0" {
+					f := (i * 8) + o
+					found = append(found, f)
+				}	
+			}
+		}	
+	}
+	//fmt.Println(found)
+	return
+}
+
+// list of VLANs encoded to a Base64 representative string of bits representing VLAN membership 0-4095
+func getB64FromVlan(find []int) string {
+	by := make([]byte, 512)
+	for _, z := range find {
+		a := z / 8	// returns the byte array reference
+		b := z % 8	// returns the bit array reference
+		c := 7 - b
+		//fmt.Println(z, a, b)
+		// bitwise OR | critical to add found bit while maintaining existing
+		// bitwise shift left << works from the right, so c is necessary to reverse order
+		by[a] = by[a] | 1<<c
+		//fmt.Printf("%08b\n", by[a])
+	}
+	f := base64.StdEncoding.EncodeToString(by)
+	//fmt.Printf("\nB64 Encode Function Called; Input: %v\nOutput: %s\n", find, f)
+	return f
+}
+
+// string input (such as from text file or stdin) of space separated ints from 1-4095 as input, int list as output
+func generateVlanList(h string) (o []int, err error) {
+	c := strings.Split(h, " ")	// using a string to hold a list of VLAN ids "100 101 200"
+	for x := range c {
+		d, err := strconv.Atoi(c[x])
+		if err != nil {
+			return nil, err
+		}
+		o = append(o, d)
+	}
+	return o, nil
+}
+
+//#//
+//#//
+//#//
+func main() {
+	start := time.Now()
+	sleep := 1000 * time.Millisecond
+	if len(os.Args) < 2 {
+        fmt.Println(usage)
+        os.Exit(1)
+    }
+    host := os.Args[1]
+    err := checkHost(host)
+    if err != nil {
+        fmt.Println("Host IP Address not reachable")
+        os.Exit(1)
+	}
+	// GET Block
+	for _, k := range endpoints {
+		sp, err := getStructFields(host, k)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		tabwriteModular(sp, k)
+		time.Sleep(sleep)
+	}
+	// CREATE & POST block
+	for _, w := range endpointsReversed {
+		status, err := postHandler(host, w)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		fmt.Printf("----\nPOST to %s returned %s\n----\n", w, status)
+		time.Sleep(sleep)
+	}
+	// GET Block
+	for _, k := range endpoints {
+		sp, err := getStructFields(host, k)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		tabwriteModular(sp, k)
+		time.Sleep(sleep)
+	}
+	// DELETE Block
+	for _, k := range endpoints {
+		status, _, err := modularDelete(host, k, "RestTest")
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		fmt.Printf("DELETE from %s returned: %s\n----\n", k, status)
+		time.Sleep(sleep)
+	}
+	// GET Block
+	for _, k := range endpoints {
+		sp, err := getStructFields(host, k)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		tabwriteModular(sp, k)
+		time.Sleep(sleep)
+	}
+	fmt.Printf("Elapsed time of Operation: %v with loop sleep value of %v\n", time.Since(start), sleep)
+}
+//#//
+//#//
+//#//
+
+// getStructFields performs a GET request on the host with endpoint as the desired profile, returns populated struct or error
+func getStructFields(host, profile string) (t *IskratelMsan, err error) {
+	// return struct data from rest endpoint
+	jsonData, err := getProfiles(host, profile)
+    if err != nil {
+        return nil, err
+	}
+
+	// create the 'master' struct that nests all possible sub-structs
+	structData := new(IskratelMsan)
+	// io Copy method maps JSON to Struct sub-template according to `json` struct tags
+	json.Unmarshal(jsonData, structData)
+
+	// return populated with relevant endpoint
+	return structData, nil
+}
+
+// get request accepts host and endpoint as input, returns byte array of json body if OK, err if not
+func getProfiles(host string, ep string) ([]byte, error) {
+	entry := "data"
+	res := "ISKRATEL-MSAN-MIB"
+	reqUrl := fmt.Sprintf("https://%s/restconf/%s/%s:%s/%s", host, entry, res, res, ep)
+    fmt.Printf("\nGET Request: %s\n%s\n----\n", ep, reqUrl)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	req, err := http.NewRequest("GET", reqUrl, nil)
+	if err != nil {
+        return nil, err
+	}
+	req.Header.Set("Cookie", auth)
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+    defer resp.Body.Close()
+    
+	r, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	//fmt.Println(string(r))
+	// Return JSON data as byte array
+	return r, nil
+}
+
+func postProfile(host, ep, epu, name string, data []byte) (string, error) {
+
+	entry := "data"
+	res := "ISKRATEL-MSAN-MIB"
+	
+	reqUrl := fmt.Sprintf("https://%s/restconf/%s/%s:%s/%s/%s=%s", host, entry, res, res, ep, epu, name)
+	fmt.Printf("\nPOST Request: %s\n%s\n----\n", ep, reqUrl)
+	fmt.Println(string(data))
+
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	req, err := http.NewRequest("POST", reqUrl, bytes.NewBuffer(data))
+	if err != nil {
+        return "", err
+	}
+	req.Header.Set("Cookie", auth)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println(string(resp.Status))
+		return "", err
+	}
+	defer resp.Body.Close()
+	//fmt.Println(string(resp.Status))
+
+	return string(resp.Status), nil
+}
+
+func postHandler(host string, ep string) (r string, err error) {
+	testName := "RestTest"
+	switch ep {
+	case serviceProfiles:
+		json := generateServiceProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case flowProfiles:
+		json := generateFlowProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case vlanProfiles:
+		json := generateVlanProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case igmpProfiles:
+		json := generateIgmpProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case securityProfiles:
+		json := generateSecurityProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case onuFlowProfiles:
+		json := generateOnuFlowProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case onuTcontProfiles:
+		json := generateOnuTcontProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case onuVlanProfiles:	// how is this handled in respect to rule assignment within the profile header?
+		json := generateOnuVlanProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case onuVlanRules:
+		json := generateOnuVlanRule(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case onuIgmpProfiles:
+		json := generateOnuIgmpProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	case l2cpProfiles:
+		json := generateL2cpProfile(testData[ep])
+		r, err = postProfile(host, ep, endpointEntry[ep], testName, json)
+		return r, err
+	default:
+		fmt.Println("Error posting to ", ep)
+	}
+	return "", nil
+}
+
+func modularDelete(host string, ep string, name string) (string, int, error) {
+	entry := "data"
+	res := "ISKRATEL-MSAN-MIB"
+	epe := endpointEntry[ep]
+	reqUrl := fmt.Sprintf("https://%s/restconf/%s/%s:%s/%s/%s=%s", host, entry, res, res, ep, epe, name)
+	fmt.Printf("\nDELETE Request: %s\n%s\n----\n", ep, reqUrl)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	client := &http.Client{Transport: tr}
+	req, err := http.NewRequest("DELETE", reqUrl, nil)
+	if err != nil {
+        return "", -1, err
+	}
+	req.Header.Set("Cookie", auth)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println(resp.Status)
+		return resp.Status, resp.StatusCode, err
+	}
+	defer resp.Body.Close()
+	//fmt.Println(string(resp.Status))
+
+	return resp.Status, resp.StatusCode, nil
+}
+
+func generateServiceProfile(h []string) ([]byte) {
+	//serviceProfiles: []string{"Service", "Flow", "Multicast", "Vlan", "Security", "Onu Flow", "Onu Vlan", "Onu Multicast", "Onu Tcont", "vGem", "Onu-Tp", "UniBit"}
+	//serviceProfiles: []string{"RestTest", "RestTest", "", "RestTest", "", "RestTest", "", "", "RestTest", "22", "2", "AAAA"},
+	w := new(ServiceProfile)
+	w.MsanServiceProfileName = h[0] // "RestTest"
+	w.MsanServiceProfileServiceFlowProfileName = h[1] // "RestTest"
+	w.MsanServiceProfileMulticastProfileName = h[2]
+	w.MsanServiceProfileVlanProfileName = h[3] //"RestTest"
+	w.MsanServiceProfileL2CpProfileName = ""	// don't do this here
+	w.MsanServiceProfileSecurityProfileName = h[4] // "RestTest"
+	w.MsanServiceProfileDhcpRa = 0 // disable, def [0:disable, 1:allowClients, 2:allowServers, 3:allowAll]
+	w.MsanServiceProfileDhcpRaTrustClients = 0 // notTrust, def [1:trust]
+	w.MsanServiceProfileDhcpRaOpt82UnicastExtension = 0 // not used, def [1:used] (ra must be in allow-all or allow-client mode)
+	w.MsanServiceProfileDhcpRaOpt82Insert = 0 // notInsert, def [1:insert] (ra must be in allow-all or allow-client mode)
+	w.MsanServiceProfileDhcpRaRateLimit = 5 // default value, range 0-1000 where 0 is no limiting
+	w.MsanServiceProfilePppoeIA = 0 // disable, def [1:enable]
+	w.MsanServiceProfilePppoeIARateLimit = 5 // default value, range 0-1000 where 0 is no limiting
+	w.MsanServiceProfileDhcpv6Ra = 0 // disable, def [1:allow clients]
+	w.MsanServiceProfileDhcpv6RaTrustClients = 0 // notTrust, def [1:trust]
+	w.MsanServiceProfileDhcpv6RaRemoteIDEnterpriseNum = 1332 // default value, range 1-999999
+	w.MsanServiceProfileDhcpRaCircuitIDType = 1 // 'iskratel', def [1:iskratel, 2:standard, 3:atm, 4:custom]
+	w.MsanServiceProfilePPPoeIACircuitIDType = 1 // 'iskratel', def [1:iskratel, 2:standard, 3:atm, 4:custom]
+	w.MsanServiceProfileDhcpRaCircuitIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfileDhcpRaRemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfilePPPoeIACircuitIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfilePPPoeIARemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfileDhcpv6RaInterfaceIDType = 2 // 'standard', def [1:iskratel, 2:standard, 3:custom]
+	w.MsanServiceProfileDhcpv6RaInterfaceIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfileDhcpv6RaRemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
+	w.MsanServiceProfileOnuFlowProfileName = h[5] //"RestTest"
+	w.MsanServiceProfileOnuVlanProfileName = h[6] //"RestTest"
+	w.MsanServiceProfileOnuMulticastProfileName = h[7] //"RestTest"
+	w.MsanServiceProfileOnuTcontProfileName = h[8] // "RestTest"
+	w.MsanServiceProfileOnuVirtGemPortID, _ = strconv.Atoi(h[9]) // 1 is default, range 10-31, can't overlap on same device
+	w.MsanServiceProfileOnuTpType, _ = strconv.Atoi(h[10])	// 'veip' def [1:veip, 2:iphost, 3:uni]
+	w.MsanServiceProfileOnuTpUniBitMap = h[11] // "AAAA" // docs say binary value representing 1-16 (2^3), can only be set when ONU TP type is UNI (3); results show a string representing the bits
+	//w.MsanServiceProfileUsage
+
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateFlowProfile(h []string) ([]byte) {
+	//flowProfiles: []string{"Name", "MatchUsVlanProfile", "MatchDsVlanProfile", "DsPdr", "DsCdr", "UsPdr", "UsCdr"},
+	//flowProfiles: []string{"RestTest", "1", "1", "0", "0", "0", "0"},
+	w := new(FlowProfile)
+	w.MsanServiceFlowProfileName = h[0]
+	w.MsanServiceFlowProfileMatchUsAny = 2 // disabled, default
+	w.MsanServiceFlowProfileMatchUsMacDestAddr = ""	// nil, def
+	w.MsanServiceFlowProfileMatchUsMacDestMask = ""	// nil, def
+	w.MsanServiceFlowProfileMatchUsMacSrcAddr = ""	// nil, def
+	w.MsanServiceFlowProfileMatchUsMacSrcMask = ""	// nil, def
+	w.MsanServiceFlowProfileMatchUsCPcp = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsSPcp = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsVlanProfile = 1 // h[1] // enable, default is disabled (2)
+	w.MsanServiceFlowProfileMatchUsCVlanIDRange = empty // nil is default, empty string is returned from not setting value
+	w.MsanServiceFlowProfileMatchUsSVlanIDRange = empty	// nil is default, empty string is returned from not setting value
+	w.MsanServiceFlowProfileMatchUsEthertype = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsIPProtocol = -1	// not defined, nil, [1:icmp, 2:igmp, 4:ip, 6:tcp, 17:udp]
+	w.MsanServiceFlowProfileMatchUsIPSrcAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIPSrcMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIPDestAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIPDestMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIPDscp = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsIPCsc = -1		// not defined, def
+	w.MsanServiceFlowProfileMatchUsIPDropPrecedence = -1	// not defined, def [0:noDrop, 1:lowDrop, 2:mediumDrop, 3:highDrop] (two-bit value 00, 01, 10, 11)
+	w.MsanServiceFlowProfileMatchUsTCPSrcPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsTCPDestPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsUDPSrcPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchUsUDPDstPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchDsAny = 2 // disabled, default
+	w.MsanServiceFlowProfileMatchDsMacDestAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsMacDestMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsMacSrcAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsMacSrcMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsCPcp = -1	//  not defined, def
+	w.MsanServiceFlowProfileMatchDsSPcp = -1		// not defined, def
+	w.MsanServiceFlowProfileMatchDsVlanProfile = 1 // h[2] // enable, default is disabled (2)
+	w.MsanServiceFlowProfileMatchDsCVlanIDRange = empty // nil is default, empty string is returned from not setting value
+	w.MsanServiceFlowProfileMatchDsSVlanIDRange = empty // nil is default, empty string is returned from not setting value
+	w.MsanServiceFlowProfileMatchDsEthertype = -1	// not defined, def  
+	w.MsanServiceFlowProfileMatchDsIPProtocol = -1	// not defined, nil, [1:icmp, 2:igmp, 4:ip, 6:tcp, 17:udp]
+	w.MsanServiceFlowProfileMatchDsIPSrcAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIPSrcMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIPDestAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIPDestMask = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIPDscp = -1	// not defined, def 
+	w.MsanServiceFlowProfileMatchDsIPCsc = -1	// not defined, def 
+	w.MsanServiceFlowProfileMatchDsIPDropPrecedence = -1	// not defined, def [0:noDrop, 1:lowDrop, 2:mediumDrop, 3:highDrop] (two-bit value 00, 01, 10, 11)
+	w.MsanServiceFlowProfileMatchDsTCPSrcPort = -1	// not defined, def 
+	w.MsanServiceFlowProfileMatchDsTCPDestPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchDsUDPSrcPort = -1	// not defined, def
+	w.MsanServiceFlowProfileMatchDsUDPDstPort = -1	// not defined, def
+	w.MsanServiceFlowProfileUsCdr = 0 	// not defined, def 
+	w.MsanServiceFlowProfileUsCdrBurstSize = 0 	// not defined, def 
+	w.MsanServiceFlowProfileUsPdr = 0 	// not defined, def 
+	w.MsanServiceFlowProfileUsPdrBurstSize = 0 	// not defined, def 
+	w.MsanServiceFlowProfileUsMarkPcp = 1	// not defined, def 
+	w.MsanServiceFlowProfileUsMarkPcpValue = -1	// not defined, def 
+	w.MsanServiceFlowProfileUsMarkDscp = 1	// not defined, def   
+	w.MsanServiceFlowProfileUsMarkDscpValue = -1	// not defined, def 
+	w.MsanServiceFlowProfileDsCdr = 0 	//h4]// not defined, def
+	w.MsanServiceFlowProfileDsCdrBurstSize = 0 	// not defined, def 
+	w.MsanServiceFlowProfileDsPdr = 0 	//[h3] // not defined, def  
+	w.MsanServiceFlowProfileDsPdrBurstSize = 0	// not defined, def
+	w.MsanServiceFlowProfileDsMarkPcp = 1 // not defined, def
+	w.MsanServiceFlowProfileDsMarkPcpValue = -1 // not defined, def
+	w.MsanServiceFlowProfileDsMarkDscp = 1 // not defined, def
+	w.MsanServiceFlowProfileDsMarkDscpValue = -1 // not defined, def
+	w.MsanServiceFlowProfileDsQueuingPriority = 0 //  not defined, def
+	w.MsanServiceFlowProfileDsSchedulingMode = 1 // weighted, def [2: strict]
+	w.MsanServiceFlowProfileMatchUsIpv6SrcAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIpv6SrcAddrMaskLen = 0	// not defined, def
+	w.MsanServiceFlowProfileMatchUsIpv6DstAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchUsIpv6DstAddrMaskLen = 0	// not defined, def
+	w.MsanServiceFlowProfileMatchDsIpv6SrcAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIpv6SrcAddrMaskLen = 0	// not defined, def
+	w.MsanServiceFlowProfileMatchDsIpv6DstAddr = "" // nil, def
+	w.MsanServiceFlowProfileMatchDsIpv6DstAddrMaskLen = 0	// not defined, def 
+	//w.MsanServiceFlowProfileUsage // can't be edited
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateIgmpProfile(h []string) ([]byte) {
+	//igmpProfiles: []string{"Name", "Snooping", "FastLeave", "Proxy", "Proxy-IP"},
+	//igmpProfiles: []string{"RestTest", "1", "0", "0", "0.0.0.0"},
+	w := new(IgmpProfile)
+	w.MsanMulticastProfileName = h[0]
+	w.MsanMulticastProfileIgmpSnooping = 1 //, _ = strconv.Atoi(h[1])	//"1"
+	w.MsanMulticastProfileIgmpSnoopingFastLeave = 0 //, _ = strconv.Atoi(h[2])	//"0"
+	w.MsanMulticastProfileIgmpSnoopingSuppression = 0 // "0"
+	w.MsanMulticastProfileIgmpProxy = 0 //, _ = strconv.Atoi(h[3])	//"0"
+	w.MsanMulticastProfileIgmpProxyIPAddress = "0.0.0.0" // h[3]
+	w.MsanMulticastProfileIgmpFiltering = 1 //"1"
+	w.MsanMulticastProfileMulticastGroupLimit = 0 	//"0"
+	w.MsanMulticastProfileMvr = 0 // "0"
+	w.MsanMulticastProfileIgmpProxyProtocolVersion = 1 // "1"
+	//w.MsanMulticastProfileUsage	//"2"  
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateVlanProfile(h []string) ([]byte) {
+	//vlanProfiles: []string{"RestTest", "CVidList"},
+	//vlanProfiles: []string{"RestTest", "110"},
+	cvids, err := generateVlanList(h[1])
+	if err != nil {
+		cvids = []int{1}
+	}
+	cvidString := getB64FromVlan(cvids)
+	w := new(VlanProfile)
+	w.MsanVlanProfileName = h[0]
+	w.MsanVlanProfileCVid = cvidString
+	w.MsanVlanProfileCVidNative = -1 //, _ = strconv.Atoi(h[2])	//"-1"
+	w.MsanVlanProfileCVidRemark = -1 //, _ = strconv.Atoi(h[3])	//"-1"
+	w.MsanVlanProfileSVid = -1 //, _ = strconv.Atoi(h[4])	//"-1"
+	w.MsanVlanProfileSEtherType = 34984 //, _ = strconv.Atoi(h[5])	//"34984"
+	w.MsanVlanProfileNetworkPortCTag = 1 //, _ = strconv.Atoi(h[6])	//"1"
+	w.MsanVlanProfileCVidExternal = 2 //, _ = strconv.Atoi(h[7])	//"2"
+	w.MsanVlanProfileCVidNativeExternal = 2 //, _ = strconv.Atoi(h[8])	//"2"
+	w.MsanVlanProfileCVidRemarkExternal = 2 //, _ = strconv.Atoi(h[9])	//"2"
+	w.MsanVlanProfileSVidExternal = 2 //, _ = strconv.Atoi(h[10])	//"2"
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateSecurityProfile(h []string) ([]byte) {
+	//securityProfiles: []string{"Name", "Protected", "MAC-SG", "MAC-Limit", "Port-Sec", "Arp-Inspect", "IP-SG", "IPv6-SG", "Storm-Ctl", "AppRateLimit"},
+	//securityProfiles: []string{"RestTest", "1", "0", "0", "0", "0", "1", "0", "-1, -1, 100", "5, 5, 5, 5, 5"},
+	w := new(SecurityProfile)
+	w.MsanSecurityProfileName = h[0]
+	w.MsanSecurityProfileProtectedPort = 1 //, _ = strconv.Atoi(h[1])	//"1"
+	w.MsanSecurityProfileMacSg = 0 //, _ = strconv.Atoi(h[2])	//"0"
+	w.MsanSecurityProfileMacLimit = 0 //, _ = strconv.Atoi(h[3])	//"0"
+	w.MsanSecurityProfilePortSecurity = 0 //, _ = strconv.Atoi(h[4])	//"0"
+	w.MsanSecurityProfileArpInspec = 0 //, _ = strconv.Atoi(h[5])	//"0"
+	w.MsanSecurityProfileIPSg = 1 //, _ = strconv.Atoi(h[6])	//"1"
+	w.MsanSecurityProfileIPSgIpv6 = 0 //, _ = strconv.Atoi(h[7])	//"0"
+	w.MsanSecurityProfileIPSgFilteringMode = 2 //"2"
+	w.MsanSecurityProfileIPSgBindingLimit = 4 //"4"
+	w.MsanSecurityProfileIPSgBindingLimitDhcpv6 = 4 //"4"
+	w.MsanSecurityProfileIPSgBindingLimitND = 4 //"4"
+	w.MsanSecurityProfileStormControlBroadcast = -1 //, _ = strconv.Atoi(h[12])	//"-1"
+	w.MsanSecurityProfileStormControlMulticast = -1 //, _ = strconv.Atoi(h[13])	//"-1"
+	w.MsanSecurityProfileStormControlUnicast = 100 //, _ = strconv.Atoi(h[14])	//"100"
+	w.MsanSecurityProfileAppRateLimitDhcp = 5 //, _ = strconv.Atoi(h[15])	//"5"
+	w.MsanSecurityProfileAppRateLimitIgmp = 5 //, _ = strconv.Atoi(h[16])	//"5"
+	w.MsanSecurityProfileAppRateLimitPppoe = 5 //, _ = strconv.Atoi(h[17])	//"5"
+	w.MsanSecurityProfileAppRateLimitStp = 5 //, _ = strconv.Atoi(h[18])	//"5"
+	w.MsanSecurityProfileAppRateLimitMn = 5 //, _ = strconv.Atoi(h[19])	//"5" 
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateOnuFlowProfile(h []string) ([]byte) {
+	//onuFlowProfiles: []string{"Name", "CVID-List"},
+	//onuFlowProfiles: []string{"RestTest", "110"},
+	cvids, err := generateVlanList(h[1])
+	if err != nil {
+		cvids = []int{1}
+	}
+	cvidString := getB64FromVlan(cvids)
+	w := new(OnuFlowProfile)
+	w.MsanOnuFlowProfileName = h[0]
+	w.MsanOnuFlowProfileMatchUsCVlanIDRange = cvidString
+	w.MsanOnuFlowProfileMatchUsCPcp = -1 //, _ = strconv.Atoi(h[2])	//"-1"
+	w.MsanOnuFlowProfileUsCdr = 128 //, _ = strconv.Atoi(h[3])	//"128"
+	w.MsanOnuFlowProfileUsPdr = 1244160 //, _ = strconv.Atoi(h[4])	//"1244160"
+	w.MsanOnuFlowProfileUsFlowPriority = 0 //, _ = strconv.Atoi(h[5])	//"0"
+	w.MsanOnuFlowProfileDsFlowPriority = 0 //, _ = strconv.Atoi(h[6])	//"0"
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateOnuTcontProfile(h []string) ([]byte) {
+	//onuTcontProfiles: []string{"Name", "TcontID", "TcontType", "FixedDataRate", "AssuredDataRate", "MaxDataRate"},
+	//onuTcontProfiles: []string{"RestTest", "4", "5", "512", "2048", "750000"},
+	w := new(OnuTcontProfile)
+	w.MsanOnuTcontProfileName = h[0]
+	w.MsanOnuTcontProfileTcontID = 4 //, _ = strconv.Atoi(h[1])	//"4"
+	w.MsanOnuTcontProfileTcontType = 5 //, _ = strconv.Atoi(h[2])	//"5"
+	w.MsanOnuTcontProfileFixedDataRate = 512 //, _ = strconv.Atoi(h[3])	//"512"
+	w.MsanOnuTcontProfileAssuredDataRate = 2048 //, _ = strconv.Atoi(h[4])	//"2048"
+	w.MsanOnuTcontProfileMaxDataRate = 750000 //, _ = strconv.Atoi(h[5])	//"750000"
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateOnuVlanProfile(h []string) ([]byte) {
+	//onuVlanProfiles: []string{"Name", "DS Mode", "TPID-IN", "TPID-OUT"},
+	//onuVlanProfiles: []string{"RestTest", "1", "33024", "34984"},
+	w := new(OnuVlanProfile)
+	w.MsanOnuVlanProfileName = h[0]
+	w.MsanOnuVlanProfileDownstreamMode = 1 //, _ = strconv.Atoi(h[1])	//"1"
+	w.MsanOnuVlanProfileInputTPID = 33024 //, _ = strconv.Atoi(h[2])	//"33024"
+	w.MsanOnuVlanProfileOutputTPID = 34984 //, _ = strconv.Atoi(h[3])	//"34984"
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+// this section is confused, cannot delete, created 4 rules, didn't remove rule 97
+func generateOnuVlanRule(h []string) ([]byte) {
+	//onuVlanRules: []string{"Name", "Rule ID", "MatchSVlanID", "MatchSPcp", "MatchSTPID", "MatchCVlanID", "MatchCPcp", "MatchCTPID", "MatchEthertype", "RemoveTags", "AddSTag", "AddSPcp", "AddSVlanID", "AddSTPID", "AddCTag", "AddCPcp", "AddCVlanID", "AddCTPID"},
+	//onuVlanRules: []string{"RestTest", "15", "4096", "-1", "0", "4096", "-1", "0", "0", "1", "2", "0", "0", "1", "1", "0", "111", "1"},
+	
+	// three default rules generated by default and must be context-specific removed [untagged handing, single-tag handling, double-tag handling]
+	//"97", "4096", "-1", "0", "4096", "-1", "0", "0", "1", "2", "0", "0", "1", "2", "0", "0", "1"
+	//"98", "4096", "-1", "0", "-1", "-1", "0", "0", "1", "2", "0", "0", "1", "2", "0", "0", "1"
+	//"99", "-1", "-1", "0", "-1", "-1", "0", "0", "1", "2", "0", "0", "1", "2", "0", "0", "1"
+
+	w := new(OnuVlanRule)
+	w.MsanOnuVlanProfileName = h[0] // <-- binding to an existing Onu Vlan profile
+	w.MsanOnuVlanProfileRuleID = 15 //, _ = strconv.Atoi(h[1])	//"15"
+	w.MsanOnuVlanProfileRuleMatchSVlanID = 4096 //, _ = strconv.Atoi(h[2])	//"4096"
+	w.MsanOnuVlanProfileRuleMatchSPcp = -1 //, _ = strconv.Atoi(h[3])	//"-1"
+	w.MsanOnuVlanProfileRuleMatchSTPID = 0 //, _ = strconv.Atoi(h[4])	//"0"
+	w.MsanOnuVlanProfileRuleMatchCVlanID = 4096 //, _ = strconv.Atoi(h[5])	//"4096"
+	w.MsanOnuVlanProfileRuleMatchCPcp = -1 //, _ = strconv.Atoi(h[6])	//"-1"
+	w.MsanOnuVlanProfileRuleMatchCTPID = 0 //, _ = strconv.Atoi(h[7])	//"0"
+	w.MsanOnuVlanProfileRuleMatchEthertype = 0 //, _ = strconv.Atoi(h[8])	//"0"
+	w.MsanOnuVlanProfileRuleRemoveTags = 1 //, _ = strconv.Atoi(h[9])	//"1"
+	w.MsanOnuVlanProfileRuleAddSTag = 2 //, _ = strconv.Atoi(h[10])	//"2"
+	w.MsanOnuVlanProfileRuleAddSPcp = 0 //, _ = strconv.Atoi(h[11])	//"0"
+	w.MsanOnuVlanProfileRuleAddSVlanID = 0 //, _ = strconv.Atoi(h[12])	//"0"
+	w.MsanOnuVlanProfileRuleAddSTPID = 1 //, _ = strconv.Atoi(h[13])	//"1"
+	w.MsanOnuVlanProfileRuleAddCTag = 1 //, _ = strconv.Atoi(h[14])	//"1"
+	w.MsanOnuVlanProfileRuleAddCPcp = 0 //, _ = strconv.Atoi(h[15])	//"0"
+	w.MsanOnuVlanProfileRuleAddCVlanID, _ = strconv.Atoi(h[16])	//"111" <-- important value
+	w.MsanOnuVlanProfileRuleAddCTPID = 1 //, _ = strconv.Atoi(h[17])	//"1"
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry, *w)
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+// Support ticket open for why TCI VLAN ID cannot use default value of 0
+func generateOnuIgmpProfile(h []string) ([]byte) {
+	//onuIgmpProfiles: []string{"Name", "IgmpMode", "IgmpProxy", "SnoopingFastLeave", "DsGemPort"},
+	//onuIgmpProfiles: []string{"RestTest", "2", "2", "1", "3998"},
+	w := new(OnuIgmpProfile)
+	w.MsanOnuMulticastProfileName = h[0]
+	w.MsanOnuMulticastProfileIgmpMode = 2 // snooping, default is flooding [1:flood, 2:snoop]
+	w.MsanOnuMulticastProfileIgmpProxy = 2 	// disabled, def [1:enable]
+	w.MsanOnuMulticastProfileIgmpSnoopingFastLeave = 1 	// enabled, def [2:disable]
+	w.MsanOnuMulticastProfileUsIgmpTciVlanID = 1 	//# 0 is supposed to be not defined/def (tag control information) but isn't allowed, 1 works, int32 value 0..4094
+	w.MsanOnuMulticastProfileUsIgmpTciPcpValue = 0 	// not defined, def
+	w.MsanOnuMulticastProfileUsIgmpTciCtrlMode = 5 	// smart, def [1:transparent, 2:add, 3:replace, 4:replace-vid-only, 5:smart]
+	w.MsanOnuMulticastProfileDsVlanTagging = 2 	// disable, def
+	w.MsanOnuMulticastProfileDsGemPort = 3998 	// 4000 is default, range 3800-4000, cannot overlap on same device
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry, *w)
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+func generateL2cpProfile(h []string) ([]byte) {
+	//l2cpProfiles: []string{"Name", "Descr."},
+	//l2cpProfiles: []string{"RestTest", "some text"},
+	w := new(L2cpProfile)
+	w.MsanL2CpProfileName = h[0]
+	w.MsanL2CpProfileDescription = h[1]
+
+	//fmt.Println(w)
+	//t := new(IskratelMsan)
+	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry, *w)
+	
+	data, err := json.Marshal(w)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	return data
+}
+
+// matches endpoint to formatted output; open to simpler methods but the concept of 'switch' is cross-language intuitive
+func tabwriteModular(t *IskratelMsan, ep string) {
+	h := endpointFields[ep]
+	f := fors(len(h)) + "\n"
+
+	switch {
+	case ep == serviceProfiles:
+		twServiceProfiles(t, f, h)
+	case ep == flowProfiles:
+		twFlowProfiles(t, f, h)
+	case ep == vlanProfiles:
+		twVlanProfiles(t, f, h)
+	case ep == onuFlowProfiles:
+		twOnuFlowProfiles(t, f, h)
+	case ep == onuTcontProfiles:
+		twOnuTcontProfiles(t, f, h)
+	case ep == onuVlanProfiles:
+		twOnuVlanProfiles(t, f, h)
+	case ep == onuVlanRules:
+		twOnuVlanRules(t, f, h)
+	case ep == igmpProfiles:
+		twIgmpProfiles(t, f, h)
+	case ep == onuIgmpProfiles:
+		twOnuIgmpProfiles(t, f, h)
+	case ep == securityProfiles:
+		twSecurityProfiles(t, f, h)
+	case ep == l2cpProfiles:
+		twL2cpProfiles(t, f, h)
+	default:
+		fmt.Println(t)
+	}
+}
+
+// service profiles = 9 desired columns
+func twServiceProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileServiceFlowProfileName
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileVlanProfileName
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuFlowProfileName
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuTcontProfileName
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuVlanProfileName
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuVirtGemPortID
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuTpType
+		v8 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]))
+	tw.Flush()      // calculate column width and print table
+}
+
+// flow profiles = 8 desired columns
+func twFlowProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]))
+
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileMatchUsVlanProfile
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileMatchDsVlanProfile
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsPdr
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsCdr
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsQueuingPriority
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsSchedulingMode
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// vlan profiles = 7 desired columns
+func twVlanProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileName
+		v1, _ := getVlanFromB64(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVid)
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileSVid
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileSEtherType
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVidNative
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVidRemark
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// onu flow profiles = 7 desired columns
+func twOnuFlowProfiles(t *IskratelMsan, f string, h []string) {
+    tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileName
+		v1, _ := getVlanFromB64(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileMatchUsCVlanIDRange)
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileMatchUsCPcp
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsCdr
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsPdr
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsFlowPriority
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+	tw.Flush()      // calculate column width and print table
+}
+
+// onu t-cont profiles = 7 desired columns
+func twOnuTcontProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileTcontType
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileTcontID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileFixedDataRate 
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileAssuredDataRate
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileMaxDataRate
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// onu vlan profiles = 4 desired columns
+func twOnuVlanProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+    fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+	
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry); i ++ { 
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileInputTPID
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileOutputTPID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// onu vlan rules = 12 desired columns + special header descriptor
+func twOnuVlanRules(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	header := "\t\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\n"
+	fmt.Fprintf(tw, header, "Match", "Match", "Match", "Match", "Add", "Add", "Add", "Add", "Add", "Add")
+    fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9], h[10], h[11])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]), fs(h[10]), fs(h[11]))
+	
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleID
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchCVlanID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchSVlanID
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchCTPID
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchEthertype
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCTag
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSTag
+		v8 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCPcp
+		v9 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSPcp
+		v10 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCTPID
+		v11 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSTPID
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]), fs(h[10]), fs(h[11])) 
+    tw.Flush()      // calculate column width and print table
+}
+
+// multicast (igmp) profiles = 4 desired columns
+func twIgmpProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+    fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+	
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry); i ++ { 
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileIgmpSnooping
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileIgmpProxy
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// onu multicast (igmp) profiles = 5 desired columns
+func twOnuIgmpProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+    fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]))
+	
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry); i ++ { 
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpMode
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpSnoopingFastLeave
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpProxy
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]))
+    tw.Flush()      // calculate column width and print table
+}
+
+// security profiles = 10 desired columns
+func twSecurityProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileProtectedPort
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileMacSg
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileMacLimit
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfilePortSecurity
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileArpInspec
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileIPSg
+		v7 := []int{t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitDhcp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitIgmp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitPppoe, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitStp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitMn}
+		v8 := []int{t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlBroadcast, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlUnicast, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlMulticast}
+		v9 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]))
+	tw.Flush()      // calculate column width and print table
+}
+
+// l2cp profiles = 3 desired columns
+func twL2cpProfiles(t *IskratelMsan, f string, h []string) {
+    tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+
+    fmt.Fprintf(tw, f, h[0], h[1], h[2])
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]))
+    for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry); i ++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileDescription
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2)
+    }
+    fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]))
+    tw.Flush()      // calculate column width and print table
+}
+
+/*
+
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name     US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----     --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G       1         1         1000000       0                0                     1                   2      
+200      1         1         0             0                0                     1                   2      
+500      1         1         500032        0                0                     1                   2      
+DEFAULT  2         2         0             0                0                     1                   1      
+MB       1         1         0             0                0                     1                   1      
+----     --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name     C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----     -----  -----  -----------  ------  ------  -----  
+101      [101]  -1     34984        -1      -1      1      
+102      [102]  -1     34984        -1      -1      1      
+103      [103]  -1     34984        -1      -1      2      
+104      [104]  -1     34984        -1      -1      2      
+DEFAULT  [1]    -1     34984        1       -1      2      
+----     -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name  Snooping  Proxy  Usage  
+----  --------  -----  -----  
+IPTV  1         0      2      
+----  --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name  Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL   1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP   0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name  C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----  -----------  -----  ------  ------   -----------  -----  
+101   [101]        -1     128     1244160  0            1      
+102   [102]        -1     128     1244160  0            1      
+103   [103]        -1     128     1244160  0            2      
+104   [104]        -1     128     1244160  0            2      
+----  -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name  Input TPID  Output TPID  Usage  
+----  ----------  -----------  -----  
+A101  33024       34984        1      
+A102  33024       34984        1      
+A99   33024       34984        2      
+----  ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+               Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name  Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101  13       4096   4096   0       0          1      2      0      0      1       1       
+A101  98       -1     4096   0       0          2      2      0      0      1       1       
+A101  99       -1     -1     0       0          2      2      0      0      1       1       
+A102  10       4096   4096   0       0          1      2      0      0      1       1       
+A102  98       -1     4096   0       0          2      2      0      0      1       1       
+A102  99       -1     -1     0       0          2      2      0      0      1       1       
+A99   97       4096   4096   0       0          2      2      0      0      1       1       
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name  Description  Usage  
+----  -----------  -----  
+LLDP               2      
+----  -----------  -----  
+
+POST Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable/msanL2cpProfileEntry=RestTest
+----
+{"msanL2cpProfileName":"RestTest","msanL2cpProfileDescription":"some text","msanL2cpProfileUsage":0}
+----
+POST to msanL2cpProfileTable returned 200 OK
+----
+
+POST Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=RestTest
+----
+{"msanOnuMulticastProfileName":"RestTest","msanOnuMulticastProfileIgmpMode":2,"msanOnuMulticastProfileIgmpProxy":2,"msanOnuMulticastProfileIgmpSnoopingFastLeave":1,"msanOnuMulticastProfileUsIgmpTciVlanId":1,"msanOnuMulticastProfileUsIgmpTciPcpValue":0,"msanOnuMulticastProfileUsIgmpTciCtrlMode":5,"msanOnuMulticastProfileDsVlanTagging":2,"msanOnuMulticastProfileDsGemPort":3998,"msanOnuMulticastProfileUsage":0}
+----
+POST to msanOnuMulticastProfileTable returned 200 OK
+----
+
+POST Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable/msanOnuVlanProfileEntry=RestTest
+----
+{"msanOnuVlanProfileName":"RestTest","msanOnuVlanProfileDownstreamMode":1,"msanOnuVlanProfileInputTPID":33024,"msanOnuVlanProfileOutputTPID":34984,"msanOnuVlanProfileUsage":0}
+----
+POST to msanOnuVlanProfileTable returned 200 OK
+----
+
+POST Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable/msanOnuVlanProfileRuleEntry=RestTest
+----
+{"msanOnuVlanProfileName":"RestTest","msanOnuVlanProfileRuleId":15,"msanOnuVlanProfileRuleMatchSVlanId":4096,"msanOnuVlanProfileRuleMatchSPcp":-1,"msanOnuVlanProfileRuleMatchSTPID":0,"msanOnuVlanProfileRuleMatchCVlanId":4096,"msanOnuVlanProfileRuleMatchCPcp":-1,"msanOnuVlanProfileRuleMatchCTPID":0,"msanOnuVlanProfileRuleMatchEthertype":0,"msanOnuVlanProfileRuleRemoveTags":1,"msanOnuVlanProfileRuleAddSTag":2,"msanOnuVlanProfileRuleAddSPcp":0,"msanOnuVlanProfileRuleAddSVlanId":0,"msanOnuVlanProfileRuleAddSTPID":1,"msanOnuVlanProfileRuleAddCTag":1,"msanOnuVlanProfileRuleAddCPcp":0,"msanOnuVlanProfileRuleAddCVlanId":111,"msanOnuVlanProfileRuleAddCTPID":1}
+----
+POST to msanOnuVlanProfileRuleTable returned 200 OK
+----
+
+POST Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=RestTest
+----
+{"msanOnuTcontProfileName":"RestTest","msanOnuTcontProfileTcontId":4,"msanOnuTcontProfileTcontType":5,"msanOnuTcontProfileFixedDataRate":512,"msanOnuTcontProfileAssuredDataRate":2048,"msanOnuTcontProfileMaxDataRate":750000,"msanOnuTcontProfileUsage":0}
+----
+POST to msanOnuTcontProfileTable returned 200 OK
+----
+
+POST Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=RestTest
+----
+{"msanOnuFlowProfileName":"RestTest","msanOnuFlowProfileMatchUsCVlanIdRange":"AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanOnuFlowProfileMatchUsCPcp":-1,"msanOnuFlowProfileUsCdr":128,"msanOnuFlowProfileUsPdr":1244160,"msanOnuFlowProfileUsFlowPriority":0,"msanOnuFlowProfileDsFlowPriority":0,"msanOnuFlowProfileUsage":0}
+----
+POST to msanOnuFlowProfileTable returned 200 OK
+----
+
+POST Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable/msanSecurityProfileEntry=RestTest
+----
+{"msanSecurityProfileName":"RestTest","msanSecurityProfileProtectedPort":0,"msanSecurityProfileMacSg":0,"msanSecurityProfileMacLimit":0,"msanSecurityProfilePortSecurity":0,"msanSecurityProfileArpInspec":0,"msanSecurityProfileIpSg":1,"msanSecurityProfileIpSgIpv6":0,"msanSecurityProfileIpSgFilteringMode":2,"msanSecurityProfileIpSgBindingLimit":4,"msanSecurityProfileIpSgBindingLimitDhcpv6":4,"msanSecurityProfileIpSgBindingLimitND":4,"msanSecurityProfileStormControlBroadcast":-1,"msanSecurityProfileStormControlMulticast":-1,"msanSecurityProfileStormControlUnicast":100,"msanSecurityProfileAppRateLimitDhcp":5,"msanSecurityProfileAppRateLimitIgmp":5,"msanSecurityProfileAppRateLimitPppoe":5,"msanSecurityProfileAppRateLimitStp":5,"msanSecurityProfileAppRateLimitMn":5,"msanSecurityProfileUsage":0}
+----
+POST to msanSecurityProfileTable returned 200 OK
+----
+
+POST Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=RestTest
+----
+{"msanMulticastProfileName":"RestTest","msanMulticastProfileIgmpSnooping":1,"msanMulticastProfileIgmpSnoopingFastLeave":0,"msanMulticastProfileIgmpSnoopingSuppression":0,"msanMulticastProfileIgmpProxy":0,"msanMulticastProfileIgmpProxyIpAddress":"0.0.0.0","msanMulticastProfileIgmpFiltering":1,"msanMulticastProfileMulticastGroupLimit":0,"msanMulticastProfileMvr":0,"msanMulticastProfileIgmpProxyProtocolVersion":1,"msanMulticastProfileUsage":0}
+----
+POST to msanMulticastProfileTable returned 200 OK
+----
+
+POST Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=RestTest
+----
+{"msanVlanProfileName":"RestTest","msanVlanProfileCVid":"AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanVlanProfileCVidNative":-1,"msanVlanProfileCVidRemark":-1,"msanVlanProfileSVid":-1,"msanVlanProfileSEtherType":34984,"msanVlanProfileNetworkPortCTag":1,"msanVlanProfileCVidExternal":2,"msanVlanProfileCVidNativeExternal":2,"msanVlanProfileCVidRemarkExternal":2,"msanVlanProfileSVidExternal":2,"msanVlanProfileUsage":0}
+----
+POST to msanVlanProfileTable returned 200 OK
+----
+
+POST Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=RestTest
+----
+{"msanServiceFlowProfileName":"RestTest","msanServiceFlowProfileMatchUsAny":2,"msanServiceFlowProfileMatchUsMacDestAddr":"","msanServiceFlowProfileMatchUsMacDestMask":"","msanServiceFlowProfileMatchUsMacSrcAddr":"","msanServiceFlowProfileMatchUsMacSrcMask":"","msanServiceFlowProfileMatchUsCPcp":-1,"msanServiceFlowProfileMatchUsSPcp":-1,"msanServiceFlowProfileMatchUsVlanProfile":1,"msanServiceFlowProfileMatchUsCVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchUsSVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchUsEthertype":-1,"msanServiceFlowProfileMatchUsIpProtocol":-1,"msanServiceFlowProfileMatchUsIpSrcAddr":"","msanServiceFlowProfileMatchUsIpSrcMask":"","msanServiceFlowProfileMatchUsIpDestAddr":"","msanServiceFlowProfileMatchUsIpDestMask":"","msanServiceFlowProfileMatchUsIpDscp":-1,"msanServiceFlowProfileMatchUsIpCsc":-1,"msanServiceFlowProfileMatchUsIpDropPrecedence":-1,"msanServiceFlowProfileMatchUsTcpSrcPort":-1,"msanServiceFlowProfileMatchUsTcpDestPort":-1,"msanServiceFlowProfileMatchUsUdpSrcPort":-1,"msanServiceFlowProfileMatchUsUdpDstPort":-1,"msanServiceFlowProfileMatchUsIpv6SrcAddr":"","msanServiceFlowProfileMatchUsIpv6SrcAddrMaskLen":0,"msanServiceFlowProfileMatchUsIpv6DstAddr":"","msanServiceFlowProfileMatchUsIpv6DstAddrMaskLen":0,"msanServiceFlowProfileMatchDsAny":2,"msanServiceFlowProfileMatchDsMacDestAddr":"","msanServiceFlowProfileMatchDsMacDestMask":"","msanServiceFlowProfileMatchDsMacSrcAddr":"","msanServiceFlowProfileMatchDsMacSrcMask":"","msanServiceFlowProfileMatchDsCPcp":-1,"msanServiceFlowProfileMatchDsSPcp":-1,"msanServiceFlowProfileMatchDsVlanProfile":1,"msanServiceFlowProfileMatchDsCVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchDsSVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchDsEthertype":-1,"msanServiceFlowProfileMatchDsIpProtocol":-1,"msanServiceFlowProfileMatchDsIpSrcAddr":"","msanServiceFlowProfileMatchDsIpSrcMask":"","msanServiceFlowProfileMatchDsIpDestAddr":"","msanServiceFlowProfileMatchDsIpDestMask":"","msanServiceFlowProfileMatchDsIpDscp":-1,"msanServiceFlowProfileMatchDsIpCsc":-1,"msanServiceFlowProfileMatchDsIpDropPrecedence":-1,"msanServiceFlowProfileMatchDsTcpSrcPort":-1,"msanServiceFlowProfileMatchDsTcpDestPort":-1,"msanServiceFlowProfileMatchDsUdpSrcPort":-1,"msanServiceFlowProfileMatchDsUdpDstPort":-1,"msanServiceFlowProfileMatchDsIpv6SrcAddr":"","msanServiceFlowProfileMatchDsIpv6SrcAddrMaskLen":0,"msanServiceFlowProfileMatchDsIpv6DstAddr":"","msanServiceFlowProfileMatchDsIpv6DstAddrMaskLen":0,"msanServiceFlowProfileUsCdr":0,"msanServiceFlowProfileUsCdrBurstSize":0,"msanServiceFlowProfileUsPdr":0,"msanServiceFlowProfileUsPdrBurstSize":0,"msanServiceFlowProfileUsMarkPcp":1,"msanServiceFlowProfileUsMarkPcpValue":-1,"msanServiceFlowProfileUsMarkDscp":1,"msanServiceFlowProfileUsMarkDscpValue":-1,"msanServiceFlowProfileDsCdr":0,"msanServiceFlowProfileDsCdrBurstSize":0,"msanServiceFlowProfileDsPdr":0,"msanServiceFlowProfileDsPdrBurstSize":0,"msanServiceFlowProfileDsMarkPcp":1,"msanServiceFlowProfileDsMarkPcpValue":-1,"msanServiceFlowProfileDsMarkDscp":1,"msanServiceFlowProfileDsMarkDscpValue":-1,"msanServiceFlowProfileDsQueuingPriority":0,"msanServiceFlowProfileDsSchedulingMode":1,"msanServiceFlowProfileUsage":0}
+----
+POST to msanServiceFlowProfileTable returned 200 OK
+----
+
+POST Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=RestTest
+----
+{"msanServiceProfileName":"RestTest","msanServiceProfileServiceFlowProfileName":"RestTest","msanServiceProfileMulticastProfileName":"","msanServiceProfileVlanProfileName":"RestTest","msanServiceProfileL2cpProfileName":"","msanServiceProfileSecurityProfileName":"","msanServiceProfileOnuFlowProfileName":"RestTest","msanServiceProfileOnuVlanProfileName":"","msanServiceProfileOnuMulticastProfileName":"","msanServiceProfileOnuTcontProfileName":"RestTest","msanServiceProfileOnuVirtGemPortId":22,"msanServiceProfileOnuTpType":2,"msanServiceProfileOnuTpUniBitMap":"AAAA","msanServiceProfileDhcpRa":0,"msanServiceProfileDhcpRaTrustClients":0,"msanServiceProfileDhcpRaOpt82UnicastExtension":0,"msanServiceProfileDhcpRaOpt82Insert":0,"msanServiceProfileDhcpRaRateLimit":5,"msanServiceProfileDhcpRaCircuitIdCustomFormat":"","msanServiceProfileDhcpRaRemoteIdCustomFormat":"","msanServiceProfileDhcpRaCircuitIdType":1,"msanServiceProfileDhcpv6Ra":0,"msanServiceProfileDhcpv6RaTrustClients":0,"msanServiceProfileDhcpv6RaRemoteIdEnterpriseNum":1332,"msanServiceProfileDhcpv6RaInterfaceIdType":2,"msanServiceProfileDhcpv6RaInterfaceIdCustomFormat":"","msanServiceProfileDhcpv6RaRemoteIdCustomFormat":"","msanServiceProfilePppoeIA":0,"msanServiceProfilePppoeIARateLimit":5,"msanServiceProfilePPPoeIACircuitIdType":1,"msanServiceProfilePPPoeIACircuitIdCustomFormat":"","msanServiceProfilePPPoeIARemoteIdCustomFormat":"","msanServiceProfileUsage":0}
+----
+POST to msanServiceProfileTable returned 200 OK
+----
+
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+RestTest      RestTest      RestTest      RestTest          RestTest                              22         2         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name      US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G        1         1         1000000       0                0                     1                   2      
+200       1         1         0             0                0                     1                   2      
+500       1         1         500032        0                0                     1                   2      
+DEFAULT   2         2         0             0                0                     1                   1      
+MB        1         1         0             0                0                     1                   1      
+RestTest  1         1         0             0                0                     1                   2      
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name      C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----      -----  -----  -----------  ------  ------  -----  
+101       [101]  -1     34984        -1      -1      1      
+102       [102]  -1     34984        -1      -1      1      
+103       [103]  -1     34984        -1      -1      2      
+104       [104]  -1     34984        -1      -1      2      
+DEFAULT   [1]    -1     34984        1       -1      2      
+RestTest  [110]  -1     34984        -1      -1      2      
+----      -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name      Snooping  Proxy  Usage  
+----      --------  -----  -----  
+IPTV      1         0      2      
+RestTest  1         0      2      
+----      --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name      Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----      ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL       1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP       0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+RestTest  0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----      ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name      C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----      -----------  -----  ------  ------   -----------  -----  
+101       [101]        -1     128     1244160  0            1      
+102       [102]        -1     128     1244160  0            1      
+103       [103]        -1     128     1244160  0            2      
+104       [104]        -1     128     1244160  0            2      
+RestTest  [110]        -1     128     1244160  0            2      
+----      -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+RestTest      5     4   512    2048     750016   2      
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name      Input TPID  Output TPID  Usage  
+----      ----------  -----------  -----  
+A101      33024       34984        1      
+A102      33024       34984        1      
+A99       33024       34984        2      
+RestTest  33024       34984        2      
+----      ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+                   Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name      Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----      -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101      13       4096   4096   0       0          1      2      0      0      1       1       
+A101      98       -1     4096   0       0          2      2      0      0      1       1       
+A101      99       -1     -1     0       0          2      2      0      0      1       1       
+A102      10       4096   4096   0       0          1      2      0      0      1       1       
+A102      98       -1     4096   0       0          2      2      0      0      1       1       
+A102      99       -1     -1     0       0          2      2      0      0      1       1       
+A99       97       4096   4096   0       0          2      2      0      0      1       1       
+RestTest  15       4096   4096   0       0          1      2      0      0      1       1       
+RestTest  97       4096   4096   0       0          2      2      0      0      1       1       
+RestTest  98       -1     4096   0       0          2      2      0      0      1       1       
+RestTest  99       -1     -1     0       0          2      2      0      0      1       1       
+----      -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+RestTest   2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name      Description  Usage  
+----      -----------  -----  
+LLDP                   2      
+RestTest               2      
+----      -----------  -----  
+
+DELETE Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable/msanL2cpProfileEntry=RestTest
+----
+DELETE from msanL2cpProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=RestTest
+----
+DELETE from msanOnuMulticastProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable/msanOnuVlanProfileEntry=RestTest
+----
+DELETE from msanOnuVlanProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable/msanOnuVlanProfileRuleEntry=RestTest
+----
+DELETE from msanOnuVlanProfileRuleTable returned: 400 Bad Request
+----
+
+DELETE Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=RestTest
+----
+DELETE from msanOnuTcontProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=RestTest
+----
+DELETE from msanOnuFlowProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable/msanSecurityProfileEntry=RestTest
+----
+DELETE from msanSecurityProfileTable returned: 200 OK
+----
+
+DELETE Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=RestTest
+----
+DELETE from msanMulticastProfileTable returned: 200 OK
+----
+
+DELETE Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=RestTest
+----
+DELETE from msanVlanProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=RestTest
+----
+DELETE from msanServiceFlowProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=RestTest
+----
+DELETE from msanServiceProfileTable returned: 200 OK
+----
+
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name      US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G        1         1         1000000       0                0                     1                   2      
+200       1         1         0             0                0                     1                   2      
+500       1         1         500032        0                0                     1                   2      
+DEFAULT   2         2         0             0                0                     1                   1      
+MB        1         1         0             0                0                     1                   1      
+RestTest  1         1         0             0                0                     1                   2      
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name      C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----      -----  -----  -----------  ------  ------  -----  
+101       [101]  -1     34984        -1      -1      1      
+102       [102]  -1     34984        -1      -1      1      
+103       [103]  -1     34984        -1      -1      2      
+104       [104]  -1     34984        -1      -1      2      
+DEFAULT   [1]    -1     34984        1       -1      2      
+RestTest  [110]  -1     34984        -1      -1      2      
+----      -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name  Snooping  Proxy  Usage  
+----  --------  -----  -----  
+IPTV  1         0      2      
+----  --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name  Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL   1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP   0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name      C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----      -----------  -----  ------  ------   -----------  -----  
+101       [101]        -1     128     1244160  0            1      
+102       [102]        -1     128     1244160  0            1      
+103       [103]        -1     128     1244160  0            2      
+104       [104]        -1     128     1244160  0            2      
+RestTest  [110]        -1     128     1244160  0            2      
+----      -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+RestTest      5     4   512    2048     750016   2      
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name  Input TPID  Output TPID  Usage  
+----  ----------  -----------  -----  
+A101  33024       34984        1      
+A102  33024       34984        1      
+A99   33024       34984        2      
+----  ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+               Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name  Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101  13       4096   4096   0       0          1      2      0      0      1       1       
+A101  98       -1     4096   0       0          2      2      0      0      1       1       
+A101  99       -1     -1     0       0          2      2      0      0      1       1       
+A102  10       4096   4096   0       0          1      2      0      0      1       1       
+A102  98       -1     4096   0       0          2      2      0      0      1       1       
+A102  99       -1     -1     0       0          2      2      0      0      1       1       
+A99   97       4096   4096   0       0          2      2      0      0      1       1       
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name  Description  Usage  
+----  -----------  -----  
+LLDP               2      
+----  -----------  -----  
+Elapsed time of Operation: 1m2.983664654s
+
+*/

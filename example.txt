@@ -1,0 +1,532 @@
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name     US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----     --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G       1         1         1000000       0                0                     1                   2      
+200      1         1         0             0                0                     1                   2      
+500      1         1         500032        0                0                     1                   2      
+DEFAULT  2         2         0             0                0                     1                   1      
+MB       1         1         0             0                0                     1                   1      
+----     --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name     C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----     -----  -----  -----------  ------  ------  -----  
+101      [101]  -1     34984        -1      -1      1      
+102      [102]  -1     34984        -1      -1      1      
+103      [103]  -1     34984        -1      -1      2      
+104      [104]  -1     34984        -1      -1      2      
+DEFAULT  [1]    -1     34984        1       -1      2      
+----     -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name  Snooping  Proxy  Usage  
+----  --------  -----  -----  
+IPTV  1         0      2      
+----  --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name  Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL   1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP   0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name  C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----  -----------  -----  ------  ------   -----------  -----  
+101   [101]        -1     128     1244160  0            1      
+102   [102]        -1     128     1244160  0            1      
+103   [103]        -1     128     1244160  0            2      
+104   [104]        -1     128     1244160  0            2      
+----  -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name  Input TPID  Output TPID  Usage  
+----  ----------  -----------  -----  
+A101  33024       34984        1      
+A102  33024       34984        1      
+A99   33024       34984        2      
+----  ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+               Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name  Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101  13       4096   4096   0       0          1      2      0      0      1       1       
+A101  98       -1     4096   0       0          2      2      0      0      1       1       
+A101  99       -1     -1     0       0          2      2      0      0      1       1       
+A102  10       4096   4096   0       0          1      2      0      0      1       1       
+A102  98       -1     4096   0       0          2      2      0      0      1       1       
+A102  99       -1     -1     0       0          2      2      0      0      1       1       
+A99   97       4096   4096   0       0          2      2      0      0      1       1       
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name  Description  Usage  
+----  -----------  -----  
+LLDP               2      
+----  -----------  -----  
+
+POST Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable/msanL2cpProfileEntry=RestTest
+----
+{"msanL2cpProfileName":"RestTest","msanL2cpProfileDescription":"some text","msanL2cpProfileUsage":0}
+----
+POST to msanL2cpProfileTable returned 200 OK
+----
+
+POST Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=RestTest
+----
+{"msanOnuMulticastProfileName":"RestTest","msanOnuMulticastProfileIgmpMode":2,"msanOnuMulticastProfileIgmpProxy":2,"msanOnuMulticastProfileIgmpSnoopingFastLeave":1,"msanOnuMulticastProfileUsIgmpTciVlanId":1,"msanOnuMulticastProfileUsIgmpTciPcpValue":0,"msanOnuMulticastProfileUsIgmpTciCtrlMode":5,"msanOnuMulticastProfileDsVlanTagging":2,"msanOnuMulticastProfileDsGemPort":3998,"msanOnuMulticastProfileUsage":0}
+----
+POST to msanOnuMulticastProfileTable returned 200 OK
+----
+
+POST Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable/msanOnuVlanProfileEntry=RestTest
+----
+{"msanOnuVlanProfileName":"RestTest","msanOnuVlanProfileDownstreamMode":1,"msanOnuVlanProfileInputTPID":33024,"msanOnuVlanProfileOutputTPID":34984,"msanOnuVlanProfileUsage":0}
+----
+POST to msanOnuVlanProfileTable returned 200 OK
+----
+
+POST Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable/msanOnuVlanProfileRuleEntry=RestTest
+----
+{"msanOnuVlanProfileName":"RestTest","msanOnuVlanProfileRuleId":15,"msanOnuVlanProfileRuleMatchSVlanId":4096,"msanOnuVlanProfileRuleMatchSPcp":-1,"msanOnuVlanProfileRuleMatchSTPID":0,"msanOnuVlanProfileRuleMatchCVlanId":4096,"msanOnuVlanProfileRuleMatchCPcp":-1,"msanOnuVlanProfileRuleMatchCTPID":0,"msanOnuVlanProfileRuleMatchEthertype":0,"msanOnuVlanProfileRuleRemoveTags":1,"msanOnuVlanProfileRuleAddSTag":2,"msanOnuVlanProfileRuleAddSPcp":0,"msanOnuVlanProfileRuleAddSVlanId":0,"msanOnuVlanProfileRuleAddSTPID":1,"msanOnuVlanProfileRuleAddCTag":1,"msanOnuVlanProfileRuleAddCPcp":0,"msanOnuVlanProfileRuleAddCVlanId":111,"msanOnuVlanProfileRuleAddCTPID":1}
+----
+POST to msanOnuVlanProfileRuleTable returned 200 OK
+----
+
+POST Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=RestTest
+----
+{"msanOnuTcontProfileName":"RestTest","msanOnuTcontProfileTcontId":4,"msanOnuTcontProfileTcontType":5,"msanOnuTcontProfileFixedDataRate":512,"msanOnuTcontProfileAssuredDataRate":2048,"msanOnuTcontProfileMaxDataRate":750000,"msanOnuTcontProfileUsage":0}
+----
+POST to msanOnuTcontProfileTable returned 200 OK
+----
+
+POST Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=RestTest
+----
+{"msanOnuFlowProfileName":"RestTest","msanOnuFlowProfileMatchUsCVlanIdRange":"AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanOnuFlowProfileMatchUsCPcp":-1,"msanOnuFlowProfileUsCdr":128,"msanOnuFlowProfileUsPdr":1244160,"msanOnuFlowProfileUsFlowPriority":0,"msanOnuFlowProfileDsFlowPriority":0,"msanOnuFlowProfileUsage":0}
+----
+POST to msanOnuFlowProfileTable returned 200 OK
+----
+
+POST Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable/msanSecurityProfileEntry=RestTest
+----
+{"msanSecurityProfileName":"RestTest","msanSecurityProfileProtectedPort":0,"msanSecurityProfileMacSg":0,"msanSecurityProfileMacLimit":0,"msanSecurityProfilePortSecurity":0,"msanSecurityProfileArpInspec":0,"msanSecurityProfileIpSg":1,"msanSecurityProfileIpSgIpv6":0,"msanSecurityProfileIpSgFilteringMode":2,"msanSecurityProfileIpSgBindingLimit":4,"msanSecurityProfileIpSgBindingLimitDhcpv6":4,"msanSecurityProfileIpSgBindingLimitND":4,"msanSecurityProfileStormControlBroadcast":-1,"msanSecurityProfileStormControlMulticast":-1,"msanSecurityProfileStormControlUnicast":100,"msanSecurityProfileAppRateLimitDhcp":5,"msanSecurityProfileAppRateLimitIgmp":5,"msanSecurityProfileAppRateLimitPppoe":5,"msanSecurityProfileAppRateLimitStp":5,"msanSecurityProfileAppRateLimitMn":5,"msanSecurityProfileUsage":0}
+----
+POST to msanSecurityProfileTable returned 200 OK
+----
+
+POST Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=RestTest
+----
+{"msanMulticastProfileName":"RestTest","msanMulticastProfileIgmpSnooping":1,"msanMulticastProfileIgmpSnoopingFastLeave":0,"msanMulticastProfileIgmpSnoopingSuppression":0,"msanMulticastProfileIgmpProxy":0,"msanMulticastProfileIgmpProxyIpAddress":"0.0.0.0","msanMulticastProfileIgmpFiltering":1,"msanMulticastProfileMulticastGroupLimit":0,"msanMulticastProfileMvr":0,"msanMulticastProfileIgmpProxyProtocolVersion":1,"msanMulticastProfileUsage":0}
+----
+POST to msanMulticastProfileTable returned 200 OK
+----
+
+POST Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=RestTest
+----
+{"msanVlanProfileName":"RestTest","msanVlanProfileCVid":"AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanVlanProfileCVidNative":-1,"msanVlanProfileCVidRemark":-1,"msanVlanProfileSVid":-1,"msanVlanProfileSEtherType":34984,"msanVlanProfileNetworkPortCTag":1,"msanVlanProfileCVidExternal":2,"msanVlanProfileCVidNativeExternal":2,"msanVlanProfileCVidRemarkExternal":2,"msanVlanProfileSVidExternal":2,"msanVlanProfileUsage":0}
+----
+POST to msanVlanProfileTable returned 200 OK
+----
+
+POST Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=RestTest
+----
+{"msanServiceFlowProfileName":"RestTest","msanServiceFlowProfileMatchUsAny":2,"msanServiceFlowProfileMatchUsMacDestAddr":"","msanServiceFlowProfileMatchUsMacDestMask":"","msanServiceFlowProfileMatchUsMacSrcAddr":"","msanServiceFlowProfileMatchUsMacSrcMask":"","msanServiceFlowProfileMatchUsCPcp":-1,"msanServiceFlowProfileMatchUsSPcp":-1,"msanServiceFlowProfileMatchUsVlanProfile":1,"msanServiceFlowProfileMatchUsCVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchUsSVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchUsEthertype":-1,"msanServiceFlowProfileMatchUsIpProtocol":-1,"msanServiceFlowProfileMatchUsIpSrcAddr":"","msanServiceFlowProfileMatchUsIpSrcMask":"","msanServiceFlowProfileMatchUsIpDestAddr":"","msanServiceFlowProfileMatchUsIpDestMask":"","msanServiceFlowProfileMatchUsIpDscp":-1,"msanServiceFlowProfileMatchUsIpCsc":-1,"msanServiceFlowProfileMatchUsIpDropPrecedence":-1,"msanServiceFlowProfileMatchUsTcpSrcPort":-1,"msanServiceFlowProfileMatchUsTcpDestPort":-1,"msanServiceFlowProfileMatchUsUdpSrcPort":-1,"msanServiceFlowProfileMatchUsUdpDstPort":-1,"msanServiceFlowProfileMatchUsIpv6SrcAddr":"","msanServiceFlowProfileMatchUsIpv6SrcAddrMaskLen":0,"msanServiceFlowProfileMatchUsIpv6DstAddr":"","msanServiceFlowProfileMatchUsIpv6DstAddrMaskLen":0,"msanServiceFlowProfileMatchDsAny":2,"msanServiceFlowProfileMatchDsMacDestAddr":"","msanServiceFlowProfileMatchDsMacDestMask":"","msanServiceFlowProfileMatchDsMacSrcAddr":"","msanServiceFlowProfileMatchDsMacSrcMask":"","msanServiceFlowProfileMatchDsCPcp":-1,"msanServiceFlowProfileMatchDsSPcp":-1,"msanServiceFlowProfileMatchDsVlanProfile":1,"msanServiceFlowProfileMatchDsCVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchDsSVlanIdRange":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","msanServiceFlowProfileMatchDsEthertype":-1,"msanServiceFlowProfileMatchDsIpProtocol":-1,"msanServiceFlowProfileMatchDsIpSrcAddr":"","msanServiceFlowProfileMatchDsIpSrcMask":"","msanServiceFlowProfileMatchDsIpDestAddr":"","msanServiceFlowProfileMatchDsIpDestMask":"","msanServiceFlowProfileMatchDsIpDscp":-1,"msanServiceFlowProfileMatchDsIpCsc":-1,"msanServiceFlowProfileMatchDsIpDropPrecedence":-1,"msanServiceFlowProfileMatchDsTcpSrcPort":-1,"msanServiceFlowProfileMatchDsTcpDestPort":-1,"msanServiceFlowProfileMatchDsUdpSrcPort":-1,"msanServiceFlowProfileMatchDsUdpDstPort":-1,"msanServiceFlowProfileMatchDsIpv6SrcAddr":"","msanServiceFlowProfileMatchDsIpv6SrcAddrMaskLen":0,"msanServiceFlowProfileMatchDsIpv6DstAddr":"","msanServiceFlowProfileMatchDsIpv6DstAddrMaskLen":0,"msanServiceFlowProfileUsCdr":0,"msanServiceFlowProfileUsCdrBurstSize":0,"msanServiceFlowProfileUsPdr":0,"msanServiceFlowProfileUsPdrBurstSize":0,"msanServiceFlowProfileUsMarkPcp":1,"msanServiceFlowProfileUsMarkPcpValue":-1,"msanServiceFlowProfileUsMarkDscp":1,"msanServiceFlowProfileUsMarkDscpValue":-1,"msanServiceFlowProfileDsCdr":0,"msanServiceFlowProfileDsCdrBurstSize":0,"msanServiceFlowProfileDsPdr":0,"msanServiceFlowProfileDsPdrBurstSize":0,"msanServiceFlowProfileDsMarkPcp":1,"msanServiceFlowProfileDsMarkPcpValue":-1,"msanServiceFlowProfileDsMarkDscp":1,"msanServiceFlowProfileDsMarkDscpValue":-1,"msanServiceFlowProfileDsQueuingPriority":0,"msanServiceFlowProfileDsSchedulingMode":1,"msanServiceFlowProfileUsage":0}
+----
+POST to msanServiceFlowProfileTable returned 200 OK
+----
+
+POST Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=RestTest
+----
+{"msanServiceProfileName":"RestTest","msanServiceProfileServiceFlowProfileName":"RestTest","msanServiceProfileMulticastProfileName":"","msanServiceProfileVlanProfileName":"RestTest","msanServiceProfileL2cpProfileName":"","msanServiceProfileSecurityProfileName":"","msanServiceProfileOnuFlowProfileName":"RestTest","msanServiceProfileOnuVlanProfileName":"","msanServiceProfileOnuMulticastProfileName":"","msanServiceProfileOnuTcontProfileName":"RestTest","msanServiceProfileOnuVirtGemPortId":22,"msanServiceProfileOnuTpType":2,"msanServiceProfileOnuTpUniBitMap":"AAAA","msanServiceProfileDhcpRa":0,"msanServiceProfileDhcpRaTrustClients":0,"msanServiceProfileDhcpRaOpt82UnicastExtension":0,"msanServiceProfileDhcpRaOpt82Insert":0,"msanServiceProfileDhcpRaRateLimit":5,"msanServiceProfileDhcpRaCircuitIdCustomFormat":"","msanServiceProfileDhcpRaRemoteIdCustomFormat":"","msanServiceProfileDhcpRaCircuitIdType":1,"msanServiceProfileDhcpv6Ra":0,"msanServiceProfileDhcpv6RaTrustClients":0,"msanServiceProfileDhcpv6RaRemoteIdEnterpriseNum":1332,"msanServiceProfileDhcpv6RaInterfaceIdType":2,"msanServiceProfileDhcpv6RaInterfaceIdCustomFormat":"","msanServiceProfileDhcpv6RaRemoteIdCustomFormat":"","msanServiceProfilePppoeIA":0,"msanServiceProfilePppoeIARateLimit":5,"msanServiceProfilePPPoeIACircuitIdType":1,"msanServiceProfilePPPoeIACircuitIdCustomFormat":"","msanServiceProfilePPPoeIARemoteIdCustomFormat":"","msanServiceProfileUsage":0}
+----
+POST to msanServiceProfileTable returned 200 OK
+----
+
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+RestTest      RestTest      RestTest      RestTest          RestTest                              22         2         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name      US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G        1         1         1000000       0                0                     1                   2      
+200       1         1         0             0                0                     1                   2      
+500       1         1         500032        0                0                     1                   2      
+DEFAULT   2         2         0             0                0                     1                   1      
+MB        1         1         0             0                0                     1                   1      
+RestTest  1         1         0             0                0                     1                   2      
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name      C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----      -----  -----  -----------  ------  ------  -----  
+101       [101]  -1     34984        -1      -1      1      
+102       [102]  -1     34984        -1      -1      1      
+103       [103]  -1     34984        -1      -1      2      
+104       [104]  -1     34984        -1      -1      2      
+DEFAULT   [1]    -1     34984        1       -1      2      
+RestTest  [110]  -1     34984        -1      -1      2      
+----      -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name      Snooping  Proxy  Usage  
+----      --------  -----  -----  
+IPTV      1         0      2      
+RestTest  1         0      2      
+----      --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name      Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----      ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL       1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP       0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+RestTest  0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----      ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name      C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----      -----------  -----  ------  ------   -----------  -----  
+101       [101]        -1     128     1244160  0            1      
+102       [102]        -1     128     1244160  0            1      
+103       [103]        -1     128     1244160  0            2      
+104       [104]        -1     128     1244160  0            2      
+RestTest  [110]        -1     128     1244160  0            2      
+----      -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+RestTest      5     4   512    2048     750016   2      
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name      Input TPID  Output TPID  Usage  
+----      ----------  -----------  -----  
+A101      33024       34984        1      
+A102      33024       34984        1      
+A99       33024       34984        2      
+RestTest  33024       34984        2      
+----      ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+                   Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name      Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----      -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101      13       4096   4096   0       0          1      2      0      0      1       1       
+A101      98       -1     4096   0       0          2      2      0      0      1       1       
+A101      99       -1     -1     0       0          2      2      0      0      1       1       
+A102      10       4096   4096   0       0          1      2      0      0      1       1       
+A102      98       -1     4096   0       0          2      2      0      0      1       1       
+A102      99       -1     -1     0       0          2      2      0      0      1       1       
+A99       97       4096   4096   0       0          2      2      0      0      1       1       
+RestTest  15       4096   4096   0       0          1      2      0      0      1       1       
+RestTest  97       4096   4096   0       0          2      2      0      0      1       1       
+RestTest  98       -1     4096   0       0          2      2      0      0      1       1       
+RestTest  99       -1     -1     0       0          2      2      0      0      1       1       
+----      -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+RestTest   2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name      Description  Usage  
+----      -----------  -----  
+LLDP                   2      
+RestTest               2      
+----      -----------  -----  
+
+DELETE Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable/msanL2cpProfileEntry=RestTest
+----
+DELETE from msanL2cpProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable/msanOnuMulticastProfileEntry=RestTest
+----
+DELETE from msanOnuMulticastProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable/msanOnuVlanProfileEntry=RestTest
+----
+DELETE from msanOnuVlanProfileTable returned: 200 OK
+----
+
+DELETE Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable/msanOnuVlanProfileRuleEntry=RestTest
+----
+DELETE from msanOnuVlanProfileRuleTable returned: 400 Bad Request
+----
+
+DELETE Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable/msanOnuTcontProfileEntry=RestTest
+----
+DELETE from msanOnuTcontProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable/msanOnuFlowProfileEntry=RestTest
+----
+DELETE from msanOnuFlowProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable/msanSecurityProfileEntry=RestTest
+----
+DELETE from msanSecurityProfileTable returned: 200 OK
+----
+
+DELETE Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable/msanMulticastProfileEntry=RestTest
+----
+DELETE from msanMulticastProfileTable returned: 200 OK
+----
+
+DELETE Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable/msanVlanProfileEntry=RestTest
+----
+DELETE from msanVlanProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable/msanServiceFlowProfileEntry=RestTest
+----
+DELETE from msanServiceFlowProfileTable returned: 400 Bad Request
+----
+
+DELETE Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable/msanServiceProfileEntry=RestTest
+----
+DELETE from msanServiceProfileTable returned: 200 OK
+----
+
+GET Request: msanServiceProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+----
+Name          Flow Profile  Vlan Profile  ONU Flow Profile  ONU T-CONT Profile  ONU VLAN Profile  vGEM Port  ONU Term  Usage  
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+101_CWMP      MB            101           101               T5I6_AM-20          A101              2          2         1      
+101_CWMP_Acc  MB            101           101               T5I6_AM-20          A101              2          3         1      
+102_Gold      MB            102           102               T5I1__M-1G                            10         1         1      
+102_Gold_Acc  MB            102           102               T5I1__M-1G          A102              10         3         1      
+102_Gold_Uni  MB            102           102               T5I1__M-1G                            10         3         1      
+DEFAULT       DEFAULT       DEFAULT                                                               1          1         2      
+----          ------------  ------------  ----------------  ------------------  ----------------  ---------  --------  -----  
+
+GET Request: msanServiceFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+----
+Name      US Match  DS Match  DS Peak Rate  DS Assured Rate  DS Queueing Priority  DS Scheduling Mode  Usage  
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+1G        1         1         1000000       0                0                     1                   2      
+200       1         1         0             0                0                     1                   2      
+500       1         1         500032        0                0                     1                   2      
+DEFAULT   2         2         0             0                0                     1                   1      
+MB        1         1         0             0                0                     1                   1      
+RestTest  1         1         0             0                0                     1                   2      
+----      --------  --------  ------------  ---------------  --------------------  ------------------  -----  
+
+GET Request: msanVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+----
+Name      C-VID  S-VID  S-Ethertype  Native  Remark  Usage  
+----      -----  -----  -----------  ------  ------  -----  
+101       [101]  -1     34984        -1      -1      1      
+102       [102]  -1     34984        -1      -1      1      
+103       [103]  -1     34984        -1      -1      2      
+104       [104]  -1     34984        -1      -1      2      
+DEFAULT   [1]    -1     34984        1       -1      2      
+RestTest  [110]  -1     34984        -1      -1      2      
+----      -----  -----  -----------  ------  ------  -----  
+
+GET Request: msanMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+----
+Name  Snooping  Proxy  Usage  
+----  --------  -----  -----  
+IPTV  1         0      2      
+----  --------  -----  -----  
+
+GET Request: msanSecurityProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+----
+Name  Protected  MAC-SG  MAC Limit  Port-Sec  DAI  IP-SG  AppRateLimit    Storm Control  Usage  
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+ARL   1          0       0          0         0    1      [5 5 5 5 1000]  [-1 100 -1]    2      
+NPP   0          0       0          0         0    1      [5 5 5 5 5]     [-1 100 -1]    2      
+----  ---------  ------  ---------  --------  ---  -----  ------------    -------------  -----  
+
+GET Request: msanOnuFlowProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+----
+Name      C-VID Range  C-PCP  US CDR  US PDR   US Priority  Usage  
+----      -----------  -----  ------  ------   -----------  -----  
+101       [101]        -1     128     1244160  0            1      
+102       [102]        -1     128     1244160  0            1      
+103       [103]        -1     128     1244160  0            2      
+104       [104]        -1     128     1244160  0            2      
+RestTest  [110]        -1     128     1244160  0            2      
+----      -----------  -----  ------  ------   -----------  -----  
+
+GET Request: msanOnuTcontProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+----
+Name          Type  ID  Fixed  Assured  Max      Usage  
+----          ----  --  -----  -------  ---      -----  
+RestTest      5     4   512    2048     750016   2      
+T1I2F__-VoIP  1     2   256    0        256      2      
+T2I3_A_-IPTV  2     3   0      256      256      2      
+T5I1__M-1G    5     1   0      0        1000000  1      
+T5I1__M-200   5     1   0      0        200000   2      
+T5I1__M-500   5     1   0      0        500032   2      
+T5I6_AM-20    5     6   0      5056     20032    1      
+----          ----  --  -----  -------  ---      -----  
+
+GET Request: msanOnuVlanProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileTable
+----
+Name  Input TPID  Output TPID  Usage  
+----  ----------  -----------  -----  
+A101  33024       34984        1      
+A102  33024       34984        1      
+A99   33024       34984        2      
+----  ----------  -----------  -----  
+
+GET Request: msanOnuVlanProfileRuleTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuVlanProfileRuleTable
+----
+               Match  Match  Match   Match      Add    Add    Add    Add    Add     Add
+Name  Rule ID  C-VID  S-VID  C-TPID  EtherType  C-Tag  S-Tag  C-PCP  S-PCP  C-TPID  S-TPID  
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+A101  13       4096   4096   0       0          1      2      0      0      1       1       
+A101  98       -1     4096   0       0          2      2      0      0      1       1       
+A101  99       -1     -1     0       0          2      2      0      0      1       1       
+A102  10       4096   4096   0       0          1      2      0      0      1       1       
+A102  98       -1     4096   0       0          2      2      0      0      1       1       
+A102  99       -1     -1     0       0          2      2      0      0      1       1       
+A99   97       4096   4096   0       0          2      2      0      0      1       1       
+----  -------  -----  -----  ------  ---------  -----  -----  -----  -----  ------  ------  
+
+GET Request: msanOnuMulticastProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+----
+Name       Mode  Proxy  Fast-Leave  Usage  
+----       ----  -----  ----------  -----  
+FastLeave  2     1      2           2      
+IPTV       2     1      2           2      
+----       ----  -----  ----------  -----  
+
+GET Request: msanL2cpProfileTable
+https://192.168.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanL2cpProfileTable
+----
+Name  Description  Usage  
+----  -----------  -----  
+LLDP               2      
+----  -----------  -----  
+Elapsed time of Operation: 1m2.983664654s

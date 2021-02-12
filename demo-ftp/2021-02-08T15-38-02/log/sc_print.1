@@ -1,0 +1,378 @@
+2020/08/10 16:51:01 DRH      NOT SPD01 drhMain        [ 3217]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/08/10 16:56:02 DRH      NOT SPD01 drhMain        [ 3217]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [25 mgs since 2020/08/10 16:51:01]
+2020/08/10 16:58:31 DRH      ERR SPD01 pre-ng         [ 3073]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/08/11  7:58:34 DRH      ERR SPD01 itProxy        [ 3076]:OK (0) = drhErrorReport(type=2 code=100170 obj=AppACT/LOGT)
+2020/08/11  7:58:34 DRH      ERR SPD01 drhMain        [ 3217]:drhGetErrData: Alarm parameters not found (errcod=100170 ErrNr=86) [drhMain.c 1943]
+2020/08/11  7:59:51 DRH      ERR spd01 itProxy        [ 3083]:**** Registering DRH program to HAM ****
+2020/08/11  7:59:51 DRH      ERR spd01 itProxy        [ 3118]:**** Registering DGM program to HAM ****
+2020/08/11  7:59:57 DRH      NOT SPD01 itProxy        [ 3083]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/08/11  7:59:57 DRH      ERR SPD01 itProxy        [ 3083]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/08/11  7:59:57 DRH      ERR SPD01 itProxy        [ 3083]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <197>
+2020/08/11  7:59:57 DIAG     WRN SPD01 pre-ng         [ 3080]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/08/11  7:59:57 DRH      ERR SPD01 drhMain        [ 3229]:**** drhDaemon start ****
+2020/08/11  7:59:57 DRH      NOT SPD01 drhMain        [ 3229]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/08/11  7:59:57 DRH      ERR SPD01 drhMain        [ 3229]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/08/11  7:59:57 DRH      NOT SPD01 drhMain        [ 3229]:0x48008 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/08/11  7:59:57 DRH      NOT SPD01 drhMain        [ 3229]:0x50009 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/08/11  7:59:57 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 11:34:10 never read
+2020/08/11  7:59:57 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  8-05-20 11:47:16 never read
+2020/08/11  7:59:57 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 11:34:10 never read
+2020/08/11  7:59:57 DRH      INF SPD01 drhMain        [ 3229]:drhInitData: waiting 30 ms to finish read data tables
+2020/08/11  7:59:57 DRH      NOT SPD01 drhMain        [ 3229]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/08/11  7:59:57 DIAG     INF SPD01 drhMain        [ 3229]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/08/11  7:59:58 DIAG     ERR SPD01 dgmon          [ 3268]:DGM_LOG=(null) dgmLogLevel=4
+2020/08/11  7:59:58 DIAG     ERR SPD01 dgmon          [ 3268]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/08/11  8:00:01 DRH      NOT SPD01 drhMain        [ 3229]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/08/11  8:00:01 DRH      NOT SPD01 drhMain        [ 3229]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/08/11  8:00:03 DIAG     ERR SPD01 dgmon          [ 3268]:dgmon proces started in ACTIVE state, tests will start now
+2020/08/11  8:00:03 DRH      WRN SPD01 dgmon          [ 3268]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 11:34:10 never read
+2020/08/11  8:00:03 DRH      NOT SPD01 diskUsageTest  [ 3673]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/11  8:00:03 DRH      INF SPD01 diskUsageTest  [ 3673]:dgmWritePidFile: Wrote PID 3673 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:04 DRH      NOT SPD01 diagDiskFSfunc [ 3702]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/11  8:00:04 DRH      INF SPD01 diagDiskFSfunc [ 3702]:dgmWritePidFile: Wrote PID 3702 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:05 DRH      NOT SPD01 boardTemperatur[ 3787]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/11  8:00:05 DRH      INF SPD01 boardTemperatur[ 3787]:dgmWritePidFile: Wrote PID 3787 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:06 DRH      NOT SPD01 boardEquipmentT[ 3862]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/11  8:00:06 DRH      INF SPD01 boardEquipmentT[ 3862]:dgmWritePidFile: Wrote PID 3862 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:07 DRH      INF SPD01 chassisDoorTest[ 3901]:dgmWritePidFile: Wrote PID 3901 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:08 DRH      INF SPD01 powerSupplyTest[ 3937]:dgmWritePidFile: Wrote PID 3937 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:09 DRH      INF SPD01 externalSensors[ 3975]:dgmWritePidFile: Wrote PID 3975 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:10 DRH      INF SPD01 externalTempera[ 4008]:dgmWritePidFile: Wrote PID 4008 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:11 DRH      NOT SPD01 template.FW    [ 4044]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/11  8:00:11 DRH      INF SPD01 template.FW    [ 4044]:dgmWritePidFile: Wrote PID 4044 to PID file: /var/run/dgmon.pid
+2020/08/11  8:00:57 DRH      INF SPD01 drhMain        [ 3229]:drhAutoConfigChange Enabled, ShMemPt=0xffff98de7000
+2020/08/11  8:01:03 DRH      WRN SPD01 diskUsageTest  [ 3673]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 11:34:10 never read
+2020/08/11  8:02:39 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/08/11  8:07:41 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [25 mgs since 2020/08/11  8:02:39]
+2020/08/11  8:10:09 DRH      ERR SPD01 pre-ng         [ 3080]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/08/11 12:37:38 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 11-08-20  8:37:18 previous modified  8-05-20 11:47:16
+2020/08/13 14:11:35 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:11:34 previous modified 11-08-20  8:37:18
+2020/08/13 14:11:35 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/08/13 14:11:37 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:11:37 previous modified 13-08-20 10:11:34
+2020/08/13 14:11:45 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:11:45 previous modified 13-08-20 10:11:37
+2020/08/13 14:12:16 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:12:15 previous modified 13-08-20 10:11:45
+2020/08/13 14:12:27 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:12:26 previous modified 13-08-20 10:12:15
+2020/08/13 14:12:29 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:12:28 previous modified 13-08-20 10:12:26
+2020/08/13 14:12:51 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:12:51 previous modified 13-08-20 10:12:28
+2020/08/13 14:12:56 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:12:56 previous modified 13-08-20 10:12:51
+2020/08/13 14:13:02 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:13:02 previous modified 13-08-20 10:12:56
+2020/08/13 14:13:04 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:13:03 previous modified 13-08-20 10:13:02
+2020/08/13 14:13:05 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:13:05 previous modified 13-08-20 10:13:03
+2020/08/13 14:18:06 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/08/13 14:11:35]
+2020/08/13 14:21:21 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:20 previous modified 13-08-20 10:13:05
+2020/08/13 14:21:21 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/08/13 14:21:24 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:24 previous modified 13-08-20 10:21:20
+2020/08/13 14:21:30 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:29 previous modified 13-08-20 10:21:24
+2020/08/13 14:21:32 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:32 previous modified 13-08-20 10:21:29
+2020/08/13 14:21:34 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:34 previous modified 13-08-20 10:21:32
+2020/08/13 14:21:35 DRH      WRN SPD01 drhMain        [ 3229]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 10:21:35 previous modified 13-08-20 10:21:34
+2020/08/13 14:26:36 DRH      NOT SPD01 drhMain        [ 3229]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [6 mgs since 2020/08/13 14:21:21]
+2020/08/19 17:11:00 DRH      ERR SPD01 drhMain        [ 3229]:drhGetErrData: Alarm parameters not found (errcod=100170 ErrNr=86) [drhMain.c 1943]
+2020/08/19 17:11:00 DRH      ERR SPD01 itProxy        [ 3083]:OK (0) = drhErrorReport(type=2 code=100170 obj=AppACT/LOGT)
+2020/08/19 17:11:23 DRH      ERR spd01 itProxy        [ 3021]:**** Registering DRH program to HAM ****
+2020/08/19 17:11:23 DRH      ERR spd01 itProxy        [ 3054]:**** Registering DGM program to HAM ****
+2020/08/19 17:11:29 DRH      NOT SPD01 itProxy        [ 3021]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/08/19 17:11:29 DRH      ERR SPD01 itProxy        [ 3021]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/08/19 17:11:29 DRH      ERR SPD01 itProxy        [ 3021]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <89>
+2020/08/19 17:11:29 DIAG     WRN SPD01 pre-ng         [ 3018]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/08/19 17:11:29 DRH      ERR SPD01 drhMain        [ 3162]:**** drhDaemon start ****
+2020/08/19 17:11:29 DRH      NOT SPD01 drhMain        [ 3162]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/08/19 17:11:29 DRH      ERR SPD01 drhMain        [ 3162]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/08/19 17:11:29 DRH      NOT SPD01 drhMain        [ 3162]:0x40007 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/08/19 17:11:29 DRH      NOT SPD01 drhMain        [ 3162]:0x48008 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/08/19 17:11:29 DRH      WRN SPD01 drhMain        [ 3162]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:29 DRH      WRN SPD01 drhMain        [ 3162]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 14:21:35 never read
+2020/08/19 17:11:29 DRH      WRN SPD01 drhMain        [ 3162]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:29 DRH      INF SPD01 drhMain        [ 3162]:drhInitData: waiting 20 ms to finish read data tables
+2020/08/19 17:11:29 DRH      NOT SPD01 drhMain        [ 3162]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/08/19 17:11:29 DIAG     INF SPD01 drhMain        [ 3162]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/08/19 17:11:30 DIAG     ERR SPD01 dgmon          [ 3204]:DGM_LOG=(null) dgmLogLevel=4
+2020/08/19 17:11:30 DIAG     ERR SPD01 dgmon          [ 3204]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/08/19 17:11:33 DRH      NOT SPD01 drhMain        [ 3162]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/08/19 17:11:33 DRH      NOT SPD01 drhMain        [ 3162]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/08/19 17:11:35 DIAG     ERR SPD01 dgmon          [ 3204]:dgmon proces started in ACTIVE state, tests will start now
+2020/08/19 17:11:35 DRH      WRN SPD01 dgmon          [ 3204]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:35 DRH      NOT SPD01 diskUsageTest  [ 3595]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:35 DRH      INF SPD01 diskUsageTest  [ 3595]:dgmWritePidFile: Wrote PID 3595 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:36 DRH      NOT SPD01 diagDiskFSfunc [ 3624]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:36 DRH      INF SPD01 diagDiskFSfunc [ 3624]:dgmWritePidFile: Wrote PID 3624 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:37 DRH      NOT SPD01 boardTemperatur[ 3701]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:37 DRH      INF SPD01 boardTemperatur[ 3701]:dgmWritePidFile: Wrote PID 3701 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:38 DRH      NOT SPD01 boardEquipmentT[ 3790]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:38 DRH      INF SPD01 boardEquipmentT[ 3790]:dgmWritePidFile: Wrote PID 3790 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:39 DRH      INF SPD01 chassisDoorTest[ 3823]:dgmWritePidFile: Wrote PID 3823 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:40 DRH      INF SPD01 powerSupplyTest[ 3858]:dgmWritePidFile: Wrote PID 3858 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:41 DRH      INF SPD01 externalSensors[ 3897]:dgmWritePidFile: Wrote PID 3897 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:42 DRH      INF SPD01 externalTempera[ 3930]:dgmWritePidFile: Wrote PID 3930 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:43 DRH      NOT SPD01 template.FW    [ 3966]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:43 DRH      INF SPD01 template.FW    [ 3966]:dgmWritePidFile: Wrote PID 3966 to PID file: /var/run/dgmon.pid
+2020/08/19 17:12:29 DRH      INF SPD01 drhMain        [ 3162]:drhAutoConfigChange Enabled, ShMemPt=0xffffb2045000
+2020/08/19 17:12:35 DRH      WRN SPD01 diskUsageTest  [ 3595]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:14:11 DRH      NOT SPD01 drhMain        [ 3162]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/08/24 15:18:10 DRH      NOT SPD01 drhMain        [ 3162]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/08/19 17:14:11]
+2020/08/24 15:18:10 DRH      ERR SPD01 pre-ng         [ 3018]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/08/19 17:11:22 DRH      ERR spd01 itProxy        [ 2997]:**** Registering DRH program to HAM ****
+2020/08/19 17:11:22 DRH      ERR spd01 itProxy        [ 3031]:**** Registering DGM program to HAM ****
+2020/08/19 17:11:28 DRH      NOT SPD01 itProxy        [ 2997]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/08/19 17:11:28 DRH      ERR SPD01 itProxy        [ 2997]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/08/19 17:11:28 DRH      ERR SPD01 itProxy        [ 2997]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <88>
+2020/08/19 17:11:28 DRH      ERR SPD01 drhMain        [ 3143]:**** drhDaemon start ****
+2020/08/19 17:11:28 DIAG     WRN SPD01 pre-ng         [ 2993]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/08/19 17:11:28 DRH      NOT SPD01 drhMain        [ 3143]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/08/19 17:11:28 DRH      ERR SPD01 drhMain        [ 3143]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/08/19 17:11:28 DRH      NOT SPD01 drhMain        [ 3143]:0x40007 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/08/19 17:11:28 DRH      NOT SPD01 drhMain        [ 3143]:0x48008 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/08/19 17:11:28 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:28 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 13-08-20 14:21:35 never read
+2020/08/19 17:11:28 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:28 DRH      INF SPD01 drhMain        [ 3143]:drhInitData: waiting 20 ms to finish read data tables
+2020/08/19 17:11:28 DRH      NOT SPD01 drhMain        [ 3143]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/08/19 17:11:28 DIAG     INF SPD01 drhMain        [ 3143]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/08/19 17:11:29 DIAG     ERR SPD01 dgmon          [ 3185]:DGM_LOG=(null) dgmLogLevel=4
+2020/08/19 17:11:29 DIAG     ERR SPD01 dgmon          [ 3185]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/08/19 17:11:32 DRH      NOT SPD01 drhMain        [ 3143]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/08/19 17:11:32 DRH      NOT SPD01 drhMain        [ 3143]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/08/19 17:11:34 DIAG     ERR SPD01 dgmon          [ 3185]:dgmon proces started in ACTIVE state, tests will start now
+2020/08/19 17:11:34 DRH      WRN SPD01 dgmon          [ 3185]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:11:34 DRH      NOT SPD01 diskUsageTest  [ 3572]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:34 DRH      INF SPD01 diskUsageTest  [ 3572]:dgmWritePidFile: Wrote PID 3572 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:35 DRH      NOT SPD01 diagDiskFSfunc [ 3605]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:35 DRH      INF SPD01 diagDiskFSfunc [ 3605]:dgmWritePidFile: Wrote PID 3605 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:36 DRH      NOT SPD01 boardTemperatur[ 3692]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:36 DRH      INF SPD01 boardTemperatur[ 3692]:dgmWritePidFile: Wrote PID 3692 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:37 DRH      NOT SPD01 boardEquipmentT[ 3764]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:37 DRH      INF SPD01 boardEquipmentT[ 3764]:dgmWritePidFile: Wrote PID 3764 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:38 DRH      INF SPD01 chassisDoorTest[ 3800]:dgmWritePidFile: Wrote PID 3800 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:39 DRH      INF SPD01 powerSupplyTest[ 3840]:dgmWritePidFile: Wrote PID 3840 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:40 DRH      INF SPD01 externalSensors[ 3877]:dgmWritePidFile: Wrote PID 3877 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:41 DRH      INF SPD01 externalTempera[ 3907]:dgmWritePidFile: Wrote PID 3907 to PID file: /var/run/dgmon.pid
+2020/08/19 17:11:42 DRH      NOT SPD01 template.FW    [ 3943]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/08/19 17:11:42 DRH      INF SPD01 template.FW    [ 3943]:dgmWritePidFile: Wrote PID 3943 to PID file: /var/run/dgmon.pid
+2020/08/19 17:12:28 DRH      INF SPD01 drhMain        [ 3143]:drhAutoConfigChange Enabled, ShMemPt=0xffffb668e000
+2020/08/19 17:12:34 DRH      WRN SPD01 diskUsageTest  [ 3572]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/08/19 17:14:11 DRH      NOT SPD01 drhMain        [ 3143]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/09/04  2:07:03 DRH      NOT SPD01 drhMain        [ 3143]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/08/19 17:14:11]
+2020/09/04  2:07:03 DRH      ERR SPD01 pre-ng         [ 2993]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/09/08 12:30:12 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  8-09-20 12:30:02 previous modified 13-08-20 14:21:35
+2020/09/08 12:32:51 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  8-09-20 12:32:50 previous modified  8-09-20 12:30:02
+2020/09/08 12:32:51 DRH      NOT SPD01 drhMain        [ 3143]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/09/08 12:37:52 DRH      NOT SPD01 drhMain        [ 3143]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/09/08 12:32:51]
+2020/09/08 12:39:50 DRH      WRN SPD01 drhMain        [ 3143]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  8-09-20 12:39:05 previous modified  8-09-20 12:32:50
+2020/09/09 14:01:35 DRH      ERR SPD01 drhMain        [ 3143]:drhGetErrData: Alarm parameters not found (errcod=100170 ErrNr=86) [drhMain.c 1943]
+2020/09/09 14:01:35 DRH      ERR SPD01 itProxy        [ 2997]:OK (0) = drhErrorReport(type=2 code=100170 obj=AppACT/LOGT)
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3022]:**** Registering DRH program to HAM ****
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3055]:**** Registering DGM program to HAM ****
+2020/09/09 14:02:04 DRH      NOT SPD01 itProxy        [ 3022]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3022]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3022]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <124>
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3167]:**** drhDaemon start ****
+2020/09/09 14:02:04 DIAG     WRN SPD01 pre-ng         [ 3018]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3167]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3167]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3167]:0x48008 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3167]:0x50009 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3167]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3167]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  8-09-20 12:39:05 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3167]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      INF SPD01 drhMain        [ 3167]:drhInitData: waiting 20 ms to finish read data tables
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3167]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/09/09 14:02:04 DIAG     INF SPD01 drhMain        [ 3167]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3209]:DGM_LOG=(null) dgmLogLevel=4
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3209]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/09/09 14:02:08 DRH      NOT SPD01 drhMain        [ 3167]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/09/09 14:02:08 DRH      NOT SPD01 drhMain        [ 3167]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/09/09 14:02:10 DIAG     ERR SPD01 dgmon          [ 3209]:dgmon proces started in ACTIVE state, tests will start now
+2020/09/09 14:02:10 DRH      WRN SPD01 dgmon          [ 3209]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:10 DRH      NOT SPD01 diskUsageTest  [ 3596]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:10 DRH      INF SPD01 diskUsageTest  [ 3596]:dgmWritePidFile: Wrote PID 3596 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:11 DRH      NOT SPD01 diagDiskFSfunc [ 3629]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:11 DRH      INF SPD01 diagDiskFSfunc [ 3629]:dgmWritePidFile: Wrote PID 3629 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:12 DRH      NOT SPD01 boardTemperatur[ 3714]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:12 DRH      INF SPD01 boardTemperatur[ 3714]:dgmWritePidFile: Wrote PID 3714 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:13 DRH      NOT SPD01 boardEquipmentT[ 3791]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:13 DRH      INF SPD01 boardEquipmentT[ 3791]:dgmWritePidFile: Wrote PID 3791 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:14 DRH      INF SPD01 chassisDoorTest[ 3824]:dgmWritePidFile: Wrote PID 3824 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:15 DRH      INF SPD01 powerSupplyTest[ 3865]:dgmWritePidFile: Wrote PID 3865 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:16 DRH      INF SPD01 externalSensors[ 3900]:dgmWritePidFile: Wrote PID 3900 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:17 DRH      INF SPD01 externalTempera[ 3933]:dgmWritePidFile: Wrote PID 3933 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:18 DRH      NOT SPD01 template.FW    [ 3969]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:18 DRH      INF SPD01 template.FW    [ 3969]:dgmWritePidFile: Wrote PID 3969 to PID file: /var/run/dgmon.pid
+2020/09/09 14:03:04 DRH      INF SPD01 drhMain        [ 3167]:drhAutoConfigChange Enabled, ShMemPt=0xffff8c43f000
+2020/09/09 14:03:10 DRH      WRN SPD01 diskUsageTest  [ 3596]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:12:16 DRH      ERR SPD01 pre-ng         [ 3018]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/09/10 13:58:24 DRH      WRN SPD01 drhMain        [ 3167]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified 10-09-20 13:58:24 previous modified  8-09-20 12:39:05
+2020/09/10 13:58:24 DRH      NOT SPD01 drhMain        [ 3167]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/09/10 14:03:24 DRH      NOT SPD01 drhMain        [ 3167]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/09/10 13:58:24]
+2020/11/06 16:13:34 DRH      WRN SPD01 drhMain        [ 3167]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  6-11-20 16:12:40 previous modified 10-09-20 13:58:24
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3171]:**** Registering DRH program to HAM ****
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3204]:**** Registering DGM program to HAM ****
+2020/09/09 14:01:59 DIAG     WRN spd01 pre-ng         [ 3167]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/09/09 14:02:04 DRH      NOT SPD01 itProxy        [ 3171]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3171]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3171]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <124>
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3321]:**** drhDaemon start ****
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3321]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3321]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3321]:0x40007 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3321]:0x48008 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3321]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3321]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  6-11-20 16:12:40 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3321]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      INF SPD01 drhMain        [ 3321]:drhInitData: waiting 20 ms to finish read data tables
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3321]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/09/09 14:02:04 DIAG     INF SPD01 drhMain        [ 3321]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3365]:DGM_LOG=(null) dgmLogLevel=4
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3365]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/09/09 14:02:05 DRH      NOT SPD01 drhMain        [ 3321]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/09/09 14:02:05 DRH      NOT SPD01 drhMain        [ 3321]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/09/09 14:02:10 DIAG     ERR SPD01 dgmon          [ 3365]:dgmon proces started in ACTIVE state, tests will start now
+2020/09/09 14:02:10 DRH      WRN SPD01 dgmon          [ 3365]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:10 DRH      NOT SPD01 diskUsageTest  [ 3752]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:10 DRH      INF SPD01 diskUsageTest  [ 3752]:dgmWritePidFile: Wrote PID 3752 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:11 DRH      NOT SPD01 diagDiskFSfunc [ 3785]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:11 DRH      INF SPD01 diagDiskFSfunc [ 3785]:dgmWritePidFile: Wrote PID 3785 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:12 DRH      NOT SPD01 boardTemperatur[ 3872]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:12 DRH      INF SPD01 boardTemperatur[ 3872]:dgmWritePidFile: Wrote PID 3872 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:13 DRH      NOT SPD01 boardEquipmentT[ 3947]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:13 DRH      INF SPD01 boardEquipmentT[ 3947]:dgmWritePidFile: Wrote PID 3947 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:14 DRH      INF SPD01 chassisDoorTest[ 3980]:dgmWritePidFile: Wrote PID 3980 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:15 DRH      INF SPD01 powerSupplyTest[ 4020]:dgmWritePidFile: Wrote PID 4020 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:16 DRH      INF SPD01 externalSensors[ 4054]:dgmWritePidFile: Wrote PID 4054 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:17 DRH      INF SPD01 externalTempera[ 4087]:dgmWritePidFile: Wrote PID 4087 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:18 DRH      NOT SPD01 template.FW    [ 4123]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:18 DRH      INF SPD01 template.FW    [ 4123]:dgmWritePidFile: Wrote PID 4123 to PID file: /var/run/dgmon.pid
+2020/09/09 14:03:04 DRH      INF SPD01 drhMain        [ 3321]:drhAutoConfigChange Enabled, ShMemPt=0xffffb6f9e000
+2020/09/09 14:03:10 DRH      WRN SPD01 diskUsageTest  [ 3752]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:04:46 DRH      NOT SPD01 drhMain        [ 3321]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/11/29 13:50:05 DRH      NOT SPD01 drhMain        [ 3321]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/09/09 14:04:46]
+2020/11/29 13:50:05 DRH      ERR SPD01 pre-ng         [ 3167]:^LOGL Some log messages forwarded to sc_print_e Count=13 (sec=13 min=0 day=0)
+2020/09/09 14:01:57 DRH      ERR spd01 itProxy        [ 3135]:**** Registering DRH program to HAM ****
+2020/09/09 14:01:57 DRH      ERR spd01 itProxy        [ 3168]:**** Registering DGM program to HAM ****
+2020/09/09 14:02:03 DRH      NOT SPD01 itProxy        [ 3135]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/09/09 14:02:03 DRH      ERR SPD01 itProxy        [ 3135]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/09/09 14:02:03 DRH      ERR SPD01 itProxy        [ 3135]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <123>
+2020/09/09 14:02:03 DIAG     WRN SPD01 pre-ng         [ 3132]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/09/09 14:02:03 DRH      ERR SPD01 drhMain        [ 3295]:**** drhDaemon start ****
+2020/09/09 14:02:03 DRH      NOT SPD01 drhMain        [ 3295]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/09/09 14:02:03 DRH      ERR SPD01 drhMain        [ 3295]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/09/09 14:02:03 DRH      NOT SPD01 drhMain        [ 3295]:0x40007 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:03 DRH      NOT SPD01 drhMain        [ 3295]:0x48008 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:03 DRH      WRN SPD01 drhMain        [ 3295]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:03 DRH      WRN SPD01 drhMain        [ 3295]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  6-11-20 16:12:40 never read
+2020/09/09 14:02:03 DRH      WRN SPD01 drhMain        [ 3295]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:03 DRH      INF SPD01 drhMain        [ 3295]:drhInitData: waiting 20 ms to finish read data tables
+2020/09/09 14:02:03 DRH      NOT SPD01 drhMain        [ 3295]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/09/09 14:02:03 DIAG     INF SPD01 drhMain        [ 3295]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/09/09 14:02:04 DIAG     ERR SPD01 dgmon          [ 3333]:DGM_LOG=(null) dgmLogLevel=4
+2020/09/09 14:02:04 DIAG     ERR SPD01 dgmon          [ 3333]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/09/09 14:02:07 DRH      NOT SPD01 drhMain        [ 3295]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/09/09 14:02:07 DRH      NOT SPD01 drhMain        [ 3295]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/09/09 14:02:09 DIAG     ERR SPD01 dgmon          [ 3333]:dgmon proces started in ACTIVE state, tests will start now
+2020/09/09 14:02:09 DRH      WRN SPD01 dgmon          [ 3333]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:09 DRH      NOT SPD01 diskUsageTest  [ 3726]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:09 DRH      INF SPD01 diskUsageTest  [ 3726]:dgmWritePidFile: Wrote PID 3726 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:10 DRH      NOT SPD01 diagDiskFSfunc [ 3755]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:10 DRH      INF SPD01 diagDiskFSfunc [ 3755]:dgmWritePidFile: Wrote PID 3755 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:11 DRH      NOT SPD01 boardTemperatur[ 3840]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:11 DRH      INF SPD01 boardTemperatur[ 3840]:dgmWritePidFile: Wrote PID 3840 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:12 DRH      NOT SPD01 boardEquipmentT[ 3915]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:12 DRH      INF SPD01 boardEquipmentT[ 3915]:dgmWritePidFile: Wrote PID 3915 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:13 DRH      INF SPD01 chassisDoorTest[ 3956]:dgmWritePidFile: Wrote PID 3956 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:14 DRH      INF SPD01 powerSupplyTest[ 3994]:dgmWritePidFile: Wrote PID 3994 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:15 DRH      INF SPD01 externalSensors[ 4032]:dgmWritePidFile: Wrote PID 4032 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:16 DRH      INF SPD01 externalTempera[ 4065]:dgmWritePidFile: Wrote PID 4065 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:17 DRH      NOT SPD01 template.FW    [ 4101]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:17 DRH      INF SPD01 template.FW    [ 4101]:dgmWritePidFile: Wrote PID 4101 to PID file: /var/run/dgmon.pid
+2020/09/09 14:03:03 DRH      INF SPD01 drhMain        [ 3295]:drhAutoConfigChange Enabled, ShMemPt=0xffff7c362000
+2020/09/09 14:03:09 DRH      WRN SPD01 diskUsageTest  [ 3726]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:04:47 DRH      NOT SPD01 drhMain        [ 3295]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/12/01  1:24:42 DRH      NOT SPD01 drhMain        [ 3295]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/09/09 14:04:47]
+2020/12/01  1:24:42 DRH      ERR SPD01 pre-ng         [ 3132]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2020/12/01 14:25:15 DRH      ERR SPD01 acs            [ 3237]:drhErrorReportClnt/drhRpcCall/clnt_create: server=127.0.0.1 typ=2 alr=1000960 flags=TimNod obj_id=SPD01.Board1 mod=13 node=0x101 [end of 3 errors]
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3010]:**** Registering DRH program to HAM ****
+2020/09/09 14:01:58 DRH      ERR spd01 itProxy        [ 3043]:**** Registering DGM program to HAM ****
+2020/09/09 14:02:04 DRH      NOT SPD01 itProxy        [ 3010]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3010]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2020/09/09 14:02:04 DRH      ERR SPD01 itProxy        [ 3010]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <124>
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3170]:**** drhDaemon start ****
+2020/09/09 14:02:04 DIAG     WRN SPD01 pre-ng         [ 3006]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1733: No symbol! str1=ERR_ZL_DIAG
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3170]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d720)
+2020/09/09 14:02:04 DRH      ERR SPD01 drhMain        [ 3170]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3170]:0x40007 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3170]:0x48008 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3170]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3170]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  6-11-20 16:12:40 never read
+2020/09/09 14:02:04 DRH      WRN SPD01 drhMain        [ 3170]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:04 DRH      INF SPD01 drhMain        [ 3170]:drhInitData: waiting 20 ms to finish read data tables
+2020/09/09 14:02:04 DRH      NOT SPD01 drhMain        [ 3170]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2020/09/09 14:02:04 DIAG     INF SPD01 drhMain        [ 3170]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3212]:DGM_LOG=(null) dgmLogLevel=4
+2020/09/09 14:02:05 DIAG     ERR SPD01 dgmon          [ 3212]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2020/09/09 14:02:08 DRH      NOT SPD01 drhMain        [ 3170]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2020/09/09 14:02:08 DRH      NOT SPD01 drhMain        [ 3170]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2020/09/09 14:02:10 DIAG     ERR SPD01 dgmon          [ 3212]:dgmon proces started in ACTIVE state, tests will start now
+2020/09/09 14:02:10 DRH      WRN SPD01 dgmon          [ 3212]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:02:10 DRH      NOT SPD01 diskUsageTest  [ 3601]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:10 DRH      INF SPD01 diskUsageTest  [ 3601]:dgmWritePidFile: Wrote PID 3601 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:11 DRH      NOT SPD01 diagDiskFSfunc [ 3634]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:11 DRH      INF SPD01 diagDiskFSfunc [ 3634]:dgmWritePidFile: Wrote PID 3634 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:12 DRH      NOT SPD01 boardTemperatur[ 3708]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:12 DRH      INF SPD01 boardTemperatur[ 3708]:dgmWritePidFile: Wrote PID 3708 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:13 DRH      NOT SPD01 boardEquipmentT[ 3800]:drhRpcCall:OK = Reset alarms of component 13 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:13 DRH      INF SPD01 boardEquipmentT[ 3800]:dgmWritePidFile: Wrote PID 3800 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:14 DRH      INF SPD01 chassisDoorTest[ 3834]:dgmWritePidFile: Wrote PID 3834 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:15 DRH      INF SPD01 powerSupplyTest[ 3873]:dgmWritePidFile: Wrote PID 3873 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:16 DRH      INF SPD01 externalSensors[ 3907]:dgmWritePidFile: Wrote PID 3907 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:17 DRH      INF SPD01 externalTempera[ 3940]:dgmWritePidFile: Wrote PID 3940 to PID file: /var/run/dgmon.pid
+2020/09/09 14:02:18 DRH      NOT SPD01 template.FW    [ 3976]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2020/09/09 14:02:18 DRH      INF SPD01 template.FW    [ 3976]:dgmWritePidFile: Wrote PID 3976 to PID file: /var/run/dgmon.pid
+2020/09/09 14:03:04 DRH      INF SPD01 drhMain        [ 3170]:drhAutoConfigChange Enabled, ShMemPt=0xffff782a9000
+2020/09/09 14:03:10 DRH      WRN SPD01 diskUsageTest  [ 3601]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified 11-02-20 15:34:10 never read
+2020/09/09 14:04:48 DRH      NOT SPD01 drhMain        [ 3170]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0
+2020/09/09 14:05:54 DRH      ERR SPD01 acs            [ 3112]:drhErrorReportClnt/drhRpcCall/clnt_create: server=127.0.0.1 typ=2 alr=1000960 flags=TimNod obj_id=SPD01.Board1 mod=13 node=0x101 [end of 3 errors]
+2021/01/03 21:58:20 DRH      NOT SPD01 drhMain        [ 3170]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0 [13 mgs since 2020/09/09 14:04:48]
+2021/01/03 21:58:22 DRH      ERR SPD01 pre-ng         [ 3006]:^LOGL Some log messages forwarded to sc_print_e Count=14 (sec=14 min=0 day=0)
+2021/01/04 20:34:55 DRH      ERR SPD01 drhMain        [ 3170]:drhGetErrData: Alarm parameters not found (errcod=100170 ErrNr=86) [drhMain.c 1943]
+2021/01/04 20:34:55 DRH      ERR SPD01 itProxy        [ 3010]:OK (0) = drhErrorReport(type=2 code=100170 obj=AppACT/LOGT)
+2021/01/04 20:36:14 DRH      ERR spd01 itProxy        [ 3761]:**** Registering DRH program to HAM ****
+2021/01/04 20:36:14 DRH      ERR spd01 itProxy        [ 3796]:**** Registering DGM program to HAM ****
+2021/01/04 20:36:20 DRH      NOT SPD01 itProxy        [ 3761]:drhSiteStateSet:Element State changed from UNKNOWN to ACTIVE
+2021/01/04 20:36:20 DRH      ERR SPD01 itProxy        [ 3761]:[hapStart]: starting DRH with HAM PROXY, SiteState=ACTIVE
+2021/01/04 20:36:20 DRH      ERR SPD01 itProxy        [ 3761]:**** Start DRH in ACTIVE state: itProxy drhMain  **** <580>
+2021/01/04 20:36:20 DIAG     WRN SPD01 pre-ng         [ 3757]:itLogReadDescFile: Syntax error in table 'c_errcode.h', line 1709: No symbol! str1=ERR_ZL_DIAG
+2021/01/04 20:36:20 DRH      ERR SPD01 drhMain        [ 3896]:**** drhDaemon start ****
+2021/01/04 20:36:20 DRH      NOT SPD01 drhMain        [ 3896]:sysApplRegistration:OK = hapApplRegistration(ProcName=DRH, ShmKey=0x3809=SHMKEY_DRH_HAM_PROXY, pApplCallbacks=0x42d318)
+2021/01/04 20:36:20 DRH      ERR SPD01 drhMain        [ 3896]:drhDaemon: IP_ADDR_ACTIVE=(null)
+2021/01/04 20:36:20 DRH      NOT SPD01 drhMain        [ 3896]:0x50008 = drhInitSnmp/itSemCreate(key=0x3806=SEMKEY_DRH_SNMP_FLT, semflg=IPC_CREAT | 0666)
+2021/01/04 20:36:20 DRH      NOT SPD01 drhMain        [ 3896]:0x58009 = drhDaemon/itSemCreate(key=0x3805=SEMKEY_DRH_FLT_IND, semflg=IPC_CREAT | 0666)
+2021/01/04 20:36:20 DRH      WRN SPD01 drhMain        [ 3896]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_error.xml file last modified  4-01-21 20:12:32 never read
+2021/01/04 20:36:20 DRH      WRN SPD01 drhMain        [ 3896]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_filter.xml file last modified  4-01-21 20:12:32 never read
+2021/01/04 20:36:20 DRH      WRN SPD01 drhMain        [ 3896]:drhDataReadTable: /opt/iskratel/etc/diagnostics/error_priority.xml file last modified  4-01-21 20:12:32 never read
+2021/01/04 20:36:20 DRH      INF SPD01 drhMain        [ 3896]:drhInitData: waiting 20 ms to finish read data tables
+2021/01/04 20:36:20 DRH      NOT SPD01 drhMain        [ 3896]:drhInitMain: 0 fault(s) saved in shared memory drhFltIndTB=(nil) (shmFltIndCnt=0)
+2021/01/04 20:36:20 DIAG     INF SPD01 drhMain        [ 3896]:diagMakeFifo: mkfifo(file=/dev/shm/drh/FIFO/report, mode=666) = 0, Success(0)
+2021/01/04 20:36:21 DIAG     ERR SPD01 dgmon          [ 3948]:DGM_LOG=(null) dgmLogLevel=4
+2021/01/04 20:36:21 DIAG     ERR SPD01 dgmon          [ 3948]:dgmon proces started in ACTIVE state, tests will start in 5 seconds
+2021/01/04 20:36:24 DRH      NOT SPD01 drhMain        [ 3896]:[drhSnmp] OK - snmpxClearAllAlarms of module 13 (AN Access Network) dm_ix=0
+2021/01/04 20:36:24 DRH      NOT SPD01 drhMain        [ 3896]:drhSnmpxConnect:OK - snmpxAddInstance(inx=1), DM_ID=13(DIAG_MOD_AN)
+2021/01/04 20:36:26 DIAG     ERR SPD01 dgmon          [ 3948]:dgmon proces started in ACTIVE state, tests will start now
+2021/01/04 20:36:26 DRH      WRN SPD01 dgmon          [ 3948]:drhDataReadTable: /opt/iskratel/etc/diagnostics/test_program.xml file last modified  4-01-21 20:12:32 never read
+2021/01/04 20:36:26 DRH      NOT SPD01 diskUsageTest  [ 4151]:drhRpcCall:OK = Reset alarms of component 2 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:26 DRH      INF SPD01 diskUsageTest  [ 4151]:dgmWritePidFile: Wrote PID 4151 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:27 DRH      NOT SPD01 diagDiskFSfunc [ 4180]:drhRpcCall:OK = Reset alarms of component 17 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:27 DRH      INF SPD01 diagDiskFSfunc [ 4180]:dgmWritePidFile: Wrote PID 4180 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:28 DRH      NOT SPD01 boardTemperatur[ 4213]:drhRpcCall:OK = Reset alarms of component 12 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:28 DRH      INF SPD01 boardTemperatur[ 4213]:dgmWritePidFile: Wrote PID 4213 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:29 DRH      INF SPD01 externalSensors[ 4246]:dgmWritePidFile: Wrote PID 4246 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:30 DRH      INF SPD01 externalTempera[ 4279]:dgmWritePidFile: Wrote PID 4279 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:31 DRH      NOT SPD01 template.FW    [ 4314]:drhRpcCall:OK = Reset alarms of component 276 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:31 DRH      INF SPD01 template.FW    [ 4314]:dgmWritePidFile: Wrote PID 4314 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:32 DRH      NOT SPD01 syslogTest     [ 4351]:drhRpcCall:OK = Reset alarms of component 278 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:32 DRH      INF SPD01 syslogTest     [ 4351]:dgmWritePidFile: Wrote PID 4351 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:33 DRH      NOT SPD01 radiusTest     [ 4399]:drhRpcCall:OK = Reset alarms of component 279 on node SPD01(0x101) module 13, server 127.0.0.1
+2021/01/04 20:36:33 DRH      INF SPD01 radiusTest     [ 4399]:dgmWritePidFile: Wrote PID 4399 to PID file: /var/run/dgmon.pid
+2021/01/04 20:36:35 DRH      ERR SPD01 supplyVoltageRa[ 4643]:drhErrorReportVa:Object Identity not defined - Alarm report ignored (msgtyp=1 errcod=1200220 ObjStr=
+2021/01/04 20:36:35 DRH      INF SPD01 supplyVoltageRa[ 4643]:dgmWritePidFile: Wrote PID 4643 to PID file: /var/run/dgmon.pid
+2021/01/04 20:37:20 DRH      INF SPD01 drhMain        [ 3896]:drhAutoConfigChange Enabled, ShMemPt=0xffffab64b000
+2021/01/04 20:37:26 DRH      WRN SPD01 diskUsageTest  [ 4151]:drhDataReadTable: /opt/iskratel/etc/diagnostics/disk_usage.xml file last modified  4-01-21 20:12:32 never read
+2021/01/04 20:39:05 DRH      NOT SPD01 drhMain        [ 3896]:[drhData.c/321]drhDataCheck: XML table 'error_filter' changed, dberr=0

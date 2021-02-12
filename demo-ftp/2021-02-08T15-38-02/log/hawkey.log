@@ -1,0 +1,136 @@
+INFO Jan-04 20:11:13 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:13 fetching rpmdb
+DEBUG Jan-04 20:11:14 fetching AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:14 caching repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:14 load_ext: loading: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-6123c2d235b23f56/repodata/filelists.xml.gz
+DEBUG Jan-04 20:11:14 write_ext: storing AN6520GP_2.0.0.0.115_2009032355-app-aarch64 to: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx.4tztNP
+DEBUG Jan-04 20:11:14 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:14 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:15 fetching AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:15 caching repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:15 load_ext: loading: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-7546e7cdc8c34314/repodata/filelists.xml.gz
+DEBUG Jan-04 20:11:15 write_ext: storing AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 to: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx.cqQcah
+DEBUG Jan-04 20:11:15 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:15 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:15 rewriting repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:15 caching repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:15 rewriting repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:15 caching repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:15 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:15 running_kernel(): running kernel not matched to a package.
+INFO Jan-04 20:11:15 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:15 fetching rpmdb
+DEBUG Jan-04 20:11:15 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:15 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:15 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:15 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:15 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:15 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:15 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:15 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+INFO Jan-04 20:11:17 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:17 fetching rpmdb
+DEBUG Jan-04 20:11:17 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:17 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:17 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:17 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:17 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:17 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:17 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:17 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:17 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:17 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:11:17 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:17 running_kernel(): running kernel not matched to a package.
+INFO Jan-04 20:11:17 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:17 fetching rpmdb
+DEBUG Jan-04 20:11:17 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:17 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:17 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:17 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:17 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:17 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:17 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:17 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:17 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:17 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:11:17 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:17 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:11:37 Architecture is: ls2088ardb:aarch64_qoriq:aarch64
+INFO Jan-04 20:11:37 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:37 fetching rpmdb
+INFO Jan-04 20:11:38 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:11:38 fetching rpmdb
+DEBUG Jan-04 20:11:38 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:11:38 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:38 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:38 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:11:38 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:11:38 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:11:38 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:38 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:11:38 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:38 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:11:38 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:11:38 running_kernel(): running kernel not matched to a package.
+INFO Jan-04 20:12:19 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:12:19 fetching rpmdb
+DEBUG Jan-04 20:12:20 fetching AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:20 caching repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:12:20 load_ext: loading: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-6123c2d235b23f56/repodata/filelists.xml.gz
+DEBUG Jan-04 20:12:20 write_ext: storing AN6520GP_2.0.0.0.115_2009032355-app-aarch64 to: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx.EfAylt
+DEBUG Jan-04 20:12:20 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:20 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:21 fetching AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:21 caching repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:12:21 load_ext: loading: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-7546e7cdc8c34314/repodata/filelists.xml.gz
+DEBUG Jan-04 20:12:21 write_ext: storing AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 to: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx.ceALwG
+DEBUG Jan-04 20:12:21 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:21 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+INFO Jan-04 20:12:23 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:12:23 fetching rpmdb
+DEBUG Jan-04 20:12:23 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:12:23 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:23 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:23 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:23 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:12:23 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:23 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:23 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:23 rewriting repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:23 caching repo: AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:12:23 rewriting repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:23 caching repo: AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:12:23 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:12:23 running_kernel(): running kernel not matched to a package.
+INFO Jan-04 20:12:23 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:12:23 fetching rpmdb
+DEBUG Jan-04 20:12:23 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:12:23 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:23 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:23 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:23 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:12:23 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:23 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:23 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:24 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:12:24 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:12:24 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:12:24 running_kernel(): running kernel not matched to a package.
+INFO Jan-04 20:12:24 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:12:24 fetching rpmdb
+DEBUG Jan-04 20:12:24 using cached AN6520GP_2.0.0.0.115_2009032355-app-aarch64 (0x54ee96d6b2c8716af2c2af751df0f17259d332c7c2254b3fe10a31e49009fb62)
+DEBUG Jan-04 20:12:24 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-app-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:24 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:24 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-app-aarch64
+DEBUG Jan-04 20:12:24 using cached AN6520GP_2.0.0.0.115_2009032355-sp-aarch64 (0xc319999ecea94f61c1c68cfdb2e68119e0fc8722bba027c3084702e486978204)
+DEBUG Jan-04 20:12:24 load_ext: using cache file: /var/cache/dnf/AN6520GP_2.0.0.0.115_2009032355-sp-aarch64-filenames.solvx
+DEBUG Jan-04 20:12:24 no presto metadata available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:24 no updateinfo available for AN6520GP_2.0.0.0.115_2009032355-sp-aarch64
+DEBUG Jan-04 20:12:24 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:12:24 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:12:24 running_kernel(): no matching file: /boot/vmlinuz-4.1.35-lsp-1.0.97-0.
+DEBUG Jan-04 20:12:24 running_kernel(): running kernel not matched to a package.
+DEBUG Jan-04 20:12:33 Architecture is: ls2088ardb:aarch64_qoriq:aarch64
+INFO Jan-04 20:12:33 === Started libdnf-0.9.3 ===
+DEBUG Jan-04 20:12:33 fetching rpmdb

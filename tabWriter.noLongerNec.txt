@@ -1,0 +1,261 @@
+package gopon
+
+import (
+	"fmt"
+	"os"
+	"text/tabwriter"
+)
+
+// matches endpoint to formatted output; open to simpler methods but the concept of 'switch' is cross-language intuitive
+func tabwriteModular(t *IskratelMsan, ep string) {
+	h := endpointFields[ep]
+	f := fors(len(h)) + "\n"
+
+	switch {
+	case ep == serviceProfiles:
+		twServiceProfiles(t, f, h)
+	case ep == flowProfiles:
+		twFlowProfiles(t, f, h)
+	case ep == vlanProfiles:
+		twVlanProfiles(t, f, h)
+	case ep == onuFlowProfiles:
+		twOnuFlowProfiles(t, f, h)
+	case ep == onuTcontProfiles:
+		twOnuTcontProfiles(t, f, h)
+	case ep == onuVlanProfiles:
+		twOnuVlanProfiles(t, f, h)
+	case ep == onuVlanRules:
+		twOnuVlanRules(t, f, h)
+	case ep == igmpProfiles:
+		twIgmpProfiles(t, f, h)
+	case ep == onuIgmpProfiles:
+		twOnuIgmpProfiles(t, f, h)
+	case ep == securityProfiles:
+		twSecurityProfiles(t, f, h)
+	case ep == l2cpProfiles:
+		twL2cpProfiles(t, f, h)
+	default:
+		fmt.Println(t)
+	}
+}
+
+// service profiles = 9 desired columns
+func twServiceProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileServiceFlowProfileName
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileVlanProfileName
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuFlowProfileName
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuTcontProfileName
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuVlanProfileName
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuVirtGemPortID
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileOnuTpType
+		v8 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i].MsanServiceProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]))
+	tw.Flush() // calculate column width and print table
+}
+
+// flow profiles = 8 desired columns
+func twFlowProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileMatchUsVlanProfile
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileMatchDsVlanProfile
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsPdr
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsCdr
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsQueuingPriority
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileDsSchedulingMode
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceFlowProfileTable.MsanServiceFlowProfileEntry[i].MsanServiceFlowProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]))
+	tw.Flush() // calculate column width and print table
+}
+
+// vlan profiles = 7 desired columns
+func twVlanProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileName
+		v1, _ := getVlanFromB64(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVid)
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileSVid
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileSEtherType
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVidNative
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileCVidRemark
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry[i].MsanVlanProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+	tw.Flush() // calculate column width and print table
+}
+
+// onu flow profiles = 7 desired columns
+func twOnuFlowProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileName
+		v1, _ := getVlanFromB64(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileMatchUsCVlanIDRange)
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileMatchUsCPcp
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsCdr
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsPdr
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsFlowPriority
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry[i].MsanOnuFlowProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+	tw.Flush() // calculate column width and print table
+}
+
+// onu t-cont profiles = 7 desired columns
+func twOnuTcontProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileTcontType
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileTcontID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileFixedDataRate
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileAssuredDataRate
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileMaxDataRate
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry[i].MsanOnuTcontProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]))
+	tw.Flush() // calculate column width and print table
+}
+
+// onu vlan profiles = 4 desired columns
+func twOnuVlanProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileInputTPID
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileOutputTPID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i].MsanOnuVlanProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+	tw.Flush() // calculate column width and print table
+}
+
+// onu vlan rules = 12 desired columns + special header descriptor
+func twOnuVlanRules(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	header := "\t\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\t%v\n"
+	fmt.Fprintf(tw, header, "Match", "Match", "Match", "Match", "Add", "Add", "Add", "Add", "Add", "Add")
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9], h[10], h[11])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]), fs(h[10]), fs(h[11]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleID
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchCVlanID
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchSVlanID
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchCTPID
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleMatchEthertype
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCTag
+		v7 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSTag
+		v8 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCPcp
+		v9 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSPcp
+		v10 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddCTPID
+		v11 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i].MsanOnuVlanProfileRuleAddSTPID
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]), fs(h[10]), fs(h[11]))
+	tw.Flush() // calculate column width and print table
+}
+
+// multicast (igmp) profiles = 4 desired columns
+func twIgmpProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileIgmpSnooping
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileIgmpProxy
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry[i].MsanMulticastProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]))
+	tw.Flush() // calculate column width and print table
+}
+
+// onu multicast (igmp) profiles = 5 desired columns
+func twOnuIgmpProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpMode
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpSnoopingFastLeave
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileIgmpProxy
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry[i].MsanOnuMulticastProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]))
+	tw.Flush() // calculate column width and print table
+}
+
+// security profiles = 10 desired columns
+func twSecurityProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	fmt.Fprintf(tw, f, h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7], h[8], h[9])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]))
+
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileProtectedPort
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileMacSg
+		v3 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileMacLimit
+		v4 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfilePortSecurity
+		v5 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileArpInspec
+		v6 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileIPSg
+		v7 := []int{t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitDhcp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitIgmp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitPppoe, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitStp, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileAppRateLimitMn}
+		v8 := []int{t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlBroadcast, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlUnicast, t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileStormControlMulticast}
+		v9 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry[i].MsanSecurityProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]), fs(h[3]), fs(h[4]), fs(h[5]), fs(h[6]), fs(h[7]), fs(h[8]), fs(h[9]))
+	tw.Flush() // calculate column width and print table
+}
+
+// l2cp profiles = 3 desired columns
+func twL2cpProfiles(t *IskratelMsan, f string, h []string) {
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+
+	fmt.Fprintf(tw, f, h[0], h[1], h[2])
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]))
+	for i := 0; i < len(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry); i++ {
+		v0 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileName
+		v1 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileDescription
+		v2 := t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry[i].MsanL2CpProfileUsage
+		fmt.Fprintf(tw, f, v0, v1, v2)
+	}
+	fmt.Fprintf(tw, f, fs(h[0]), fs(h[1]), fs(h[2]))
+	tw.Flush() // calculate column width and print table
+}

@@ -1,0 +1,28 @@
+Sep  6 11:58:15 s_insne@ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Sep  6 12:00:55 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Sep  6 12:00:56 s_insne@ls2088ardb element-admin.sh: CMD: element-admin.sh --set-active-release [with relevant options: --product=reserved]
+Sep  6 12:01:01 s_insne@ls2088ardb element-admin.sh: Changing of bootloader to 'reserved' finished [rv=0].
+Sep  6 12:01:01 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Sep  7 17:35:12 s_insne@ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Sep  7 17:38:02 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Sep  8 11:25:42 s_insne@ls2088ardb element-admin.sh: CMD: element-admin.sh --set-active-release [with relevant options: --product=reserved]
+Sep  8 11:25:43 s_insne@ls2088ardb element-admin.sh: Changing of bootloader to 'reserved' finished [rv=0].
+Sep  8 11:25:43 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:30:40 s_insne@ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:30:42 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:30:54 s_insne@ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:30:55 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:31:54 s_insne@ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 15:34:29 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Feb 11 16:29:27 s_insne@ls2088ardb element-admin.sh: CMD: element-admin.sh --set-active-release [with relevant options: --product=reserved]
+Feb 11 16:29:28 s_insne@ls2088ardb element-admin.sh: Changing of bootloader to 'reserved' finished [rv=0].
+Feb 11 16:29:28 s_insne@ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 19:56:44 ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 19:56:46 ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 20:07:25 ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 20:07:27 ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 20:09:29 ls2088ardb element-admin.sh: Created sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 20:12:51 ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
+Jan  4 20:34:51 ls2088ardb element-admin.sh: CMD: element-admin.sh --set-active-release [with relevant options: --product=reserved]
+Jan  4 20:34:52 ls2088ardb element-admin.sh: Changing of bootloader to 'reserved' finished [rv=0].
+Jan  4 20:34:52 ls2088ardb element-admin.sh: Removed sysup lock file /var/lock/sysup/sysupActionsDisabled
