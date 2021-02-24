@@ -8,9 +8,7 @@ import (
 	"os"
 	"strings"
 
-	//"time"
-
-	"iskratel/gopon"
+	"github.com/lindsaybb/gopon"
 )
 
 var (
