@@ -142,6 +142,34 @@ func (sp *ServiceProfile) Copy(newName string) (*ServiceProfile, error) {
 	return nsp, nil
 }
 
+// ServiceProfileEssentialHeaders ensure correct order of entries is maintained for Tabwriter
+var ServiceProfileEssentialHeaders = []string{
+	"Name",
+	"Flow Profile",
+	"VLAN Profile",
+	"ONU Flow Profile",
+	"ONU TCONT Profile",
+	"ONU VLAN Profile",
+	"Virtual GEM Port",
+	"ONU TP Type",
+}
+
+// ListEssentialSubProfiles lists currently provisioned values of a Service Profile in a map of profile:name
+func (sp *ServiceProfile) ListEssentialSubProfiles() map[string]interface{} {
+	var EssentialServiceProfile = map[string]interface{}{
+		ServiceProfileEssentialHeaders[0]: sp.GetName(),
+		ServiceProfileEssentialHeaders[1]: sp.FlowProfileName,
+		ServiceProfileEssentialHeaders[2]: sp.VlanProfileName,
+		ServiceProfileEssentialHeaders[3]: sp.OnuFlowProfileName,
+		ServiceProfileEssentialHeaders[4]: sp.OnuTcontProfileName,
+		ServiceProfileEssentialHeaders[5]: sp.OnuVlanProfileName,
+		ServiceProfileEssentialHeaders[6]: sp.OnuVirtGemPortID,
+		ServiceProfileEssentialHeaders[7]: ConvertOnuTPToString(sp.OnuTpType),
+	}
+
+	return EssentialServiceProfile
+}
+
 // ServiceProfileHeaders ensure correct order of entries is maintained for Tabwriter
 var ServiceProfileHeaders = []string{
 	"Name",
@@ -160,9 +188,9 @@ var ServiceProfileHeaders = []string{
 	"PPPoE IA",
 }
 
-// ListSubProfiles is a Get command for currently provisioned values of a Service Profile, returns a map profile:name
+// ListSubProfiles lists currently provisioned values of a Service Profile in a map of profile:name
 func (sp *ServiceProfile) ListSubProfiles() map[string]interface{} {
-	var EssentialServiceProfile = map[string]interface{}{
+	var ServiceProfile = map[string]interface{}{
 		ServiceProfileHeaders[0]:  sp.GetName(),
 		ServiceProfileHeaders[1]:  sp.FlowProfileName,
 		ServiceProfileHeaders[2]:  sp.VlanProfileName,
@@ -179,7 +207,7 @@ func (sp *ServiceProfile) ListSubProfiles() map[string]interface{} {
 		ServiceProfileHeaders[13]: sp.GetPppoeIaNonDefaults(),
 	}
 
-	return EssentialServiceProfile
+	return ServiceProfile
 }
 
 // GetDhcpRaNonDefaults returns a slice of any values that are not default for parameters related to DHCP Relay Agent
@@ -327,6 +355,36 @@ func (sp *ServiceProfile) SetOnuTpUniBitMap(id int) {
 // Tabwrite displays the essential information of Service Profile in organized columns
 func (sp *ServiceProfile) Tabwrite() {
 	// first get the data as a map
+	l := sp.ListEssentialSubProfiles()
+	// initiate a tabwriter
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	// write tab-separated header values
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", v)
+	}
+	fmt.Fprintf(tw, "\n")
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	// use the Headers as key in the data map to display values in columns
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", l[v])
+	}
+	fmt.Fprintf(tw, "\n")
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	// calculate column width and print table from tw buffer
+	tw.Flush()
+}
+
+// Tabwrite displays the essential information of Service Profile in organized columns
+func (sp *ServiceProfile) TabwriteFull() {
+	// first get the data as a map
 	l := sp.ListSubProfiles()
 	// initiate a tabwriter
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
@@ -374,8 +432,62 @@ func (spl *ServiceProfileList) Separate() []*ServiceProfile {
 	return list
 }
 
+// NameSlice generate a []string of the Service Profile Names
+func (spl *ServiceProfileList) NameSlice() []string {
+	var sl []string
+	for i := 0; i < len(spl.Entry); i++ {
+		sl = append(sl, spl.Entry[i].Name)
+	}
+	return sl
+}
+
+// ProfileExists ensures the supplied Service Profile name is already provisioned on the OLT
+func (spl *ServiceProfileList) ProfileExists(name string) bool {
+	sl := spl.NameSlice()
+	for _, sp := range sl {
+		if name == sp {
+			return true
+		}
+	}
+	return false
+}
+
 // Tabwrite displays the essential information of a list of Service Profiles in organized columns
 func (spl *ServiceProfileList) Tabwrite() {
+	// create the writer
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	// write tab-separated header values to tw buffer
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", v)
+	}
+	fmt.Fprintf(tw, "\n")
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	sps := spl.Separate()
+	for _, sp := range sps {
+		// for each service profile get the data as a map
+		l := sp.ListEssentialSubProfiles()
+		// iterate over the map using the header as string key
+		for _, v := range ServiceProfileEssentialHeaders {
+			fmt.Fprintf(tw, "%v\t", l[v])
+		}
+		fmt.Fprintf(tw, "\n")
+	}
+
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range ServiceProfileEssentialHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	// calculate column width and print table from tw buffer
+	tw.Flush()
+}
+
+// Tabwrite displays the full information of a list of Service Profiles in organized columns
+func (spl *ServiceProfileList) TabwriteFull() {
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
@@ -407,56 +519,3 @@ func (spl *ServiceProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateServiceProfile(h []string) ([]byte) {
-	//serviceProfiles: []string{"Service", "Flow", "Multicast", "Vlan", "Security", "Onu Flow", "Onu Vlan", "Onu Multicast", "Onu Tcont", "vGem", "Onu-Tp", "UniBit"}
-	//serviceProfiles: []string{"RestTest", "RestTest", "", "RestTest", "", "RestTest", "", "", "RestTest", "22", "2", "AAAA"},
-	w := new(ServiceProfile)
-	w.MsanServiceProfileName = h[0] // "RestTest"
-	w.MsanServiceProfileServiceFlowProfileName = h[1] // "RestTest"
-	w.MsanServiceProfileMulticastProfileName = h[2]
-	w.MsanServiceProfileVlanProfileName = h[3] //"RestTest"
-	w.MsanServiceProfileL2CpProfileName = ""	// don't do this here
-	w.MsanServiceProfileSecurityProfileName = h[4] // "RestTest"
-	w.MsanServiceProfileDhcpRa = 0 // disable, def [0:disable, 1:allowClients, 2:allowServers, 3:allowAll]
-	w.MsanServiceProfileDhcpRaTrustClients = 0 // notTrust, def [1:trust]
-	w.MsanServiceProfileDhcpRaOpt82UnicastExtension = 0 // not used, def [1:used] (ra must be in allow-all or allow-client mode)
-	w.MsanServiceProfileDhcpRaOpt82Insert = 0 // notInsert, def [1:insert] (ra must be in allow-all or allow-client mode)
-	w.MsanServiceProfileDhcpRaRateLimit = 5 // default value, range 0-1000 where 0 is no limiting
-	w.MsanServiceProfilePppoeIA = 0 // disable, def [1:enable]
-	w.MsanServiceProfilePppoeIARateLimit = 5 // default value, range 0-1000 where 0 is no limiting
-	w.MsanServiceProfileDhcpv6Ra = 0 // disable, def [1:allow clients]
-	w.MsanServiceProfileDhcpv6RaTrustClients = 0 // notTrust, def [1:trust]
-	w.MsanServiceProfileDhcpv6RaRemoteIDEnterpriseNum = 1332 // default value, range 1-999999
-	w.MsanServiceProfileDhcpRaCircuitIDType = 1 // 'iskratel', def [1:iskratel, 2:standard, 3:atm, 4:custom]
-	w.MsanServiceProfilePPPoeIACircuitIDType = 1 // 'iskratel', def [1:iskratel, 2:standard, 3:atm, 4:custom]
-	w.MsanServiceProfileDhcpRaCircuitIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfileDhcpRaRemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfilePPPoeIACircuitIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfilePPPoeIARemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfileDhcpv6RaInterfaceIDType = 2 // 'standard', def [1:iskratel, 2:standard, 3:custom]
-	w.MsanServiceProfileDhcpv6RaInterfaceIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfileDhcpv6RaRemoteIDCustomFormat = "" // string: see macros reference, recommended in CLI
-	w.MsanServiceProfileOnuFlowProfileName = h[5] //"RestTest"
-	w.MsanServiceProfileOnuVlanProfileName = h[6] //"RestTest"
-	w.MsanServiceProfileOnuMulticastProfileName = h[7] //"RestTest"
-	w.MsanServiceProfileOnuTcontProfileName = h[8] // "RestTest"
-	w.MsanServiceProfileOnuVirtGemPortID, _ = strconv.Atoi(h[9]) // 1 is default, range 10-31, can't overlap on same device
-	w.MsanServiceProfileOnuTpType, _ = strconv.Atoi(h[10])	// 'veip' def [1:veip, 2:iphost, 3:uni]
-	w.MsanServiceProfileOnuTpUniBitMap = h[11] // "AAAA" // docs say binary value representing 1-16 (2^3), can only be set when ONU TP type is UNI (3); results show a string representing the bits
-	//w.MsanServiceProfileUsage
-
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

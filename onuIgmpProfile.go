@@ -263,30 +263,3 @@ func (p *OnuIgmpProfile) SetIgmpProxy(state bool, address ...string) {
 	return
 }
 */
-/*
-// Support ticket open for why TCI VLAN ID cannot use default value of 0
-func generateOnuIgmpProfile(h []string) ([]byte) {
-	//onuIgmpProfiles: []string{"Name", "IgmpMode", "IgmpProxy", "SnoopingFastLeave", "DsGemPort"},
-	//onuIgmpProfiles: []string{"RestTest", "2", "2", "1", "3998"},
-	w := new(OnuIgmpProfile)
-	w.MsanOnuMulticastProfileName = h[0]
-	w.MsanOnuMulticastProfileIgmpMode = 2 // snooping, default is flooding [1:flood, 2:snoop]
-	w.MsanOnuMulticastProfileIgmpProxy = 2 	// disabled, def [1:enable]
-	w.MsanOnuMulticastProfileIgmpSnoopingFastLeave = 1 	// enabled, def [2:disable]
-	w.MsanOnuMulticastProfileUsIgmpTciVlanID = 1 	//# 0 is supposed to be not defined/def (tag control information) but isn't allowed, 1 works, int32 value 0..4094
-	w.MsanOnuMulticastProfileUsIgmpTciPcpValue = 0 	// not defined, def
-	w.MsanOnuMulticastProfileUsIgmpTciCtrlMode = 5 	// smart, def [1:transparent, 2:add, 3:replace, 4:replace-vid-only, 5:smart]
-	w.MsanOnuMulticastProfileDsVlanTagging = 2 	// disable, def
-	w.MsanOnuMulticastProfileDsGemPort = 3998 	// 4000 is default, range 3800-4000, cannot overlap on same device
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuMulticastProfileTable.MsanOnuMulticastProfileEntry, *w)
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

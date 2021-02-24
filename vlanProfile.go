@@ -185,38 +185,3 @@ func (vpl *VlanProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateVlanProfile(h []string) ([]byte) {
-	//vlanProfiles: []string{"RestTest", "CVidList"},
-	//vlanProfiles: []string{"RestTest", "110"},
-	cvids, err := generateVlanList(h[1])
-	if err != nil {
-		cvids = []int{1}
-	}
-	cvidString := getB64FromVlan(cvids)
-	w := new(VlanProfile)
-	w.MsanVlanProfileName = h[0]
-	w.MsanVlanProfileCVid = cvidString
-	w.MsanVlanProfileCVidNative = -1 //, _ = strconv.Atoi(h[2])	//"-1"
-	w.MsanVlanProfileCVidRemark = -1 //, _ = strconv.Atoi(h[3])	//"-1"
-	w.MsanVlanProfileSVid = -1 //, _ = strconv.Atoi(h[4])	//"-1"
-	w.MsanVlanProfileSEtherType = 34984 //, _ = strconv.Atoi(h[5])	//"34984"
-	w.MsanVlanProfileNetworkPortCTag = 1 //, _ = strconv.Atoi(h[6])	//"1"
-	w.MsanVlanProfileCVidExternal = 2 //, _ = strconv.Atoi(h[7])	//"2"
-	w.MsanVlanProfileCVidNativeExternal = 2 //, _ = strconv.Atoi(h[8])	//"2"
-	w.MsanVlanProfileCVidRemarkExternal = 2 //, _ = strconv.Atoi(h[9])	//"2"
-	w.MsanVlanProfileSVidExternal = 2 //, _ = strconv.Atoi(h[10])	//"2"
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanVlanProfileTable.MsanVlanProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

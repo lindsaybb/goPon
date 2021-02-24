@@ -175,34 +175,3 @@ func (ofpl *OnuFlowProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateOnuFlowProfile(h []string) ([]byte) {
-	//onuFlowProfiles: []string{"Name", "CVID-List"},
-	//onuFlowProfiles: []string{"RestTest", "110"},
-	cvids, err := generateVlanList(h[1])
-	if err != nil {
-		cvids = []int{1}
-	}
-	cvidString := getB64FromVlan(cvids)
-	w := new(OnuFlowProfile)
-	w.MsanOnuFlowProfileName = h[0]
-	w.MsanOnuFlowProfileMatchUsCVlanIDRange = cvidString
-	w.MsanOnuFlowProfileMatchUsCPcp = -1 //, _ = strconv.Atoi(h[2])	//"-1"
-	w.MsanOnuFlowProfileUsCdr = 128 //, _ = strconv.Atoi(h[3])	//"128"
-	w.MsanOnuFlowProfileUsPdr = 1244160 //, _ = strconv.Atoi(h[4])	//"1244160"
-	w.MsanOnuFlowProfileUsFlowPriority = 0 //, _ = strconv.Atoi(h[5])	//"0"
-	w.MsanOnuFlowProfileDsFlowPriority = 0 //, _ = strconv.Atoi(h[6])	//"0"
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuFlowProfileTable.MsanOnuFlowProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

@@ -302,28 +302,3 @@ func (otpl *OnuTcontProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateOnuTcontProfile(h []string) ([]byte) {
-	//onuTcontProfiles: []string{"Name", "TcontID", "TcontType", "FixedDataRate", "AssuredDataRate", "MaxDataRate"},
-	//onuTcontProfiles: []string{"RestTest", "4", "5", "512", "2048", "750000"},
-	w := new(OnuTcontProfile)
-	w.MsanOnuTcontProfileName = h[0]
-	w.MsanOnuTcontProfileTcontID = 4 //, _ = strconv.Atoi(h[1])	//"4"
-	w.MsanOnuTcontProfileTcontType = 5 //, _ = strconv.Atoi(h[2])	//"5"
-	w.MsanOnuTcontProfileFixedDataRate = 512 //, _ = strconv.Atoi(h[3])	//"512"
-	w.MsanOnuTcontProfileAssuredDataRate = 2048 //, _ = strconv.Atoi(h[4])	//"2048"
-	w.MsanOnuTcontProfileMaxDataRate = 750000 //, _ = strconv.Atoi(h[5])	//"750000"
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuTcontProfileTable.MsanOnuTcontProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

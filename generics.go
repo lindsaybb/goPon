@@ -28,7 +28,6 @@ var (
 const (
 	auth             = "session=em+protection-user=admin&em+protection-pw=admin"
 	empty            = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-	defOnuAuthFile   = "./ref/authList.txt"
 	responseOk       = "200 OK"
 	serviceProfiles  = "msanServiceProfileTable"
 	flowProfiles     = "msanServiceFlowProfileTable"
@@ -176,6 +175,7 @@ func toString(v interface{}) string {
 	}
 }
 
+/*
 func isUrlEncoded(intf string) bool {
 	if strings.Contains(intf, "/") {
 		return false
@@ -183,7 +183,7 @@ func isUrlEncoded(intf string) bool {
 	// could do more filtering but that is satisfactory
 	return true
 }
-
+*/
 func UrlEncodeInterface(intf string) string {
 	return strings.ReplaceAll(intf, "/", "%2F")
 }
@@ -207,11 +207,3 @@ func parseAuth(auth string) (user, pass string) {
 	return
 
 }
-
-/*
-// DON'T NEED THIS WITH DYNAMIC INPUT
-// formatString returns a format string for the length of a slice of values (column headers)
-func fors(i int) string {
-	return strings.Repeat("%v\t", i)
-}
-*/

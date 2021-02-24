@@ -27,24 +27,3 @@ func (p *L2cpProfile) GenerateJson() (name string, data []byte) {
 	}
 	return p.Name, data
 }
-
-/*
-func generateL2cpProfile(h []string) ([]byte) {
-	//l2cpProfiles: []string{"Name", "Descr."},
-	//l2cpProfiles: []string{"RestTest", "some text"},
-	w := new(L2cpProfile)
-	w.MsanL2CpProfileName = h[0]
-	w.MsanL2CpProfileDescription = h[1]
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanL2CpProfileTable.MsanL2CpProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

@@ -7,6 +7,8 @@ import (
 	"text/tabwriter"
 )
 
+// this data structure is very simplistic, the real logic is held by the lumiaOlt object
+
 type OnuProfile struct {
 	IfName             string `json:"ifName"`
 	ServiceProfileName string `json:"msanServiceProfileName"`
@@ -46,6 +48,7 @@ func (op *OnuProfile) ListEssentialParams() map[string]interface{} {
 	return EssentialOnuProfile
 }
 
+/*
 func (opl *OnuProfileList) CombineSameInterfaces() map[string][]string {
 	combine := make(map[string][]string)
 	for _, op := range opl.Entry {
@@ -53,7 +56,7 @@ func (opl *OnuProfileList) CombineSameInterfaces() map[string][]string {
 	}
 	return combine
 }
-
+*/
 //var OnuProfileMap map[string][]string
 
 func (opl *OnuProfileList) Tabwrite() {

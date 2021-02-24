@@ -220,32 +220,3 @@ func (ipl *IgmpProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateIgmpProfile(h []string) ([]byte) {
-	//igmpProfiles: []string{"Name", "Snooping", "FastLeave", "Proxy", "Proxy-IP"},
-	//igmpProfiles: []string{"RestTest", "1", "0", "0", "0.0.0.0"},
-	w := new(IgmpProfile)
-	w.MsanMulticastProfileName = h[0]
-	w.MsanMulticastProfileIgmpSnooping = 1 //, _ = strconv.Atoi(h[1])	//"1"
-	w.MsanMulticastProfileIgmpSnoopingFastLeave = 0 //, _ = strconv.Atoi(h[2])	//"0"
-	w.MsanMulticastProfileIgmpSnoopingSuppression = 0 // "0"
-	w.MsanMulticastProfileIgmpProxy = 0 //, _ = strconv.Atoi(h[3])	//"0"
-	w.MsanMulticastProfileIgmpProxyIPAddress = "0.0.0.0" // h[3]
-	w.MsanMulticastProfileIgmpFiltering = 1 //"1"
-	w.MsanMulticastProfileMulticastGroupLimit = 0 	//"0"
-	w.MsanMulticastProfileMvr = 0 // "0"
-	w.MsanMulticastProfileIgmpProxyProtocolVersion = 1 // "1"
-	//w.MsanMulticastProfileUsage	//"2"
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanMulticastProfileTable.MsanMulticastProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

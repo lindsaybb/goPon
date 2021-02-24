@@ -1,0 +1,11 @@
+Moving hard to publish this week
+But threw myself a new hook by changing the way the LumiaOlt object tracks ONU
+I needed to combine the SN, Intf and Attached Profile logic
+This was not available in the existing data model
+So I made a new object, the Register, and a Registry [] object
+This is an optimized cache that holds the provisioning info
+And can be updated from a file while only performing Gets to see what the OLT currently believes
+
+Unfortunately I was making good progress towards completion of my demos
+But I saved my state before moving forward in a zip, and built the working demos
+It shouldn't be much more cleanup, but its a mess right now

@@ -1,3 +1,0 @@
-2021-02-08 20:29:37 SPD01 SYS ERR_ACS_CHANGED           SPD01.Task acs|0.End of file reached durring read: /opt/si2000/neroot/active/etc/config/config.scr , Data read: 3813
-2021-02-08 20:29:37 SPD01 SYS ERR_ACS_CHANGED           SPD01.Task acs|0.From file itConfig.txt read 3814 bytes.
-2021-02-08 20:29:37 SPD01 SYS ERR_ACS_CHANGED           SPD01.Task acs|0.Start uploading buffer to ACS server.

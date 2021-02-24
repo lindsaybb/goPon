@@ -1,0 +1,87 @@
+go run main.go -G -A 10.5.100.10
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+Name          Flow Profile  VLAN Profile  ONU Flow Profile  ONU TCONT Profile  ONU VLAN Profile  Virtual GEM Port  ONU TP Type  Security Profile  IGMP Profile  ONU IGMP Profile  L2CP Profile  DHCP RA  PPPoE IA  
+----          ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+101_CWMP      MB            101           101               T5I6__M-20M        A101              2                 IPHOST                                                                       []       []        
+102_DATA      MB            102           102               T5I2__M-100M                         10                VEIP                                                                         []       []        
+102_DATA_Acc  MB            102           102               T5I1__M-1G         A102              11                UNI                                                                          []       []        
+102_DATA_Uni  MB            102           102               T5I1__M-1G                           11                UNI                                                                          []       []        
+DEFAULT       DEFAULT       DEFAULT                                                              1                 VEIP                                                                         []       []        
+----          ------------  ------------  ----------------  -----------------  ----------------  ----------------  -----------  ----------------  ------------  ----------------  ------------  -------  --------  
+[486.287832ms] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceFlowProfileTable
+------------
+Name      UsMatchVlanProfile  DsMatchVlanProfile  UsMatchOther         DsMatchOther         UsHandling  DsHandling  QueuingPriority  SchedulingMode  
+----      ------------------  ------------------  ------------         ------------         ----------  ----------  ---------------  --------------  
+DEFAULT   false               false               []                   []                   []          []          0                Weighted        
+MB        true                true                [map[MatchUsAny:2]]  [map[MatchDsAny:2]]  []          []          0                Weighted        
+def_TEST  false               false               [map[MatchUsAny:2]]  [map[MatchDsAny:2]]  []          []          0                Weighted        
+----      ------------------  ------------------  ------------         ------------         ----------  ----------  ---------------  --------------  
+[5.767095784s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanVlanProfileTable
+------------
+Name     C-Vid  C-Vid Native  S-Vid  S-Ethertype  
+----     -----  ------------  -----  -----------  
+101      [101]  -1            -1     34984        
+102      [102]  -1            -1     34984        
+DEFAULT  [1]    1             -1     34984        
+----     -----  ------------  -----  -----------  
+[10.789968884s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuFlowProfileTable
+------------
+Name  MatchUsC-VidRange  MatchUsCPcp  UsFlowPriority  
+----  -----------------  -----------  --------------  
+101   [101]              -1           0               
+102   [102]              -1           0               
+----  -----------------  -----------  --------------  
+[20.816306223s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuTcontProfileTable
+------------
+Name          Description    ID  Type  Fixed  Assured  Max    
+----          -----------    --  ----  -----  -------  ---    
+New           T5I1__M-256Kb  1   5     0Kb    0Kb      256Kb  
+T5I1__M-1G    T5I1__M-1Gb    1   5     0Kb    0Kb      1Gb    
+T5I2__M-100M  T5I2__M-98Mb   2   5     0Kb    0Kb      98Mb   
+T5I6__M-20M   T5I6__M-20Mb   6   5     0Kb    0Kb      20Mb   
+----          -----------    --  ----  -----  -------  ---    
+[31.314694598s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanSecurityProfileTable
+------------
+Name  Port-Protect  MAC-SG  MAC-Limit  Port-Sec  Arp-Inspect  IPv4-SG  IPv6-SG  Storm-Control  AppRateLimit    
+----  ------------  ------  ---------  --------  -----------  -------  -------  -------------  ------------    
+def   true          false   0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+msg   true          true    0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+name  false         true    0          false     false        true     true     [-1 100 -1]    [5 5 5 5 1000]  
+nopp  false         false   0          false     false        false    false    [-1 100 -1]    [5 5 5 5 1000]  
+----  ------------  ------  ---------  --------  -----------  -------  -------  -------------  ------------    
+[41.519443232s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanMulticastProfileTable
+------------
+Name   Snooping  Fast-Leave  Suppression  Proxy  Filtering  Version  
+----   --------  ----------  -----------  -----  ---------  -------  
+def    false     true        false        false  1          <nil>    
+flood  false     true        false        false  1          <nil>    
+name   true      true        false        false  1          <nil>    
+snoop  true      true        false        false  1          <nil>    
+supp   true      true        true         false  1          <nil>    
+----   --------  ----------  -----------  -----  ---------  -------  
+[1m46.604232431s] Error running demo: <nil>
+
+GET Request: https://10.5.100.10/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuMulticastProfileTable
+------------
+Name   Mode      Proxy  Fast-Leave  UsTci    DsGem  
+----   ----      -----  ----------  -----    -----  
+def    Flooding  false  true        [0 0 5]  4000   
+name   Snooping  false  true        [0 0 5]  4000   
+name1  Flooding  true   true        [0 0 5]  4000   
+name2  Flooding  false  true        [0 0 5]  4000   
+----   ----      -----  ----------  -----    -----  
+[1m57.263298434s] Error running demo: <nil>

@@ -255,28 +255,6 @@ func (p *SecurityProfile) GenerateJson() (name string, data []byte) {
 	return p.Name, data
 }
 
-/*
-Name                   string `json:"msanSecurityProfileName"`
-	ProtectedPort          int    `json:"msanSecurityProfileProtectedPort"`
-	MacSg                  int    `json:"msanSecurityProfileMacSg"`
-	MacLimit               int    `json:"msanSecurityProfileMacLimit"`
-	PortSecurity           int    `json:"msanSecurityProfilePortSecurity"`
-	ArpInspec              int    `json:"msanSecurityProfileArpInspec"`
-	IPSg                   int    `json:"msanSecurityProfileIpSg"`
-	IPSgIpv6               int    `json:"msanSecurityProfileIpSgIpv6"`
-	IPSgFilteringMode      int    `json:"msanSecurityProfileIpSgFilteringMode"`
-	IPSgBindingLimit       int    `json:"msanSecurityProfileIpSgBindingLimit"`
-	IPSgBindingLimitDhcpv6 int    `json:"msanSecurityProfileIpSgBindingLimitDhcpv6"`
-	IPSgBindingLimitND     int    `json:"msanSecurityProfileIpSgBindingLimitND"`
-	StormControlBroadcast  int    `json:"msanSecurityProfileStormControlBroadcast"`
-	StormControlMulticast  int    `json:"msanSecurityProfileStormControlMulticast"`
-	StormControlUnicast    int    `json:"msanSecurityProfileStormControlUnicast"`
-	AppRateLimitDhcp       int    `json:"msanSecurityProfileAppRateLimitDhcp"`
-	AppRateLimitIgmp       int    `json:"msanSecurityProfileAppRateLimitIgmp"`
-	AppRateLimitPppoe      int    `json:"msanSecurityProfileAppRateLimitPppoe"`
-	AppRateLimitStp        int    `json:"msanSecurityProfileAppRateLimitStp"`
-	AppRateLimitMn
-*/
 var SecurityProfileHeaders = []string{
 	"Name",
 	"Port-Protect",
@@ -375,42 +353,3 @@ func (spl *SecurityProfileList) Tabwrite() {
 	// calculate column width and print table from tw buffer
 	tw.Flush()
 }
-
-/*
-func generateSecurityProfile(h []string) ([]byte) {
-	//securityProfiles: []string{"Name", "Protected", "MAC-SG", "MAC-Limit", "Port-Sec", "Arp-Inspect", "IP-SG", "IPv6-SG", "Storm-Ctl", "AppRateLimit"},
-	//securityProfiles: []string{"RestTest", "1", "0", "0", "0", "0", "1", "0", "-1, -1, 100", "5, 5, 5, 5, 5"},
-	w := new(SecurityProfile)
-	w.MsanSecurityProfileName = h[0]
-	w.MsanSecurityProfileProtectedPort = 1 //, _ = strconv.Atoi(h[1])	//"1"
-	w.MsanSecurityProfileMacSg = 0 //, _ = strconv.Atoi(h[2])	//"0"
-	w.MsanSecurityProfileMacLimit = 0 //, _ = strconv.Atoi(h[3])	//"0"
-	w.MsanSecurityProfilePortSecurity = 0 //, _ = strconv.Atoi(h[4])	//"0"
-	w.MsanSecurityProfileArpInspec = 0 //, _ = strconv.Atoi(h[5])	//"0"
-	w.MsanSecurityProfileIPSg = 1 //, _ = strconv.Atoi(h[6])	//"1"
-	w.MsanSecurityProfileIPSgIpv6 = 0 //, _ = strconv.Atoi(h[7])	//"0"
-	w.MsanSecurityProfileIPSgFilteringMode = 2 //"2"
-	w.MsanSecurityProfileIPSgBindingLimit = 4 //"4"
-	w.MsanSecurityProfileIPSgBindingLimitDhcpv6 = 4 //"4"
-	w.MsanSecurityProfileIPSgBindingLimitND = 4 //"4"
-	w.MsanSecurityProfileStormControlBroadcast = -1 //, _ = strconv.Atoi(h[12])	//"-1"
-	w.MsanSecurityProfileStormControlMulticast = -1 //, _ = strconv.Atoi(h[13])	//"-1"
-	w.MsanSecurityProfileStormControlUnicast = 100 //, _ = strconv.Atoi(h[14])	//"100"
-	w.MsanSecurityProfileAppRateLimitDhcp = 5 //, _ = strconv.Atoi(h[15])	//"5"
-	w.MsanSecurityProfileAppRateLimitIgmp = 5 //, _ = strconv.Atoi(h[16])	//"5"
-	w.MsanSecurityProfileAppRateLimitPppoe = 5 //, _ = strconv.Atoi(h[17])	//"5"
-	w.MsanSecurityProfileAppRateLimitStp = 5 //, _ = strconv.Atoi(h[18])	//"5"
-	w.MsanSecurityProfileAppRateLimitMn = 5 //, _ = strconv.Atoi(h[19])	//"5"
-
-	//fmt.Println(w)
-	//t := new(IskratelMsan)
-	//t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry = append(t.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanSecurityProfileTable.MsanSecurityProfileEntry, *w)
-
-	data, err := json.Marshal(w)
-	if err != nil {
-		fmt.Println(err)
-		return nil
-	}
-	return data
-}
-*/

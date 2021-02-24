@@ -9,18 +9,36 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"text/tabwriter"
 )
 
 type LumiaOlt struct {
-	Host            string
-	Current         *IskratelMsan
-	Cache           *IskratelMsan
-	AuthorizedOnuSn []string
-	RegisteredOnuSn map[string]string
+	Host         string        // ip address or domain name
+	Current      *IskratelMsan // last updated complete data structure
+	Cache        *IskratelMsan // last changed complete data structure
+	Registration []*OnuRegister
 }
 
-// OnuRegistrationMap pairs the Onu Logical Interface(0/x/y) with the attached SerialNumber
-var OnuRegistrationMap map[string]string
+type OnuRegister struct {
+	SerialNumber string   // onu serialNumber
+	Interface    string   // onu interface 0/x/y
+	Services     []string // []string Service Profile names
+	// additional items like Model, SW Version can be collected here
+}
+
+var OnuRegisterHeaders = []string{
+	"Serial Number",
+	"Interface",
+	"Service Profiles",
+}
+
+func (o *OnuRegister) ConcatServices() string {
+	var services string
+	for i := 0; i < len(o.Services); i++ {
+		services += fmt.Sprintf("%s, ", o.Services[i])
+	}
+	return services
+}
 
 // NewIskratelMsan sets up a data structure for the specified Host
 func NewLumiaOlt(host string) *LumiaOlt {
@@ -89,6 +107,8 @@ func (l *LumiaOlt) GetCurrentLogs(path string) error {
 	return err
 }
 
+/*
+// ## not tailing properly ##
 // GetCurrentLogs accepts a path as output directory location, and prints Tail (last 10 lines) of each log as it is downloading
 func (l *LumiaOlt) GetCurrentLogsTail(path string) error {
 	absPath, err := filepath.Abs(path)
@@ -108,7 +128,7 @@ func (l *LumiaOlt) GetCurrentLogsTail(path string) error {
 	cl.Close()
 	return err
 }
-
+*/
 // UploadConfig uses Ftp to transfer Script (.scr) or InnboxConfig (.conf) to Olt from supplied path
 func (l *LumiaOlt) UploadConfig(path string) error {
 	var isScr, isConf bool
@@ -142,7 +162,7 @@ func (l *LumiaOlt) UploadConfig(path string) error {
 	return err
 }
 
-// DeleteConfig uses Ftp to remove Script (.scr) or InnboxConfig (.conf) from Olt ny name
+// DeleteConfig uses Ftp to remove Script (.scr) or InnboxConfig (.conf) from Olt by name
 func (l *LumiaOlt) DeleteConfig(path string) error {
 	var isScr, isConf bool
 	switch {
@@ -189,7 +209,7 @@ func (l *LumiaOlt) GetOnuBlacklist() (*OnuBlacklistList, error) {
 }
 
 // LoadOnuAuthList opens the supplied filepath and reads line-separated entries to build a slice of registered serial numbers
-// this should be modified to work with csv/excel files for simpler handling (maybe an external handler)
+// each line can include comma-, space- or tab-separated lists that include up to 6 service profiles to apply to the ONU registration
 func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 	absPath, err := filepath.Abs(path)
 	if err != nil {
@@ -199,27 +219,140 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 	if err != nil {
 		return err
 	}
-	var reg []string
 	s := bufio.NewScanner(authFile)
 	for s.Scan() {
-		sn := strings.TrimSpace(s.Text())
-		if len(sn) == 12 {
-			reg = append(reg, sn)
+		line := strings.Fields(s.Text())
+		if len(line) < 1 {
+			continue
 		}
-		if len(sn) == 8 {
-			sn = "ISKT" + sn
-			reg = append(reg, sn)
+		if len(line) > 7 {
+			line = line[0:6]
 		}
+		sn := strings.TrimSpace(line[0])
+		if len(sn) != 12 {
+			if len(sn) == 8 {
+				sn = "ISKT" + sn
+			} else {
+				fmt.Printf("%v: %s\n", ErrNotInput, line)
+				continue
+			}
+		}
+		if l.ValidateSn(sn) {
+			if len(line) < 2 {
+				fmt.Printf("%v: %s\n", ErrExists, sn)
+				continue
+			} // should be able to access that object and update its service profiles
+			// but this can wait until after the proper helper methods are created for the single
+		}
+		onuReg := &OnuRegister{
+			SerialNumber: sn,
+		}
+		// removing the AddSnToAuthList function
+		if len(line) < 2 {
+			continue
+		}
+		for i := 1; i < len(line); i++ {
+			onuReg.Services = append(onuReg.Services, line[i])
+		}
+		fmt.Println(onuReg)
+		l.Registration = append(l.Registration, onuReg)
 	}
-	// should this be an append or an overwrite?
-	l.AuthorizedOnuSn = reg
-	fmt.Printf("Authorized Onu SerialNumber list now has %d entries\n", len(l.AuthorizedOnuSn))
+	//fmt.Printf("Onu Registry now has %d entries\n", len(l.Registration))
 	return nil
 }
 
-// UpdateRegisteredOnuList updates the Olt's record of the Onu Serial Numbers currently active in the system
-// this list may differ from the AuthorizedOnuList if devices are pre-authorized but not yet deployed
-func (l *LumiaOlt) UpdateRegisteredOnuList() error {
+func (l *LumiaOlt) ListEssentialRegistryData(onuReg *OnuRegister) map[string]interface{} {
+	var OnuRegistryData = map[string]interface{}{
+		OnuRegisterHeaders[0]: onuReg.SerialNumber,
+		OnuRegisterHeaders[1]: onuReg.Interface,
+		OnuRegisterHeaders[2]: onuReg.ConcatServices(),
+	}
+	return OnuRegistryData
+}
+
+func (l *LumiaOlt) TabwriteRegistry() {
+	// initiate a tabwriter
+	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
+	// write tab-separated header values
+	for _, v := range OnuRegisterHeaders {
+		fmt.Fprintf(tw, "%v\t", v)
+	}
+	fmt.Fprintf(tw, "\n")
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range OnuRegisterHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	// use the Headers as key in the data map to display values in columns
+	for i := 0; i < len(l.Registration); i++ {
+		data := l.ListEssentialRegistryData(l.Registration[i])
+		for _, v := range OnuRegisterHeaders {
+			fmt.Fprintf(tw, "%v\t", data[v])
+		}
+		fmt.Fprintf(tw, "\n")
+	}
+
+	// write tab-separated spacers (-) reflecting the length of the headers
+	for _, v := range OnuRegisterHeaders {
+		fmt.Fprintf(tw, "%v\t", fs(v))
+	}
+	fmt.Fprintf(tw, "\n")
+	// calculate column width and print table from tw buffer
+	tw.Flush()
+}
+
+// GetOnuRegisterBySn looks through the OLT's Registration list by Serial Number and
+// returns the OnuRegister object of the matching serial number, or an error
+func (l *LumiaOlt) GetOnuRegisterBySn(sn string) (*OnuRegister, error) {
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].SerialNumber == sn {
+			return l.Registration[i], nil
+		}
+	}
+	return nil, ErrNotExists
+}
+
+// GetOnuRegisterByIntf looks through the OLT's Registration list by Interface (0/x/y) and
+// returns the OnuRegister object of the matching interface, or an error
+func (l *LumiaOlt) GetOnuRegisterByIntf(intf string) (*OnuRegister, error) {
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].Interface == intf {
+			return l.Registration[i], nil
+		}
+	}
+	return nil, ErrNotExists
+}
+
+// GetOnuRegistryProfileUsage looks through the OLT's Registration list by Service Profile names and
+// returns a list of the Serial Numbers using the requested service profile, if any
+func (l *LumiaOlt) GetOnuRegistryProfileUsage(sp string) []string {
+	var sl []string
+	for i := 0; i < len(l.Registration); i++ {
+		for _, p := range l.Registration[i].Services {
+			if p == sp {
+				sl = append(sl, l.Registration[i].SerialNumber)
+			}
+		}
+	}
+	return sl
+}
+
+// AddSnToAuthList adds a single Serial Number to the olt's AuthorizeOnuSn list.
+func (l *LumiaOlt) AddSnToAuthList(sn string) error {
+	if l.ValidateSn(sn) {
+		return ErrExists
+	}
+	onuReg := &OnuRegister{
+		SerialNumber: sn,
+	}
+	l.Registration = append(l.Registration, onuReg)
+	return nil
+}
+
+// UpdateOnuRegistry updates the Olt's record of the Onu Serial Numbers currently active in the system.
+// This list may differ from the AuthorizedOnuList if devices are pre-authorized but not yet deployed.
+// Replaces UpdateRegisteredOnuList
+func (l *LumiaOlt) UpdateOnuRegistry() error {
 	rawJson, err := RestGetProfiles(l.Host, onuConfig)
 	if err != nil {
 		return err
@@ -231,63 +364,176 @@ func (l *LumiaOlt) UpdateRegisteredOnuList() error {
 		l.CacheBack()
 		return err
 	}
+	// [NP0223] Intf is key, Sn is value
 	reg := make(map[string]string)
 	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuCfgTable.MsanOnuCfgEntry); i++ {
 		reg[l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuCfgTable.MsanOnuCfgEntry[i].IfName] = l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuCfgTable.MsanOnuCfgEntry[i].SerialNumber
-		//list = append(list, l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuCfgTable.MsanOnuCfgEntry[i].SerialNumber)
 	}
-	//if len(list) < 1 {
-	//	return ErrNotExists
-	//}
-	l.RegisteredOnuSn = reg
+	rawJson, err = RestGetProfiles(l.Host, onuProfiles)
+	if err != nil {
+		return err
+	}
+	//fmt.Println(string(rawJson))
+	l.CacheSwap()
+	err = json.Unmarshal(rawJson, &l.Current)
+	if err != nil {
+		l.CacheBack()
+		return err
+	}
+	// [NP0223] Intf is key, Profiles are value
+	preg := make(map[string][]string)
+	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServicePortProfileTable.MsanServicePortProfileEntry); i++ {
+		preg[l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServicePortProfileTable.MsanServicePortProfileEntry[i].IfName] = append(preg[l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServicePortProfileTable.MsanServicePortProfileEntry[i].IfName], l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServicePortProfileTable.MsanServicePortProfileEntry[i].ServiceProfileName)
+	}
+	for k, v := range reg {
+		if !l.ValidateSn(v) {
+			onu := &OnuRegister{
+				SerialNumber: v,
+				Interface:    k,
+				Services:     preg[k],
+			}
+			l.Registration = append(l.Registration, onu)
+		} else {
+			// the Serial Number already exists but is not necessarily up to date
+			onu, err := l.GetOnuRegisterBySn(v)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			onu.Interface = k
+			onu.Services = preg[k]
+		}
+	}
+	// remove any incomplete entries
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].Interface == "" {
+			err = l.RemoveOnuAuthEntry(l.Registration[i].SerialNumber)
+			if err != nil {
+				return err
+			}
+		}
+	}
 
 	return nil
 }
 
-// ValidateSn loops over the list of Authorized Onu Serial Numbers in the Olt and returns a bool if the supplied value exists in list
+// ValidateSn loops over the list of Registered Onu, looking at Serial Numbers to see if the supplied value already exists
 func (l *LumiaOlt) ValidateSn(sn string) bool {
-	for _, v := range l.AuthorizedOnuSn {
-		if sn == v {
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].SerialNumber == sn {
 			return true
 		}
 	}
 	return false
 }
 
-// NextAvailableInterface receives an Olt Interface (0/x) and checks the OnuRegistrationMap to find the next available Onu Subinterface(0/x/y)
+// NextAvailableOnuInterface receives an Olt Interface (0/x) and checks the Registration index to find the next available Onu Subinterface(0/x/y)
 // returns nil if there are no available interfaces left (1-128); otherwise returns the given Olt interface with an Onu Subinterface attached
 func (l *LumiaOlt) NextAvailableOnuInterface(intf string) string {
-	var list []int
-	var entry int
-	for k := range l.RegisteredOnuSn {
-		if strings.Contains(k, intf) {
-			add := strings.Split(k, "/")
-			// this is a controlled list, where we control the values and can assume the length will be 3
-			// the third segment represents the in-use sub-interface on the filtered olt port
-			entry, _ = strconv.Atoi(add[2])
-			list = append(list, entry)
-		}
-	}
+	// Stateful Issue: called in sequence supplies the same next value
+	// need to update list with given out interface otherwise!
+	list := l.GenerateUsedSubinterfaceList(intf)
+	// need to add the given out interface to the known list as a temporary measure until it can be updated
 	if len(list) < 1 {
-		fmt.Println("No used ONU on this interface")
-		return fmt.Sprintf("%s/%d", intf, 1)
+		//fmt.Println("No used ONU on this interface")
+		newIntf := fmt.Sprintf("%s/%d", intf, 1)
+		return newIntf
 	}
 	sort.Ints(list)
 	var counter int
-	for _, v := range list {
-		counter++
-		if counter != v {
+	// counting linearly, through a sorted list
+	// if the value does not equal the reference
+	// the number is skipped and can be used
+	for i := 1; i < 129; i++ {
+		// obvious example is 0/1/1, 0/1/2, 0/1/4 are occupied, want to supply 0/1/3 as answer
+		// i is 1 and sorted list[0] is 1, continue
+		// i is 2 and sorted list[1] is 2, continue
+		// i is 3 and sorted list[2] is 4; break and use i value
+		if i != list[i-1] {
+			counter = i
 			break
 		}
+		// less obvious example is one device at 0/1/4 exists
+		// i is 1 and does not equal the value so it doesn't make it here
+		// another example is like above but 0/1/3 is also present
+		// i has been equal to the list but now the list is over
+		// i is equal to the length of the list and we haven't found a device yet
+		// so i + 1 is an unoccupied interface
+		if i == len(list) {
+			counter = i + 1
+			break
+		}
+		//fmt.Println("list value", list[i], "counter", i)
 	}
-	if counter > 128 {
-		return ""
-	}
-	return fmt.Sprintf("%s/%d", intf, counter)
+	newIntf := fmt.Sprintf("%s/%d", intf, counter)
+	return newIntf
 }
 
+// NextAvailableOnuInterfaceUpdateRegister receives an Olt Interface (0/x) and an OnuRegister object
+// and checks the Registration index to find the next available Onu Subinterface(0/x/y)
+// returns the OnuRegister object with the Onu Subinterface updated, if one is available
+func (l *LumiaOlt) NextAvailableOnuInterfaceUpdateRegister(intf string, onuReg *OnuRegister) *OnuRegister {
+	list := l.GenerateUsedSubinterfaceList(intf)
+	if len(list) < 1 {
+		//fmt.Println("No used ONU on this interface")
+		newIntf := fmt.Sprintf("%s/%d", intf, 1)
+		onuReg.Interface = newIntf
+		return onuReg
+	}
+	sort.Ints(list)
+	var counter int
+	for i := 1; i < 129; i++ {
+		if i != list[i-1] {
+			counter = i
+			break
+		}
+		if i == len(list) {
+			counter = i + 1
+			break
+		}
+		//fmt.Println("list value", list[i], "counter", i)
+	}
+	newIntf := fmt.Sprintf("%s/%d", intf, counter)
+	onuReg.Interface = newIntf
+	return onuReg
+}
+
+// GenerateUsedSubinterfaceList filters the Registration index to provide a slice of the subinterface values used on a specific OLT port.
+// For example if 0/2 is supplied and 0/2/1, 0/2/3, 0/2/4 are in use the returned value will be []int{1,3,4}
+func (l *LumiaOlt) GenerateUsedSubinterfaceList(intf string) []int {
+	var list []int
+	var entry int
+	for i := 0; i < len(l.Registration); i++ {
+		if strings.HasPrefix(l.Registration[i].Interface, intf) {
+			add := strings.Split(l.Registration[i].Interface, "/")
+			// this is a controlled list, can assume the length will be 3
+			// the third segment represents the in-use sub-interface on the filtered olt port
+			// we collect these values as a list of interfaces not allowed to use
+			entry, _ = strconv.Atoi(add[2])
+			list = append(list, entry)
+			//fmt.Println("entry", entry)
+		}
+	}
+	return list
+}
+
+// GeneratePerPortOnuRegistrationList filters the register Onu map by Port Prefix to generate a filtered map
+// where the key is the subinterface and the value is the serial number of the registered device
+func (l *LumiaOlt) GeneratePerPortOnuRegistrationList(intf string) map[int]string {
+	list := make(map[int]string)
+	for i := 0; i < len(l.Registration); i++ {
+		if strings.HasPrefix(l.Registration[i].Interface, fmt.Sprintf("%s/", intf)) { // added trailing '/' so 0/1 does not evalute true for 10 and above
+			tmp := strings.Split(l.Registration[i].Interface, "/")
+			entry, _ := strconv.Atoi(tmp[2])
+			list[entry] = l.Registration[i].SerialNumber
+			fmt.Printf("%s/%d: %s\n", intf, entry, list[entry]) // debug printout shown
+		}
+	}
+	return list
+}
+
+/*
 // AuthorizeOnuCheckBlacklist accepts a single OnuConfig object and attempts to register the device after checking the blacklist that it exists
-// unintended consequence is "onu params" being inserted to running config. Find out why and use this as a feature/function
 func (l *LumiaOlt) AuthorizeOnuCheckBlacklist(ocfg *OnuConfig) error {
 	// checking Blacklist is an unnecessary step here, good precaution but useless, server will reject if doesn't
 	obll, err := l.GetOnuBlacklist()
@@ -321,10 +567,9 @@ func (l *LumiaOlt) AuthorizeOnuCheckBlacklist(ocfg *OnuConfig) error {
 	}
 	return ErrNotExists
 }
-
-// AuthorizeOnu accepts a single OnuConfig object with a ServiceProfile name and attempts to register the device
+*/
+// AuthorizeOnu accepts a single OnuConfig object and attempts to register the device
 func (l *LumiaOlt) AuthorizeOnu(ocfg *OnuConfig) error {
-	// unintended consequence is "onu params" being inserted to running config. Find out why and use this as a feature/function
 	if l.ValidateSn(ocfg.SerialNumber) {
 		ifName, jsonData := ocfg.GenerateJson()
 		if ifName == "" {
@@ -345,6 +590,104 @@ func (l *LumiaOlt) AuthorizeOnu(ocfg *OnuConfig) error {
 	}
 }
 
+// AuthorizeOnuOverride accepts a single OnuConfig object and forcefully registers the device
+func (l *LumiaOlt) AuthorizeOnuOverride(ocfg *OnuConfig) error {
+	// do not validate SN first
+	ifName, jsonData := ocfg.GenerateJson()
+	if ifName == "" {
+		return ErrNotStruct
+	}
+	//fmt.Println(jsonData)
+	resp, err := RestPatchProfile(l.Host, onuConfig, UrlEncodeInterface(ifName), jsonData)
+	if err != nil {
+		return err
+	}
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
+	//fmt.Printf("Forceably registered SN: %s\n", ocfg.SerialNumber)
+	return nil
+}
+
+// DeauthOnuBySn accepts a Serial Number string as input and attempts to Deauthorize it
+func (l *LumiaOlt) DeauthOnuBySn(serNo string) error {
+	// assume the registered Onu List is up to date
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].SerialNumber == serNo {
+			ocfg := GenerateBlankConfig(l.Registration[i].Interface)
+			intf, jsonData := ocfg.GenerateJson()
+			resp, err := RestPatchProfile(l.Host, onuConfig, UrlEncodeInterface(intf), jsonData)
+			if err != nil {
+				return err
+			}
+			if resp != responseOk {
+				fmt.Println(resp)
+				return ErrNotStatusOk
+			}
+			// remove from l.AuthorizeOnu
+			return l.RemoveOnuAuthEntry(serNo)
+		}
+	}
+	return ErrNotExists
+}
+
+// RemoveOnuAuthEntry accepts an ONU Serial Number as input and removes the entry from the Registration index
+func (l *LumiaOlt) RemoveOnuAuthEntry(serNo string) error {
+	for i := 0; i < len(l.Registration); i++ {
+		if l.Registration[i].SerialNumber == serNo {
+			// swap method replaces the found entry with the 0-index entry
+			l.Registration[i] = l.Registration[0]
+			// then shortens the list by removing the duplicated first entry
+			l.Registration = l.Registration[1:]
+			return nil
+		}
+	}
+	return ErrNotExists
+}
+
+// DeauthOnuBySnList is a wrapper that extracts Serial Numbers from a file and attempts to Deauth each.
+// Entries in the file are expected to follow the Auth format, with one SN per line occuring as the first entry
+func (l *LumiaOlt) DeauthOnuBySnList(path string) error {
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return err
+	}
+	deAuthFile, err := os.Open(absPath)
+	if err != nil {
+		return err
+	}
+	var dereg []string
+	s := bufio.NewScanner(deAuthFile)
+	for s.Scan() {
+		str := strings.Fields(strings.TrimSpace(s.Text()))
+		sn := str[0]
+		if len(sn) == 8 {
+			sn = "ISKT" + sn
+		}
+		if len(sn) == 12 {
+			dereg = append(dereg, sn)
+		}
+	}
+	if len(dereg) < 1 {
+		return ErrNotInput
+	}
+	var success int
+	for _, sn := range dereg {
+		err = l.DeauthOnuBySn(sn)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		} else {
+			//fmt.Printf("Onu SN [%s] Deauthorized\n", sn)
+			success++
+		}
+	}
+	fmt.Printf("%d/%d Onu Deauthorized by SerialNumber\n", success, len(dereg))
+	return nil
+}
+
+// GetOnuProfileUsage performs a Get request to the OLT to return the
 func (l *LumiaOlt) GetOnuProfileUsage() (*OnuProfileList, error) {
 	rawJson, err := RestGetProfiles(l.Host, onuProfiles)
 	if err != nil {
@@ -381,7 +724,9 @@ func (l *LumiaOlt) PostOnuProfile(op *OnuProfile) error {
 	return nil
 }
 
-// RemoveOnuProfileUsage is actually a
+// RemoveOnuProfileUsage receives an onu interface (0/x/y) and service profile and performs a Delete request to remove the profile from the ONU.
+// This operation does not deregister the ONU, and any other service profiles will remain in effect.
+// This is a good example of how multiple fields can be combined together in the URL query with commas ','
 func (l *LumiaOlt) RemoveOnuProfileUsage(intf, spName string) error {
 	removalQuery := UrlEncodeInterface(intf) + "," + spName
 	status, err := RestDeleteProfile(l.Host, onuProfiles, removalQuery)
@@ -392,6 +737,26 @@ func (l *LumiaOlt) RemoveOnuProfileUsage(intf, spName string) error {
 	// check for ErrNotStatusOk
 	//chg := l.CacheDiff()
 	//if chg == nil { return ErrNotDelete }
+	return nil
+}
+
+// AddServiceToOnu accepts a service profile name as input and tries to apply them to the supplied OnuRegister object.
+// Does not error check for if the profile exists but lets the Rest interaction handle that
+func (l *LumiaOlt) AddServiceToOnu(onuReg *OnuRegister, sp string) error {
+	new := NewOnuProfile(onuReg.Interface, sp)
+	// error will be checked if the server accepts the patch
+	return l.PostOnuProfile(new)
+}
+
+// AddMultipleServicesToOnu is a wrapper around AddServiceToOnu allowing multiple profiles to be supplied at once.
+// This method does not reduce the number of Http interactions. And returns at the point where any profile fails to apply
+func (l *LumiaOlt) AddMultipleServicesToOnu(onuReg *OnuRegister, spList []string) error {
+	for _, sp := range spList {
+		err := l.AddServiceToOnu(onuReg, sp)
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
