@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"iskratel/gopon"
+	"github.com/lindsaybb/gopon"
 )
 
 var (
@@ -20,7 +20,6 @@ var (
 	secuirtyProfiles     = flag.Bool("secp", false, "Run the Security Profile Demo")
 	multicastProfiles    = flag.Bool("mp", false, "Run the Multicast Profile Demo")
 	onuMulticastProfiles = flag.Bool("omp", false, "Run the Onu Multicast Profile Demo")
-	//sleepFlag = flag.Duration("s", time.Millisecond*0, "Specify breaks between actions")
 )
 
 const usage = "`gopon service profile demo` [options] <olt_ip>"
