@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"iskratel/gopon"
+	"github.com/lindsaybb/gopon"
 )
 
 var (
@@ -15,7 +15,6 @@ var (
 	uploadScrFlag  = flag.String("us", "", "Path of Olt Config (.scr) file to Upload")
 	uploadConfFlag = flag.String("uc", "", "Path of Innbox Config (.conf) file to Upload")
 	deleteFlag     = flag.Bool("nd", true, "Delete uploads by name")
-	//sleepFlag = flag.Duration("s", time.Millisecond*0, "Specify breaks between actions")
 )
 
 const usage = "`gopon ftp demo` [options] <olt_ip>"
