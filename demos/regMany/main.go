@@ -4,9 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	//"time"
-
-	"iskratel/gopon"
+	"github.com/lindsaybb/gopon"
 )
 
 var (
