@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"iskratel/gopon"
+	"github.com/lindsaybb/gopon"
 )
 
 var (
