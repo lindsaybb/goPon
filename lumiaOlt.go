@@ -617,7 +617,7 @@ func (l *LumiaOlt) DeauthOnuBySn(serNo string) error {
 		if l.Registration[i].SerialNumber == serNo {
 			// clear all service profiles from olt first 
 			// so they are not left over for the next device who takes this intf
-			for n := 0; i < len(l.Registration[i].Services); n++ {
+			for n := 0; n < len(l.Registration[i].Services); n++ {
 				err = l.RemoveOnuProfileUsage(l.Registration[i].Interface, l.Registration[i].Services[n])
 				if err != nil {
 					fmt.Println(err)
