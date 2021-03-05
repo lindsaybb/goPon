@@ -27,8 +27,8 @@ type OnuRegister struct {
 }
 
 var OnuRegisterHeaders = []string{
-	"Serial Number",
 	"Interface",
+	"Serial Number",
 	"Service Profiles",
 }
 
@@ -248,11 +248,10 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 			SerialNumber: sn,
 		}
 		// removing the AddSnToAuthList function
-		if len(line) < 2 {
-			continue
-		}
-		for i := 1; i < len(line); i++ {
-			onuReg.Services = append(onuReg.Services, line[i])
+		if len(line) > 2 {
+			for i := 1; i < len(line); i++ {
+				onuReg.Services = append(onuReg.Services, line[i])
+			}
 		}
 		fmt.Println(onuReg)
 		l.Registration = append(l.Registration, onuReg)
@@ -263,8 +262,8 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 
 func (l *LumiaOlt) ListEssentialRegistryData(onuReg *OnuRegister) map[string]interface{} {
 	var OnuRegistryData = map[string]interface{}{
-		OnuRegisterHeaders[0]: onuReg.SerialNumber,
-		OnuRegisterHeaders[1]: onuReg.Interface,
+		OnuRegisterHeaders[0]: onuReg.Interface,
+		OnuRegisterHeaders[1]: onuReg.SerialNumber,
 		OnuRegisterHeaders[2]: onuReg.ConcatServices(),
 	}
 	return OnuRegistryData
@@ -612,9 +611,19 @@ func (l *LumiaOlt) AuthorizeOnuOverride(ocfg *OnuConfig) error {
 
 // DeauthOnuBySn accepts a Serial Number string as input and attempts to Deauthorize it
 func (l *LumiaOlt) DeauthOnuBySn(serNo string) error {
+	var err error
 	// assume the registered Onu List is up to date
 	for i := 0; i < len(l.Registration); i++ {
 		if l.Registration[i].SerialNumber == serNo {
+			// clear all service profiles from olt first 
+			// so they are not left over for the next device who takes this intf
+			for n := 0; i < len(l.Registration[i].Services); n++ {
+				err = l.RemoveOnuProfileUsage(l.Registration[i].Interface, l.Registration[i].Services[n])
+				if err != nil {
+					fmt.Println(err)
+					// choosing to not error handle here, but provide as info
+				}
+			}
 			ocfg := GenerateBlankConfig(l.Registration[i].Interface)
 			intf, jsonData := ocfg.GenerateJson()
 			resp, err := RestPatchProfile(l.Host, onuConfig, UrlEncodeInterface(intf), jsonData)
