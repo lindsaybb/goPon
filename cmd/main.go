@@ -106,10 +106,17 @@ func main() {
 func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 	var err error
 	var obll *gopon.OnuBlacklistList
+	// perform GET request on OLT Blacklist and hold this data in a local variable
 	obll, err = olt.GetOnuBlacklist()
 	if err != nil {
 		return err
 	}
+	// perform GET request on OLT WhiteList and update app's db of currently provisioned ONU
+	err = olt.UpdateOnuRegistry()
+	if err != nil {
+		return err
+	}
+	// display the Blacklist entries only
 	obll.Tabwrite()
 	// interactive: pause and ask for input, first show blacklist
 	fmt.Println(">> Provide OLT Port to Register ONU to:")
@@ -129,11 +136,6 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 	if err != nil {
 		return err
 	}
-	// perform GET request on OLT WhiteList and update app's db of currently provisioned ONU
-	err = olt.UpdateOnuRegistry()
-	if err != nil {
-		return err
-	}
 	// using the supplied OLT Port, find the next available ONU interface 'y' as in 0/x/y
 	intf := olt.NextAvailableOnuInterface(oltIntf)
 	// generate a new ONU Config with the supplied SN and ONU interface
@@ -145,10 +147,10 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 		return err
 	}
 	// perform GET request on OLT WhiteList and update app's db of currently provisioned ONU
-	err = olt.UpdateOnuRegistry()
-	if err != nil {
-		return err
-	}
+//	err = olt.UpdateOnuRegistry()
+//	if err != nil {
+//		return err
+//	}
 	// perform GET request on OLT Service Profiles and display them
 	var spl *gopon.ServiceProfileList
 	spl, err = olt.GetServiceProfiles()
@@ -293,15 +295,13 @@ func manuallyDeregisterOnu(olt *gopon.LumiaOlt) error {
 	}
 	fmt.Printf(">> Deregistered ONU Serial Number: [%s]\n", sn)
 	// the deauth function took care of updating the database
-	olt.TabwriteRegistry()
-
-	// but as a "stateful" check we can query to OLT directly
-	var opl *gopon.OnuProfileList
-	opl, err = olt.GetOnuProfileUsage()
+	// but as a "stateful" check we will perform the update registry
+	err = olt.UpdateOnuRegistry()
 	if err != nil {
 		return err
 	}
-	opl.Tabwrite()
+	olt.TabwriteRegistry()
+
 	return nil
 }
 
@@ -355,7 +355,7 @@ func addServiceToOnu(olt *gopon.LumiaOlt) error {
 		return gopon.ErrNotInput
 	}
 	fmt.Println(">> Provide Service Profile Name to add to ONU:")
-	sp := sanitizeSnInput(readFromStdin(reader))
+	sp := sanitizeInput(readFromStdin(reader))
 	if sp == "" || !spl.ProfileExists(sp) {
 		return gopon.ErrNotInput
 	}
