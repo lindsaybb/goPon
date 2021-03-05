@@ -38,8 +38,8 @@ func (bl *OnuBlacklist) GetBlCause() string {
 }
 
 var OnuBlacklistHeaders = []string{
-	"IfName",
-	"SerialNo.",
+	"Interface",
+	"Serial Number",
 	"Pass",
 	"Cause",
 }
