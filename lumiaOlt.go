@@ -253,7 +253,7 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 				onuReg.Services = append(onuReg.Services, line[i])
 			}
 		}
-		fmt.Println(onuReg)
+		//fmt.Println(onuReg)
 		l.Registration = append(l.Registration, onuReg)
 	}
 	//fmt.Printf("Onu Registry now has %d entries\n", len(l.Registration))
@@ -742,7 +742,7 @@ func (l *LumiaOlt) RemoveOnuProfileUsage(intf, spName string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuProfile:", status)
+	//fmt.Println("DeleteOnuProfile:", status)
 	// check for ErrNotStatusOk
 	//chg := l.CacheDiff()
 	//if chg == nil { return ErrNotDelete }
