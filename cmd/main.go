@@ -183,7 +183,7 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 		return err
 	}
 	spl.Tabwrite()
-	fmt.Println(">> Provide Service Profile to apply to ONU (comma-separated for multiple):")
+	fmt.Println(">> Provide Service Profile to apply to ONU:")
 	sps := strings.Fields(readFromStdin(reader))
 	for _, sp := range sps {
 		sp = sanitizeInput(strings.TrimSpace(sp))
