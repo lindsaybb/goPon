@@ -742,6 +742,9 @@ func (l *LumiaOlt) RemoveOnuProfileUsage(intf, spName string) error {
 	if err != nil {
 		return err
 	}
+	if status != responseOk {
+		return ErrNotStatusOk
+	}
 	//fmt.Println("DeleteOnuProfile:", status)
 	// check for ErrNotStatusOk
 	//chg := l.CacheDiff()
