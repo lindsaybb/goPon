@@ -13,16 +13,17 @@ import (
 
 var (
 	helpFlag       = flag.Bool("h", false, "Show this help")
-	getBlacklist   = flag.Bool("gb", false, "Show the current ONU Blacklist")
-	getWhitelist   = flag.Bool("gw", false, "Show the current ONU Whitelist")
-	registerOne    = flag.Bool("ro", false, "Manually register one ONU")
-	registerMany   = flag.Bool("rm", false, "Register many ONU from file [af]")
-	deregisterOne  = flag.Bool("do", false, "Manually deregister one ONU")
-	deregisterMany = flag.Bool("dm", false, "Deregister many ONU from file [df]")
-	addOneSp       = flag.Bool("ap", false, "Add one service profile to a registered ONU")
-	remOneSp       = flag.Bool("dp", false, "Delete one service profile from a registered ONU")
+	getBlacklist   = flag.Bool("gb", false, "Show the current ONU Blacklist on the OLT")
+	getWhitelist   = flag.Bool("gw", false, "Show the current ONU Whitelist on the OLT")
+	registerOne    = flag.Bool("ro", false, "Manually register one ONU to the OLT")
+	registerMany   = flag.Bool("rm", false, "Automatically Register many ONU to the system using a file [af]; SN must exist on Blacklist")
 	authFile       = flag.String("af", "authList.txt", "Path to file that contains list of Authorized ONU Serial Numbers and their Service Profiles")
+	deregisterOne  = flag.Bool("do", false, "Manually Deregister one ONU from the OLT")
+	deregisterMany = flag.Bool("dm", false, "Automatically Deregister multiple ONU from the system using a file [df]")
 	deAuthFile     = flag.String("df", "deAuthList.txt", "Path to file that contains list of ONU Serial Numbers to Deauthorize")
+	addOneSp       = flag.Bool("ap", false, "Manually Add one service profile to a registered ONU from a list of created Service Profiles")
+	remOneSp       = flag.Bool("rp", false, "Manually Remove one service profile from a registered ONU")
+	showSpDetails  = flag.Bool("sp", false, "View Detailed Information about Service Profiles")
 )
 
 // to add: deregister all from a specified port, authorize all from blacklist, indirect add/rem of service profiles in bulk
@@ -45,6 +46,7 @@ func main() {
 		return
 	}
 	if *getBlacklist {
+		fmt.Println(">> Get Blacklist Called [-gb]")
 		var obll *gopon.OnuBlacklistList
 		obll, err = olt.GetOnuBlacklist()
 		if err != nil {
@@ -52,8 +54,10 @@ func main() {
 			return
 		}
 		obll.Tabwrite()
+		promptContinue()
 	}
 	if *getWhitelist {
+		fmt.Println(">> Get Whitelist Called [-gw]")
 		err = olt.UpdateOnuRegistry()
 		if err != nil {
 			fmt.Println(err)
@@ -64,42 +68,63 @@ func main() {
 		} else {
 			olt.TabwriteRegistry()
 		}
+		promptContinue()
 	}
 	if *registerOne {
+		fmt.Println(">> Register One Called [-ro]")
 		err = manuallyRegisterOnu(olt)
 		if err != nil {
 			fmt.Printf("Error running demo: %v\n", err)
 		}
-	}
-	if *registerMany {
-		err = registerOnuFromFile(olt)
-		if err != nil {
-			fmt.Printf("Error running demo: %v\n", err)
-		}
+		promptContinue()
 	}
 	if *deregisterOne {
+		fmt.Println(">> Deregister One Called [-do]")
 		err = manuallyDeregisterOnu(olt)
 		if err != nil {
 			fmt.Printf("Error running demo: %v\n", err)
 		}
+		promptContinue()
+	}
+	if *registerMany {
+		fmt.Println(">> Register Many Called [-rm]")
+		err = registerOnuFromFile(olt)
+		if err != nil {
+			fmt.Printf("Error running demo: %v\n", err)
+		}
+		promptContinue()
 	}
 	if *deregisterMany {
+		fmt.Println(">> Deregister Many Called [-dm]")
 		err = deRegisterOnuFromFile(olt)
 		if err != nil {
 			fmt.Printf("Error running demo: %v\n", err)
 		}
+		promptContinue()
 	}
 	if *addOneSp {
+		fmt.Println(">> Add One Service Profile Called [-ap]")
 		err = addServiceToOnu(olt)
 		if err != nil {
 			fmt.Printf("Error running demo: %v\n", err)
 		}
+		promptContinue()
 	}
 	if *remOneSp {
+		fmt.Println(">> Remove One Service Profile Called [-rp]")
 		err = removeServiceFromOnu(olt)
 		if err != nil {
 			fmt.Printf("Error running demo: %v\n", err)
 		}
+		promptContinue()
+	}
+	if *showSpDetails {
+		fmt.Println(">> Show Service Profile Details called [-sp]")
+		err = displayServiceProfiles(olt)
+		if err != nil {
+			fmt.Printf("Error running demo: %v\n", err)
+		}
+		promptContinue()
 	}
 }
 
@@ -147,10 +172,10 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 		return err
 	}
 	// perform GET request on OLT WhiteList and update app's db of currently provisioned ONU
-//	err = olt.UpdateOnuRegistry()
-//	if err != nil {
-//		return err
-//	}
+	//	err = olt.UpdateOnuRegistry()
+	//	if err != nil {
+	//		return err
+	//	}
 	// perform GET request on OLT Service Profiles and display them
 	var spl *gopon.ServiceProfileList
 	spl, err = olt.GetServiceProfiles()
@@ -415,6 +440,63 @@ func removeServiceFromOnu(olt *gopon.LumiaOlt) error {
 	olt.TabwriteRegistry()
 
 	return nil
+}
+
+func displayServiceProfiles(olt *gopon.LumiaOlt) error {
+	// the top level data structure for provisioning services on an OLT is represented by a "Service Profile"
+	// we will perform a GET Request to retrieve all currently configured Service Profiles on the OLT
+	// a separate object holds a list of the individual profile objects to allow group tabwrite methods
+	var err error
+	var spl *gopon.ServiceProfileList
+	spl, err = olt.GetServiceProfiles()
+	if err != nil {
+		return err
+	}
+	spl.Tabwrite()
+
+	var fpl *gopon.FlowProfileList
+	fpl, err = olt.GetFlowProfiles()
+	if err != nil {
+		return err
+	}
+	fpl.Tabwrite()
+
+	var vpl *gopon.VlanProfileList
+	vpl, err = olt.GetVlanProfiles()
+	if err != nil {
+		return err
+	}
+	vpl.Tabwrite()
+
+	var ofpl *gopon.OnuFlowProfileList
+	ofpl, err = olt.GetOnuFlowProfiles()
+	if err != nil {
+		return err
+	}
+	ofpl.Tabwrite()
+
+	var otpl *gopon.OnuTcontProfileList
+	otpl, err = olt.GetOnuTcontProfiles()
+	if err != nil {
+		return err
+	}
+	otpl.Tabwrite()
+
+	return nil
+}
+
+func promptContinue() {
+	fmt.Print(">> Continue? (Y/n)")
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
+	input := readFromStdin(reader)
+	if input == "" || strings.ToLower(input) == "y" {
+		return
+	}
+	if strings.ToLower(input) == "n" {
+		fmt.Println("Exiting...")
+		os.Exit(1)
+	}
+	promptContinue()
 }
 
 func readFromStdin(r *bufio.Reader) string {
