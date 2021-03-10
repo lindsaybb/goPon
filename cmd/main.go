@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 	"strings"
 
 	"github.com/lindsaybb/gopon"
@@ -209,6 +210,8 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 }
 
 func registerOnuFromFile(olt *gopon.LumiaOlt) error {
+	now := time.Now()
+	fmt.Println("Starting the Timer")
 	var err error
 	// this function updates the list of currently connected devices with two GET requests
 	err = olt.UpdateOnuRegistry()
@@ -293,6 +296,8 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 	}
 	olt.TabwriteRegistry()
 
+	fmt.Printf("Elapsed operation time: %v\n", time.Since(now))
+
 	return nil
 }
 
@@ -331,6 +336,9 @@ func manuallyDeregisterOnu(olt *gopon.LumiaOlt) error {
 }
 
 func deRegisterOnuFromFile(olt *gopon.LumiaOlt) error {
+	now := time.Now()
+	fmt.Println("Starting the Timer")
+	
 	var err error
 	// this function updates the list of currently connected devices with two GET requests
 	err = olt.UpdateOnuRegistry()
@@ -347,13 +355,33 @@ func deRegisterOnuFromFile(olt *gopon.LumiaOlt) error {
 		return err
 	}
 
-	err = olt.UpdateOnuRegistry()
+//	err = olt.UpdateOnuRegistry()
+//	if err != nil {
+//		return err
+//	}
+//	olt.TabwriteRegistry()
+	// Blacklist might not show the devices yet, takes about 1 min to update
+	var obll *gopon.OnuBlacklistList
+	obll, err = olt.GetOnuBlacklist()
 	if err != nil {
 		return err
 	}
-	olt.TabwriteRegistry()
-	// Blacklist might not show the devices yet, takes about 1 min to update
+	if len(obll.Entry) < 1 {
+		fmt.Println("No entries on Blacklist yet, waiting 30s")
+		for i := 1; i < 31; i++ {
+			time.Sleep(1 * time.Second)
+			fmt.Print("|")
+		}
+		fmt.Println("")
+		obll, err = olt.GetOnuBlacklist()
+		if err != nil {
+			return err
+		}
+	}
+	obll.Tabwrite()
 
+	fmt.Printf("Elapsed operation time: %v\n", time.Since(now))
+	
 	return nil
 }
 
@@ -559,3 +587,4 @@ func sanitizeInput(input string) string {
 	}
 	return output
 }
+
