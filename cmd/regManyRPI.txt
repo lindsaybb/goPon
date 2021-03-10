@@ -1,5 +1,6 @@
 lbnp@prairie:~ $ ./gopon -rm xg8
 >> Register Many Called [-rm]
+Starting the Timer
 ------------
 GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable
 ------------
@@ -14,10 +15,10 @@ GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanO
 ------------
 Interface  Serial Number  Pass  Cause         
 ---------  -------------  ----  -----         
-0/1        ISKT76E840FA         SN Not Known  
 0/1        ISKT76E83A22         SN Not Known  
-0/2        ISKT76E83668         SN Not Known  
+0/1        ISKT76E840FA         SN Not Known  
 0/2        ISKT76E83E1B         SN Not Known  
+0/2        ISKT76E83668         SN Not Known  
 ---------  -------------  ----  -----         
 
 Creating an Onu Config for each Onu on the Blacklist to attempt to Register
@@ -95,11 +96,12 @@ GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanS
 ------------
 Interface  Serial Number  Service Profiles                    
 ---------  -------------  ----------------                    
-0/1/1      ISKT76E840FA   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
-0/1/2      ISKT76E83A22   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
-0/2/1      ISKT76E83668   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
-0/2/2      ISKT76E83E1B   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/1/2      ISKT76E840FA   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/1/1      ISKT76E83A22   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/2/2      ISKT76E83668   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/2/1      ISKT76E83E1B   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
 ---------  -------------  ----------------                    
+Elapsed operation time: 3m13.252858812s
 >> Continue? (Y/n)
 lbnp@prairie:~ $ cat authList.txt 
 ISKT76E840FA 81_CWMP 82_DATA_1G 83_DATA_10G
