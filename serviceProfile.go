@@ -130,6 +130,10 @@ func (sp *ServiceProfile) GetName() string {
 	return sp.Name
 }
 
+func (sp *ServiceProfile) IsUsed() bool {
+	return sp.Usage == 1
+}
+
 // Copy returns a copy of the profile object with a new name and Usage set to 2
 func (sp *ServiceProfile) Copy(newName string) (*ServiceProfile, error) {
 	if sp.Name == newName {
