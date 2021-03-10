@@ -1,0 +1,124 @@
+lbnp@prairie:~ $ ./gopon -rm xg8
+>> Register Many Called [-rm]
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable
+------------
+Interface  Serial Number  Service Profiles  
+---------  -------------  ----------------  
+---------  -------------  ----------------  
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+Interface  Serial Number  Pass  Cause         
+---------  -------------  ----  -----         
+0/1        ISKT76E840FA         SN Not Known  
+0/1        ISKT76E83A22         SN Not Known  
+0/2        ISKT76E83668         SN Not Known  
+0/2        ISKT76E83E1B         SN Not Known  
+---------  -------------  ----  -----         
+
+Creating an Onu Config for each Onu on the Blacklist to attempt to Register
+------------
+PATCH Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable/msanOnuCfgEntry=0%2F1%2F1
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F1
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F1
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F1
+------------
+------------
+PATCH Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable/msanOnuCfgEntry=0%2F1%2F2
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F2
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F2
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F1%2F2
+------------
+------------
+PATCH Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable/msanOnuCfgEntry=0%2F2%2F1
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F1
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F1
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F1
+------------
+------------
+PATCH Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable/msanOnuCfgEntry=0%2F2%2F2
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServiceProfileTable
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F2
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F2
+------------
+------------
+POST Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable/msanServicePortProfileEntry=0%2F2%2F2
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuBlackListTable
+------------
+Interface  Serial Number  Pass  Cause  
+---------  -------------  ----  -----  
+---------  -------------  ----  -----  
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanOnuCfgTable
+------------
+------------
+GET Request: https://xg8/restconf/data/ISKRATEL-MSAN-MIB:ISKRATEL-MSAN-MIB/msanServicePortProfileTable
+------------
+Interface  Serial Number  Service Profiles                    
+---------  -------------  ----------------                    
+0/1/1      ISKT76E840FA   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/1/2      ISKT76E83A22   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/2/1      ISKT76E83668   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+0/2/2      ISKT76E83E1B   81_CWMP, 82_DATA_1G, 83_DATA_10G,   
+---------  -------------  ----------------                    
+>> Continue? (Y/n)
+lbnp@prairie:~ $ cat authList.txt 
+ISKT76E840FA 81_CWMP 82_DATA_1G 83_DATA_10G
+ISKT76E83A22 81_CWMP 82_DATA_1G 83_DATA_10G
+ISKT76E83668 81_CWMP 82_DATA_1G 83_DATA_10G
+ISKT76E83E1B 81_CWMP 82_DATA_1G 83_DATA_10G
+lbnp@prairie:~ $ lscpu
+Architecture:        armv7l
+Byte Order:          Little Endian
+CPU(s):              4
+On-line CPU(s) list: 0-3
+Thread(s) per core:  1
+Core(s) per socket:  4
+Socket(s):           1
+Vendor ID:           ARM
+Model:               3
+Model name:          Cortex-A72
+Stepping:            r0p3
+CPU max MHz:         1500.0000
+CPU min MHz:         600.0000
+BogoMIPS:            108.00
+Flags:               half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32
