@@ -51,17 +51,20 @@ type ServiceProfileList struct {
 	Entry []*ServiceProfile
 }
 
+// OnuTpTypeList is a reference for the settable values of OnuTpType where the 0-reference value is unreachable
+var OnuTpTypeList = []string{
+	"nil",
+	"VEIP",
+	"IPHOST",
+	"UNI",
+}
+
 // ConvertOnuTPToString is a helper function to convert the logic used to represent termination point to a readable format
 func ConvertOnuTPToString(tp int) string {
-	switch tp {
-	case 1:
-		return "VEIP"
-	case 2:
-		return "IPHOST"
-	case 3:
-		return "UNI"
+	if tp > len(OnuTpTypeList) - 1 || tp < 1 {
+		return ""
 	}
-	return ""
+	return OnuTpTypeList[tp]
 }
 
 // ConvertOnuTPUniBitMapToInt is a helper function to convert the logic used to represent UNI physical port to a readable format
