@@ -29,7 +29,7 @@ var (
 
 // to add: deregister all from a specified port, authorize all from blacklist, indirect add/rem of service profiles in bulk
 
-const usage = "`gopon onu demo` [options] <olt_ip>"
+const usage = "`gopon_cmd` [options] <olt_ip>"
 
 func main() {
 	flag.Parse()
@@ -510,6 +510,15 @@ func displayServiceProfiles(olt *gopon.LumiaOlt) error {
 	}
 	otpl.Tabwrite()
 
+	var ovpl *gopon.OnuVlanProfileList
+	var ovrl *gopon.OnuVlanRuleList
+	ovpl, ovrl, err = olt.GetOnuVlanProfiles()
+	if err != nil {
+		return err
+	}
+	ovpl.Tabwrite()
+	ovrl.Tabwrite()
+
 	return nil
 }
 
@@ -587,4 +596,3 @@ func sanitizeInput(input string) string {
 	}
 	return output
 }
-
