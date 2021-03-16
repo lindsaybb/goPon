@@ -68,6 +68,7 @@ func (bll *OnuBlacklistList) Separate() []*OnuBlacklist {
 }
 
 func (bll *OnuBlacklistList) Tabwrite() {
+	fmt.Println("|| ONU Blacklist List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
