@@ -175,6 +175,11 @@ func (p *FlowProfile) GetName() string {
 	return p.Name
 }
 
+// IsUsed returns true if the profile is currently attached to one or more subscribers
+func (p *FlowProfile) IsUsed() bool {
+	return p.Usage == 1
+}
+
 // Copy returns a copy of the profile object with a new name and Usage set to 2
 func (p *FlowProfile) Copy(newName string) (*FlowProfile, error) {
 	if p.Name == newName {
@@ -236,35 +241,72 @@ func (p *FlowProfile) ListEssentialParams() map[string]interface{} {
 	return EssentialFlowProfile
 }
 
+var FlowProfileUsOther = []string{
+	"MatchUsAny",
+	"MatchUsMacDestAddr",
+	"MatchUsMacDestMask",
+	"MatchUsMacSrcAddr",
+	"MatchUsMacSrcMask",
+	"MatchUsCPcp",
+	"MatchUsSPcp",
+	"MatchUsCVlanIDRange",
+	"MatchUsSVlanIDRange",
+	"MatchUsEthertype",
+	"MatchUsIPProtocol",
+	"MatchUsIPSrcAddr",
+	"MatchUsIPSrcMask",
+	"MatchUsIPDestAddr",
+	"MatchUsIPDestMask",
+	"MatchUsIPDscp",
+	"MatchUsIPCsc",
+	"MatchUsIPDropPrecedence",
+	"MatchUsTCPSrcPort",
+	"MatchUsTCPDestPort",
+	"MatchUsUDPSrcPort",
+	"MatchUsUDPDstPort",
+	"MatchUsIpv6SrcAddr",
+	"MatchUsIpv6SrcAddrMaskLen",
+	"MatchUsIpv6DstAddr",
+	"MatchUsIpv6SrcAddrMaskLen",
+}
+
+func (p *FlowProfile) IsMatchUsAny() bool {
+	return p.MatchUsAny == 2
+}
+
+func (p *FlowProfile) IsMatchDsAny() bool {
+	return p.MatchDsAny == 2
+}
+
 // GetMatchUsOther returns a list of any non-default values as a key:value pair
 func (p *FlowProfile) GetMatchUsOther() []interface{} {
 	var out []interface{}
 
-	if p.MatchUsAny != 1 {
-		out = append(out, map[string]int{"MatchUsAny": p.MatchUsAny})
+	if !p.IsMatchUsAny() {
+		out = append(out, map[string]int{FlowProfileUsOther[0]: p.MatchUsAny})
 	}
 	if p.MatchUsMacDestAddr != "" {
-		out = append(out, map[string]string{"MatchUsMacDestAddr": p.MatchUsMacDestAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[1]: p.MatchUsMacDestAddr})
 	}
 	if p.MatchUsMacDestMask != "" {
-		out = append(out, map[string]string{"MatchUsMacDestMask": p.MatchUsMacDestMask})
+		out = append(out, map[string]string{FlowProfileUsOther[2]: p.MatchUsMacDestMask})
 	}
 	if p.MatchUsMacSrcAddr != "" {
-		out = append(out, map[string]string{"MatchUsMacSrcAddr": p.MatchUsMacSrcAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[3]: p.MatchUsMacSrcAddr})
 	}
 	if p.MatchUsMacSrcMask != "" {
-		out = append(out, map[string]string{"MatchUsMacSrcMask": p.MatchUsMacSrcMask})
+		out = append(out, map[string]string{FlowProfileUsOther[4]: p.MatchUsMacSrcMask})
 	}
 	if p.MatchUsCPcp != -1 {
-		out = append(out, map[string]int{"MatchUsCPcp": p.MatchUsCPcp})
+		out = append(out, map[string]int{FlowProfileUsOther[5]: p.MatchUsCPcp})
 	}
 	if p.MatchUsSPcp != -1 {
-		out = append(out, map[string]int{"MatchUsSPcp": p.MatchUsSPcp})
+		out = append(out, map[string]int{FlowProfileUsOther[6]: p.MatchUsSPcp})
 	}
 	if p.MatchUsCVlanIDRange != empty {
 		list, err := getVlanFromB64(p.MatchUsCVlanIDRange)
 		if err == nil {
-			out = append(out, map[string][]int{"MatchUsCVlanIDRange": list})
+			out = append(out, map[string][]int{FlowProfileUsOther[7]: list})
 		} else {
 			log.Printf("flowProfile: %v\n", err)
 		}
@@ -272,94 +314,123 @@ func (p *FlowProfile) GetMatchUsOther() []interface{} {
 	if p.MatchUsSVlanIDRange != empty {
 		list, err := getVlanFromB64(p.MatchUsSVlanIDRange)
 		if err == nil {
-			out = append(out, map[string][]int{"MatchUsSVlanIDRange": list})
+			out = append(out, map[string][]int{FlowProfileUsOther[8]: list})
 		} else {
 			log.Printf("flowProfile: %v\n", err)
 		}
 	}
 	if p.MatchUsEthertype != -1 {
-		out = append(out, map[string]int{"MatchUsEthertype": p.MatchUsEthertype})
+		out = append(out, map[string]int{FlowProfileUsOther[9]: p.MatchUsEthertype})
 	}
 	if p.MatchUsIPProtocol != -1 {
-		out = append(out, map[string]int{"MatchUsIPProtocol": p.MatchUsIPProtocol})
+		out = append(out, map[string]int{FlowProfileUsOther[10]: p.MatchUsIPProtocol})
 	}
 	if p.MatchUsIPSrcAddr != "" {
-		out = append(out, map[string]string{"MatchUsIPSrcAddr": p.MatchUsIPSrcAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[11]: p.MatchUsIPSrcAddr})
 	}
 	if p.MatchUsIPSrcMask != "" {
-		out = append(out, map[string]string{"MatchUsIPSrcMask": p.MatchUsIPSrcMask})
+		out = append(out, map[string]string{FlowProfileUsOther[12]: p.MatchUsIPSrcMask})
 	}
 	if p.MatchUsIPDestAddr != "" {
-		out = append(out, map[string]string{"MatchUsIPDestAddr": p.MatchUsIPDestAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[13]: p.MatchUsIPDestAddr})
 	}
 	if p.MatchUsIPDestMask != "" {
-		out = append(out, map[string]string{"MatchUsIPDestAddr": p.MatchUsIPDestAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[14]: p.MatchUsIPDestMask})
 	}
 	if p.MatchUsIPDscp != -1 {
-		out = append(out, map[string]int{"MatchUsIPDscp": p.MatchUsIPDscp})
+		out = append(out, map[string]int{FlowProfileUsOther[15]: p.MatchUsIPDscp})
 	}
 	if p.MatchUsIPCsc != -1 {
-		out = append(out, map[string]int{"MatchUsIPCsc": p.MatchUsIPCsc})
+		out = append(out, map[string]int{FlowProfileUsOther[16]: p.MatchUsIPCsc})
 	}
 	if p.MatchUsIPDropPrecedence != -1 {
-		out = append(out, map[string]int{"MatchUsIPDropPrecedence": p.MatchUsIPDropPrecedence})
+		out = append(out, map[string]int{FlowProfileUsOther[17]: p.MatchUsIPDropPrecedence})
 	}
 	if p.MatchUsTCPSrcPort != -1 {
-		out = append(out, map[string]int{"MatchUsTCPSrcPort": p.MatchUsTCPSrcPort})
+		out = append(out, map[string]int{FlowProfileUsOther[18]: p.MatchUsTCPSrcPort})
 	}
 	if p.MatchUsTCPDestPort != -1 {
-		out = append(out, map[string]int{"MatchUsTCPDestPort": p.MatchUsTCPDestPort})
+		out = append(out, map[string]int{FlowProfileUsOther[19]: p.MatchUsTCPDestPort})
 	}
 	if p.MatchUsUDPSrcPort != -1 {
-		out = append(out, map[string]int{"MatchUsUDPSrcPort": p.MatchUsUDPSrcPort})
+		out = append(out, map[string]int{FlowProfileUsOther[20]: p.MatchUsUDPSrcPort})
 	}
 	if p.MatchUsUDPDstPort != -1 {
-		out = append(out, map[string]int{"MatchUsUDPDstPort": p.MatchUsUDPDstPort})
+		out = append(out, map[string]int{FlowProfileUsOther[21]: p.MatchUsUDPDstPort})
 	}
 	if p.MatchUsIpv6SrcAddr != "" {
-		out = append(out, map[string]string{"MatchUsIpv6SrcAddr": p.MatchUsIpv6SrcAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[22]: p.MatchUsIpv6SrcAddr})
 	}
 	if p.MatchUsIpv6SrcAddrMaskLen != 0 {
-		out = append(out, map[string]int{"MatchUsIpv6SrcAddrMaskLen": p.MatchUsIpv6SrcAddrMaskLen})
+		out = append(out, map[string]int{FlowProfileUsOther[23]: p.MatchUsIpv6SrcAddrMaskLen})
 	}
 	if p.MatchUsIpv6DstAddr != "" {
-		out = append(out, map[string]string{"MatchUsIpv6DstAddr": p.MatchUsIpv6DstAddr})
+		out = append(out, map[string]string{FlowProfileUsOther[24]: p.MatchUsIpv6DstAddr})
 	}
 	if p.MatchUsIpv6DstAddrMaskLen != 0 {
-		out = append(out, map[string]int{"MatchUsIpv6SrcAddrMaskLen": p.MatchUsIpv6SrcAddrMaskLen})
+		out = append(out, map[string]int{FlowProfileUsOther[25]: p.MatchUsIpv6SrcAddrMaskLen})
 	}
 	return out
+}
+
+var FlowProfileDsOther = []string{
+	"MatchDsAny",
+	"MatchDsMacDestAddr",
+	"MatchDsMacDestMask",
+	"MatchDsMacSrcAddr",
+	"MatchDsMacSrcMask",
+	"MatchDsCPcp",
+	"MatchDsSPcp",
+	"MatchDsCVlanIDRange",
+	"MatchDsSVlanIDRange",
+	"MatchDsEthertype",
+	"MatchDsIPProtocol",
+	"MatchDsIPSrcAddr",
+	"MatchDsIPSrcMask",
+	"MatchDsIPDestAddr",
+	"MatchDsIPDestMask",
+	"MatchDsIPDscp",
+	"MatchDsIpCsc",
+	"MatchDsIpDropPrecedence",
+	"MatchDsTCPSrcPort",
+	"MatchDsTCPDestPort",
+	"MatchDsUDPSrcPort",
+	"MatchDsUDPDstPort",
+	"MatchDsIpv6SrcAddr",
+	"MatchDsIpv6SrcAddrMaskLen",
+	"MatchDsIpv6DstAddr",
+	"MatchDsIpv6DstAddrMaskLen",
 }
 
 // GetMatchDsOther returns a list of any non-default values as a key:value pair
 func (p *FlowProfile) GetMatchDsOther() []interface{} {
 	var out []interface{}
 
-	if p.MatchDsAny != 1 {
-		out = append(out, map[string]int{"MatchDsAny": p.MatchDsAny})
+	if p.MatchDsAny != 2 {
+		out = append(out, map[string]int{FlowProfileDsOther[0]: p.MatchDsAny})
 	}
 	if p.MatchDsMacDestAddr != "" {
-		out = append(out, map[string]string{"MatchUsMacDestAddr": p.MatchUsMacDestAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[1]: p.MatchUsMacDestAddr})
 	}
 	if p.MatchDsMacDestMask != "" {
-		out = append(out, map[string]string{"MatchDsMacDestMask": p.MatchDsMacDestMask})
+		out = append(out, map[string]string{FlowProfileDsOther[2]: p.MatchDsMacDestMask})
 	}
 	if p.MatchDsMacSrcAddr != "" {
-		out = append(out, map[string]string{"MatchDsMacSrcAddr": p.MatchDsMacSrcAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[3]: p.MatchDsMacSrcAddr})
 	}
 	if p.MatchDsMacSrcMask != "" {
-		out = append(out, map[string]string{"MatchDsMacSrcMask": p.MatchDsMacSrcMask})
+		out = append(out, map[string]string{FlowProfileDsOther[4]: p.MatchDsMacSrcMask})
 	}
 	if p.MatchDsCPcp != -1 {
-		out = append(out, map[string]int{"MatchDsCPcp": p.MatchDsCPcp})
+		out = append(out, map[string]int{FlowProfileDsOther[5]: p.MatchDsCPcp})
 	}
 	if p.MatchDsSPcp != -1 {
-		out = append(out, map[string]int{"MatchDsSPcp": p.MatchDsSPcp})
+		out = append(out, map[string]int{FlowProfileDsOther[6]: p.MatchDsSPcp})
 	}
 	if p.MatchDsCVlanIDRange != empty {
 		list, err := getVlanFromB64(p.MatchDsCVlanIDRange)
 		if err == nil {
-			out = append(out, map[string][]int{"MatchDsCVlanIDRange": list})
+			out = append(out, map[string][]int{FlowProfileDsOther[7]: list})
 		} else {
 			log.Printf("flowProfile: %v\n", err)
 		}
@@ -367,57 +438,74 @@ func (p *FlowProfile) GetMatchDsOther() []interface{} {
 	if p.MatchDsSVlanIDRange != empty {
 		list, err := getVlanFromB64(p.MatchDsSVlanIDRange)
 		if err == nil {
-			out = append(out, map[string][]int{"MatchDsSVlanIDRange": list})
+			out = append(out, map[string][]int{FlowProfileDsOther[8]: list})
 		} else {
 			log.Printf("flowProfile: %v\n", err)
 		}
 	}
 	if p.MatchDsEthertype != -1 {
-		out = append(out, map[string]int{"MatchDsEthertype": p.MatchDsEthertype})
+		out = append(out, map[string]int{FlowProfileDsOther[9]: p.MatchDsEthertype})
 	}
 	if p.MatchDsIPProtocol != -1 {
-		out = append(out, map[string]int{"MatchDsIPProtocol": p.MatchDsIPProtocol})
+		out = append(out, map[string]int{FlowProfileDsOther[10]: p.MatchDsIPProtocol})
 	}
 	if p.MatchDsIPSrcAddr != "" {
-		out = append(out, map[string]string{"MatchDsIPSrcAddr": p.MatchDsIPSrcAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[11]: p.MatchDsIPSrcAddr})
 	}
 	if p.MatchDsIPSrcMask != "" {
-		out = append(out, map[string]string{"MatchDsIPSrcMask": p.MatchDsIPSrcMask})
+		out = append(out, map[string]string{FlowProfileDsOther[12]: p.MatchDsIPSrcMask})
 	}
 	if p.MatchDsIPDestAddr != "" {
-		out = append(out, map[string]string{"MatchDsIPDestAddr": p.MatchDsIPDestAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[13]: p.MatchDsIPDestAddr})
 	}
 	if p.MatchDsIPDestMask != "" {
-		out = append(out, map[string]string{"MatchDsIPDestMask": p.MatchDsIPDestMask})
+		out = append(out, map[string]string{FlowProfileDsOther[14]: p.MatchDsIPDestMask})
 	}
 	if p.MatchDsIPDscp != -1 {
-		out = append(out, map[string]int{"MatchDsIPDscp": p.MatchDsIPDscp})
+		out = append(out, map[string]int{FlowProfileDsOther[15]: p.MatchDsIPDscp})
+	}
+	if p.MatchDsIPCsc != -1 {
+		out = append(out, map[string]int{FlowProfileDsOther[16]: p.MatchDsIPCsc})
+	}
+	if p.MatchDsIPDropPrecedence != -1 {
+		out = append(out, map[string]int{FlowProfileDsOther[17]: p.MatchDsIPDropPrecedence})
 	}
 	if p.MatchDsTCPSrcPort != -1 {
-		out = append(out, map[string]int{"MatchDsTCPSrcPort": p.MatchDsTCPSrcPort})
+		out = append(out, map[string]int{FlowProfileDsOther[18]: p.MatchDsTCPSrcPort})
 	}
 	if p.MatchDsTCPDestPort != -1 {
-		out = append(out, map[string]int{"MatchDsTCPDestPort": p.MatchDsTCPDestPort})
+		out = append(out, map[string]int{FlowProfileDsOther[19]: p.MatchDsTCPDestPort})
 	}
 	if p.MatchDsUDPSrcPort != -1 {
-		out = append(out, map[string]int{"MatchDsUDPSrcPort": p.MatchDsUDPSrcPort})
+		out = append(out, map[string]int{FlowProfileDsOther[20]: p.MatchDsUDPSrcPort})
 	}
 	if p.MatchDsUDPDstPort != -1 {
-		out = append(out, map[string]int{"MatchDsUDPDstPort": p.MatchDsUDPDstPort})
+		out = append(out, map[string]int{FlowProfileDsOther[21]: p.MatchDsUDPDstPort})
 	}
 	if p.MatchDsIpv6SrcAddr != "" {
-		out = append(out, map[string]string{"MatchDsIpv6SrcAddr": p.MatchDsIpv6SrcAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[22]: p.MatchDsIpv6SrcAddr})
 	}
 	if p.MatchDsIpv6SrcAddrMaskLen != 0 {
-		out = append(out, map[string]int{"MatchDsIpv6SrcAddrMaskLen": p.MatchDsIpv6SrcAddrMaskLen})
+		out = append(out, map[string]int{FlowProfileDsOther[23]: p.MatchDsIpv6SrcAddrMaskLen})
 	}
 	if p.MatchDsIpv6DstAddr != "" {
-		out = append(out, map[string]string{"MatchDsIpv6DstAddr": p.MatchDsIpv6DstAddr})
+		out = append(out, map[string]string{FlowProfileDsOther[24]: p.MatchDsIpv6DstAddr})
 	}
 	if p.MatchDsIpv6DstAddrMaskLen != 0 {
-		out = append(out, map[string]int{"MatchDsIpv6DstAddrMaskLen": p.MatchDsIpv6DstAddrMaskLen})
+		out = append(out, map[string]int{FlowProfileDsOther[25]: p.MatchDsIpv6DstAddrMaskLen})
 	}
 	return out
+}
+
+var FlowProfileUsHandling = []string{
+	"UsCdr",
+	"UsCdrBurstSize",
+	"UsPdr",
+	"UsPdrBurstSize",
+	"UsMarkPcp",
+	"UsMarkPcpValue",
+	"UsMarkDscp",
+	"UsMarkDscpValue",
 }
 
 // GetUsHandling returns a list of any non-default values as a key:value pair
@@ -425,31 +513,42 @@ func (p *FlowProfile) GetUsHandling() []interface{} {
 	var out []interface{}
 
 	if p.UsCdr != 0 {
-		out = append(out, map[string]int{"UsCdr": p.UsCdr})
+		out = append(out, map[string]int{FlowProfileUsHandling[0]: p.UsCdr})
 	}
 	if p.UsCdrBurstSize != 0 {
-		out = append(out, map[string]int{"UsCdrBurstSize": p.UsCdrBurstSize})
+		out = append(out, map[string]int{FlowProfileUsHandling[1]: p.UsCdrBurstSize})
 	}
 	if p.UsPdr != 0 {
-		out = append(out, map[string]int{"UsPdr": p.UsPdr})
+		out = append(out, map[string]int{FlowProfileUsHandling[2]: p.UsPdr})
 	}
 	if p.UsPdrBurstSize != 0 {
-		out = append(out, map[string]int{"UsPdrBurstSize": p.UsPdrBurstSize})
+		out = append(out, map[string]int{FlowProfileUsHandling[3]: p.UsPdrBurstSize})
 	}
 	if p.UsMarkPcp != 1 {
-		out = append(out, map[string]int{"UsMarkPcp": p.UsMarkPcp})
+		out = append(out, map[string]int{FlowProfileUsHandling[4]: p.UsMarkPcp})
 	}
 	if p.UsMarkPcpValue != -1 {
-		out = append(out, map[string]int{"UsMarkPcpValue": p.UsMarkPcpValue})
+		out = append(out, map[string]int{FlowProfileUsHandling[5]: p.UsMarkPcpValue})
 	}
 	if p.UsMarkDscp != 1 {
-		out = append(out, map[string]int{"UsMarkPcp": p.UsMarkPcp})
+		out = append(out, map[string]int{FlowProfileUsHandling[6]: p.UsMarkDscp})
 	}
 	if p.UsMarkDscpValue != -1 {
-		out = append(out, map[string]int{"UsMarkPcpValue": p.UsMarkPcpValue})
+		out = append(out, map[string]int{FlowProfileUsHandling[7]: p.UsMarkDscpValue})
 	}
 
 	return out
+}
+
+var FlowProfileDsHandling = []string{
+	"DsCdr",
+	"DsCdrBurstSize",
+	"DsPdr",
+	"DsPdrBurstSize",
+	"DsMarkPcp",
+	"DsMarkPcpValue",
+	"DsMarkDscp",
+	"DsMarkDscpValue",
 }
 
 // GetDsHandling returns a list of any non-default values as a key:value pair
@@ -457,28 +556,28 @@ func (p *FlowProfile) GetDsHandling() []interface{} {
 	var out []interface{}
 
 	if p.DsCdr != 0 {
-		out = append(out, map[string]int{"DsCdr": p.DsCdr})
+		out = append(out, map[string]int{FlowProfileDsHandling[0]: p.DsCdr})
 	}
 	if p.DsCdrBurstSize != 0 {
-		out = append(out, map[string]int{"DsCdrBurstSize": p.DsCdrBurstSize})
+		out = append(out, map[string]int{FlowProfileDsHandling[1]: p.DsCdrBurstSize})
 	}
 	if p.DsPdr != 0 {
-		out = append(out, map[string]int{"DsPdr": p.DsPdr})
+		out = append(out, map[string]int{FlowProfileDsHandling[2]: p.DsPdr})
 	}
 	if p.DsPdrBurstSize != 0 {
-		out = append(out, map[string]int{"DsPdrBurstSize": p.DsPdrBurstSize})
+		out = append(out, map[string]int{FlowProfileDsHandling[3]: p.DsPdrBurstSize})
 	}
 	if p.DsMarkPcp != 1 {
-		out = append(out, map[string]int{"DsMarkPcp": p.DsMarkPcp})
+		out = append(out, map[string]int{FlowProfileDsHandling[4]: p.DsMarkPcp})
 	}
 	if p.DsMarkPcpValue != -1 {
-		out = append(out, map[string]int{"DsMarkPcpValue": p.DsMarkPcpValue})
+		out = append(out, map[string]int{FlowProfileDsHandling[5]: p.DsMarkPcpValue})
 	}
 	if p.DsMarkDscp != 1 {
-		out = append(out, map[string]int{"DsMarkPcp": p.DsMarkPcp})
+		out = append(out, map[string]int{FlowProfileDsHandling[6]: p.DsMarkDscp})
 	}
 	if p.DsMarkDscpValue != -1 {
-		out = append(out, map[string]int{"DsMarkPcpValue": p.DsMarkPcpValue})
+		out = append(out, map[string]int{FlowProfileDsHandling[7]: p.DsMarkDscpValue})
 	}
 
 	return out
@@ -489,20 +588,20 @@ func (p *FlowProfile) GetQueueingPriority() string {
 	return fmt.Sprintf("%d", p.DsQueuingPriority)
 }
 
+var FlowProfileSchedulingModes = []string{
+	"nil",
+	"Weighted",
+	"Strict",
+}
+
 // GetSchedulingMode returns a string explaining the profile-configured Ds Scheduling Mode
 func (p *FlowProfile) GetSchedulingMode() string {
-	switch {
-	case p.DsSchedulingMode == 1:
-		return "Weighted"
-	case p.DsSchedulingMode == 2:
-		return "Strict"
-	default:
-		return "Unknown"
-	}
+	return FlowProfileSchedulingModes[p.DsSchedulingMode]
 }
 
 // Tabwrite displays the essential information of FlowProfile in organized columns
 func (p *FlowProfile) Tabwrite() {
+	fmt.Println("|| Flow Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range FlowProfileHeaders {
@@ -546,6 +645,7 @@ func (fpl *FlowProfileList) Separate() []*FlowProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (fpl *FlowProfileList) Tabwrite() {
+	fmt.Println("|| Flow Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
