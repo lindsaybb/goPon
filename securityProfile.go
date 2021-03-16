@@ -66,6 +66,11 @@ func (p *SecurityProfile) GetName() string {
 	return p.Name
 }
 
+// IsUsed
+func (p *SecurityProfile) IsUsed() bool {
+	return p.Usage == 1
+}
+
 // Copy returns a copy of the profile object with a new name and Usage set to 2
 func (p *SecurityProfile) Copy(newName string) (*SecurityProfile, error) {
 	if p.Name == newName {
@@ -75,6 +80,12 @@ func (p *SecurityProfile) Copy(newName string) (*SecurityProfile, error) {
 	np.Name = newName
 	np.Usage = 2
 	return np, nil
+}
+
+var SecStmCtlList = []string{
+	"Broadcast",
+	"Unknown-Unicast",
+	"Multicast",
 }
 
 // BUM order
@@ -89,7 +100,7 @@ func (p *SecurityProfile) GetStormControl() []int {
 
 func (p *SecurityProfile) GetStormControlString() string {
 	list := p.GetStormControl()
-	return fmt.Sprintf("Broadcast: %d, Unicast: %d, Multicast: %d", list[0], list[1], list[2])
+	return fmt.Sprintf("%s: %d, %s: %d, %s: %d", SecStmCtlList[0], list[0], SecStmCtlList[1], list[1], SecStmCtlList[2], list[2])
 }
 
 func (p *SecurityProfile) SetStormControl(list []int) error {
@@ -112,6 +123,14 @@ func (p *SecurityProfile) SetStormControl(list []int) error {
 	return nil
 }
 
+var SecArlList = []string{
+	"DHCP",
+	"IGMP",
+	"PPPOE",
+	"STP",
+	"MN",
+}
+
 // DHCP, IGMP, PPPoE, STP, MN
 func (p *SecurityProfile) GetAppRateLimit() []int {
 	var arl = []int{
@@ -126,24 +145,35 @@ func (p *SecurityProfile) GetAppRateLimit() []int {
 
 func (p *SecurityProfile) GetAppRateLimitString() string {
 	list := p.GetAppRateLimit()
-	return fmt.Sprintf("DHCP: %d, IGMP: %d, PPPoE: %d, STP: %d, MN: %d", list[0], list[1], list[2], list[3], list[4])
+	return fmt.Sprintf("%s: %d, %s: %d, %s: %d, %s: %d, %s: %d", SecArlList[0], list[0], SecArlList[1], list[1], SecArlList[2], list[2], SecArlList[3], list[3], SecArlList[4], list[4])
 }
 
+// allows setting an individual ARL value by providing the key:value of the desired setting
 func (p *SecurityProfile) SetAppRateLimit(key string, value int) error {
-	key = strings.ToLower(key)
+	key = strings.ToUpper(key)
 	if value > 1000 {
 		value = 1000
 	}
+	for i, v := range SecArlList {
+		if key == v {
+			return p.SetARL(i, value)
+		}
+	}
+	return ErrNotInput
+}
+
+// change the ARL individually according to a key relating to the SecArlList, with supplied value (-1 for default value)
+func (p *SecurityProfile) SetARL(key int, value int) error {
 	switch key {
-	case "dhcp":
+	case 0:
 		p.AppRateLimitDhcp = value
-	case "igmp":
+	case 1:
 		p.AppRateLimitIgmp = value
-	case "pppoe":
+	case 2:
 		p.AppRateLimitPppoe = value
-	case "stp":
+	case 3:
 		p.AppRateLimitStp = value
-	case "mn":
+	case 4:
 		p.AppRateLimitMn = value
 	default:
 		return ErrNotInput
@@ -160,10 +190,12 @@ func (p *SecurityProfile) DefaultAppRateLimit() {
 	p.AppRateLimitMn = 1000
 }
 
+// returns true if ProtectedPort is enabled
 func (p *SecurityProfile) GetProtectedPort() bool {
 	return p.ProtectedPort == 1
 }
 
+// supply desired state as bool where enabled=true
 func (p *SecurityProfile) SetProtectedPort(state bool) {
 	if state {
 		p.ProtectedPort = 1
@@ -222,6 +254,16 @@ func (p *SecurityProfile) SetArpInspect(state bool) {
 	}
 }
 
+var SecIpSgList = []string{
+	"v4Enable",
+	"v6Enable",
+	"FilterMode",
+	"v4BindingLimit",
+	"v6BindingLimitDHCP",
+	"v6BindingLimitND",
+}
+
+// expand this to include elements of configuration
 func (p *SecurityProfile) GetIPv4SG() bool {
 	return p.IPSg == 1
 }
@@ -231,6 +273,28 @@ func (p *SecurityProfile) SetIPv4SG(state bool) {
 		p.IPSg = 1
 	} else {
 		p.IPSg = 0
+	}
+}
+
+func (p *SecurityProfile) GetFilterMode() bool {
+	return p.IPSgFilteringMode == 2
+}
+
+func (p *SecurityProfile) GetFilterModeString() string {
+	switch p.IPSgFilteringMode {
+	case 1:
+		return "IP"
+	case 2:
+		return "IP & MAC"
+	}
+	return ""
+}
+
+func (p *SecurityProfile) SetFilterMode(state bool) {
+	if state {
+		p.IPSgFilteringMode = 2
+	} else {
+		p.IPSgFilteringMode = 1
 	}
 }
 
@@ -288,6 +352,7 @@ func (p *SecurityProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of VlanProfile in organized columns
 func (p *SecurityProfile) Tabwrite() {
+	fmt.Println("|| Security Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range SecurityProfileHeaders {
@@ -322,6 +387,7 @@ func (spl *SecurityProfileList) Separate() []*SecurityProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (spl *SecurityProfileList) Tabwrite() {
+	fmt.Println("|| Security Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
