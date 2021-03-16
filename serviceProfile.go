@@ -51,7 +51,6 @@ type ServiceProfileList struct {
 	Entry []*ServiceProfile
 }
 
-// OnuTpTypeList is a reference for the settable values of OnuTpType where the 0-reference value is unreachable
 var OnuTpTypeList = []string{
 	"nil",
 	"VEIP",
@@ -361,6 +360,7 @@ func (sp *ServiceProfile) SetOnuTpUniBitMap(id int) {
 
 // Tabwrite displays the essential information of Service Profile in organized columns
 func (sp *ServiceProfile) Tabwrite() {
+	fmt.Println("|| Service Profile ||")
 	// first get the data as a map
 	l := sp.ListEssentialSubProfiles()
 	// initiate a tabwriter
@@ -391,6 +391,7 @@ func (sp *ServiceProfile) Tabwrite() {
 
 // Tabwrite displays the essential information of Service Profile in organized columns
 func (sp *ServiceProfile) TabwriteFull() {
+	fmt.Println("|| Service Profile ||")
 	// first get the data as a map
 	l := sp.ListSubProfiles()
 	// initiate a tabwriter
@@ -461,6 +462,7 @@ func (spl *ServiceProfileList) ProfileExists(name string) bool {
 
 // Tabwrite displays the essential information of a list of Service Profiles in organized columns
 func (spl *ServiceProfileList) Tabwrite() {
+	fmt.Println("|| Service Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
@@ -495,6 +497,7 @@ func (spl *ServiceProfileList) Tabwrite() {
 
 // Tabwrite displays the full information of a list of Service Profiles in organized columns
 func (spl *ServiceProfileList) TabwriteFull() {
+	fmt.Println("|| Service Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
