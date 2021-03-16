@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"strings"
 	"text/tabwriter"
 )
 
@@ -39,6 +38,11 @@ func NewOnuTcontProfile(name string) *OnuTcontProfile {
 // GetName returns the name of the OnuTcontProfile
 func (p *OnuTcontProfile) GetName() string {
 	return p.Name
+}
+
+// IsUsed
+func (p *OnuTcontProfile) IsUsed() bool {
+	return p.Usage == 1
 }
 
 // Copy returns a copy of the profile object with a new name and Usage set to 2
@@ -111,9 +115,45 @@ func (p *OnuTcontProfile) GetTcontDescription() string {
 		"The default T-Cont ID if not set is 1",
 		"T-Conts can be flexibly named, however due to their function a standard naming convention is recommended",
 	}
-	desc := strings.Join(descr, ". ")
-	name = "Based on the T-Cont in this profile, the recommended name is:" + name
-	return desc + name
+	for _, l := range descr {
+		fmt.Println(l)
+	}
+	name = "The Auto-Generated T-CONT name is:" + name
+	return name
+}
+
+func (p *OnuTcontProfile) PrintTcontInfo() {
+	var descr = []string{
+		"Type 1:",
+		"FixedRate >= 256 (configurable)",
+		"AssuredRate = 0 (non-configurable)",
+		"MaximumRate = FixedRate (auto set)",
+		"Type 2:",
+		"FixedRate = 0 (non-configurable)",
+		"AssuredRate >= 256 (configurable)",
+		"MaximumRate = AssuredRate (auto set)",
+		"Type 3:",
+		"FixedRate = 0 (non-configurable)",
+		"AssuredRate >= 256 (configurable)",
+		"MaximumRate >= AssuredRate + 256 (configurable)",
+		"Type 4:",
+		"FixedRate = 0 (non-configurable)",
+		"AssuredRate = 0 (non-configurable)",
+		"MaximumRate >= 256 (configurable)",
+		"Type 5:",
+		"FixedRate = 0 or FixedRate >= 256 (configurable)",
+		"AssuredRate = 0 or AssuredRate >= 256 (configurable)",
+		"MaximumRate >= 256 (configurable)",
+		"FixedRate + AssuredRate == 0 or FixedRate + AssuredRate >= 256",
+		"MaximumRate >= FixedRate + AssuredRate + 256",
+	}
+	for i, l := range descr {
+		if i == 0 || i % 4 == 0 {
+			fmt.Printf("%s\n", l)
+		} else {
+			fmt.Printf("\t%s\n", l)
+		}
+	}
 }
 
 // SetTcontType allows setting the TCont type between 1 and 5, carries over previously set rates if applicable
@@ -136,7 +176,7 @@ func (p *OnuTcontProfile) SetTcontID(i int) {
 	if i < 1 || i > 6 {
 		i = 1
 	}
-	p.TcontType = i
+	p.TcontID = i
 }
 
 // SetFAM allows setting Fixed, Assured and Max Data rates at once, pass 0 if can't or don't want to set value
@@ -204,8 +244,8 @@ func (p *OnuTcontProfile) SetFixedRate(i int) {
 var OnuTcontProfileHeaders = []string{
 	"Name",
 	"Description",
-	"ID",
 	"Type",
+	"ID",
 	"Fixed",
 	"Assured",
 	"Max",
@@ -216,8 +256,8 @@ func (p *OnuTcontProfile) ListEssentialParams() map[string]interface{} {
 	var EssentialOnuTcontProfile = map[string]interface{}{
 		OnuTcontProfileHeaders[0]: p.GetName(),
 		OnuTcontProfileHeaders[1]: p.GenerateTcontName(),
-		OnuTcontProfileHeaders[2]: p.TcontID,
-		OnuTcontProfileHeaders[3]: p.TcontType,
+		OnuTcontProfileHeaders[2]: p.TcontType,
+		OnuTcontProfileHeaders[3]: p.TcontID,
 		OnuTcontProfileHeaders[4]: formatKbits(p.FixedDataRate),
 		OnuTcontProfileHeaders[5]: formatKbits(p.AssuredDataRate),
 		OnuTcontProfileHeaders[6]: formatKbits(p.MaxDataRate),
@@ -228,6 +268,7 @@ func (p *OnuTcontProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of OnuTcontProfile in organized columns
 func (p *OnuTcontProfile) Tabwrite() {
+	fmt.Println("|| ONU T-CONT Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range OnuTcontProfileHeaders {
@@ -271,6 +312,7 @@ func (otpl *OnuTcontProfileList) Separate() []*OnuTcontProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (otpl *OnuTcontProfileList) Tabwrite() {
+	fmt.Println("|| ONU T-CONT Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
