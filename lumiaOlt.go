@@ -615,7 +615,7 @@ func (l *LumiaOlt) DeauthOnuBySn(serNo string) error {
 	// assume the registered Onu List is up to date
 	for i := 0; i < len(l.Registration); i++ {
 		if l.Registration[i].SerialNumber == serNo {
-			// clear all service profiles from olt first 
+			// clear all service profiles from olt first
 			// so they are not left over for the next device who takes this intf
 			for n := 0; n < len(l.Registration[i].Services); n++ {
 				err = l.RemoveOnuProfileUsage(l.Registration[i].Interface, l.Registration[i].Services[n])
@@ -738,17 +738,14 @@ func (l *LumiaOlt) PostOnuProfile(op *OnuProfile) error {
 // This is a good example of how multiple fields can be combined together in the URL query with commas ','
 func (l *LumiaOlt) RemoveOnuProfileUsage(intf, spName string) error {
 	removalQuery := UrlEncodeInterface(intf) + "," + spName
-	status, err := RestDeleteProfile(l.Host, onuProfiles, removalQuery)
+	resp, err := RestDeleteProfile(l.Host, onuProfiles, removalQuery)
 	if err != nil {
 		return err
 	}
-	if status != responseOk {
+	if resp != responseOk {
+		fmt.Println(resp)
 		return ErrNotStatusOk
 	}
-	//fmt.Println("DeleteOnuProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
 	return nil
 }
 
@@ -813,28 +810,28 @@ func (l *LumiaOlt) GetServiceProfileByName(name string) (*ServiceProfile, error)
 // DeleteServiceProfile removes the named ServiceProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteServiceProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, serviceProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, serviceProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteServiceProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostServiceProfile performs a Post request to l.Host containing serialized data from a ServiceProfile struct, if the name is not already used
 func (l *LumiaOlt) PostServiceProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, serviceProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, serviceProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostServiceProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -876,28 +873,28 @@ func (l *LumiaOlt) GetFlowProfileByName(name string) (*FlowProfile, error) {
 // DeleteFlowProfile removes the named FlowProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteFlowProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, flowProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, flowProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteFlowProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostFlowProfile performs a Post request to l.Host containing serialized data from a FlowProfile struct, if the name is not already used
 func (l *LumiaOlt) PostFlowProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, flowProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, flowProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostFlowProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 
 }
@@ -938,28 +935,28 @@ func (l *LumiaOlt) GetVlanProfileByName(name string) (*VlanProfile, error) {
 // DeleteVlanProfile removes the named VlanProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteVlanProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, vlanProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, vlanProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteVlanProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostVlanProfile performs a Post request to l.Host containing serialized data from a VlanProfile struct, if the name is not already used
 func (l *LumiaOlt) PostVlanProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, vlanProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, vlanProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostVlanProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1002,28 +999,28 @@ func (l *LumiaOlt) GetOnuFlowProfileByName(name string) (*OnuFlowProfile, error)
 // DeleteOnuFlowProfile removes the named OnuFlowProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteOnuFlowProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, onuFlowProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, onuFlowProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuFlowProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostOnuFlowProfile performs a Post request to l.Host containing serialized data from a OnuFlowProfile struct, if the name is not already used
 func (l *LumiaOlt) PostOnuFlowProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, onuFlowProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, onuFlowProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostOnuFlowProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1066,28 +1063,28 @@ func (l *LumiaOlt) GetOnuTcontProfileByName(name string) (*OnuTcontProfile, erro
 // DeleteOnuTcontProfile removes the named OnuTcontProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteOnuTcontProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, onuTcontProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, onuTcontProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuTcontProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostOnuTcontProfile performs a Post request to l.Host containing serialized data from a OnuTcontProfile struct, if the name is not already used
 func (l *LumiaOlt) PostOnuTcontProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, onuTcontProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, onuTcontProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostOnuTcontProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1129,28 +1126,28 @@ func (l *LumiaOlt) GetSecurityProfileByName(name string) (*SecurityProfile, erro
 // DeleteSecurityProfile removes the named SecurityProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteSecurityProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, securityProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, securityProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteSecurityProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostSecurityProfile performs a Post request to l.Host containing serialized data from a SecurityProfile struct, if the name is not already used
 func (l *LumiaOlt) PostSecurityProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, securityProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, securityProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostSecurityProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1193,28 +1190,28 @@ func (l *LumiaOlt) GetMulticastProfileByName(name string) (*IgmpProfile, error) 
 // DeleteMulticastProfile removes the named IgmpProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteMulticastProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, igmpProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, igmpProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteMulticastProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostMulticastProfile performs a Post request to l.Host containing serialized data from a IgmpProfile struct, if the name is not already used
 func (l *LumiaOlt) PostMulticastProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, igmpProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, igmpProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostMulticastProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1256,48 +1253,70 @@ func (l *LumiaOlt) GetOnuMulticastProfileByName(name string) (*OnuIgmpProfile, e
 // DeleteOnuMulticastProfile removes the named OnuIgmpProfile from the l.Host if it exists and is not in use by a ServiceProfile
 func (l *LumiaOlt) DeleteOnuMulticastProfile(name string) error {
 
-	status, err := RestDeleteProfile(l.Host, onuIgmpProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, onuIgmpProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuMulticastProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
 // PostOnuMulticastProfile performs a Post request to l.Host containing serialized data from a OnuIgmpProfile struct, if the name is not already used
 func (l *LumiaOlt) PostOnuMulticastProfile(name string, data []byte) error {
 
-	status, err := RestPostProfile(l.Host, onuIgmpProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, onuIgmpProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostOnuMulticastProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 
 }
 
-// GetOnuVlanProfiles performs a Get Request to the l.Host and returns a list of the OnuVlanProfile struct
-func (l *LumiaOlt) GetOnuVlanProfiles() ([]*OnuVlanProfile, error) {
+// GetOnuVlanProfiles performs a Get Request to the l.Host and returns a list of the OnuVlanProfile struct including the OnuVlanRuleList that it nests
+func (l *LumiaOlt) GetOnuVlanProfiles() (*OnuVlanProfileList, *OnuVlanRuleList, error) {
 	rawJson, err := RestGetProfiles(l.Host, onuVlanProfiles)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	l.CacheSwap()
 	err = json.Unmarshal(rawJson, l.Current)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	var list []*OnuVlanProfile
-	for _, v := range l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry {
-		list = append(list, &v)
+	var list OnuVlanProfileList
+	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry); i++ {
+		list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileTable.MsanOnuVlanProfileEntry[i])
+		//fmt.Println(list)
 	}
-	return list, nil
+	var rules *OnuVlanRuleList
+	rules, err = l.GetOnuVlanRules()
+	if err != nil {
+		return &list, nil, err
+	}
+
+	for n := 0; n < len(list.Entry); n++ {
+		//fmt.Printf("Profile range: %s\n", list.Entry[n].Name)
+		var profRules OnuVlanRuleList
+		for i := 0; i < len(rules.Entry); i++ {
+			//fmt.Printf("Rule range: %s\n", rules.Entry[i].Name)
+			if rules.Entry[i].Name == list.Entry[n].Name {
+				//fmt.Println(rules.Entry[i])
+				profRules.Entry = append(profRules.Entry, rules.Entry[i])
+				continue
+			}	
+		}
+		//fmt.Printf("Collected rules: %v\n", profRules)
+		list.Entry[n].Rules = &profRules
+	}
+	
+	return &list, rules, nil
 }
 
 // GetOnuVlanProfileByName is a helper method that returns a single OnuVlanProfile struct by name, if exists
@@ -1305,11 +1324,11 @@ func (l *LumiaOlt) GetOnuVlanProfileByName(name string) (*OnuVlanProfile, error)
 	if name == "" {
 		return nil, ErrNotInput
 	}
-	list, err := l.GetOnuVlanProfiles()
+	list, _,  err := l.GetOnuVlanProfiles()
 	if err != nil {
 		return nil, err
 	}
-	for _, v := range list {
+	for _, v := range list.Entry {
 		if v.Name == name {
 			return v, nil
 		}
@@ -1329,14 +1348,14 @@ func (l *LumiaOlt) DeleteOnuVlanProfile(name string) error {
 		return ErrInUse
 	}
 	// perform the delete operation
-	status, err := RestDeleteProfile(l.Host, onuVlanProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, onuVlanProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuVlanProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1349,20 +1368,20 @@ func (l *LumiaOlt) PostOnuVlanProfile(name string, data []byte) error {
 	}
 	// The OnuVlanProfile has a method called GenerateJson() that serializes the data as input
 	// perform the post operation
-	status, err := RestPostProfile(l.Host, onuVlanProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, onuVlanProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostOnuVlanProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
-/*
+
 // GetOnuVlanRules performs a Get Request to the l.Host and returns a list of the OnuVlanRule struct
-func (l *LumiaOlt) GetOnuVlanRules() ([]*OnuVlanRule, error) {
+func (l *LumiaOlt) GetOnuVlanRules() (*OnuVlanRuleList, error) {
 	rawJson, err := RestGetProfiles(l.Host, onuVlanRules)
 	if err != nil {
 		return nil, err
@@ -1372,13 +1391,13 @@ func (l *LumiaOlt) GetOnuVlanRules() ([]*OnuVlanRule, error) {
 	if err != nil {
 		return nil, err
 	}
-	var list []*OnuVlanRule
-	for _, v := range l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry {
-		list = append(list, &v)
+	var list OnuVlanRuleList
+	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry); i++ {
+		list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuVlanProfileRuleTable.MsanOnuVlanProfileRuleEntry[i])
 	}
-	return list, nil
+	return &list, nil
 }
-
+/*
 // GetOnuVlanRuleByName is a helper method that returns a single OnuVlanRule struct by name, if exists
 func (l *LumiaOlt) GetOnuVlanRuleByName(name string) (*OnuVlanRule, error) {
 	if name == "" {
@@ -1408,14 +1427,14 @@ func (l *LumiaOlt) DeleteOnuVlanRule(name string) error {
 		return ErrInUse
 	}
 	// perform the delete operation
-	status, err := RestDeleteProfile(l.Host, onuVlanRules, name)
+	resp, err := RestDeleteProfile(l.Host, onuVlanRules, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteOnuVlanRule:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1429,14 +1448,14 @@ func (l *LumiaOlt) PostOnuVlanRule(name string, data []byte) error {
 	}
 	// The OnuVlanRule has a method called GenerateJson() that serializes the data as input
 	// perform the post operation
-	status, err := RestPostProfile(l.Host, onuVlanRules, name, data)
+	resp, err := RestPostProfile(l.Host, onuVlanRules, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostOnuVlanRule:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 */
@@ -1488,14 +1507,14 @@ func (l *LumiaOlt) DeleteL2cpProfile(name string) error {
 		return ErrInUse
 	}
 	// perform the delete operation
-	status, err := RestDeleteProfile(l.Host, l2cpProfiles, name)
+	resp, err := RestDeleteProfile(l.Host, l2cpProfiles, name)
 	if err != nil {
 		return err
 	}
-	fmt.Println("DeleteL2cpProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotDelete }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
 
@@ -1508,13 +1527,13 @@ func (l *LumiaOlt) PostL2cpProfile(name string, data []byte) error {
 	}
 	// The L2cpProfile has a method called GenerateJson() that serializes the data as input
 	// perform the post operation
-	status, err := RestPostProfile(l.Host, l2cpProfiles, name, data)
+	resp, err := RestPostProfile(l.Host, l2cpProfiles, name, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("PostL2cpProfile:", status)
-	// check for ErrNotStatusOk
-	//chg := l.CacheDiff()
-	//if chg == nil { return ErrNotPost }
+	if resp != responseOk {
+		fmt.Println(resp)
+		return ErrNotStatusOk
+	}
 	return nil
 }
