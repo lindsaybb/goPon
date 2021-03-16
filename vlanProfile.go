@@ -52,6 +52,11 @@ func (p *VlanProfile) GetName() string {
 	return p.Name
 }
 
+// IsUsed
+func (p *VlanProfile) IsUsed() bool {
+	return p.Usage == 1
+}
+
 // Copy returns a copy of the profile object with a new name and Usage set to 2
 func (p *VlanProfile) Copy(newName string) (*VlanProfile, error) {
 	if p.Name == newName {
@@ -111,6 +116,7 @@ func (p *VlanProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of VlanProfile in organized columns
 func (p *VlanProfile) Tabwrite() {
+	fmt.Println("|| VLAN Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range VlanProfileHeaders {
@@ -154,6 +160,7 @@ func (vpl *VlanProfileList) Separate() []*VlanProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (vpl *VlanProfileList) Tabwrite() {
+	fmt.Println("|| VLAN Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
