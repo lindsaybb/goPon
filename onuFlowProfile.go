@@ -44,6 +44,11 @@ func (p *OnuFlowProfile) GetName() string {
 	return p.Name
 }
 
+// IsUsed
+func (p *OnuFlowProfile) IsUsed() bool {
+	return p.Usage == 1
+}
+
 // Copy returns a copy of the profile object with a new name and Usage set to 2
 func (p *OnuFlowProfile) Copy(newName string) (*OnuFlowProfile, error) {
 	if p.Name == newName {
@@ -84,7 +89,10 @@ var OnuFlowProfileHeaders = []string{
 	"Name",
 	"MatchUsC-VidRange",
 	"MatchUsCPcp",
+	"UsCdr",
+	"UsPdr",
 	"UsFlowPriority",
+	"DsFlowPriority",
 }
 
 // ListEssentialParams returns a map of the essential OnuFlowProfile parameters
@@ -93,7 +101,10 @@ func (p *OnuFlowProfile) ListEssentialParams() map[string]interface{} {
 		OnuFlowProfileHeaders[0]: p.GetName(),
 		OnuFlowProfileHeaders[1]: p.GetMatchUsCVlanIDRange(),
 		OnuFlowProfileHeaders[2]: p.MatchUsCPcp,
-		OnuFlowProfileHeaders[3]: p.UsFlowPriority,
+		OnuFlowProfileHeaders[3]: p.UsCdr,
+		OnuFlowProfileHeaders[4]: p.UsPdr,
+		OnuFlowProfileHeaders[5]: p.UsFlowPriority, 
+		OnuFlowProfileHeaders[6]: p.DsFlowPriority,
 	}
 
 	return EssentialOnuFlowProfile
@@ -101,6 +112,7 @@ func (p *OnuFlowProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of OnuFlowProfile in organized columns
 func (p *OnuFlowProfile) Tabwrite() {
+	fmt.Println("|| ONU Flow Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range OnuFlowProfileHeaders {
@@ -144,6 +156,7 @@ func (ofpl *OnuFlowProfileList) Separate() []*OnuFlowProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (ofpl *OnuFlowProfileList) Tabwrite() {
+	fmt.Println("|| ONU Flow Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
