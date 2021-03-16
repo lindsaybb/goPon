@@ -60,6 +60,7 @@ func (opl *OnuProfileList) CombineSameInterfaces() map[string][]string {
 //var OnuProfileMap map[string][]string
 
 func (opl *OnuProfileList) Tabwrite() {
+	fmt.Println("|| ONU Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
