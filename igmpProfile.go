@@ -155,6 +155,7 @@ func (p *IgmpProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of VlanProfile in organized columns
 func (p *IgmpProfile) Tabwrite() {
+	fmt.Println("|| IGMP Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range IgmpProfileHeaders {
@@ -189,6 +190,7 @@ func (ipl *IgmpProfileList) Separate() []*IgmpProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (ipl *IgmpProfileList) Tabwrite() {
+	fmt.Println("|| IGMP Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
