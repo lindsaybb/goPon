@@ -183,6 +183,7 @@ func (p *OnuIgmpProfile) ListEssentialParams() map[string]interface{} {
 
 // Tabwrite displays the essential information of VlanProfile in organized columns
 func (p *OnuIgmpProfile) Tabwrite() {
+	fmt.Println("|| ONU IGMP Profile ||")
 	l := p.ListEssentialParams()
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	for _, v := range OnuIgmpProfileHeaders {
@@ -217,6 +218,7 @@ func (oipl *OnuIgmpProfileList) Separate() []*OnuIgmpProfile {
 
 // Tabwrite displays the essential information of a list of Flow Profiles in organized columns
 func (oipl *OnuIgmpProfileList) Tabwrite() {
+	fmt.Println("|| ONU IGMP Profile List ||")
 	// create the writer
 	tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
 	// write tab-separated header values to tw buffer
