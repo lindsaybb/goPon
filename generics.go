@@ -52,14 +52,14 @@ const (
 	Gb
 )
 
-// formatKbits converts Kb values to Mb and Gb as applicable
+// formatKbits converts kb values to Mb and Gb as applicable, round down harshly
 func formatKbits(n int) string {
-	value, unit := float64(n), "Kb"
+	value, unit := float64(n), "k"
 	switch {
 	case value >= Gb:
-		value, unit = value/Gb, "Gb"
+		value, unit = value/Gb, "G"
 	case value >= Mb:
-		value, unit = value/Mb, "Mb"
+		value, unit = value/Mb, "M"
 	}
 	r := strconv.FormatFloat(value, 'f', 0, 64)
 	r += unit
