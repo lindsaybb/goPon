@@ -670,6 +670,9 @@ func (l *LumiaOlt) DeauthOnuBySnList(path string) error {
 	s := bufio.NewScanner(deAuthFile)
 	for s.Scan() {
 		str := strings.Fields(strings.TrimSpace(s.Text()))
+		if len(str) < 1 {
+			continue
+		}
 		sn := str[0]
 		if len(sn) == 8 {
 			sn = "ISKT" + sn
