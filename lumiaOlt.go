@@ -778,7 +778,6 @@ func (l *LumiaOlt) GetServiceProfiles() (*ServiceProfileList, error) {
 	if err != nil {
 		return nil, err
 	}
-	//fmt.Println(string(rawJson))
 	l.CacheSwap()
 	err = json.Unmarshal(rawJson, &l.Current)
 	if err != nil {
@@ -787,7 +786,6 @@ func (l *LumiaOlt) GetServiceProfiles() (*ServiceProfileList, error) {
 	}
 	var list ServiceProfileList
 	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry); i++ {
-		//fmt.Println(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i])
 		list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanServiceProfileTable.MsanServiceProfileEntry[i])
 	}
 	return &list, nil
