@@ -8,3 +8,7 @@ https://youtu.be/2dSHPFroKTM
 Update to project and introduction of extension package "ponPro" (03/16):
 
 https://youtu.be/VGNKlGTWLcM
+
+Four minute video highlighting this program progress for a Tradeshow, and introducing a new package "goMns" (04/08):
+
+https://youtu.be/dF_3_-c5P7o
