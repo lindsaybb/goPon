@@ -248,7 +248,7 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 			SerialNumber: sn,
 		}
 		// removing the AddSnToAuthList function
-		if len(line) > 2 {
+		if len(line) > 1 {
 			for i := 1; i < len(line); i++ {
 				onuReg.Services = append(onuReg.Services, line[i])
 			}
