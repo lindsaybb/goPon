@@ -63,6 +63,9 @@ type IskratelMsan struct {
 			MsanServicePortProfileTable struct {
 				MsanServicePortProfileEntry []OnuProfile `json:"msanServicePortProfileEntry"`
 			} `json:"msanServicePortProfileTable"`
+			MsanCpuDetailTable struct {
+				MsanCpuDetailEntry []CpuDetail `json:"msanCpuDetailEntry"`
+			} `json:"msanCpuDetailTable"`
 		} `json:"ISKRATEL-MSAN-MIB"`
 	} `json:"ISKRATEL-MSAN-MIB:"`
 }
