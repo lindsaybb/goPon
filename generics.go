@@ -43,6 +43,7 @@ const (
 	onuBlacklist     = "msanOnuBlackListTable"
 	onuConfig        = "msanOnuCfgTable"
 	onuProfiles      = "msanServicePortProfileTable"
+	onuInfo		 = "msanOnuInfoTable"
 )
 
 const (
