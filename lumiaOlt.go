@@ -248,7 +248,7 @@ func (l *LumiaOlt) LoadOnuAuthList(path string) error {
 			SerialNumber: sn,
 		}
 		// removing the AddSnToAuthList function
-		if len(line) > 1 {
+		if len(line) > 2 {
 			for i := 1; i < len(line); i++ {
 				onuReg.Services = append(onuReg.Services, line[i])
 			}
@@ -770,6 +770,25 @@ func (l *LumiaOlt) AddMultipleServicesToOnu(onuReg *OnuRegister, spList []string
 		}
 	}
 	return nil
+}
+
+// GetOnuInfoList performs a Get Request to the l.Host and returns a list of the OnuInfo struct
+func (l *LumiaOlt) GetOnuInfoList() (*OnuInfoList, error) {
+	rawJson, err := RestGetProfiles(l.Host, onuInfo)
+	if err != nil {
+		return nil, err
+	}
+	l.CacheSwap()
+	err = json.Unmarshal(rawJson, &l.Current)
+	if err != nil {
+		l.CacheBack()
+		return nil, err
+	}
+	var list OnuInfoList
+	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry); i++ {
+		list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry[i])
+	}
+	return &list, nil
 }
 
 // GetServiceProfiles performs a Get Request to the l.Host and returns a list of the ServiceProfile struct
