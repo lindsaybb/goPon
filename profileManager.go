@@ -19,60 +19,60 @@ package gopon
 // create a conveince method for tabwriting all service profiles as a list
 
 type IskratelMsan struct {
-	ISKRATELMSANMIB struct {
-		ISKRATELMSANMIB struct {
-			MsanServiceProfileTable struct {
-				MsanServiceProfileEntry []ServiceProfile `json:"msanServiceProfileEntry"`
-			} `json:"msanServiceProfileTable"`
-			MsanServiceFlowProfileTable struct {
-				MsanServiceFlowProfileEntry []FlowProfile `json:"msanServiceFlowProfileEntry"`
-			} `json:"msanServiceFlowProfileTable"`
-			MsanVlanProfileTable struct {
-				MsanVlanProfileEntry []VlanProfile `json:"msanVlanProfileEntry"`
-			} `json:"msanVlanProfileTable"`
-			MsanMulticastProfileTable struct {
-				MsanMulticastProfileEntry []IgmpProfile `json:"msanMulticastProfileEntry"`
-			} `json:"msanMulticastProfileTable"`
-			MsanSecurityProfileTable struct {
-				MsanSecurityProfileEntry []SecurityProfile `json:"msanSecurityProfileEntry"`
-			} `json:"msanSecurityProfileTable"`
-			MsanOnuFlowProfileTable struct {
-				MsanOnuFlowProfileEntry []OnuFlowProfile `json:"msanOnuFlowProfileEntry"`
-			} `json:"msanOnuFlowProfileTable"`
-			MsanOnuTcontProfileTable struct {
-				MsanOnuTcontProfileEntry []OnuTcontProfile `json:"msanOnuTcontProfileEntry"`
-			} `json:"msanOnuTcontProfileTable"`
-			MsanOnuVlanProfileTable struct {
-				MsanOnuVlanProfileEntry []OnuVlanProfile `json:"msanOnuVlanProfileEntry"`
-			} `json:"msanOnuVlanProfileTable"`
-			MsanOnuVlanProfileRuleTable struct {
-				MsanOnuVlanProfileRuleEntry []OnuVlanRule `json:"msanOnuVlanProfileRuleEntry"`
-			} `json:"msanOnuVlanProfileRuleTable"`
-			MsanOnuMulticastProfileTable struct {
-				MsanOnuMulticastProfileEntry []OnuIgmpProfile `json:"msanOnuMulticastProfileEntry"`
-			} `json:"msanOnuMulticastProfileTable"`
-			MsanL2CpProfileTable struct {
-				MsanL2CpProfileEntry []L2cpProfile `json:"msanL2cpProfileEntry"`
-			} `json:"msanL2cpProfileTable"`
-			MsanOnuBlackListTable struct {
-				MsanOnuBlackListEntry []OnuBlacklist `json:"msanOnuBlackListEntry"`
-			} `json:"msanOnuBlackListTable"`
-			MsanOnuCfgTable struct {
-				MsanOnuCfgEntry []OnuConfig `json:"msanOnuCfgEntry"`
-			} `json:"msanOnuCfgTable"`
-			MsanServicePortProfileTable struct {
-				MsanServicePortProfileEntry []OnuProfile `json:"msanServicePortProfileEntry"`
-			} `json:"msanServicePortProfileTable"`
-			MsanCpuDetailTable struct {
-				MsanCpuDetailEntry []CpuDetail `json:"msanCpuDetailEntry"`
-			} `json:"msanCpuDetailTable"`
-		} `json:"ISKRATEL-MSAN-MIB"`
-	} `json:"ISKRATEL-MSAN-MIB:"`
+        ISKRATELMSANMIB struct {
+                ISKRATELMSANMIB struct {
+                        MsanServiceProfileTable struct {
+                                MsanServiceProfileEntry []ServiceProfile `json:"msanServiceProfileEntry"`
+                        } `json:"msanServiceProfileTable"`
+                        MsanServiceFlowProfileTable struct {
+                                MsanServiceFlowProfileEntry []FlowProfile `json:"msanServiceFlowProfileEntry"`
+                        } `json:"msanServiceFlowProfileTable"`
+                        MsanVlanProfileTable struct {
+                                MsanVlanProfileEntry []VlanProfile `json:"msanVlanProfileEntry"`
+                        } `json:"msanVlanProfileTable"`
+                        MsanMulticastProfileTable struct {
+                                MsanMulticastProfileEntry []IgmpProfile `json:"msanMulticastProfileEntry"`
+                        } `json:"msanMulticastProfileTable"`
+                        MsanSecurityProfileTable struct {
+                                MsanSecurityProfileEntry []SecurityProfile `json:"msanSecurityProfileEntry"`
+                        } `json:"msanSecurityProfileTable"`
+                        MsanOnuFlowProfileTable struct {
+                                MsanOnuFlowProfileEntry []OnuFlowProfile `json:"msanOnuFlowProfileEntry"`
+                        } `json:"msanOnuFlowProfileTable"`
+                        MsanOnuTcontProfileTable struct {
+                                MsanOnuTcontProfileEntry []OnuTcontProfile `json:"msanOnuTcontProfileEntry"`
+                        } `json:"msanOnuTcontProfileTable"`
+                        MsanOnuVlanProfileTable struct {
+                                MsanOnuVlanProfileEntry []OnuVlanProfile `json:"msanOnuVlanProfileEntry"`
+                        } `json:"msanOnuVlanProfileTable"`
+                        MsanOnuVlanProfileRuleTable struct {
+                                MsanOnuVlanProfileRuleEntry []OnuVlanRule `json:"msanOnuVlanProfileRuleEntry"`
+                        } `json:"msanOnuVlanProfileRuleTable"`
+                        MsanOnuMulticastProfileTable struct {
+                                MsanOnuMulticastProfileEntry []OnuIgmpProfile `json:"msanOnuMulticastProfileEntry"`
+                        } `json:"msanOnuMulticastProfileTable"`
+                        MsanL2CpProfileTable struct {
+                                MsanL2CpProfileEntry []L2cpProfile `json:"msanL2cpProfileEntry"`
+                        } `json:"msanL2cpProfileTable"`
+                        MsanOnuBlackListTable struct {
+                                MsanOnuBlackListEntry []OnuBlacklist `json:"msanOnuBlackListEntry"`
+                        } `json:"msanOnuBlackListTable"`
+                        MsanOnuCfgTable struct {
+                                MsanOnuCfgEntry []OnuConfig `json:"msanOnuCfgEntry"`
+                        } `json:"msanOnuCfgTable"`
+                        MsanOnuInfoTable struct {
+                                MsanOnuInfoEntry []OnuInfo `json:"msanOnuInfoEntry"`
+                        } `json:"msanOnuInfoTable"`
+                        MsanServicePortProfileTable struct {
+                                MsanServicePortProfileEntry []OnuProfile `json:"msanServicePortProfileEntry"`
+                        } `json:"msanServicePortProfileTable"`
+                } `json:"ISKRATEL-MSAN-MIB"`
+        } `json:"ISKRATEL-MSAN-MIB:"`
 }
 
 // NewIskratelMsan sets up a data structure for the specified Host
 func NewIskratelMsan() *IskratelMsan {
-	var t = &IskratelMsan{}
+        var t = &IskratelMsan{}
 
-	return t
+        return t
 }
