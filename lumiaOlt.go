@@ -440,30 +440,42 @@ func (l *LumiaOlt) NextAvailableOnuInterface(intf string) string {
 	}
 	sort.Ints(list)
 	var counter int
+	var escapeBool bool
 	// counting linearly, through a sorted list
 	// if the value does not equal the reference
 	// the number is skipped and can be used
-	for i := 1; i < 129; i++ {
+	for {
+		counter++
+		if counter > 128 {
+			// if this loop runs twice without breaking, break
+			if escapeBool {
+				fmt.Println("ERROR: Endless Loop Protection in NextAvailableOnuInterface")
+				break
+			}
+			counter = 1
+			escapeBool = true
+		}
 		// obvious example is 0/1/1, 0/1/2, 0/1/4 are occupied, want to supply 0/1/3 as answer
-		// i is 1 and sorted list[0] is 1, continue
-		// i is 2 and sorted list[1] is 2, continue
-		// i is 3 and sorted list[2] is 4; break and use i value
-		if i != list[i-1] {
-			counter = i
+		// counter is 1 and sorted list[0] is 1, continue
+		// counter is 2 and sorted list[1] is 2, continue
+		// counter is 3 and sorted list[2] is 4; break and use counter value for new interface
+		if counter != list[counter-1] {
 			break
 		}
 		// less obvious example is one device at 0/1/4 exists
-		// i is 1 and does not equal the value so it doesn't make it here
+		// counter is 1 and does not equal the value so it doesn't make it here
+		
 		// another example is like above but 0/1/3 is also present
-		// i has been equal to the list but now the list is over
-		// i is equal to the length of the list and we haven't found a device yet
-		// so i + 1 is an unoccupied interface
-		if i == len(list) {
-			counter = i + 1
+		// counter has been equal to the list but now the list is over
+		// counter is equal to the length of the list and we haven't found a device yet
+		// so counter + 1 is an unoccupied interface
+		if counter == len(list) {
+			counter += 1
 			break
 		}
-		//fmt.Println("list value", list[i], "counter", i)
+		//fmt.Printf("List value: %d, Counter value: %d\n", list[counter], counter)
 	}
+	
 	newIntf := fmt.Sprintf("%s/%d", intf, counter)
 	return newIntf
 }
@@ -481,17 +493,30 @@ func (l *LumiaOlt) NextAvailableOnuInterfaceUpdateRegister(intf string, onuReg *
 	}
 	sort.Ints(list)
 	var counter int
-	for i := 1; i < 129; i++ {
-		if i != list[i-1] {
-			counter = i
+	var escapeBool bool
+	// counting linearly, through a sorted list
+	// if the value does not equal the reference
+	// the number is skipped and can be used
+	for {
+		counter++
+		if counter > 128 {
+			// if this loop runs twice without breaking, break
+			if escapeBool {
+				fmt.Println("ERROR: Endless Loop Protection in NextAvailableOnuInterface")
+				break
+			}
+			counter = 1
+			escapeBool = true
+		}
+		if counter != list[counter-1] {
 			break
 		}
-		if i == len(list) {
-			counter = i + 1
+		if counter == len(list) {
+			counter += 1
 			break
 		}
-		//fmt.Println("list value", list[i], "counter", i)
 	}
+
 	newIntf := fmt.Sprintf("%s/%d", intf, counter)
 	onuReg.Interface = newIntf
 	return onuReg
