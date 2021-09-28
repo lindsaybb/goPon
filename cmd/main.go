@@ -9,7 +9,7 @@ import (
 	"time"
 	"strings"
 
-	"github.com/lindsaybb/gopon"
+	"github.com/lindsaybb/goPon"
 )
 
 var (
@@ -29,7 +29,7 @@ var (
 
 // to add: deregister all from a specified port, authorize all from blacklist, indirect add/rem of service profiles in bulk
 
-const usage = "`gopon_cmd` [options] <olt_ip>"
+const usage = "`goPon_cmd` [options] <olt_ip>"
 
 func main() {
 	flag.Parse()
@@ -41,14 +41,14 @@ func main() {
 	}
 	var err error
 	host := flag.Args()[0]
-	olt := gopon.NewLumiaOlt(host)
+	olt := goPon.NewLumiaOlt(host)
 	if !olt.HostIsReachable() {
 		fmt.Printf("Host %s is not reachable\n", host)
 		return
 	}
 	if *getBlacklist {
 		fmt.Println(">> Get Blacklist Called [-gb]")
-		var obll *gopon.OnuBlacklistList
+		var obll *goPon.OnuBlacklistList
 		obll, err = olt.GetOnuBlacklist()
 		if err != nil {
 			fmt.Println(err)
@@ -129,9 +129,9 @@ func main() {
 	}
 }
 
-func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
+func manuallyRegisterOnu(olt *goPon.LumiaOlt) error {
 	var err error
-	var obll *gopon.OnuBlacklistList
+	var obll *goPon.OnuBlacklistList
 	// perform GET request on OLT Blacklist and hold this data in a local variable
 	obll, err = olt.GetOnuBlacklist()
 	if err != nil {
@@ -165,7 +165,7 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 	// using the supplied OLT Port, find the next available ONU interface 'y' as in 0/x/y
 	intf := olt.NextAvailableOnuInterface(oltIntf)
 	// generate a new ONU Config with the supplied SN and ONU interface
-	ocfg := gopon.NewOnuConfig(sn, intf)
+	ocfg := goPon.NewOnuConfig(sn, intf)
 	// Authorize ONU checks if SN exists in AuthorizedOnuSn list
 	// If it does, it executes a PATCH request updating the existing Provisioned ONUs with the new ONU Config
 	err = olt.AuthorizeOnu(ocfg)
@@ -178,7 +178,7 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 	//		return err
 	//	}
 	// perform GET request on OLT Service Profiles and display them
-	var spl *gopon.ServiceProfileList
+	var spl *goPon.ServiceProfileList
 	spl, err = olt.GetServiceProfiles()
 	if err != nil {
 		return err
@@ -190,14 +190,14 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 		sp = sanitizeInput(strings.TrimSpace(sp))
 		if spl.ProfileExists(sp) {
 			// created new ONU Profile by combining registered interface with service profile name
-			newProfile := gopon.NewOnuProfile(ocfg.IfName, sp)
+			newProfile := goPon.NewOnuProfile(ocfg.IfName, sp)
 			// error will be checked if the server accepts the patch
 			err = olt.PostOnuProfile(newProfile)
 			if err != nil {
 				return err
 			}
 		} else {
-			return gopon.ErrNotInput
+			return goPon.ErrNotInput
 		}
 	}
 	// perform GET request on OLT WhiteList and update app's db of currently provisioned ONU
@@ -209,7 +209,7 @@ func manuallyRegisterOnu(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func registerOnuFromFile(olt *gopon.LumiaOlt) error {
+func registerOnuFromFile(olt *goPon.LumiaOlt) error {
 	now := time.Now()
 	fmt.Println("Starting the Timer")
 	var err error
@@ -233,7 +233,7 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 	//      Focus on current need: multiple ONU sit on the Blacklist, want to auth them all and add SP according to file
 
 	// this function performs a GET request to retrieve the ONU currently on the Blacklist
-	var obll *gopon.OnuBlacklistList
+	var obll *goPon.OnuBlacklistList
 	obll, err = olt.GetOnuBlacklist()
 	if err != nil {
 		return err
@@ -242,7 +242,7 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 
 	fmt.Println("\nCreating an Onu Config for each Onu on the Blacklist to attempt to Register")
 
-	var ocfg *gopon.OnuConfig
+	var ocfg *goPon.OnuConfig
 	for _, e := range obll.Entry {
 		// since the Olt Registry has the new SerialNumbers, this check will include them
 		if olt.ValidateSn(e.SerialNumber) {
@@ -256,7 +256,7 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 				onuReg = olt.NextAvailableOnuInterfaceUpdateRegister(e.IfName, onuReg)
 			}
 			intf = onuReg.Interface
-			ocfg = gopon.NewOnuConfig(e.SerialNumber, intf)
+			ocfg = goPon.NewOnuConfig(e.SerialNumber, intf)
 			err = olt.AuthorizeOnu(ocfg)
 			if err != nil {
 				fmt.Println(err)
@@ -272,7 +272,7 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 			for _, sp := range onuReg.Services {
 				if spl.ProfileExists(sp) {
 					// created new ONU Profile by combining registered interface with service profile name
-					newProfile := gopon.NewOnuProfile(ocfg.IfName, sp)
+					newProfile := goPon.NewOnuProfile(ocfg.IfName, sp)
 					// error will be checked if the server accepts the patch
 					err = olt.PostOnuProfile(newProfile)
 					if err != nil {
@@ -301,7 +301,7 @@ func registerOnuFromFile(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func manuallyDeregisterOnu(olt *gopon.LumiaOlt) error {
+func manuallyDeregisterOnu(olt *goPon.LumiaOlt) error {
 	var err error
 	err = olt.UpdateOnuRegistry()
 	if err != nil {
@@ -335,7 +335,7 @@ func manuallyDeregisterOnu(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func deRegisterOnuFromFile(olt *gopon.LumiaOlt) error {
+func deRegisterOnuFromFile(olt *goPon.LumiaOlt) error {
 	now := time.Now()
 	fmt.Println("Starting the Timer")
 	
@@ -361,7 +361,7 @@ func deRegisterOnuFromFile(olt *gopon.LumiaOlt) error {
 //	}
 //	olt.TabwriteRegistry()
 	// Blacklist might not show the devices yet, takes about 1 min to update
-	var obll *gopon.OnuBlacklistList
+	var obll *goPon.OnuBlacklistList
 	obll, err = olt.GetOnuBlacklist()
 	if err != nil {
 		return err
@@ -385,9 +385,9 @@ func deRegisterOnuFromFile(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func addServiceToOnu(olt *gopon.LumiaOlt) error {
+func addServiceToOnu(olt *goPon.LumiaOlt) error {
 	var err error
-	var spl *gopon.ServiceProfileList
+	var spl *goPon.ServiceProfileList
 	// first show the available Service Profiles
 	spl, err = olt.GetServiceProfiles()
 	if err != nil {
@@ -431,7 +431,7 @@ func addServiceToOnu(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func removeServiceFromOnu(olt *gopon.LumiaOlt) error {
+func removeServiceFromOnu(olt *goPon.LumiaOlt) error {
 	// first show the current device provisioning
 	err := olt.UpdateOnuRegistry()
 	if err != nil {
@@ -449,7 +449,7 @@ func removeServiceFromOnu(olt *gopon.LumiaOlt) error {
 	sp := sanitizeInput(readFromStdin(reader))
 	// don't need to check if profile exists, it will not be removed if it is the case
 	if sp == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 
 	onuReg, err := olt.GetOnuRegisterBySn(sn)
@@ -470,48 +470,48 @@ func removeServiceFromOnu(olt *gopon.LumiaOlt) error {
 	return nil
 }
 
-func displayServiceProfiles(olt *gopon.LumiaOlt) error {
+func displayServiceProfiles(olt *goPon.LumiaOlt) error {
 	// the top level data structure for provisioning services on an OLT is represented by a "Service Profile"
 	// we will perform a GET Request to retrieve all currently configured Service Profiles on the OLT
 	// a separate object holds a list of the individual profile objects to allow group tabwrite methods
 	var err error
-	var spl *gopon.ServiceProfileList
+	var spl *goPon.ServiceProfileList
 	spl, err = olt.GetServiceProfiles()
 	if err != nil {
 		return err
 	}
 	spl.Tabwrite()
 
-	var fpl *gopon.FlowProfileList
+	var fpl *goPon.FlowProfileList
 	fpl, err = olt.GetFlowProfiles()
 	if err != nil {
 		return err
 	}
 	fpl.Tabwrite()
 
-	var vpl *gopon.VlanProfileList
+	var vpl *goPon.VlanProfileList
 	vpl, err = olt.GetVlanProfiles()
 	if err != nil {
 		return err
 	}
 	vpl.Tabwrite()
 
-	var ofpl *gopon.OnuFlowProfileList
+	var ofpl *goPon.OnuFlowProfileList
 	ofpl, err = olt.GetOnuFlowProfiles()
 	if err != nil {
 		return err
 	}
 	ofpl.Tabwrite()
 
-	var otpl *gopon.OnuTcontProfileList
+	var otpl *goPon.OnuTcontProfileList
 	otpl, err = olt.GetOnuTcontProfiles()
 	if err != nil {
 		return err
 	}
 	otpl.Tabwrite()
 
-	var ovpl *gopon.OnuVlanProfileList
-	var ovrl *gopon.OnuVlanRuleList
+	var ovpl *goPon.OnuVlanProfileList
+	var ovrl *goPon.OnuVlanRuleList
 	ovpl, ovrl, err = olt.GetOnuVlanProfiles()
 	if err != nil {
 		return err
