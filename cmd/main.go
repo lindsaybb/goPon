@@ -149,12 +149,12 @@ func manuallyRegisterOnu(olt *goPon.LumiaOlt) error {
 	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 	oltIntf := sanitizeIntfInput(readFromStdin(reader))
 	if oltIntf == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 	fmt.Println(">> Provide ONU Serial Number to Register:")
 	sn := sanitizeSnInput(readFromStdin(reader))
 	if sn == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 	fmt.Printf(">> Input: %s:%s\n", oltIntf, sn)
 	// External Auth List held by application, not sent to OLT
@@ -308,7 +308,7 @@ func manuallyDeregisterOnu(olt *goPon.LumiaOlt) error {
 		return err
 	}
 	if len(olt.Registration) < 1 {
-		return gopon.ErrNotExists
+		return goPon.ErrNotExists
 	}
 	// The ONU Registry is a stand-in for a real database
 	olt.TabwriteRegistry()
@@ -317,7 +317,7 @@ func manuallyDeregisterOnu(olt *goPon.LumiaOlt) error {
 	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 	sn := sanitizeSnInput(readFromStdin(reader))
 	if sn == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 	err = olt.DeauthOnuBySn(sn)
 	if err != nil {
@@ -346,7 +346,7 @@ func deRegisterOnuFromFile(olt *goPon.LumiaOlt) error {
 		return err
 	}
 	if len(olt.Registration) < 1 {
-		return gopon.ErrNotExists
+		return goPon.ErrNotExists
 	}
 	olt.TabwriteRegistry()
 	// Deauthorized any Onu Serial Numbers that appear in the file
@@ -405,12 +405,12 @@ func addServiceToOnu(olt *goPon.LumiaOlt) error {
 	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 	sn := sanitizeSnInput(readFromStdin(reader))
 	if sn == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 	fmt.Println(">> Provide Service Profile Name to add to ONU:")
 	sp := sanitizeInput(readFromStdin(reader))
 	if sp == "" || !spl.ProfileExists(sp) {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 
 	onuReg, err := olt.GetOnuRegisterBySn(sn)
@@ -443,7 +443,7 @@ func removeServiceFromOnu(olt *goPon.LumiaOlt) error {
 	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 	sn := sanitizeSnInput(readFromStdin(reader))
 	if sn == "" {
-		return gopon.ErrNotInput
+		return goPon.ErrNotInput
 	}
 	fmt.Println(">> Provide Service Profile Name to remove from ONU:")
 	sp := sanitizeInput(readFromStdin(reader))
