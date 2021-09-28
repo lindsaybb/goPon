@@ -1,4 +1,4 @@
-module github.com/lindsaybb/gopon
+module github.com/lindsaybb/goPon
 
 go 1.16
 
