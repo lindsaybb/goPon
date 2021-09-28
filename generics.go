@@ -1,14 +1,11 @@
-package gopon
+package goPon
 
 import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-
-	//"net"
 	"strconv"
 	"strings"
-	//"time"
 )
 
 var (
@@ -130,15 +127,6 @@ func generateVlanList(h string) (o []int, err error) {
 	return o, nil
 }
 
-/*
-func getMapKeysAsSlice(in map[string]interface{}) []string {
-	var out []string
-	for key := range in {
-		out = append(out, key)
-	}
-	return out
-}
-*/
 func toString(v interface{}) string {
 	switch vv := v.(type) {
 	case []byte:
@@ -176,15 +164,7 @@ func toString(v interface{}) string {
 	}
 }
 
-/*
-func isUrlEncoded(intf string) bool {
-	if strings.Contains(intf, "/") {
-		return false
-	}
-	// could do more filtering but that is satisfactory
-	return true
-}
-*/
+
 func UrlEncodeInterface(intf string) string {
 	return strings.ReplaceAll(intf, "/", "%2F")
 }
@@ -194,7 +174,6 @@ func UrlDecodeInterface(intf string) string {
 }
 
 func parseAuth(auth string) (user, pass string) {
-	// "session=em+protection-user=admin&em+protection-pw=admin"
 	str := strings.Split(auth, "&")
 	for _, st := range str {
 		s := strings.Split(st, "=")
