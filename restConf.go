@@ -1,4 +1,4 @@
-package gopon
+package goPon
 
 import (
 	"bytes"
@@ -8,6 +8,25 @@ import (
 	"net"
 	"net/http"
 	"time"
+)
+
+const (
+	responseOk       = "200 OK"
+	serviceProfiles  = "msanServiceProfileTable"
+	flowProfiles     = "msanServiceFlowProfileTable"
+	vlanProfiles     = "msanVlanProfileTable"
+	igmpProfiles     = "msanMulticastProfileTable"
+	securityProfiles = "msanSecurityProfileTable"
+	onuFlowProfiles  = "msanOnuFlowProfileTable"
+	onuTcontProfiles = "msanOnuTcontProfileTable"
+	onuVlanProfiles  = "msanOnuVlanProfileTable"
+	onuVlanRules     = "msanOnuVlanProfileRuleTable"
+	onuIgmpProfiles  = "msanOnuMulticastProfileTable"
+	l2cpProfiles     = "msanL2cpProfileTable"
+	onuBlacklist     = "msanOnuBlackListTable"
+	onuConfig        = "msanOnuCfgTable"
+	onuProfiles      = "msanServicePortProfileTable"
+	onuInfo          = "msanOnuInfoTable"
 )
 
 // required to maintain order, variables initialized once as constants
