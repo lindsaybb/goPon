@@ -25,22 +25,6 @@ var (
 const (
 	auth             = "session=em+protection-user=admin&em+protection-pw=admin"
 	empty            = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-	responseOk       = "200 OK"
-	serviceProfiles  = "msanServiceProfileTable"
-	flowProfiles     = "msanServiceFlowProfileTable"
-	vlanProfiles     = "msanVlanProfileTable"
-	igmpProfiles     = "msanMulticastProfileTable"
-	securityProfiles = "msanSecurityProfileTable"
-	onuFlowProfiles  = "msanOnuFlowProfileTable"
-	onuTcontProfiles = "msanOnuTcontProfileTable"
-	onuVlanProfiles  = "msanOnuVlanProfileTable"
-	onuVlanRules     = "msanOnuVlanProfileRuleTable"
-	onuIgmpProfiles  = "msanOnuMulticastProfileTable"
-	l2cpProfiles     = "msanL2cpProfileTable"
-	onuBlacklist     = "msanOnuBlackListTable"
-	onuConfig        = "msanOnuCfgTable"
-	onuProfiles      = "msanServicePortProfileTable"
-	onuInfo		 = "msanOnuInfoTable"
 )
 
 const (
