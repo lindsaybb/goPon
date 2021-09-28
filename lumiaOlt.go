@@ -1,4 +1,4 @@
-package gopon
+package goPon
 
 import (
 	"bufio"
@@ -440,42 +440,32 @@ func (l *LumiaOlt) NextAvailableOnuInterface(intf string) string {
 	}
 	sort.Ints(list)
 	var counter int
-	var escapeBool bool
-	// counting linearly, through a sorted list
-	// if the value does not equal the reference
-	// the number is skipped and can be used
+
 	for {
+		// counter is incremented each time that subinterface is used
+		// until a match is found that is not currently in use, and returned
 		counter++
-		if counter > 128 {
-			// if this loop runs twice without breaking, break
-			if escapeBool {
-				fmt.Println("ERROR: Endless Loop Protection in NextAvailableOnuInterface")
-				break
-			}
-			counter = 1
-			escapeBool = true
+		if counter > 127 {
+			// design choice: return an invalid interface or not?
+			// if all 128 are in use, this function needs to return 'false' as in none available
+			// instead of letting this logic control that, don't check if 128 is available but try to post anyway
+			// act on the "409 Conflict" returned rather than internal logic, easier to diagnose
+			// otherwise, the handler of this function needs to check for an error and not post
+			// and in doing so, return a descriptive error with the same effect as 409
+			// when in doubt, let REST sort it out
+			break
 		}
-		// obvious example is 0/1/1, 0/1/2, 0/1/4 are occupied, want to supply 0/1/3 as answer
-		// counter is 1 and sorted list[0] is 1, continue
-		// counter is 2 and sorted list[1] is 2, continue
-		// counter is 3 and sorted list[2] is 4; break and use counter value for new interface
+		// accounting for gaps in linear sequence
 		if counter != list[counter-1] {
 			break
 		}
-		// less obvious example is one device at 0/1/4 exists
-		// counter is 1 and does not equal the value so it doesn't make it here
-		
-		// another example is like above but 0/1/3 is also present
-		// counter has been equal to the list but now the list is over
-		// counter is equal to the length of the list and we haven't found a device yet
-		// so counter + 1 is an unoccupied interface
+		// no linear gaps but length of list is exceeded
 		if counter == len(list) {
 			counter += 1
 			break
 		}
-		//fmt.Printf("List value: %d, Counter value: %d\n", list[counter], counter)
 	}
-	
+
 	newIntf := fmt.Sprintf("%s/%d", intf, counter)
 	return newIntf
 }
@@ -493,20 +483,11 @@ func (l *LumiaOlt) NextAvailableOnuInterfaceUpdateRegister(intf string, onuReg *
 	}
 	sort.Ints(list)
 	var counter int
-	var escapeBool bool
-	// counting linearly, through a sorted list
-	// if the value does not equal the reference
-	// the number is skipped and can be used
+	// see notes in NextAvailableOnuInterface
 	for {
 		counter++
-		if counter > 128 {
-			// if this loop runs twice without breaking, break
-			if escapeBool {
-				fmt.Println("ERROR: Endless Loop Protection in NextAvailableOnuInterface")
-				break
-			}
-			counter = 1
-			escapeBool = true
+		if counter > 127 {
+			break
 		}
 		if counter != list[counter-1] {
 			break
@@ -556,42 +537,6 @@ func (l *LumiaOlt) GeneratePerPortOnuRegistrationList(intf string) map[int]strin
 	return list
 }
 
-/*
-// AuthorizeOnuCheckBlacklist accepts a single OnuConfig object and attempts to register the device after checking the blacklist that it exists
-func (l *LumiaOlt) AuthorizeOnuCheckBlacklist(ocfg *OnuConfig) error {
-	// checking Blacklist is an unnecessary step here, good precaution but useless, server will reject if doesn't
-	obll, err := l.GetOnuBlacklist()
-	if err != nil {
-		return err
-	}
-	if len(obll.Entry) == 0 {
-		return ErrNotExists
-	}
-	for _, e := range obll.Entry {
-		if e.SerialNumber == ocfg.SerialNumber {
-			if l.ValidateSn(ocfg.SerialNumber) {
-				ifName, jsonData := ocfg.GenerateJson()
-				if ifName == "" {
-					return ErrNotStruct
-				}
-				//fmt.Println(jsonData)
-				resp, err := RestPatchProfile(l.Host, onuConfig, UrlEncodeInterface(ifName), jsonData)
-				if err != nil {
-					return err
-				}
-				if resp != responseOk {
-					fmt.Println(resp)
-					return ErrNotStatusOk
-				}
-				return nil
-			} else {
-				return ErrNotAuthorized
-			}
-		}
-	}
-	return ErrNotExists
-}
-*/
 // AuthorizeOnu accepts a single OnuConfig object and attempts to register the device
 func (l *LumiaOlt) AuthorizeOnu(ocfg *OnuConfig) error {
 	if l.ValidateSn(ocfg.SerialNumber) {
@@ -812,6 +757,27 @@ func (l *LumiaOlt) GetOnuInfoList() (*OnuInfoList, error) {
 	var list OnuInfoList
 	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry); i++ {
 		list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry[i])
+	}
+	return &list, nil
+}
+
+// Returns a list of the OnuInfo struct that prefix-match the string (ie 0/1, 0/2...)
+func (l *LumiaOlt) GetOnuInfoListPerPort(port string) (*OnuInfoList, error) {
+	rawJson, err := RestGetProfiles(l.Host, onuInfo)
+	if err != nil {
+		return nil, err
+	}
+	l.CacheSwap()
+	err = json.Unmarshal(rawJson, &l.Current)
+	if err != nil {
+		l.CacheBack()
+		return nil, err
+	}
+	var list OnuInfoList
+	for i := 0; i < len(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry); i++ {
+		if strings.HasPrefix(l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry[i].IfName, port) {
+			list.Entry = append(list.Entry, &l.Current.ISKRATELMSANMIB.ISKRATELMSANMIB.MsanOnuInfoTable.MsanOnuInfoEntry[i])
+		}
 	}
 	return &list, nil
 }
@@ -1355,12 +1321,12 @@ func (l *LumiaOlt) GetOnuVlanProfiles() (*OnuVlanProfileList, *OnuVlanRuleList, 
 				//fmt.Println(rules.Entry[i])
 				profRules.Entry = append(profRules.Entry, rules.Entry[i])
 				continue
-			}	
+			}
 		}
 		//fmt.Printf("Collected rules: %v\n", profRules)
 		list.Entry[n].Rules = &profRules
 	}
-	
+
 	return &list, rules, nil
 }
 
@@ -1369,7 +1335,7 @@ func (l *LumiaOlt) GetOnuVlanProfileByName(name string) (*OnuVlanProfile, error)
 	if name == "" {
 		return nil, ErrNotInput
 	}
-	list, _,  err := l.GetOnuVlanProfiles()
+	list, _, err := l.GetOnuVlanProfiles()
 	if err != nil {
 		return nil, err
 	}
@@ -1424,7 +1390,6 @@ func (l *LumiaOlt) PostOnuVlanProfile(name string, data []byte) error {
 	return nil
 }
 
-
 // GetOnuVlanRules performs a Get Request to the l.Host and returns a list of the OnuVlanRule struct
 func (l *LumiaOlt) GetOnuVlanRules() (*OnuVlanRuleList, error) {
 	rawJson, err := RestGetProfiles(l.Host, onuVlanRules)
@@ -1442,6 +1407,7 @@ func (l *LumiaOlt) GetOnuVlanRules() (*OnuVlanRuleList, error) {
 	}
 	return &list, nil
 }
+
 /*
 // GetOnuVlanRuleByName is a helper method that returns a single OnuVlanRule struct by name, if exists
 func (l *LumiaOlt) GetOnuVlanRuleByName(name string) (*OnuVlanRule, error) {
