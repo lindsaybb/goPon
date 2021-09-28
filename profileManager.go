@@ -1,4 +1,4 @@
-package gopon
+package goPon
 
 // this file acts as a handler between the larger data structure and the individual profiles
 // combination and separation of profiles is done here, using the master struct
