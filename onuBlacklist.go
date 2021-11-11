@@ -30,11 +30,18 @@ func (bl *OnuBlacklist) GetPassword() string {
 }
 
 func (bl *OnuBlacklist) GetBlCause() string {
-	if bl.Cause == 2 {
+	switch {
+	case bl.Cause == 1 {
+		return "Invalid"
+	case bl.Cause == 2 {
 		return "SN Not Known"
+	case bl.Cause == 3 {
+		return "Password Mismatch"
+	case bl.Cause == 6 {
+		return "PON Link Mismatch"
+	default:
+		return "Unknown"
 	}
-	return "Unknown"
-
 }
 
 var OnuBlacklistHeaders = []string{
