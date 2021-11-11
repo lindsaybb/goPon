@@ -27,16 +27,13 @@ type OnuConfigList struct {
 	Entry []*OnuConfig
 }
 
-// NewOnuConfig accepts an Onu Serial Number and an Onu Interface (Not Url Encoded 0/x/y) and provides an OnuConfig object
+// NewOnuConfig accepts an Onu Serial Number and an Onu Interface (Not Url Encoded 0/x/y)
+// and provides an OnuConfig object
 func NewOnuConfig(sn, intf string) *OnuConfig {
-	//if !isUrlEncoded(intf) {
-	//	fmt.Println("Supplied Interface is not Url Encoded")
-	//	return nil
-	//}
 	o := &OnuConfig{
 		IfName:                 intf,
 		Password:               "",
-		EnablePm:               1, // shouldn't be enabled by default, but is if not declared
+		EnablePm:               0, // disabled by default
 		SerialNumber:           sn,
 		AdminState:             1,
 		OnuDhcpMode:            1,
